@@ -1,0 +1,58 @@
+Crea un sito web professionale e moderno per un'azienda specializzata in ricerca finanziaria avanzata e analisi quantitativa di livello hedge fund. Il sito deve ispirarsi all'eleganza e alla solidità visiva del sito di Goldman Sachs (https://www.goldmansachs.com), con le seguenti caratteristiche:
+
+🎨 Estetica e Identità Visiva
+Palette colori: Nero, bianco, grigio antracite, con accenti oro o bronzo per dare un tocco di esclusività.
+
+Tipografia: Usa un font sans-serif moderno e autorevole simile a Goldman Sans o Inter, con lettere leggibili e spaziatura equilibrata, ideale per la lettura di contenuti tecnici.
+
+Layout pulito, modulare, con ampi spazi bianchi che trasmettono rigore e ordine.
+
+Immagini o illustrazioni astratte a tema finanziario o matematico, con sfumature scure e luminose, in linea con uno stile "hedge fund elite".
+
+🖥️ Struttura e Navigazione
+Barra di navigazione fissa e minimale con le seguenti sezioni:
+
+Home
+
+Chi Siamo
+
+Ricerche
+
+Insights di Mercato
+
+Strategie Quantitative
+
+Contatti
+
+Footer completo con:
+
+Dati legali
+
+Link ai social professionali (LinkedIn, Twitter/X)
+
+Disclaimer legale e informativa sui rischi
+
+📝 Contenuti e Architettura
+Home con messaggio forte e posizionamento: "Soluzioni di Ricerca Quantitativa di Livello Hedge Fund per Investitori Istituzionali".
+
+Sezione Ricerche con articoli suddivisi in categorie: Macro, Volatilità, Credit, Equity Factors, Fixed Income Strategies, Alternative Data.
+
+Sezione Insights con aggiornamenti settimanali o mensili di mercato.
+
+Area download o login per accedere a report premium.
+
+Supporto a grafici interattivi, tabelle dinamiche e codici di esempio in Python per ricerche quantitative.
+
+📱 Responsive e Performance
+Design 100% responsive ottimizzato per mobile e tablet.
+
+Layout che mantiene leggibilità e autorevolezza anche su schermi piccoli.
+
+Ottimizzato per performance e SEO, con tempi di caricamento ridotti.
+
+🔒 Professionalità e Credibilità
+Stile sobrio, istituzionale, senza elementi di marketing aggressivo.
+
+Focus su contenuti di valore, basati su dati, modelli quantitativi e simulazioni.
+
+Design che trasmette affidabilità, esclusività e competenza.
