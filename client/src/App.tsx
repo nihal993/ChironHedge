@@ -11,6 +11,7 @@ import MacroReport from "@/pages/MacroReport";
 import QuantitativeStrategies from "@/pages/QuantitativeStrategies";
 import Contact from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 
 function Router() {
   return (
@@ -32,9 +33,11 @@ function App() {
   return (
     <TooltipProvider>
       <Toaster />
-      <Layout>
-        <Router />
-      </Layout>
+      <LanguageProvider>
+        <Layout>
+          <Router />
+        </Layout>
+      </LanguageProvider>
     </TooltipProvider>
   );
 }

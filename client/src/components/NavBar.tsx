@@ -3,22 +3,25 @@ import { Link, useLocation } from "wouter";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
+import LanguageSwitcher from "./LanguageSwitcher";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const navLinks = [
-  { name: "Home", href: "/" },
-  { name: "News AI", href: "/news-ai" },
-  { name: "Quantitative Model", href: "/quantitative-model" },
-  { name: "Markets Insight", href: "/markets-insight" },
-  { name: "Our Research", href: "/our-research" },
-  { name: "Macro Report", href: "/macro-report" },
-  { name: "Quantitative Strategies", href: "/quantitative-strategies" },
-  { name: "Get in Touch", href: "/contact" }
+  { key: "home", name: "Home", href: "/" },
+  { key: "navbar.newsAI", name: "News AI", href: "/news-ai" },
+  { key: "navbar.quantitativeModel", name: "Quantitative Model", href: "/quantitative-model" },
+  { key: "navbar.marketsInsight", name: "Markets Insight", href: "/markets-insight" },
+  { key: "navbar.research", name: "Our Research", href: "/our-research" },
+  { key: "navbar.macroReport", name: "Macro Report", href: "/macro-report" },
+  { key: "navbar.strategies", name: "Quantitative Strategies", href: "/quantitative-strategies" },
+  { key: "navbar.contact", name: "Get in Touch", href: "/contact" }
 ];
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [location] = useLocation();
   const [scrolled, setScrolled] = useState(false);
+  const { language, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,17 +63,19 @@ const NavBar = () => {
                 location === link.href ? "border-secondary" : "border-transparent"
               )}
             >
-              {link.name}
+              {link.key === "home" ? link.name : t(link.key)}
             </Link>
           ))}
         </nav>
         
         <div className="hidden lg:flex items-center">
+          <LanguageSwitcher />
+          <div className="mx-4 h-4 border-r border-gray-300"></div>
           <Link href="/login" className="px-5 py-2.5 text-sm font-medium text-white bg-primary hover:bg-primary/80 rounded-none transition-colors mr-3">
-            Accedi
+            {t('login')}
           </Link>
-          <Link href="/contact" className="px-5 py-2.5 text-sm font-medium text-primary gold-gradient hover:brightness-105 rounded-none transition-all">
-            Contattaci
+          <Link href="/contact" className="px-5 py-2.5 text-sm font-medium text-primary blue-gradient hover:brightness-105 rounded-none transition-all">
+            {t('contact')}
           </Link>
         </div>
         
@@ -105,7 +110,7 @@ const NavBar = () => {
                 )}
                 onClick={closeMenu}
               >
-                {link.name}
+                {link.key === "home" ? link.name : t(link.key)}
               </Link>
             ))}
             <div className="flex flex-col space-y-3 pt-4 mt-2">
@@ -114,14 +119,14 @@ const NavBar = () => {
                 className="w-full px-5 py-2.5 text-center text-sm font-medium text-white bg-primary hover:bg-primary/80 rounded-none transition-colors"
                 onClick={closeMenu}
               >
-                Accedi
+                {t('login')}
               </Link>
               <Link
                 href="/contact"
-                className="w-full px-5 py-2.5 text-center text-sm font-medium text-primary gold-gradient hover:brightness-105 rounded-none transition-all"
+                className="w-full px-5 py-2.5 text-center text-sm font-medium text-primary blue-gradient hover:brightness-105 rounded-none transition-all"
                 onClick={closeMenu}
               >
-                Contattaci
+                {t('contact')}
               </Link>
             </div>
           </nav>
