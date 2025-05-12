@@ -381,7 +381,7 @@ const Home = () => {
             </p>
             
             {/* Featured Research - Stile Goldman Sachs */}
-            <div className="mb-12">
+            <div className="mb-10">
               <h3 className="text-xl font-semibold mb-6 border-b border-gray-200 pb-3">Featured Research</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* Report Card 1 */}
@@ -458,115 +458,57 @@ const Home = () => {
               </div>
             </div>
             
-            {/* Recent Publications */}
-            <div className="flex flex-col md:flex-row gap-8">
-              <div className="md:w-2/3 bg-white border border-gray-100 p-6">
-                <h3 className="text-xl font-semibold mb-6">Recent Publications</h3>
-                <div className="divide-y divide-gray-100">
-                  <div className="py-5">
-                    <div className="flex justify-between items-start mb-2">
-                      <span className="text-sm text-blue-600 font-medium">Macro Economics</span>
-                      <span className="text-xs text-primary/60">May 12, 2025</span>
-                    </div>
-                    <h4 className="font-semibold text-lg mb-2">Factor Timing Framework: Optimizing Allocations</h4>
-                    <p className="text-primary/70 text-sm mb-3">
-                      Quantitative approach to optimal factor allocation across market regimes with systematic implementation guidelines.
-                    </p>
-                    <p className="text-xs text-secondary">By Dr. Maria Rossi, Dr. James Chen</p>
-                  </div>
-                  
-                  <div className="py-5">
-                    <div className="flex justify-between items-start mb-2">
-                      <span className="text-sm text-blue-600 font-medium">Portfolio Construction</span>
-                      <span className="text-xs text-primary/60">April 28, 2025</span>
-                    </div>
-                    <h4 className="font-semibold text-lg mb-2">Entropy Portfolio Construction: Beyond Markowitz</h4>
-                    <p className="text-primary/70 text-sm mb-3">
-                      Novel optimization methodology with enhanced risk-adjusted returns across varying market conditions.
-                    </p>
-                    <p className="text-xs text-secondary">By Dr. Alessandro Bianchi</p>
-                  </div>
-                  
-                  <div className="py-5">
-                    <div className="flex justify-between items-start mb-2">
-                      <span className="text-sm text-blue-600 font-medium">Fixed Income</span>
-                      <span className="text-xs text-primary/60">March 15, 2025</span>
-                    </div>
-                    <h4 className="font-semibold text-lg mb-2">Yield Curve & Recession Prediction: ML Approaches</h4>
-                    <p className="text-primary/70 text-sm mb-3">
-                      Machine learning approach to yield curve dynamics analysis with improved forecasting accuracy.
-                    </p>
-                    <p className="text-xs text-secondary">By Michael Zhang, PhD</p>
-                  </div>
-                  
-                  <div className="py-5">
-                    <div className="flex justify-between items-start mb-2">
-                      <span className="text-sm text-blue-600 font-medium">Global Markets</span>
-                      <span className="text-xs text-primary/60">February 27, 2025</span>
-                    </div>
-                    <h4 className="font-semibold text-lg mb-2">Systematic Alpha: Cross-Asset Opportunities</h4>
-                    <p className="text-primary/70 text-sm mb-3">
-                      Identifying structural alpha opportunities across global markets using systematic methodologies.
-                    </p>
-                    <p className="text-xs text-secondary">By Dr. Sarah Johnson, Thomas Mueller</p>
-                  </div>
+            {/* Research Categories */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+              <a href="#" className="block p-4 border border-gray-100 bg-white hover:border-blue-200 hover:bg-blue-50 transition-colors">
+                <h4 className="font-medium text-lg mb-1">Macro Economic Analysis</h4>
+                <p className="text-primary/70 text-sm">Global trends, policy impacts</p>
+                <div className="flex justify-between items-center mt-2">
+                  <span className="text-xs text-secondary">24 reports</span>
+                  <span className="text-blue-600 text-sm">→</span>
                 </div>
-                <div className="flex justify-end mt-6 pt-4 border-t border-gray-100">
-                  <a href="#" className="gs-arrow-link">
-                    View all publications <ArrowRight className="h-4 w-4" />
-                  </a>
-                </div>
-              </div>
+              </a>
               
-              {/* Research Categories */}
-              <div className="md:w-1/3 bg-white border border-gray-100 p-6">
-                <h3 className="text-xl font-semibold mb-6">Research Categories</h3>
-                <div className="space-y-4">
-                  <a href="#" className="block p-4 border border-gray-100 hover:border-blue-200 hover:bg-blue-50 transition-colors">
-                    <h4 className="font-medium text-lg mb-1">Macro Economic Analysis</h4>
-                    <p className="text-primary/70 text-sm">Global trends, policy impacts, and growth forecasts</p>
-                    <div className="flex justify-between items-center mt-2">
-                      <span className="text-xs text-secondary">24 reports</span>
-                      <span className="text-blue-600 text-sm">→</span>
-                    </div>
-                  </a>
-                  
-                  <a href="#" className="block p-4 border border-gray-100 hover:border-blue-200 hover:bg-blue-50 transition-colors">
-                    <h4 className="font-medium text-lg mb-1">Sector Insights</h4>
-                    <p className="text-primary/70 text-sm">Deep analysis of industry trends and opportunities</p>
-                    <div className="flex justify-between items-center mt-2">
-                      <span className="text-xs text-secondary">36 reports</span>
-                      <span className="text-blue-600 text-sm">→</span>
-                    </div>
-                  </a>
-                  
-                  <a href="#" className="block p-4 border border-gray-100 hover:border-blue-200 hover:bg-blue-50 transition-colors">
-                    <h4 className="font-medium text-lg mb-1">Quantitative Research</h4>
-                    <p className="text-primary/70 text-sm">Statistical models and data-driven investment frameworks</p>
-                    <div className="flex justify-between items-center mt-2">
-                      <span className="text-xs text-secondary">18 reports</span>
-                      <span className="text-blue-600 text-sm">→</span>
-                    </div>
-                  </a>
-                  
-                  <a href="#" className="block p-4 border border-gray-100 hover:border-blue-200 hover:bg-blue-50 transition-colors">
-                    <h4 className="font-medium text-lg mb-1">Policy Research</h4>
-                    <p className="text-primary/70 text-sm">Regulatory impact analysis and policy developments</p>
-                    <div className="flex justify-between items-center mt-2">
-                      <span className="text-xs text-secondary">16 reports</span>
-                      <span className="text-blue-600 text-sm">→</span>
-                    </div>
-                  </a>
+              <a href="#" className="block p-4 border border-gray-100 bg-white hover:border-blue-200 hover:bg-blue-50 transition-colors">
+                <h4 className="font-medium text-lg mb-1">Sector Insights</h4>
+                <p className="text-primary/70 text-sm">Industry trends analysis</p>
+                <div className="flex justify-between items-center mt-2">
+                  <span className="text-xs text-secondary">36 reports</span>
+                  <span className="text-blue-600 text-sm">→</span>
                 </div>
-              </div>
+              </a>
+              
+              <a href="#" className="block p-4 border border-gray-100 bg-white hover:border-blue-200 hover:bg-blue-50 transition-colors">
+                <h4 className="font-medium text-lg mb-1">Quantitative Research</h4>
+                <p className="text-primary/70 text-sm">Data-driven frameworks</p>
+                <div className="flex justify-between items-center mt-2">
+                  <span className="text-xs text-secondary">18 reports</span>
+                  <span className="text-blue-600 text-sm">→</span>
+                </div>
+              </a>
+              
+              <a href="#" className="block p-4 border border-gray-100 bg-white hover:border-blue-200 hover:bg-blue-50 transition-colors">
+                <h4 className="font-medium text-lg mb-1">Policy Research</h4>
+                <p className="text-primary/70 text-sm">Regulatory analysis</p>
+                <div className="flex justify-between items-center mt-2">
+                  <span className="text-xs text-secondary">16 reports</span>
+                  <span className="text-blue-600 text-sm">→</span>
+                </div>
+              </a>
+            </div>
+            
+            <div className="flex justify-end">
+              <a href="#" className="gs-arrow-link">
+                View all research <ArrowRight className="h-4 w-4" />
+              </a>
             </div>
           </div>
         )}
       </section>
 
-      {/* Macro Report Section */}
+      {/* Macro Report Section - Ridimensionata */}
       <section id="macro-report" className="gs-section">
-        <div className="flex justify-between items-center mb-8">
+        <div className="flex justify-between items-center mb-6">
           <h2 className="gs-header flex items-center">
             Macroeconomic Analysis
             <button 
@@ -580,31 +522,26 @@ const Home = () => {
         
         {(activeSection === 'macro-report' || activeSection === null) && (
           <div>
-            <p className="text-lg mb-8 max-w-3xl">
-              Our macroeconomic analysis provides a comprehensive view of global economic conditions and forecasts.
+            <p className="text-lg mb-6 max-w-3xl">
+              Our macroeconomic analysis provides a view of global economic conditions and forecasts.
             </p>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
               <div className="gs-chart-container">
-                <div className="flex justify-between items-center mb-6">
+                <div className="flex justify-between items-center mb-4">
                   <h3 className="gs-chart-title">Global Economic Growth</h3>
                   <span className="gs-subtle-text">Updated: May 12, 2025</span>
                 </div>
-                <div className="h-72 mb-6">
+                <div className="h-64 mb-4">
                   <BarChart 
                     data={[5.2, 4.1, 3.6, 7.8, 3.2, 2.1]}
                     categories={['US', 'Eurozone', 'UK', 'China', 'Japan', 'Brazil']}
                     title=""
-                    height={280}
+                    height={240}
                     horizontal={true}
                   />
                 </div>
-                <div className="flex justify-between items-center pt-4 border-t border-gray-100">
-                  <div className="max-w-md">
-                    <p className="gs-subtle-text">
-                      Annual GDP growth forecasts based on our proprietary leading indicators framework and econometric models.
-                    </p>
-                  </div>
+                <div className="flex justify-end pt-3 border-t border-gray-100">
                   <a href="#" className="gs-arrow-link">
                     View full report <ArrowRight className="h-4 w-4" />
                   </a>
@@ -612,24 +549,19 @@ const Home = () => {
               </div>
               
               <div className="gs-chart-container">
-                <div className="flex justify-between items-center mb-6">
+                <div className="flex justify-between items-center mb-4">
                   <h3 className="gs-chart-title">Global Inflation Trends</h3>
                   <span className="gs-subtle-text">Updated: May 10, 2025</span>
                 </div>
-                <div className="h-72 mb-6">
+                <div className="h-64 mb-4">
                   <LineChart 
                     data={[3.8, 4.2, 5.1, 2.1, 1.8, 5.6]}
                     categories={['US', 'Eurozone', 'UK', 'China', 'Japan', 'Brazil']}
                     title=""
-                    height={280}
+                    height={240}
                   />
                 </div>
-                <div className="flex justify-between items-center pt-4 border-t border-gray-100">
-                  <div className="max-w-md">
-                    <p className="gs-subtle-text">
-                      Annual inflation rates forecast using our hybrid approach combining cost-push and demand-pull dynamics.
-                    </p>
-                  </div>
+                <div className="flex justify-end pt-3 border-t border-gray-100">
                   <a href="#" className="gs-arrow-link">
                     View forecast methodology <ArrowRight className="h-4 w-4" />
                   </a>
@@ -637,108 +569,283 @@ const Home = () => {
               </div>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="gs-chart-container">
-                <div className="flex justify-between items-center mb-6">
-                  <h3 className="gs-chart-title">Manufacturing PMI</h3>
-                  <span className="gs-subtle-text">Updated: May 9, 2025</span>
-                </div>
-                <div className="h-72 mb-6">
-                  <AreaChart 
-                    data={[52.1, 49.8, 48.6, 53.2, 48.9, 51.4]}
-                    categories={['US', 'Eurozone', 'UK', 'China', 'Japan', 'Brazil']}
-                    title=""
-                    height={280}
-                  />
-                </div>
-                <div className="flex justify-between items-center pt-4 border-t border-gray-100">
-                  <div className="max-w-md">
-                    <p className="gs-subtle-text">
-                      Manufacturing Purchasing Managers' Index readings with our proprietary diffusion analysis methodology.
-                    </p>
-                  </div>
-                  <a href="#" className="gs-arrow-link">
-                    View indicator details <ArrowRight className="h-4 w-4" />
-                  </a>
-                </div>
-              </div>
-              
-              <div className="gs-chart-container">
-                <div className="flex justify-between items-center mb-6">
-                  <h3 className="gs-chart-title">Central Bank Policy Rates</h3>
-                  <span className="gs-subtle-text">Updated: May 11, 2025</span>
-                </div>
-                <div className="h-72 mb-6">
-                  <BarChart 
-                    data={[4.75, 3.75, 5.0, 3.55, 0.25, 10.75]}
-                    categories={['US Fed', 'ECB', 'BoE', 'PBoC', 'BoJ', 'BCB']}
-                    title=""
-                    height={280}
-                  />
-                </div>
-                <div className="flex justify-between items-center pt-4 border-t border-gray-100">
-                  <div className="max-w-md">
-                    <p className="gs-subtle-text">
-                      Current policy rates with our proprietary forecasting model projections for the next four quarters.
-                    </p>
-                  </div>
-                  <a href="#" className="gs-arrow-link">
-                    View rate projections <ArrowRight className="h-4 w-4" />
-                  </a>
-                </div>
-              </div>
+            <div className="flex justify-end mb-2">
+              <a href="#" className="gs-arrow-link">
+                View all macroeconomic analysis <ArrowRight className="h-4 w-4" />
+              </a>
             </div>
           </div>
         )}
       </section>
 
-      {/* Quantitative Strategies Section */}
-      <section id="quantitative-strategies" className="mb-12 border-t border-gray-200 pt-12">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold flex items-center">
+      {/* Quantitative Strategies Section - Espansa */}
+      <section id="quantitative-strategies" className="gs-section bg-gray-50">
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="gs-header flex items-center">
             Quantitative Strategies
             <button 
               onClick={() => toggleSection('quantitative-strategies')} 
               className="ml-4 p-1 rounded-full hover:bg-gray-100 transition-colors"
             >
-              <ChevronDown className={`h-5 w-5 transition-transform ${activeSection === 'quantitative-strategies' ? 'transform rotate-180' : ''}`} />
+              <ChevronDown className={`h-5 w-5 text-secondary transition-transform ${activeSection === 'quantitative-strategies' ? 'transform rotate-180' : ''}`} />
             </button>
           </h2>
         </div>
         
         {(activeSection === 'quantitative-strategies' || activeSection === null) && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {strategies.slice(0, 2).map((strategy) => (
-              <div 
-                key={strategy.id}
-                className="border border-gray-200 p-6"
-              >
-                <h3 className="text-xl font-bold mb-3">{strategy.title}</h3>
-                <p className="text-primary/70 text-sm mb-4">
-                  {strategy.description.substring(0, 120)}...
-                </p>
-                <div className="flex justify-between items-center mb-4">
-                  <div>
-                    <p className="text-xs text-primary/60">YTD Performance</p>
-                    <p className="text-lg font-bold text-secondary">{strategy.performance}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs text-primary/60">Sharpe Ratio</p>
-                    <p className="text-lg font-bold text-secondary">1.8</p>
-                  </div>
+          <div>
+            <p className="text-lg mb-8 max-w-3xl">
+              Our systematic quantitative strategies harness advanced mathematics and machine learning for consistent alpha generation across market conditions.
+            </p>
+            
+            {/* Strategy Cards Row 1 */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <div className="bg-white border border-gray-100 p-6 shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex justify-between mb-4">
+                  <span className="px-3 py-1 bg-blue-50 text-blue-600 text-xs font-medium rounded-full">Multi-Asset</span>
+                  <span className="text-green-600 font-bold">+16.4%</span>
                 </div>
-                <div className="h-32 mb-4">
+                <h3 className="text-xl font-bold mb-3">Global Tactical Asset Allocation</h3>
+                <p className="text-primary/70 text-sm mb-5">
+                  Dynamic allocation across global asset classes driven by proprietary regime identification and risk parity optimization techniques.
+                </p>
+                <div className="h-40 mb-5">
                   <LineChart 
-                    data={strategy.chartDataset || []}
-                    categories={strategy.labels || []}
-                    height={120}
+                    data={[10.2, 12.8, 14.1, 13.5, 14.8, 15.2, 16.4]}
+                    categories={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']}
+                    height={160}
+                    colors={['#0033A0']}
                   />
                 </div>
-                <button className="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center">
-                  View strategy details <span className="ml-1">&#8250;</span>
-                </button>
+                <div className="grid grid-cols-3 gap-4 mb-4">
+                  <div className="text-center p-2 bg-gray-50">
+                    <p className="text-xs text-primary/60">Sharpe</p>
+                    <p className="text-primary font-bold">1.94</p>
+                  </div>
+                  <div className="text-center p-2 bg-gray-50">
+                    <p className="text-xs text-primary/60">Vol</p>
+                    <p className="text-primary font-bold">9.2%</p>
+                  </div>
+                  <div className="text-center p-2 bg-gray-50">
+                    <p className="text-xs text-primary/60">Max DD</p>
+                    <p className="text-primary font-bold">-8.1%</p>
+                  </div>
+                </div>
+                <a href="#" className="gs-arrow-link">
+                  View strategy details <ArrowRight className="h-4 w-4" />
+                </a>
               </div>
-            ))}
+              
+              <div className="bg-white border border-gray-100 p-6 shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex justify-between mb-4">
+                  <span className="px-3 py-1 bg-blue-50 text-blue-600 text-xs font-medium rounded-full">Equities</span>
+                  <span className="text-green-600 font-bold">+21.2%</span>
+                </div>
+                <h3 className="text-xl font-bold mb-3">Multi-Factor Equity Alpha</h3>
+                <p className="text-primary/70 text-sm mb-5">
+                  Systematic equity selection combining value, momentum, quality, and low volatility factors with adaptive weighting algorithm.
+                </p>
+                <div className="h-40 mb-5">
+                  <LineChart 
+                    data={[8.1, 10.5, 12.8, 14.2, 17.8, 19.5, 21.2]}
+                    categories={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']}
+                    height={160}
+                    colors={['#1D7AFC']}
+                  />
+                </div>
+                <div className="grid grid-cols-3 gap-4 mb-4">
+                  <div className="text-center p-2 bg-gray-50">
+                    <p className="text-xs text-primary/60">Sharpe</p>
+                    <p className="text-primary font-bold">2.16</p>
+                  </div>
+                  <div className="text-center p-2 bg-gray-50">
+                    <p className="text-xs text-primary/60">Vol</p>
+                    <p className="text-primary font-bold">12.5%</p>
+                  </div>
+                  <div className="text-center p-2 bg-gray-50">
+                    <p className="text-xs text-primary/60">Max DD</p>
+                    <p className="text-primary font-bold">-11.2%</p>
+                  </div>
+                </div>
+                <a href="#" className="gs-arrow-link">
+                  View strategy details <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
+              
+              <div className="bg-white border border-gray-100 p-6 shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex justify-between mb-4">
+                  <span className="px-3 py-1 bg-blue-50 text-blue-600 text-xs font-medium rounded-full">Fixed Income</span>
+                  <span className="text-green-600 font-bold">+12.8%</span>
+                </div>
+                <h3 className="text-xl font-bold mb-3">Global Macro Fixed Income</h3>
+                <p className="text-primary/70 text-sm mb-5">
+                  Systematic approach to global sovereign and credit markets utilizing term structure models and credit spread analyses.
+                </p>
+                <div className="h-40 mb-5">
+                  <LineChart 
+                    data={[5.2, 6.8, 8.1, 9.2, 10.5, 11.7, 12.8]}
+                    categories={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']}
+                    height={160}
+                    colors={['#4C9AFF']}
+                  />
+                </div>
+                <div className="grid grid-cols-3 gap-4 mb-4">
+                  <div className="text-center p-2 bg-gray-50">
+                    <p className="text-xs text-primary/60">Sharpe</p>
+                    <p className="text-primary font-bold">1.75</p>
+                  </div>
+                  <div className="text-center p-2 bg-gray-50">
+                    <p className="text-xs text-primary/60">Vol</p>
+                    <p className="text-primary font-bold">7.8%</p>
+                  </div>
+                  <div className="text-center p-2 bg-gray-50">
+                    <p className="text-xs text-primary/60">Max DD</p>
+                    <p className="text-primary font-bold">-5.9%</p>
+                  </div>
+                </div>
+                <a href="#" className="gs-arrow-link">
+                  View strategy details <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
+            </div>
+            
+            {/* Strategy Cards Row 2 */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <div className="bg-white border border-gray-100 p-6 shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex justify-between mb-4">
+                  <span className="px-3 py-1 bg-blue-50 text-blue-600 text-xs font-medium rounded-full">Volatility</span>
+                  <span className="text-green-600 font-bold">+14.5%</span>
+                </div>
+                <h3 className="text-xl font-bold mb-3">Statistical Arbitrage VIX</h3>
+                <p className="text-primary/70 text-sm mb-5">
+                  Exploits volatility risk premium through algorithmic trading of VIX futures and options with dynamic hedging.
+                </p>
+                <div className="h-40 mb-5">
+                  <LineChart 
+                    data={[6.2, 7.5, 8.8, 10.4, 11.8, 13.2, 14.5]}
+                    categories={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']}
+                    height={160}
+                    colors={['#0052CC']}
+                  />
+                </div>
+                <div className="grid grid-cols-3 gap-4 mb-4">
+                  <div className="text-center p-2 bg-gray-50">
+                    <p className="text-xs text-primary/60">Sharpe</p>
+                    <p className="text-primary font-bold">1.82</p>
+                  </div>
+                  <div className="text-center p-2 bg-gray-50">
+                    <p className="text-xs text-primary/60">Vol</p>
+                    <p className="text-primary font-bold">8.5%</p>
+                  </div>
+                  <div className="text-center p-2 bg-gray-50">
+                    <p className="text-xs text-primary/60">Max DD</p>
+                    <p className="text-primary font-bold">-7.2%</p>
+                  </div>
+                </div>
+                <a href="#" className="gs-arrow-link">
+                  View strategy details <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
+              
+              <div className="bg-white border border-gray-100 p-6 shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex justify-between mb-4">
+                  <span className="px-3 py-1 bg-blue-50 text-blue-600 text-xs font-medium rounded-full">ESG</span>
+                  <span className="text-green-600 font-bold">+18.7%</span>
+                </div>
+                <h3 className="text-xl font-bold mb-3">Sustainable Alpha Strategy</h3>
+                <p className="text-primary/70 text-sm mb-5">
+                  Quantitative approach to ESG investing leveraging proprietary sustainability metrics with factor integration.
+                </p>
+                <div className="h-40 mb-5">
+                  <LineChart 
+                    data={[7.8, 9.2, 11.5, 13.8, 15.2, 17.0, 18.7]}
+                    categories={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']}
+                    height={160}
+                    colors={['#00875A']}
+                  />
+                </div>
+                <div className="grid grid-cols-3 gap-4 mb-4">
+                  <div className="text-center p-2 bg-gray-50">
+                    <p className="text-xs text-primary/60">Sharpe</p>
+                    <p className="text-primary font-bold">2.05</p>
+                  </div>
+                  <div className="text-center p-2 bg-gray-50">
+                    <p className="text-xs text-primary/60">Vol</p>
+                    <p className="text-primary font-bold">11.2%</p>
+                  </div>
+                  <div className="text-center p-2 bg-gray-50">
+                    <p className="text-xs text-primary/60">Max DD</p>
+                    <p className="text-primary font-bold">-9.5%</p>
+                  </div>
+                </div>
+                <a href="#" className="gs-arrow-link">
+                  View strategy details <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
+              
+              <div className="bg-white border border-gray-100 p-6 shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex justify-between mb-4">
+                  <span className="px-3 py-1 bg-blue-50 text-blue-600 text-xs font-medium rounded-full">Alternatives</span>
+                  <span className="text-green-600 font-bold">+22.5%</span>
+                </div>
+                <h3 className="text-xl font-bold mb-3">ML-Enhanced Event Arbitrage</h3>
+                <p className="text-primary/70 text-sm mb-5">
+                  Machine learning approach to event-driven investing with focus on mergers, spinoffs, and corporate restructurings.
+                </p>
+                <div className="h-40 mb-5">
+                  <LineChart 
+                    data={[9.2, 11.5, 14.8, 16.2, 18.5, 20.1, 22.5]}
+                    categories={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']}
+                    height={160}
+                    colors={['#5243AA']}
+                  />
+                </div>
+                <div className="grid grid-cols-3 gap-4 mb-4">
+                  <div className="text-center p-2 bg-gray-50">
+                    <p className="text-xs text-primary/60">Sharpe</p>
+                    <p className="text-primary font-bold">2.32</p>
+                  </div>
+                  <div className="text-center p-2 bg-gray-50">
+                    <p className="text-xs text-primary/60">Vol</p>
+                    <p className="text-primary font-bold">13.8%</p>
+                  </div>
+                  <div className="text-center p-2 bg-gray-50">
+                    <p className="text-xs text-primary/60">Max DD</p>
+                    <p className="text-primary font-bold">-12.3%</p>
+                  </div>
+                </div>
+                <a href="#" className="gs-arrow-link">
+                  View strategy details <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
+            </div>
+            
+            {/* Strategy Comparison */}
+            <div className="bg-white border border-gray-100 p-6 shadow-sm mb-6">
+              <h3 className="text-xl font-bold mb-6">Strategy Performance Comparison</h3>
+              <div className="h-80">
+                <MultiLineChart 
+                  series={[
+                    { name: 'GTAA', data: [10.2, 12.8, 14.1, 13.5, 14.8, 15.2, 16.4] },
+                    { name: 'Multi-Factor', data: [8.1, 10.5, 12.8, 14.2, 17.8, 19.5, 21.2] },
+                    { name: 'Fixed Income', data: [5.2, 6.8, 8.1, 9.2, 10.5, 11.7, 12.8] },
+                    { name: 'Vol Arb', data: [6.2, 7.5, 8.8, 10.4, 11.8, 13.2, 14.5] },
+                    { name: 'ESG', data: [7.8, 9.2, 11.5, 13.8, 15.2, 17.0, 18.7] },
+                    { name: 'Event Arb', data: [9.2, 11.5, 14.8, 16.2, 18.5, 20.1, 22.5] }
+                  ]}
+                  categories={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul']}
+                  title=""
+                  height={320}
+                  colors={['#0033A0', '#1D7AFC', '#4C9AFF', '#0052CC', '#00875A', '#5243AA']}
+                />
+              </div>
+            </div>
+            
+            <div className="flex justify-center">
+              <a href="#" className="px-6 py-3 bg-blue-600 text-white hover:bg-blue-700 transition-colors text-sm font-medium flex items-center">
+                View all quantitative strategies <ArrowRight className="h-4 w-4 ml-2" />
+              </a>
+            </div>
           </div>
         )}
       </section>
