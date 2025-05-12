@@ -338,7 +338,7 @@ const Home = () => {
       <section id="our-research" className="gs-section bg-gray-50">
         <div className="flex justify-between items-center mb-8">
           <h2 className="gs-header flex items-center">
-            Research & Analysis
+            Research
             <button 
               onClick={() => toggleSection('our-research')} 
               className="ml-4 p-1 rounded-full hover:bg-gray-100 transition-colors"
