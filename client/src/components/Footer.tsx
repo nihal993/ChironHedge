@@ -7,11 +7,11 @@ import {
 const Footer = () => {
   return (
     <footer className="bg-primary text-white">
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-8 lg:py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
           <div>
-            <h3 className="text-xl font-bold mb-4">QuantumFinance</h3>
-            <p className="text-neutral-300 mb-6">
+            <h3 className="text-lg font-bold mb-4">QuantumFinance</h3>
+            <p className="text-neutral-300 text-sm mb-6">
               Soluzioni di ricerca quantitativa avanzata per investitori istituzionali.
             </p>
             <div className="flex space-x-4">
@@ -37,48 +37,50 @@ const Footer = () => {
           </div>
           
           <div>
-            <h4 className="font-bold mb-4">Ricerche</h4>
-            <ul className="space-y-2">
-              <li><Link href="/ricerche#macro" className="text-neutral-300 hover:text-white transition-colors">Macro Analysis</Link></li>
-              <li><Link href="/ricerche#volatility" className="text-neutral-300 hover:text-white transition-colors">Volatilità</Link></li>
-              <li><Link href="/ricerche#credit" className="text-neutral-300 hover:text-white transition-colors">Credit Research</Link></li>
-              <li><Link href="/ricerche#equity" className="text-neutral-300 hover:text-white transition-colors">Equity Factors</Link></li>
-              <li><Link href="/ricerche#fixed-income" className="text-neutral-300 hover:text-white transition-colors">Fixed Income</Link></li>
-              <li><Link href="/ricerche#alternative-data" className="text-neutral-300 hover:text-white transition-colors">Alternative Data</Link></li>
+            <h4 className="text-sm font-bold uppercase tracking-wider mb-4">Our Services</h4>
+            <ul className="space-y-2 text-sm">
+              <li><Link href="/news-ai" className="text-neutral-300 hover:text-secondary transition-colors">News AI</Link></li>
+              <li><Link href="/quantitative-model" className="text-neutral-300 hover:text-secondary transition-colors">Quantitative Model</Link></li>
+              <li><Link href="/markets-insight" className="text-neutral-300 hover:text-secondary transition-colors">Markets Insight</Link></li>
+              <li><Link href="/our-research" className="text-neutral-300 hover:text-secondary transition-colors">Our Research</Link></li>
+              <li><Link href="/macro-report" className="text-neutral-300 hover:text-secondary transition-colors">Macro Report</Link></li>
+              <li><Link href="/quantitative-strategies" className="text-neutral-300 hover:text-secondary transition-colors">Quantitative Strategies</Link></li>
             </ul>
           </div>
           
           <div>
-            <h4 className="font-bold mb-4">Azienda</h4>
-            <ul className="space-y-2">
-              <li><Link href="/chi-siamo" className="text-neutral-300 hover:text-white transition-colors">Chi Siamo</Link></li>
-              <li><Link href="/chi-siamo#leadership" className="text-neutral-300 hover:text-white transition-colors">Leadership</Link></li>
-              <li><Link href="/chi-siamo#carriere" className="text-neutral-300 hover:text-white transition-colors">Carriere</Link></li>
-              <li><Link href="/media" className="text-neutral-300 hover:text-white transition-colors">Media</Link></li>
-              <li><Link href="/contatti" className="text-neutral-300 hover:text-white transition-colors">Contatti</Link></li>
-              <li><Link href="/newsletter" className="text-neutral-300 hover:text-white transition-colors">Newsletter</Link></li>
+            <h4 className="text-sm font-bold uppercase tracking-wider mb-4">Company</h4>
+            <ul className="space-y-2 text-sm">
+              <li><Link href="/about" className="text-neutral-300 hover:text-secondary transition-colors">About Us</Link></li>
+              <li><Link href="/leadership" className="text-neutral-300 hover:text-secondary transition-colors">Leadership</Link></li>
+              <li><Link href="/careers" className="text-neutral-300 hover:text-secondary transition-colors">Careers</Link></li>
+              <li><Link href="/media" className="text-neutral-300 hover:text-secondary transition-colors">Media</Link></li>
+              <li><Link href="/contact" className="text-neutral-300 hover:text-secondary transition-colors">Contact</Link></li>
+              <li><Link href="/newsletter" className="text-neutral-300 hover:text-secondary transition-colors">Newsletter</Link></li>
             </ul>
           </div>
           
           <div>
-            <h4 className="font-bold mb-4">Legale</h4>
-            <ul className="space-y-2">
-              <li><Link href="/privacy" className="text-neutral-300 hover:text-white transition-colors">Privacy Policy</Link></li>
-              <li><Link href="/termini" className="text-neutral-300 hover:text-white transition-colors">Termini di Servizio</Link></li>
-              <li><Link href="/avvertenze" className="text-neutral-300 hover:text-white transition-colors">Avvertenze sui Rischi</Link></li>
-              <li><Link href="/cookie" className="text-neutral-300 hover:text-white transition-colors">Informativa sui Cookie</Link></li>
+            <h4 className="text-sm font-bold uppercase tracking-wider mb-4">Legal</h4>
+            <ul className="space-y-2 text-sm">
+              <li><Link href="/privacy" className="text-neutral-300 hover:text-secondary transition-colors">Privacy Policy</Link></li>
+              <li><Link href="/terms" className="text-neutral-300 hover:text-secondary transition-colors">Terms of Service</Link></li>
+              <li><Link href="/risk-warnings" className="text-neutral-300 hover:text-secondary transition-colors">Risk Warnings</Link></li>
+              <li><Link href="/cookie-policy" className="text-neutral-300 hover:text-secondary transition-colors">Cookie Policy</Link></li>
+              <li><Link href="/security" className="text-neutral-300 hover:text-secondary transition-colors">Security</Link></li>
+              <li><Link href="/accessibility" className="text-neutral-300 hover:text-secondary transition-colors">Accessibility</Link></li>
             </ul>
           </div>
         </div>
         
-        <div className="border-t border-neutral-800 pt-8 text-sm text-neutral-400">
+        <div className="border-t border-neutral-800 pt-6 text-xs text-neutral-400">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p>© {new Date().getFullYear()} QuantumFinance S.p.A. Tutti i diritti riservati.</p>
-            <p className="mt-4 md:mt-0">P.IVA 01234567890 | Capitale Sociale: € 1.000.000 i.v.</p>
+            <p>© {new Date().getFullYear()} QuantumFinance Global Services Ltd. All rights reserved.</p>
+            <p className="mt-4 md:mt-0">Company Reg: 01234567890 | Authorized and regulated by Financial Conduct Authority</p>
           </div>
           <div className="mt-6">
             <p>
-              Disclaimer: I contenuti forniti hanno scopo informativo e non costituiscono raccomandazioni di investimento o consulenza finanziaria. I risultati passati non sono indicativi di risultati futuri. Gli investimenti comportano rischi.
+              Disclaimer: The information provided is for informational purposes only and does not constitute investment advice or financial recommendations. Past performance is not indicative of future results. Investments involve risk.
             </p>
           </div>
         </div>
