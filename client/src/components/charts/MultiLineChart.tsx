@@ -101,7 +101,6 @@ const MultiLineChart = ({
     colors: colors,
     markers: {
       size: 4,
-      strokeWidth: 2,
       hover: {
         size: 6
       }
@@ -112,11 +111,6 @@ const MultiLineChart = ({
       fontFamily: 'Inter, sans-serif',
       fontSize: '14px',
       offsetY: -15,
-      markers: {
-        width: 10,
-        height: 10,
-        radius: 6
-      },
       itemMargin: {
         horizontal: 10,
         vertical: 8

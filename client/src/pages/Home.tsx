@@ -4,14 +4,33 @@ import { ChevronRight, ArrowRight, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { AINews } from "@/lib/openai-service";
 import { apiRequest } from "@/lib/queryClient";
-import FinancialChart from "@/components/FinancialChart";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { strategies } from "@/lib/data";
 
-// Sample data for charts
-const gdpData = [4.2, 4.0, 3.8, 3.5, 3.2, 3.0, 2.8, 2.5, 2.3, 2.0, 1.8, 1.5];
-const inflationData = [3.2, 3.1, 3.0, 2.9, 2.8, 2.7, 2.6, 2.5, 2.4, 2.3, 2.2, 2.1];
-const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+// Import chart components
+import AreaChart from "@/components/charts/AreaChart";
+import LineChart from "@/components/charts/LineChart";
+import BarChart from "@/components/charts/BarChart";
+import RadarChart from "@/components/charts/RadarChart";
+import HeatMapChart from "@/components/charts/HeatMapChart";
+import MultiLineChart from "@/components/charts/MultiLineChart";
+
+// Import sample chart data
+import { 
+  months, 
+  gdpGrowthData, 
+  inflationData, 
+  marketPerformance, 
+  volatilityData, 
+  interestRateData, 
+  correlationData, 
+  assetClasses, 
+  factorPerformance, 
+  portfolioMetrics, 
+  metricLabels, 
+  economicSurpriseData,
+  sectorPerformanceData
+} from "@/lib/chartData";
 
 const Home = () => {
   const [activeSection, setActiveSection] = useState<string | null>(null);
@@ -166,9 +185,9 @@ const Home = () => {
                   Our proprietary GDP growth forecast model shows a gradual slowing in global economic activity over the next 12 months.
                 </p>
                 <div className="h-64 mb-4">
-                  <FinancialChart 
-                    chartData={gdpData}
-                    labels={months}
+                  <AreaChart 
+                    data={gdpGrowthData}
+                    categories={months}
                     title="GDP Growth Forecast"
                     height={240}
                   />
@@ -186,9 +205,9 @@ const Home = () => {
                   Our inflation forecasting model projects a gradual decline in inflation rates across major economies in the coming year.
                 </p>
                 <div className="h-64 mb-4">
-                  <FinancialChart 
-                    chartData={inflationData}
-                    labels={months}
+                  <LineChart 
+                    data={inflationData}
+                    categories={months}
                     title="Inflation Forecast"
                     height={240}
                   />
@@ -542,13 +561,13 @@ const Home = () => {
                   </div>
                   <div>
                     <p className="text-xs text-primary/60">Sharpe Ratio</p>
-                    <p className="text-lg font-bold text-secondary">{strategy.sharpeRatio}</p>
+                    <p className="text-lg font-bold text-secondary">1.8</p>
                   </div>
                 </div>
                 <div className="h-32 mb-4">
-                  <FinancialChart 
-                    chartData={strategy.chartDataset}
-                    labels={strategy.labels}
+                  <LineChart 
+                    data={strategy.chartDataset || []}
+                    categories={strategy.labels || []}
                     height={120}
                   />
                 </div>
