@@ -96,73 +96,90 @@ const Home = () => {
         </div>
         
         {(activeSection === 'news-ai' || activeSection === null) && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* News Ticker Section */}
-            <div className="md:col-span-2 bg-secondary text-white p-6">
-              <h3 className="text-xl font-bold mb-4">AI-Powered Financial News Analysis</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-white/10 p-4 flex flex-col">
-                  <span className="text-white/80 text-xs mb-1">TRENDING</span>
-                  <h4 className="font-bold text-white mb-2">Federal Reserve</h4>
-                  <p className="text-white/80 text-sm mb-2">Significant shift in interest rate policy indicating more accommodative stance.</p>
-                  <div className="flex items-center mt-auto">
-                    <span className="inline-flex items-center px-2 py-1 bg-green-500/20 text-green-100 text-xs font-medium mr-2">
-                      +2.1%
-                    </span>
-                    <span className="text-xs text-white/60">Market Impact</span>
+          <div>
+            <p className="text-lg mb-6 max-w-3xl">
+              AI-powered analysis of financial news providing real-time insights with sentiment assessment.
+            </p>
+            
+            {/* News Ticker Section - Compact version */}
+            <div className="bg-white border border-gray-200 rounded p-0">
+              <div className="px-6 py-4 border-b border-gray-100 flex justify-between items-center">
+                <h3 className="gs-chart-title mb-0">Today's Key Market News</h3>
+                <span className="gs-subtle-text">May 12, 2025 · Updated 30m ago</span>
+              </div>
+              
+              <div className="divide-y divide-gray-100">
+                <div className="p-5 hover:bg-gray-50 transition-colors">
+                  <div className="flex justify-between items-start mb-2">
+                    <div className="flex items-center">
+                      <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-100 text-green-800 text-xs font-medium mr-3">
+                        +
+                      </span>
+                      <span className="text-xs text-secondary font-medium">Federal Reserve</span>
+                    </div>
+                    <span className="text-xs text-primary/50">14:32 ET</span>
+                  </div>
+                  <h4 className="font-medium text-base mb-2">Federal Reserve Announces Shift in Interest Rate Policy</h4>
+                  <p className="text-primary/70 text-sm">
+                    In a significant policy adjustment, the Federal Reserve has indicated a potential pivot in its approach to interest rates, suggesting a more accommodative stance may be forthcoming.
+                  </p>
+                  <div className="flex justify-between items-center mt-3">
+                    <span className="text-xs text-primary/60">Source: Bloomberg Financial</span>
+                    <a href="#" className="gs-arrow-link">
+                      Read Analysis <ArrowRight className="h-4 w-4" />
+                    </a>
                   </div>
                 </div>
                 
-                <div className="bg-white/10 p-4 flex flex-col">
-                  <span className="text-white/80 text-xs mb-1">TRENDING</span>
-                  <h4 className="font-bold text-white mb-2">Tech Sector</h4>
-                  <p className="text-white/80 text-sm mb-2">Valuations face scrutiny amid AI integration challenges in major companies.</p>
-                  <div className="flex items-center mt-auto">
-                    <span className="inline-flex items-center px-2 py-1 bg-red-500/20 text-red-100 text-xs font-medium mr-2">
-                      -1.3%
-                    </span>
-                    <span className="text-xs text-white/60">Market Impact</span>
+                <div className="p-5 hover:bg-gray-50 transition-colors">
+                  <div className="flex justify-between items-start mb-2">
+                    <div className="flex items-center">
+                      <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-red-100 text-red-800 text-xs font-medium mr-3">
+                        −
+                      </span>
+                      <span className="text-xs text-secondary font-medium">Tech Sector</span>
+                    </div>
+                    <span className="text-xs text-primary/50">11:47 ET</span>
+                  </div>
+                  <h4 className="font-medium text-base mb-2">Tech Sector Valuations Face Scrutiny Amid AI Integration Challenges</h4>
+                  <p className="text-primary/70 text-sm">
+                    Technology company valuations are under renewed scrutiny as investors reassess the timeline and implementation challenges associated with artificial intelligence integration.
+                  </p>
+                  <div className="flex justify-between items-center mt-3">
+                    <span className="text-xs text-primary/60">Source: Wall Street Journal</span>
+                    <a href="#" className="gs-arrow-link">
+                      Read Analysis <ArrowRight className="h-4 w-4" />
+                    </a>
                   </div>
                 </div>
                 
-                <div className="bg-white/10 p-4 flex flex-col">
-                  <span className="text-white/80 text-xs mb-1">TRENDING</span>
-                  <h4 className="font-bold text-white mb-2">Emerging Markets</h4>
-                  <p className="text-white/80 text-sm mb-2">Bond yields display unusual pattern shift in recent trading sessions.</p>
-                  <div className="flex items-center mt-auto">
-                    <span className="inline-flex items-center px-2 py-1 bg-blue-500/20 text-blue-100 text-xs font-medium mr-2">
-                      ±0.3%
-                    </span>
-                    <span className="text-xs text-white/60">Market Impact</span>
+                <div className="p-5 hover:bg-gray-50 transition-colors">
+                  <div className="flex justify-between items-start mb-2">
+                    <div className="flex items-center">
+                      <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-100 text-blue-800 text-xs font-medium mr-3">
+                        ⦿
+                      </span>
+                      <span className="text-xs text-secondary font-medium">Emerging Markets</span>
+                    </div>
+                    <span className="text-xs text-primary/50">09:15 ET</span>
+                  </div>
+                  <h4 className="font-medium text-base mb-2">Emerging Markets Bond Yields Display Unusual Pattern Shift</h4>
+                  <p className="text-primary/70 text-sm">
+                    Emerging market bond yields have exhibited an atypical pattern shift in recent trading sessions, pointing to a potential recalibration of risk assessment by institutional investors.
+                  </p>
+                  <div className="flex justify-between items-center mt-3">
+                    <span className="text-xs text-primary/60">Source: Reuters</span>
+                    <a href="#" className="gs-arrow-link">
+                      Read Analysis <ArrowRight className="h-4 w-4" />
+                    </a>
                   </div>
                 </div>
               </div>
-            </div>
-            
-            {/* Sentiment Analysis */}
-            <div className="border border-gray-200 p-6">
-              <h3 className="text-xl font-bold mb-4">Market Sentiment Analysis</h3>
-              <div className="h-64 mb-4">
-                <LineChart 
-                  data={[0.64, 0.58, 0.62, 0.45, 0.52, 0.49, 0.38, 0.42, 0.51, 0.59, 0.62, 0.68]}
-                  categories={months}
-                  title="Market Sentiment Index (0-1)"
-                  height={240}
-                />
-              </div>
-            </div>
-            
-            {/* News Categories */}
-            <div className="border border-gray-200 p-6">
-              <h3 className="text-xl font-bold mb-4">News by Category</h3>
-              <div className="h-64 mb-4">
-                <BarChart 
-                  data={[32, 24, 18, 12, 9, 5]}
-                  categories={['Monetary Policy', 'Corporate', 'Markets', 'Economics', 'Geopolitics', 'Regulatory']}
-                  title="Today's News Distribution (%)"
-                  height={240}
-                  horizontal={true}
-                />
+              
+              <div className="px-6 py-4 border-t border-gray-100 flex justify-end">
+                <a href="#" className="gs-arrow-link">
+                  View all news <ArrowRight className="h-4 w-4" />
+                </a>
               </div>
             </div>
           </div>
