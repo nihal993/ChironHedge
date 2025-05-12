@@ -21,29 +21,36 @@ const LanguageSwitcher = () => {
     };
   }, []);
 
-  // Bandiera USA
+  // Bandiera USA - versione molto semplificata
   const USFlag = () => (
-    <div className="relative w-full h-full">
-      <div className="absolute inset-0 bg-blue-900"></div>
-      <div className="absolute top-0 left-0 w-3 h-3 bg-white"></div>
-      <div className="absolute top-0 left-0 w-2.5 h-2.5 bg-red-600"></div>
-      <div className="absolute top-0 left-0 w-1.5 h-1.5 bg-white"></div>
-      <div className="absolute inset-x-0 h-0.5 bg-white" style={{ top: '20%' }}></div>
-      <div className="absolute inset-x-0 h-0.5 bg-white" style={{ top: '40%' }}></div>
-      <div className="absolute inset-x-0 h-0.5 bg-white" style={{ top: '60%' }}></div>
-      <div className="absolute inset-x-0 h-0.5 bg-white" style={{ top: '80%' }}></div>
-      <div className="absolute inset-y-0 w-0.5 bg-white" style={{ left: '30%' }}></div>
-    </div>
+    <svg viewBox="0 0 100 67" className="w-full h-full">
+      {/* Sfondo bianco */}
+      <rect width="100" height="67" fill="white" />
+      
+      {/* Strisce rosse */}
+      <rect y="0" width="100" height="6" fill="#B22234" />
+      <rect y="10" width="100" height="6" fill="#B22234" />
+      <rect y="20" width="100" height="6" fill="#B22234" />
+      <rect y="30" width="100" height="6" fill="#B22234" />
+      <rect y="40" width="100" height="6" fill="#B22234" />
+      <rect y="50" width="100" height="6" fill="#B22234" />
+      <rect y="60" width="100" height="7" fill="#B22234" />
+      
+      {/* Area blu */}
+      <rect width="40" height="35" fill="#3C3B6E" />
+      
+      {/* Stella semplice al centro */}
+      <circle cx="20" cy="17.5" r="5" fill="white" />
+    </svg>
   );
 
-  // Bandiera Italiana
+  // Bandiera Italiana - versione SVG
   const ItalianFlag = () => (
-    <div className="relative w-full h-full">
-      <div className="absolute inset-0 bg-white"></div>
-      <div className="absolute inset-y-0 left-0 w-1/3 bg-green-600"></div>
-      <div className="absolute inset-y-0 left-1/3 w-1/3 bg-white"></div>
-      <div className="absolute inset-y-0 right-0 w-1/3 bg-red-600"></div>
-    </div>
+    <svg viewBox="0 0 100 67" className="w-full h-full">
+      <rect width="33.33" height="67" fill="#008C45" x="0" y="0" />
+      <rect width="33.33" height="67" fill="#F4F5F0" x="33.33" y="0" />
+      <rect width="33.33" height="67" fill="#CD212A" x="66.66" y="0" />
+    </svg>
   );
 
   return (
