@@ -83,6 +83,10 @@ export const translations: Translations = {
     en: 'Source',
     it: 'Fonte'
   },
+  'newsAI.federalReserve': {
+    en: 'In a significant policy adjustment, the Federal Reserve has indicated a potential pivot in its approach to interest rates, suggesting a more accommodative stance may be forthcoming.',
+    it: 'In un significativo aggiustamento di politica monetaria, la Federal Reserve ha indicato un potenziale cambiamento nel suo approccio ai tassi di interesse, suggerendo che potrebbe essere imminente una posizione più accomodante.'
+  },
   'newsAI.readAnalysis': {
     en: 'Read Analysis',
     it: 'Leggi Analisi'

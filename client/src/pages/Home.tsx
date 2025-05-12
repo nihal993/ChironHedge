@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { AINews } from "@/lib/openai-service";
 import { apiRequest } from "@/lib/queryClient";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { strategies } from "@/lib/data";
 
 // Import chart components
@@ -34,6 +35,7 @@ import {
 
 const Home = () => {
   const [activeSection, setActiveSection] = useState<string | null>(null);
+  const { t } = useLanguage();
   
   const toggleSection = (section: string) => {
     if (activeSection === section) {
@@ -121,7 +123,7 @@ const Home = () => {
                   </div>
                   <h4 className="font-medium text-base mb-2">Federal Reserve Announces Shift in Interest Rate Policy</h4>
                   <p className="text-primary/70 text-sm">
-                    In a significant policy adjustment, the Federal Reserve has indicated a potential pivot in its approach to interest rates, suggesting a more accommodative stance may be forthcoming.
+                    {t('newsAI.federalReserve')}
                   </p>
                   <div className="flex justify-between items-center mt-3">
                     <span className="text-xs text-primary/60">Source: Bloomberg Financial</span>
