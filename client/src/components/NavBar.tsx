@@ -14,7 +14,7 @@ const navLinks = [
   { key: "navbar.research", name: "Our Research", href: "/our-research" },
   { key: "navbar.macroReport", name: "Macro Report", href: "/macro-report" },
   { key: "navbar.strategies", name: "Quantitative Strategies", href: "/quantitative-strategies" },
-  { key: "navbar.contact", name: "Get in Touch", href: "/contact" }
+  { key: "navbar.contact", name: "Contact Us", href: "/contact" }
 ];
 
 const NavBar = () => {
@@ -68,26 +68,31 @@ const NavBar = () => {
           ))}
         </nav>
         
-        <div className="hidden lg:flex items-center">
-          <Link href="/login" className="px-5 py-2.5 text-sm font-medium text-white bg-primary hover:bg-primary/80 rounded-none transition-colors mr-3">
+        <div className="hidden lg:flex items-center space-x-5">
+          <Link href="/login" className="px-5 py-2.5 text-sm font-medium text-white bg-primary hover:bg-primary/80 rounded-none transition-colors">
             {t('login')}
           </Link>
           <Link href="/contact" className="px-5 py-2.5 text-sm font-medium text-primary blue-gradient hover:brightness-105 rounded-none transition-all">
             {t('contact')}
           </Link>
+          
+          {/* Language Switcher - posizionata uniformemente nella versione desktop */}
+          <div className="relative h-9 flex items-center ml-2">
+            <LanguageSwitcher />
+          </div>
         </div>
         
         {/* Mobile Menu Button and Language Switcher side by side */}
-        <div className="flex items-center">
-          {/* Language Switcher - visibile sia su desktop che mobile */}
-          <div className="relative mr-3">
+        <div className="lg:hidden flex items-center">
+          {/* Language Switcher - mobile */}
+          <div className="relative mr-4">
             <LanguageSwitcher />
           </div>
           
           {/* Mobile Menu Button */}
           <button
             type="button"
-            className="lg:hidden text-primary p-2"
+            className="text-primary p-2"
             onClick={toggleMenu}
             aria-label={isOpen ? "Close menu" : "Open menu"}
           >
