@@ -63,6 +63,79 @@
   font-family: 'Inter', sans-serif;
 }
 
+/* GS-inspired styling */
+.gs-section {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  border-top: 1px solid #eaecef;
+}
+
+.gs-header {
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  margin-bottom: 2rem;
+  color: #000;
+}
+
+.gs-chart-container {
+  background-color: #fff;
+  border: 1px solid #eaecef;
+  padding: 1.5rem;
+  transition: all 0.2s ease;
+}
+
+.gs-chart-container:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.gs-chart-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #000;
+}
+
+.gs-subtle-text {
+  color: #6c757d;
+  font-size: 0.875rem;
+}
+
+.gs-blue-btn {
+  background: linear-gradient(135deg, #0033A0 0%, #0052CC 100%);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.gs-blue-btn:hover {
+  filter: brightness(1.1);
+}
+
+.gs-arrow-link {
+  display: inline-flex;
+  align-items: center;
+  color: #0033A0;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+}
+
+.gs-arrow-link:hover {
+  color: #0052CC;
+}
+
+.gs-arrow-link svg {
+  margin-left: 0.25rem;
+  transition: transform 0.2s ease;
+}
+
+.gs-arrow-link:hover svg {
+  transform: translateX(3px);
+}
+
 .gold-gradient {
   background: linear-gradient(135deg, #0033A0 0%, #0052CC 100%);
 }
