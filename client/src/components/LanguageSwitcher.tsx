@@ -58,7 +58,7 @@ const LanguageSwitcher = () => {
       </button>
       
       {isOpen && (
-        <div className="absolute right-0 top-8 mt-1 w-32 bg-white shadow-lg rounded-sm z-50 border border-gray-200 overflow-hidden">
+        <div className="fixed right-4 top-16 w-32 bg-white shadow-lg rounded-sm z-50 border border-gray-200 overflow-hidden">
           <div className="py-1">
             <button 
               className={cn(

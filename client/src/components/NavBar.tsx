@@ -77,20 +77,23 @@ const NavBar = () => {
           </Link>
         </div>
         
-        {/* Language Switcher - posizionato separatamente come richiesto */}
-        <div className="hidden lg:block relative ml-7">
-          <LanguageSwitcher />
+        {/* Mobile Menu Button and Language Switcher side by side */}
+        <div className="flex items-center">
+          {/* Language Switcher - visibile sia su desktop che mobile */}
+          <div className="relative mr-3">
+            <LanguageSwitcher />
+          </div>
+          
+          {/* Mobile Menu Button */}
+          <button
+            type="button"
+            className="lg:hidden text-primary p-2"
+            onClick={toggleMenu}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+          >
+            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
         </div>
-        
-        {/* Mobile Menu Button */}
-        <button
-          type="button"
-          className="lg:hidden text-primary p-2"
-          onClick={toggleMenu}
-          aria-label={isOpen ? "Close menu" : "Open menu"}
-        >
-          {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
       </div>
       
       {/* Mobile Navigation */}
@@ -131,12 +134,7 @@ const NavBar = () => {
               >
                 {t('contact')}
               </Link>
-              <div className="flex justify-center items-center py-4 mt-1 border-t border-gray-100">
-                <div className="flex items-center">
-                  <span className="text-sm text-primary/70 mr-3">{language === 'en' ? 'Language:' : 'Lingua:'}</span>
-                  <LanguageSwitcher />
-                </div>
-              </div>
+              {/* Rimosso selettore lingua dal menu mobile */}
             </div>
           </nav>
         </motion.div>
