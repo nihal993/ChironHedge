@@ -233,55 +233,29 @@ const Home = () => {
               
               <div className="gs-chart-container bg-white">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className="gs-chart-title">Quantitative Strategy Assessment</h3>
+                  <h3 className="gs-chart-title">Forecast Model Accuracy</h3>
                   <span className="gs-subtle-text">Updated: May 9, 2025</span>
                 </div>
                 <div className="h-72 mb-6">
-                  <RadarChart 
-                    data={portfolioMetrics}
-                    categories={metricLabels}
+                  <BarChart 
+                    data={[92.6, 87.3, 75.8, 89.4, 94.1, 82.7]}
+                    categories={['GDP', 'Inflation', 'FX Rates', 'Rates', 'Commodities', 'Equities']}
                     title=""
                     height={280}
-                    colors={['#0033A0']}
+                    horizontal={true}
+                    colors={['#0033A0', '#0052CC', '#1D7AFC', '#4C9AFF', '#6685CC', '#8BA6E0']}
                   />
                 </div>
                 <div className="flex justify-between items-center pt-4 border-t border-gray-100">
                   <div className="max-w-md">
                     <p className="gs-subtle-text">
-                      Our multi-dimensional strategy assessment framework evaluates risk-adjusted returns across market regimes.
+                      Accuracy metrics for our proprietary forecasting models measured as percentage of predictions within one standard deviation of actual outcomes.
                     </p>
                   </div>
                   <a href="#" className="gs-arrow-link">
-                    Read methodology <ArrowRight className="h-4 w-4" />
+                    View model methodology <ArrowRight className="h-4 w-4" />
                   </a>
                 </div>
-              </div>
-            </div>
-            
-            {/* Model Set 3 - Economic Surprise Index */}
-            <div className="gs-chart-container bg-white mb-8">
-              <div className="flex justify-between items-center mb-6">
-                <h3 className="gs-chart-title">Economic Surprise Index</h3>
-                <span className="gs-subtle-text">Updated: May 12, 2025</span>
-              </div>
-              <div className="h-64 mb-6">
-                <BarChart 
-                  data={economicSurpriseData}
-                  categories={months}
-                  title=""
-                  height={240}
-                  colors={economicSurpriseData.map(val => val >= 0 ? '#0033A0' : '#a3a3a3')}
-                />
-              </div>
-              <div className="flex justify-between items-center pt-4 border-t border-gray-100">
-                <div className="max-w-md">
-                  <p className="gs-subtle-text">
-                    Our proprietary Economic Surprise Index measures the deviation of actual economic releases from consensus forecasts.
-                  </p>
-                </div>
-                <a href="#" className="gs-arrow-link">
-                  View detailed analytics <ArrowRight className="h-4 w-4" />
-                </a>
               </div>
             </div>
           </div>
