@@ -36,7 +36,7 @@ export const translations: Translations = {
     it: 'Strategie Quantitative'
   },
   'navbar.contact': {
-    en: 'Get in Touch',
+    en: 'Contact Us',
     it: 'Contattaci'
   },
   
