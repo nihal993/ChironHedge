@@ -23,7 +23,7 @@ const NewsAI = () => {
       try {
         // Call the API we implemented
         const response = await apiRequest<AINews[]>("GET", "/api/news-ai");
-        setNews(response as AINews[]);
+        setNews(response);
         setIsLoading(false);
       } catch (error) {
         console.error("Error fetching AI news:", error);

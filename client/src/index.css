@@ -12,42 +12,42 @@
   --card-foreground: 0 0% 7%;
   --popover: 0 0% 100%;
   --popover-foreground: 0 0% 7%;
-  --primary: 0 0% 7%;
+  --primary: 0 0% 7%;  /* Black - Primary color */
   --primary-foreground: 0 0% 100%;
-  --secondary: 43 65% 52%;  /* Gold/Bronze accent */
+  --secondary: 36 53% 58%;  /* Goldman Sachs blue/teal accent */
   --secondary-foreground: 0 0% 7%;
-  --muted: 0 0% 96%;
-  --muted-foreground: 0 0% 40%;
-  --accent: 43 65% 52%;  /* Gold/Bronze accent */
+  --muted: 210 20% 98%;  /* Light gray for backgrounds */
+  --muted-foreground: 0 0% 45%;
+  --accent: 36 53% 58%;  /* Goldman Sachs gold accent */
   --accent-foreground: 0 0% 7%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
-  --border: 0 0% 90%;
-  --input: 0 0% 90%;
-  --ring: 43 65% 52%;  /* Gold/Bronze accent */
-  --radius: 0.5rem;
+  --border: 0 0% 92%;
+  --input: 0 0% 92%;
+  --ring: 36 53% 58%;  /* Goldman Sachs gold accent */
+  --radius: 0rem;  /* Square corners like Goldman Sachs */
 }
 
 .dark {
-  --background: 0 0% 7%;
-  --foreground: 0 0% 100%;
-  --card: 0 0% 7%;
-  --card-foreground: 0 0% 100%;
-  --popover: 0 0% 7%;
-  --popover-foreground: 0 0% 100%;
-  --primary: 0 0% 100%;
-  --primary-foreground: 0 0% 7%;
-  --secondary: 43 65% 52%;  /* Gold/Bronze accent */
-  --secondary-foreground: 0 0% 7%;
+  --background: 0 0% 10%;  /* Slightly lighter black for better contrast */
+  --foreground: 0 0% 98%;
+  --card: 0 0% 10%;
+  --card-foreground: 0 0% 98%;
+  --popover: 0 0% 10%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 0 0% 98%;
+  --primary-foreground: 0 0% 10%;
+  --secondary: 36 53% 58%;  /* Goldman Sachs blue/teal accent */
+  --secondary-foreground: 0 0% 10%;
   --muted: 0 0% 15%;
-  --muted-foreground: 0 0% 70%;
-  --accent: 43 65% 52%;  /* Gold/Bronze accent */
-  --accent-foreground: 0 0% 7%;
+  --muted-foreground: 0 0% 65%;
+  --accent: 36 53% 58%;  /* Goldman Sachs gold accent */
+  --accent-foreground: 0 0% 10%;
   --destructive: 0 84% 60%;
-  --destructive-foreground: 0 0% 100%;
+  --destructive-foreground: 0 0% 98%;
   --border: 0 0% 20%;
   --input: 0 0% 20%;
-  --ring: 43 65% 52%;  /* Gold/Bronze accent */
+  --ring: 36 53% 58%;  /* Goldman Sachs gold accent */
 }
 
 @layer base {
@@ -64,11 +64,15 @@
 }
 
 .gold-gradient {
-  background: linear-gradient(135deg, #D4AF37 0%, #E5C76B 100%);
+  background: linear-gradient(135deg, #6C5B30 0%, #A8996E 100%);
 }
 
 .dark-gradient {
   background: linear-gradient(135deg, #121212 0%, #2A2A2A 100%);
+}
+
+.gs-blue-gradient {
+  background: linear-gradient(135deg, #0033A0 0%, #0052CC 100%);
 }
 
 .nav-link {

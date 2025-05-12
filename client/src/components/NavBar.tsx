@@ -42,22 +42,22 @@ const NavBar = () => {
       "fixed top-0 w-full z-50 transition-all duration-300",
       scrolled ? "bg-white/95 backdrop-blur-sm shadow-sm" : "bg-white/80 backdrop-blur-sm"
     )}>
-      <div className="container mx-auto px-4 py-3 lg:py-4 flex items-center justify-between">
-        <Link href="/" className="flex items-center">
+      <div className="container mx-auto px-4 flex items-center justify-between border-b border-gray-200">
+        <Link href="/" className="flex items-center py-4">
           <span className="text-xl md:text-2xl font-bold text-primary">
             Quantum<span className="text-secondary">Finance</span>
           </span>
         </Link>
         
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center space-x-8">
+        <nav className="hidden lg:flex items-center h-full">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className={cn(
-                "nav-link font-medium text-primary hover:text-secondary transition-colors",
-                location === link.href ? "active" : ""
+                "nav-link font-medium text-primary hover:text-secondary transition-colors h-full px-4 py-5 border-b-2",
+                location === link.href ? "border-secondary" : "border-transparent"
               )}
             >
               {link.name}
@@ -66,10 +66,10 @@ const NavBar = () => {
         </nav>
         
         <div className="hidden lg:flex items-center">
-          <Link href="/login" className="px-5 py-2.5 text-sm font-medium text-white bg-primary hover:bg-primary/80 rounded-md transition-colors mr-3">
+          <Link href="/login" className="px-5 py-2.5 text-sm font-medium text-white bg-primary hover:bg-primary/80 rounded-none transition-colors mr-3">
             Accedi
           </Link>
-          <Link href="/contatti" className="px-5 py-2.5 text-sm font-medium text-primary gold-gradient hover:brightness-105 rounded-md transition-all">
+          <Link href="/contact" className="px-5 py-2.5 text-sm font-medium text-primary gold-gradient hover:brightness-105 rounded-none transition-all">
             Contattaci
           </Link>
         </div>
@@ -92,30 +92,33 @@ const NavBar = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.2 }}
-          className="lg:hidden bg-white w-full py-4 px-4 shadow-lg animate-fade-in"
+          className="lg:hidden bg-white w-full py-4 px-4 shadow-lg animate-fade-in absolute top-full left-0"
         >
-          <nav className="flex flex-col space-y-4">
-            {navLinks.map((link) => (
+          <nav className="flex flex-col">
+            {navLinks.map((link, index) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="font-medium text-primary hover:text-secondary py-2 border-b border-neutral-dark"
+                className={cn(
+                  "font-medium text-primary hover:text-secondary py-3 px-2 border-b border-gray-100",
+                  location === link.href ? "text-secondary" : ""
+                )}
                 onClick={closeMenu}
               >
                 {link.name}
               </Link>
             ))}
-            <div className="flex flex-col space-y-3 pt-2">
+            <div className="flex flex-col space-y-3 pt-4 mt-2">
               <Link
                 href="/login"
-                className="w-full px-5 py-2.5 text-center text-sm font-medium text-white bg-primary hover:bg-primary/80 rounded-md transition-colors"
+                className="w-full px-5 py-2.5 text-center text-sm font-medium text-white bg-primary hover:bg-primary/80 rounded-none transition-colors"
                 onClick={closeMenu}
               >
                 Accedi
               </Link>
               <Link
-                href="/contatti"
-                className="w-full px-5 py-2.5 text-center text-sm font-medium text-primary gold-gradient hover:brightness-105 rounded-md transition-all"
+                href="/contact"
+                className="w-full px-5 py-2.5 text-center text-sm font-medium text-primary gold-gradient hover:brightness-105 rounded-none transition-all"
                 onClick={closeMenu}
               >
                 Contattaci
