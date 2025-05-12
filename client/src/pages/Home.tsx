@@ -93,64 +93,73 @@ const Home = () => {
         </div>
         
         {(activeSection === 'news-ai' || activeSection === null) && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* News 1 */}
-            <div className="border border-gray-200 hover:border-secondary transition-colors">
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-4">
-                  <span className="text-xs bg-green-100 text-green-800 px-2 py-1">Positive</span>
-                  <span className="text-xs text-primary/50">May 12, 2025</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* News Ticker Section */}
+            <div className="md:col-span-2 bg-secondary text-white p-6">
+              <h3 className="text-xl font-bold mb-4">AI-Powered Financial News Analysis</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="bg-white/10 p-4 flex flex-col">
+                  <span className="text-white/80 text-xs mb-1">TRENDING</span>
+                  <h4 className="font-bold text-white mb-2">Federal Reserve</h4>
+                  <p className="text-white/80 text-sm mb-2">Significant shift in interest rate policy indicating more accommodative stance.</p>
+                  <div className="flex items-center mt-auto">
+                    <span className="inline-flex items-center px-2 py-1 bg-green-500/20 text-green-100 text-xs font-medium mr-2">
+                      +2.1%
+                    </span>
+                    <span className="text-xs text-white/60">Market Impact</span>
+                  </div>
                 </div>
-                <h3 className="text-lg font-bold mb-3">Federal Reserve Announces Shift in Interest Rate Policy</h3>
-                <p className="text-primary/70 text-sm mb-4">
-                  In a significant policy adjustment, the Federal Reserve has indicated a potential pivot in its approach to interest rates, suggesting a more accommodative stance may be forthcoming.
-                </p>
-                <div className="flex justify-between items-center">
-                  <span className="text-xs text-primary/60">Source: Bloomberg Financial</span>
-                  <button className="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center">
-                    Read Full Analysis <ChevronRight className="h-4 w-4 ml-1" />
-                  </button>
+                
+                <div className="bg-white/10 p-4 flex flex-col">
+                  <span className="text-white/80 text-xs mb-1">TRENDING</span>
+                  <h4 className="font-bold text-white mb-2">Tech Sector</h4>
+                  <p className="text-white/80 text-sm mb-2">Valuations face scrutiny amid AI integration challenges in major companies.</p>
+                  <div className="flex items-center mt-auto">
+                    <span className="inline-flex items-center px-2 py-1 bg-red-500/20 text-red-100 text-xs font-medium mr-2">
+                      -1.3%
+                    </span>
+                    <span className="text-xs text-white/60">Market Impact</span>
+                  </div>
+                </div>
+                
+                <div className="bg-white/10 p-4 flex flex-col">
+                  <span className="text-white/80 text-xs mb-1">TRENDING</span>
+                  <h4 className="font-bold text-white mb-2">Emerging Markets</h4>
+                  <p className="text-white/80 text-sm mb-2">Bond yields display unusual pattern shift in recent trading sessions.</p>
+                  <div className="flex items-center mt-auto">
+                    <span className="inline-flex items-center px-2 py-1 bg-blue-500/20 text-blue-100 text-xs font-medium mr-2">
+                      ±0.3%
+                    </span>
+                    <span className="text-xs text-white/60">Market Impact</span>
+                  </div>
                 </div>
               </div>
             </div>
             
-            {/* News 2 */}
-            <div className="border border-gray-200 hover:border-secondary transition-colors">
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-4">
-                  <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1">Neutral</span>
-                  <span className="text-xs text-primary/50">May 10, 2025</span>
-                </div>
-                <h3 className="text-lg font-bold mb-3">Emerging Markets Bond Yields Display Unusual Pattern Shift</h3>
-                <p className="text-primary/70 text-sm mb-4">
-                  Emerging market bond yields have exhibited an atypical pattern shift in recent trading sessions, pointing to a potential recalibration of risk assessment by institutional investors.
-                </p>
-                <div className="flex justify-between items-center">
-                  <span className="text-xs text-primary/60">Source: Reuters</span>
-                  <button className="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center">
-                    Read Full Analysis <ChevronRight className="h-4 w-4 ml-1" />
-                  </button>
-                </div>
+            {/* Sentiment Analysis */}
+            <div className="border border-gray-200 p-6">
+              <h3 className="text-xl font-bold mb-4">Market Sentiment Analysis</h3>
+              <div className="h-64 mb-4">
+                <LineChart 
+                  data={[0.64, 0.58, 0.62, 0.45, 0.52, 0.49, 0.38, 0.42, 0.51, 0.59, 0.62, 0.68]}
+                  categories={months}
+                  title="Market Sentiment Index (0-1)"
+                  height={240}
+                />
               </div>
             </div>
             
-            {/* News 3 */}
-            <div className="border border-gray-200 hover:border-secondary transition-colors">
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-4">
-                  <span className="text-xs bg-red-100 text-red-800 px-2 py-1">Negative</span>
-                  <span className="text-xs text-primary/50">May 8, 2025</span>
-                </div>
-                <h3 className="text-lg font-bold mb-3">Tech Sector Valuations Face Scrutiny Amid AI Integration Challenges</h3>
-                <p className="text-primary/70 text-sm mb-4">
-                  Technology company valuations are under renewed scrutiny as investors reassess the timeline and implementation challenges associated with artificial intelligence integration.
-                </p>
-                <div className="flex justify-between items-center">
-                  <span className="text-xs text-primary/60">Source: Wall Street Journal</span>
-                  <button className="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center">
-                    Read Full Analysis <ChevronRight className="h-4 w-4 ml-1" />
-                  </button>
-                </div>
+            {/* News Categories */}
+            <div className="border border-gray-200 p-6">
+              <h3 className="text-xl font-bold mb-4">News by Category</h3>
+              <div className="h-64 mb-4">
+                <BarChart 
+                  data={[32, 24, 18, 12, 9, 5]}
+                  categories={['Monetary Policy', 'Corporate', 'Markets', 'Economics', 'Geopolitics', 'Regulatory']}
+                  title="Today's News Distribution (%)"
+                  height={240}
+                  horizontal={true}
+                />
               </div>
             </div>
           </div>
@@ -238,73 +247,57 @@ const Home = () => {
         </div>
         
         {(activeSection === 'markets-insight' || activeSection === null) && (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="md:col-span-2 bg-secondary text-white p-6">
-              <h3 className="text-xl font-bold mb-4">Key Market Theme: Central Bank Divergence</h3>
-              <p className="text-white/90 mb-6">
-                Diverging monetary policy paths among major central banks are creating unique trading opportunities across asset classes.
-              </p>
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="bg-white/10 p-4">
-                  <h4 className="font-bold text-white">Fed</h4>
-                  <p className="text-white/80 text-sm">Gradual easing cycle with data-dependent approach</p>
-                </div>
-                <div className="bg-white/10 p-4">
-                  <h4 className="font-bold text-white">ECB</h4>
-                  <p className="text-white/80 text-sm">More aggressive cutting cycle amid growth concerns</p>
-                </div>
-                <div className="bg-white/10 p-4">
-                  <h4 className="font-bold text-white">BOE</h4>
-                  <p className="text-white/80 text-sm">Cautious stance due to persistent inflation pressures</p>
-                </div>
-                <div className="bg-white/10 p-4">
-                  <h4 className="font-bold text-white">BOJ</h4>
-                  <p className="text-white/80 text-sm">Early stages of policy normalization after decades</p>
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="border border-gray-200 p-6">
+              <h3 className="text-xl font-bold mb-4">Market Performance</h3>
+              <div className="h-64 mb-4">
+                <MultiLineChart 
+                  series={[
+                    { name: 'US Markets', data: marketPerformance[0] },
+                    { name: 'Europe', data: marketPerformance[1] },
+                    { name: 'Asia', data: marketPerformance[2] }
+                  ]}
+                  categories={months}
+                  title="Regional Performance (%)"
+                  height={240}
+                />
               </div>
-              <button className="text-white hover:text-white/80 text-sm font-medium flex items-center">
-                Read full analysis <ArrowRight className="h-4 w-4 ml-1" />
-              </button>
             </div>
             
-            <div className="flex flex-col space-y-6">
-              <div className="border border-gray-200 p-4">
-                <div className="flex justify-between items-start mb-2">
-                  <span className="text-xs text-secondary font-medium">Global Equities</span>
-                </div>
-                <h4 className="font-bold mb-1">Sector Rotation Implications</h4>
-                <p className="text-primary/70 text-sm">
-                  Analysis of ongoing sector rotation trends and investment implications.
-                </p>
-                <button className="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center mt-2">
-                  View report <ChevronRight className="h-4 w-4 ml-1" />
-                </button>
+            <div className="border border-gray-200 p-6">
+              <h3 className="text-xl font-bold mb-4">Asset Correlation</h3>
+              <div className="h-64 mb-4">
+                <HeatMapChart 
+                  data={correlationData}
+                  categories={assetClasses}
+                  title="Cross-Asset Correlation"
+                  height={240}
+                />
               </div>
-              
-              <div className="border border-gray-200 p-4">
-                <div className="flex justify-between items-start mb-2">
-                  <span className="text-xs text-secondary font-medium">Fixed Income</span>
-                </div>
-                <h4 className="font-bold mb-1">Credit Spread Analysis</h4>
-                <p className="text-primary/70 text-sm">
-                  Current credit spread levels and historical comparisons by sector.
-                </p>
-                <button className="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center mt-2">
-                  View report <ChevronRight className="h-4 w-4 ml-1" />
-                </button>
+            </div>
+            
+            <div className="border border-gray-200 p-6">
+              <h3 className="text-xl font-bold mb-4">Interest Rates</h3>
+              <div className="h-64 mb-4">
+                <LineChart 
+                  data={interestRateData}
+                  categories={months}
+                  title="Policy Rate Projections (%)"
+                  height={240}
+                />
               </div>
-              
-              <div className="border border-gray-200 p-4">
-                <div className="flex justify-between items-start mb-2">
-                  <span className="text-xs text-secondary font-medium">Commodities</span>
-                </div>
-                <h4 className="font-bold mb-1">Supply Constraints Impact</h4>
-                <p className="text-primary/70 text-sm">
-                  Analysis of persistent supply constraints on commodity prices.
-                </p>
-                <button className="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center mt-2">
-                  View report <ChevronRight className="h-4 w-4 ml-1" />
-                </button>
+            </div>
+            
+            <div className="border border-gray-200 p-6">
+              <h3 className="text-xl font-bold mb-4">Market Volatility</h3>
+              <div className="h-64 mb-4">
+                <AreaChart 
+                  data={volatilityData}
+                  categories={months}
+                  title="Volatility Index (VIX)"
+                  height={240}
+                  colors={['#7c3aed', '#a78bfa']}
+                />
               </div>
             </div>
           </div>
@@ -326,110 +319,70 @@ const Home = () => {
         </div>
         
         {(activeSection === 'our-research' || activeSection === null) && (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div className="lg:col-span-1 bg-primary text-white p-6">
-              <h3 className="text-xl font-bold mb-4">Research Categories</h3>
-              <ul className="space-y-3">
-                <li className="flex items-center p-2 hover:bg-white/10 cursor-pointer">
-                  <span className="w-2 h-2 bg-secondary mr-2"></span>
-                  <span>Macro Analysis</span>
-                </li>
-                <li className="flex items-center p-2 hover:bg-white/10 cursor-pointer">
-                  <span className="w-2 h-2 bg-secondary mr-2"></span>
-                  <span>Volatility Research</span>
-                </li>
-                <li className="flex items-center p-2 hover:bg-white/10 cursor-pointer">
-                  <span className="w-2 h-2 bg-secondary mr-2"></span>
-                  <span>Credit Research</span>
-                </li>
-                <li className="flex items-center p-2 hover:bg-white/10 cursor-pointer">
-                  <span className="w-2 h-2 bg-secondary mr-2"></span>
-                  <span>Equity Factors</span>
-                </li>
-                <li className="flex items-center p-2 hover:bg-white/10 cursor-pointer">
-                  <span className="w-2 h-2 bg-secondary mr-2"></span>
-                  <span>Fixed Income Strategies</span>
-                </li>
-                <li className="flex items-center p-2 hover:bg-white/10 cursor-pointer">
-                  <span className="w-2 h-2 bg-secondary mr-2"></span>
-                  <span>Alternative Data</span>
-                </li>
-              </ul>
-              <div className="mt-6 pt-6 border-t border-white/20">
-                <button className="text-white hover:text-white/80 text-sm font-medium flex items-center">
-                  View all research <ArrowRight className="h-4 w-4 ml-1" />
-                </button>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="border border-gray-200 p-6">
+              <h3 className="text-xl font-bold mb-4">Factor Performance</h3>
+              <div className="h-64 mb-4">
+                <MultiLineChart 
+                  series={[
+                    { name: 'Value', data: factorPerformance[0].data },
+                    { name: 'Growth', data: factorPerformance[1].data },
+                    { name: 'Momentum', data: factorPerformance[2].data },
+                    { name: 'Quality', data: factorPerformance[3].data }
+                  ]}
+                  categories={months}
+                  title="Factor Performance Trend (%)"
+                  height={240}
+                  colors={['#0033A0', '#0052CC', '#1D7AFC', '#4C9AFF']}
+                />
               </div>
             </div>
             
-            <div className="lg:col-span-2">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="border border-gray-200 p-4">
-                  <div className="flex justify-between items-start mb-2">
-                    <span className="text-xs text-secondary font-medium">Factor-Based Investment</span>
-                    <span className="text-xs text-primary/50">May 2025</span>
-                  </div>
-                  <h4 className="font-bold mb-1">Factor Timing: A Quantitative Framework</h4>
-                  <p className="text-primary/70 text-sm">
-                    A novel quantitative framework for identifying market regimes and optimizing factor exposures.
-                  </p>
-                  <div className="flex justify-between items-center mt-3">
-                    <span className="text-xs text-primary/60">By Dr. Maria Rossi, Dr. James Chen</span>
-                    <button className="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center">
-                      Read paper <ChevronRight className="h-4 w-4 ml-1" />
-                    </button>
-                  </div>
+            <div className="border border-gray-200 p-6">
+              <h3 className="text-xl font-bold mb-4">Portfolio Metrics</h3>
+              <div className="h-64 mb-4">
+                <RadarChart 
+                  data={portfolioMetrics}
+                  categories={metricLabels}
+                  title="Strategy Assessment"
+                  height={240}
+                  colors={['#0033A0']}
+                />
+              </div>
+            </div>
+            
+            <div className="border border-gray-200 p-6">
+              <h3 className="text-xl font-bold mb-4">Economic Surprises</h3>
+              <div className="h-64 mb-4">
+                <BarChart 
+                  data={economicSurpriseData}
+                  categories={months}
+                  title="Economic Surprise Index"
+                  height={240}
+                  colors={economicSurpriseData.map(val => val >= 0 ? '#0033A0' : '#a3a3a3')}
+                />
+              </div>
+            </div>
+            
+            <div className="border border-gray-200 p-6">
+              <h3 className="text-xl font-bold mb-4">Latest Research Papers</h3>
+              <div className="space-y-3">
+                <div className="p-3 border-b border-gray-100">
+                  <h4 className="font-bold">Factor Timing: A Quantitative Framework</h4>
+                  <p className="text-xs text-primary/60">May 2025 · Dr. Maria Rossi, Dr. James Chen</p>
                 </div>
-                
-                <div className="border border-gray-200 p-4">
-                  <div className="flex justify-between items-start mb-2">
-                    <span className="text-xs text-secondary font-medium">Portfolio Construction</span>
-                    <span className="text-xs text-primary/50">April 2025</span>
-                  </div>
-                  <h4 className="font-bold mb-1">Entropy-Based Portfolio Construction</h4>
-                  <p className="text-primary/70 text-sm">
-                    An entropy-based portfolio optimization methodology with superior risk-adjusted returns.
-                  </p>
-                  <div className="flex justify-between items-center mt-3">
-                    <span className="text-xs text-primary/60">By Dr. Alessandro Bianchi, Sarah Johnson</span>
-                    <button className="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center">
-                      Read paper <ChevronRight className="h-4 w-4 ml-1" />
-                    </button>
-                  </div>
+                <div className="p-3 border-b border-gray-100">
+                  <h4 className="font-bold">Entropy-Based Portfolio Construction</h4>
+                  <p className="text-xs text-primary/60">April 2025 · Dr. Alessandro Bianchi, Sarah Johnson</p>
                 </div>
-                
-                <div className="border border-gray-200 p-4">
-                  <div className="flex justify-between items-start mb-2">
-                    <span className="text-xs text-secondary font-medium">Fixed Income</span>
-                    <span className="text-xs text-primary/50">March 2025</span>
-                  </div>
-                  <h4 className="font-bold mb-1">Yield Curve Dynamics and Recession Prediction</h4>
-                  <p className="text-primary/70 text-sm">
-                    Machine learning techniques to analyze yield curve dynamics and improve recession prediction.
-                  </p>
-                  <div className="flex justify-between items-center mt-3">
-                    <span className="text-xs text-primary/60">By Michael Zhang, PhD, Emma Roberts</span>
-                    <button className="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center">
-                      Read paper <ChevronRight className="h-4 w-4 ml-1" />
-                    </button>
-                  </div>
+                <div className="p-3 border-b border-gray-100">
+                  <h4 className="font-bold">Yield Curve Dynamics and Recession Prediction</h4>
+                  <p className="text-xs text-primary/60">March 2025 · Michael Zhang, PhD, Emma Roberts</p>
                 </div>
-                
-                <div className="border border-gray-200 p-4">
-                  <div className="flex justify-between items-start mb-2">
-                    <span className="text-xs text-secondary font-medium">ESG Research</span>
-                    <span className="text-xs text-primary/50">February 2025</span>
-                  </div>
-                  <h4 className="font-bold mb-1">ESG Factor Integration</h4>
-                  <p className="text-primary/70 text-sm">
-                    Analysis of how ESG factor integration affects portfolio risk-adjusted returns across regions.
-                  </p>
-                  <div className="flex justify-between items-center mt-3">
-                    <span className="text-xs text-primary/60">By Dr. Sophie Williams, Thomas Nelson</span>
-                    <button className="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center">
-                      Read paper <ChevronRight className="h-4 w-4 ml-1" />
-                    </button>
-                  </div>
+                <div className="flex justify-end mt-3">
+                  <button className="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center">
+                    View all publications <ChevronRight className="h-4 w-4 ml-1" />
+                  </button>
                 </div>
               </div>
             </div>
@@ -452,77 +405,53 @@ const Home = () => {
         </div>
         
         {(activeSection === 'macro-report' || activeSection === null) && (
-          <div className="border border-gray-200">
-            <div className="p-6">
-              <h3 className="text-xl font-bold mb-4">Global Economic Outlook Q2 2025</h3>
-              <p className="text-primary/70 mb-6">
-                Comprehensive analysis of global economic conditions, with detailed forecasts for growth, inflation, and policy responses across major economies.
-              </p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                <div className="border border-gray-200 p-4">
-                  <h4 className="font-bold mb-2">Developed Markets</h4>
-                  <ul className="space-y-2 text-sm text-primary/70">
-                    <li className="flex items-start">
-                      <span className="inline-block w-2 h-2 bg-secondary mt-1.5 mr-2 rounded-full"></span>
-                      <span>US growth moderating but resilient</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="inline-block w-2 h-2 bg-secondary mt-1.5 mr-2 rounded-full"></span>
-                      <span>Eurozone facing more pronounced slowdown</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="inline-block w-2 h-2 bg-secondary mt-1.5 mr-2 rounded-full"></span>
-                      <span>UK facing stagflationary pressures</span>
-                    </li>
-                  </ul>
-                </div>
-                
-                <div className="border border-gray-200 p-4">
-                  <h4 className="font-bold mb-2">Emerging Markets</h4>
-                  <ul className="space-y-2 text-sm text-primary/70">
-                    <li className="flex items-start">
-                      <span className="inline-block w-2 h-2 bg-secondary mt-1.5 mr-2 rounded-full"></span>
-                      <span>China stabilizing near 5% growth</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="inline-block w-2 h-2 bg-secondary mt-1.5 mr-2 rounded-full"></span>
-                      <span>India maintaining strong momentum</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="inline-block w-2 h-2 bg-secondary mt-1.5 mr-2 rounded-full"></span>
-                      <span>Brazil facing policy challenges</span>
-                    </li>
-                  </ul>
-                </div>
-                
-                <div className="border border-gray-200 p-4">
-                  <h4 className="font-bold mb-2">Policy Outlook</h4>
-                  <ul className="space-y-2 text-sm text-primary/70">
-                    <li className="flex items-start">
-                      <span className="inline-block w-2 h-2 bg-secondary mt-1.5 mr-2 rounded-full"></span>
-                      <span>Central bank easing cycles progressing</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="inline-block w-2 h-2 bg-secondary mt-1.5 mr-2 rounded-full"></span>
-                      <span>Fiscal consolidation in focus</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="inline-block w-2 h-2 bg-secondary mt-1.5 mr-2 rounded-full"></span>
-                      <span>Structural reforms gaining momentum</span>
-                    </li>
-                  </ul>
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="border border-gray-200 p-6">
+              <h3 className="text-xl font-bold mb-4">Global GDP Growth</h3>
+              <div className="h-64 mb-4">
+                <BarChart 
+                  data={[5.2, 4.1, 3.6, 7.8, 3.2, 2.1]}
+                  categories={['US', 'Eurozone', 'UK', 'China', 'Japan', 'Brazil']}
+                  title="GDP Growth by Region (%)"
+                  height={240}
+                  horizontal={true}
+                />
               </div>
-              
-              <div className="flex justify-between items-center border-t border-gray-200 pt-6">
-                <div>
-                  <span className="text-sm text-primary/60">Published: May 5, 2025</span>
-                  <span className="text-sm text-primary/60 ml-4">Authors: Economics Team</span>
-                </div>
-                <button className="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center">
-                  Read full report <ChevronRight className="h-4 w-4 ml-1" />
-                </button>
+            </div>
+            
+            <div className="border border-gray-200 p-6">
+              <h3 className="text-xl font-bold mb-4">Inflation Trends</h3>
+              <div className="h-64 mb-4">
+                <LineChart 
+                  data={[3.8, 4.2, 5.1, 2.1, 1.8, 5.6]}
+                  categories={['US', 'Eurozone', 'UK', 'China', 'Japan', 'Brazil']}
+                  title="Inflation by Region (%)"
+                  height={240}
+                />
+              </div>
+            </div>
+            
+            <div className="border border-gray-200 p-6">
+              <h3 className="text-xl font-bold mb-4">Manufacturing PMI</h3>
+              <div className="h-64 mb-4">
+                <AreaChart 
+                  data={[52.1, 49.8, 48.6, 53.2, 48.9, 51.4]}
+                  categories={['US', 'Eurozone', 'UK', 'China', 'Japan', 'Brazil']}
+                  title="Manufacturing PMI by Region"
+                  height={240}
+                />
+              </div>
+            </div>
+            
+            <div className="border border-gray-200 p-6">
+              <h3 className="text-xl font-bold mb-4">Central Bank Rates</h3>
+              <div className="h-64 mb-4">
+                <BarChart 
+                  data={[4.75, 3.75, 5.0, 3.55, 0.25, 10.75]}
+                  categories={['US Fed', 'ECB', 'BoE', 'PBoC', 'BoJ', 'BCB']}
+                  title="Policy Rates (%)"
+                  height={240}
+                />
               </div>
             </div>
           </div>
