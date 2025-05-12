@@ -113,10 +113,7 @@ const BarChart = ({
       position: 'top',
       horizontalAlign: 'right',
       fontFamily: 'Inter, sans-serif',
-      fontSize: '14px',
-      markers: {
-        radius: 12
-      }
+      fontSize: '14px'
     }
   });
 
