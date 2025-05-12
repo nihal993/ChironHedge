@@ -70,7 +70,7 @@ const NavBar = () => {
         
         <div className="hidden lg:flex items-center">
           <LanguageSwitcher />
-          <div className="mx-4 h-4 border-r border-gray-300"></div>
+          <div className="mx-3 h-4 border-r border-gray-300"></div>
           <Link href="/login" className="px-5 py-2.5 text-sm font-medium text-white bg-primary hover:bg-primary/80 rounded-none transition-colors mr-3">
             {t('login')}
           </Link>
@@ -114,6 +114,10 @@ const NavBar = () => {
               </Link>
             ))}
             <div className="flex flex-col space-y-3 pt-4 mt-2">
+              <div className="flex justify-center items-center py-3 border-t border-b border-gray-100">
+                <span className="text-sm text-primary/70 mr-2">{language === 'en' ? 'Select language:' : 'Seleziona lingua:'}</span>
+                <LanguageSwitcher />
+              </div>
               <Link
                 href="/login"
                 className="w-full px-5 py-2.5 text-center text-sm font-medium text-white bg-primary hover:bg-primary/80 rounded-none transition-colors"
