@@ -8,7 +8,6 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 const navLinks = [
   { key: "home", name: "Home", href: "/" },
-  { key: "navbar.newsAI", name: "News AI", href: "/news-ai" },
   { key: "navbar.quantitativeModel", name: "Quantitative Model", href: "/quantitative-model" },
   { key: "navbar.marketsInsight", name: "Markets Insight", href: "/markets-insight" },
   { key: "navbar.research", name: "Our Research", href: "/our-research" },
@@ -72,24 +71,18 @@ const NavBar = () => {
             {t('contact')}
           </Link>
           
-          {/* Language Switcher - posizionata uniformemente nella versione desktop */}
-          <div className="relative h-9 flex items-center">
-            <LanguageSwitcher />
-          </div>
-          
           <Link href="/login" className="px-5 py-2.5 text-sm font-medium text-white bg-primary hover:bg-primary/80 rounded-none transition-colors">
             {t('login')}
           </Link>
-        </div>
-        
-        {/* Mobile Menu Button and Language Switcher side by side */}
-        <div className="lg:hidden flex items-center">
-          {/* Language Switcher - mobile */}
-          <div className="relative mr-4">
+          
+          {/* Language Switcher - posizionata dopo login nella versione desktop */}
+          <div className="relative h-9 flex items-center">
             <LanguageSwitcher />
           </div>
-          
-          {/* Mobile Menu Button */}
+        </div>
+        
+        {/* Mobile Menu Button */}
+        <div className="lg:hidden flex items-center">
           <button
             type="button"
             className="text-primary p-2"
