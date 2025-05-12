@@ -1,50 +1,99 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { cn } from '@/lib/utils';
 
 const LanguageSwitcher = () => {
   const { language, setLanguage } = useLanguage();
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Chiudi il dropdown quando si clicca fuori
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    }
+    
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  // Bandiera USA
+  const USFlag = () => (
+    <div className="relative w-full h-full">
+      <div className="absolute inset-0 bg-blue-900"></div>
+      <div className="absolute top-0 left-0 w-3 h-3 bg-white"></div>
+      <div className="absolute top-0 left-0 w-2.5 h-2.5 bg-red-600"></div>
+      <div className="absolute top-0 left-0 w-1.5 h-1.5 bg-white"></div>
+      <div className="absolute inset-x-0 h-0.5 bg-white" style={{ top: '20%' }}></div>
+      <div className="absolute inset-x-0 h-0.5 bg-white" style={{ top: '40%' }}></div>
+      <div className="absolute inset-x-0 h-0.5 bg-white" style={{ top: '60%' }}></div>
+      <div className="absolute inset-x-0 h-0.5 bg-white" style={{ top: '80%' }}></div>
+      <div className="absolute inset-y-0 w-0.5 bg-white" style={{ left: '30%' }}></div>
+    </div>
+  );
+
+  // Bandiera Italiana
+  const ItalianFlag = () => (
+    <div className="relative w-full h-full">
+      <div className="absolute inset-0 bg-white"></div>
+      <div className="absolute inset-y-0 left-0 w-1/3 bg-green-600"></div>
+      <div className="absolute inset-y-0 left-1/3 w-1/3 bg-white"></div>
+      <div className="absolute inset-y-0 right-0 w-1/3 bg-red-600"></div>
+    </div>
+  );
 
   return (
-    <div className="flex items-center space-x-3">
+    <div className="relative" ref={dropdownRef}>
       <button 
-        onClick={() => setLanguage('it')}
-        className={cn(
-          "flex items-center justify-center w-8 h-6 border shadow-sm overflow-hidden transition-all hover:scale-110",
-          language === 'it' ? 'border-secondary ring-1 ring-secondary scale-110' : 'border-gray-300 opacity-90 hover:opacity-100'
-        )}
-        title="Passa all'italiano"
-        aria-label="Seleziona lingua italiana"
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex items-center justify-center w-8 h-6 border shadow-sm overflow-hidden transition-all hover:scale-105"
+        title={language === 'en' ? 'Change language' : 'Cambia lingua'}
+        aria-label="Language switcher"
       >
-        <div className="relative w-full h-full">
-          <div className="absolute inset-0 bg-white"></div>
-          <div className="absolute inset-y-0 left-0 w-1/3 bg-green-600"></div>
-          <div className="absolute inset-y-0 left-1/3 w-1/3 bg-white"></div>
-          <div className="absolute inset-y-0 right-0 w-1/3 bg-red-600"></div>
-        </div>
+        {language === 'en' ? <USFlag /> : <ItalianFlag />}
       </button>
       
-      <button 
-        onClick={() => setLanguage('en')}
-        className={cn(
-          "flex items-center justify-center w-8 h-6 border shadow-sm overflow-hidden transition-all hover:scale-110",
-          language === 'en' ? 'border-secondary ring-1 ring-secondary scale-110' : 'border-gray-300 opacity-90 hover:opacity-100'
-        )}
-        title="Switch to English"
-        aria-label="Select English language"
-      >
-        <div className="relative w-full h-full">
-          <div className="absolute inset-0 bg-blue-900"></div>
-          <div className="absolute top-0 left-0 w-3 h-3 bg-white"></div>
-          <div className="absolute top-0 left-0 w-2.5 h-2.5 bg-red-600"></div>
-          <div className="absolute top-0 left-0 w-1.5 h-1.5 bg-white"></div>
-          <div className="absolute inset-x-0 h-0.5 bg-white" style={{ top: '20%' }}></div>
-          <div className="absolute inset-x-0 h-0.5 bg-white" style={{ top: '40%' }}></div>
-          <div className="absolute inset-x-0 h-0.5 bg-white" style={{ top: '60%' }}></div>
-          <div className="absolute inset-x-0 h-0.5 bg-white" style={{ top: '80%' }}></div>
-          <div className="absolute inset-y-0 w-0.5 bg-white" style={{ left: '30%' }}></div>
+      {isOpen && (
+        <div className="absolute right-0 top-8 mt-1 w-32 bg-white shadow-lg rounded-sm z-50 border border-gray-200 overflow-hidden">
+          <div className="py-1">
+            <button 
+              className={cn(
+                "w-full px-3 py-2 text-left text-sm flex items-center space-x-2 hover:bg-gray-100 transition-colors",
+                language === 'en' && "bg-gray-50 font-medium"
+              )}
+              onClick={() => {
+                setLanguage('en');
+                setIsOpen(false);
+              }}
+            >
+              <div className="w-6 h-4 overflow-hidden">
+                <USFlag />
+              </div>
+              <span>English</span>
+            </button>
+            
+            <button 
+              className={cn(
+                "w-full px-3 py-2 text-left text-sm flex items-center space-x-2 hover:bg-gray-100 transition-colors",
+                language === 'it' && "bg-gray-50 font-medium"
+              )}
+              onClick={() => {
+                setLanguage('it');
+                setIsOpen(false);
+              }}
+            >
+              <div className="w-6 h-4 overflow-hidden">
+                <ItalianFlag />
+              </div>
+              <span>Italiano</span>
+            </button>
+          </div>
         </div>
-      </button>
+      )}
     </div>
   );
 };

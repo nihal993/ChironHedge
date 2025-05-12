@@ -72,16 +72,14 @@ const NavBar = () => {
           <Link href="/login" className="px-5 py-2.5 text-sm font-medium text-white bg-primary hover:bg-primary/80 rounded-none transition-colors mr-3">
             {t('login')}
           </Link>
-          <Link href="/contact" className="px-5 py-2.5 text-sm font-medium text-primary blue-gradient hover:brightness-105 rounded-none transition-all mr-1">
+          <Link href="/contact" className="px-5 py-2.5 text-sm font-medium text-primary blue-gradient hover:brightness-105 rounded-none transition-all">
             {t('contact')}
           </Link>
-          <div className="border-l border-gray-300 h-8 mx-3"></div>
-          <div className="relative pr-1">
-            <div className="absolute -top-1 -right-1 text-[9px] text-secondary font-medium bg-white px-1 rounded-sm shadow-sm border border-gray-100">
-              {language.toUpperCase()}
-            </div>
-            <LanguageSwitcher />
-          </div>
+        </div>
+        
+        {/* Language Switcher - posizionato separatamente come richiesto */}
+        <div className="hidden lg:block relative ml-7">
+          <LanguageSwitcher />
         </div>
         
         {/* Mobile Menu Button */}
@@ -119,10 +117,6 @@ const NavBar = () => {
               </Link>
             ))}
             <div className="flex flex-col space-y-3 pt-4 mt-2">
-              <div className="flex justify-center items-center py-3 border-t border-b border-gray-100">
-                <span className="text-sm text-primary/70 mr-2">{language === 'en' ? 'Select language:' : 'Seleziona lingua:'}</span>
-                <LanguageSwitcher />
-              </div>
               <Link
                 href="/login"
                 className="w-full px-5 py-2.5 text-center text-sm font-medium text-white bg-primary hover:bg-primary/80 rounded-none transition-colors"
@@ -137,6 +131,12 @@ const NavBar = () => {
               >
                 {t('contact')}
               </Link>
+              <div className="flex justify-center items-center py-4 mt-1 border-t border-gray-100">
+                <div className="flex items-center">
+                  <span className="text-sm text-primary/70 mr-3">{language === 'en' ? 'Language:' : 'Lingua:'}</span>
+                  <LanguageSwitcher />
+                </div>
+              </div>
             </div>
           </nav>
         </motion.div>
