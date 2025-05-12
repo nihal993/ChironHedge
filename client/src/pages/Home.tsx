@@ -51,27 +51,30 @@ const Home = () => {
   return (
     <div className="flex flex-col w-full">
       {/* Hero Section */}
-      <section id="hero" className="w-full relative overflow-hidden bg-primary h-[500px] mb-8">
+      <section id="hero" className="w-full relative overflow-hidden bg-primary h-[600px] mb-12">
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-[#0a192f] to-[#0033a0] opacity-90"></div>
         <img 
-          src="https://images.unsplash.com/photo-1639322537228-f710d846310a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=500&q=80" 
+          src="https://images.unsplash.com/photo-1639322537228-f710d846310a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=600&q=80" 
           alt="Abstract financial data visualization" 
-          className="w-full h-full object-cover object-center opacity-20"
+          className="w-full h-full object-cover object-center opacity-30"
         />
         <div className="absolute inset-0 flex items-center">
-          <div className="px-6 md:px-12 max-w-[900px]">
-            <h5 className="text-secondary font-medium mb-3 text-sm uppercase tracking-wider">Advanced Financial Research</h5>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
-              Hedge Fund Level Quantitative Research Solutions
-            </h1>
-            <p className="text-base md:text-lg text-neutral-300 mb-8 max-w-xl">
-              Advanced financial analysis and proprietary quantitative models specifically designed for institutional investors.
+          <div className="px-6 md:px-16 max-w-[1100px] mx-auto">
+            <div className="border-l-4 border-secondary pl-6 mb-8">
+              <h5 className="text-secondary font-medium mb-2 text-sm uppercase tracking-wide">Advanced Quantitative Analysis</h5>
+              <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-8">
+                Institutional-Grade <br />Research Solutions
+              </h1>
+            </div>
+            <p className="text-base md:text-xl text-white/80 mb-10 max-w-xl font-light">
+              Proprietary models & advanced analytics delivering actionable insights for sophisticated investors.
             </p>
-            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
               <button 
-                onClick={() => toggleSection('news-ai')}
-                className="px-8 py-3 blue-gradient hover:brightness-105 font-medium text-white transition-all text-center inline-flex items-center justify-center"
+                onClick={() => toggleSection('our-research')}
+                className="gs-blue-btn px-8 py-4 text-lg"
               >
-                Explore our platform
+                Explore Our Research
               </button>
             </div>
           </div>
@@ -79,15 +82,15 @@ const Home = () => {
       </section>
 
       {/* News AI Section */}
-      <section id="news-ai" className="mb-12 border-t border-gray-200 pt-12">
+      <section id="news-ai" className="gs-section">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold flex items-center">
-            <span className="text-secondary mr-2">01</span> News AI
+          <h2 className="gs-header flex items-center">
+            News AI
             <button 
               onClick={() => toggleSection('news-ai')} 
               className="ml-4 p-1 rounded-full hover:bg-gray-100 transition-colors"
             >
-              <ChevronDown className={`h-5 w-5 transition-transform ${activeSection === 'news-ai' ? 'transform rotate-180' : ''}`} />
+              <ChevronDown className={`h-5 w-5 text-secondary transition-transform ${activeSection === 'news-ai' ? 'transform rotate-180' : ''}`} />
             </button>
           </h2>
         </div>
@@ -170,7 +173,7 @@ const Home = () => {
       <section id="quantitative-model" className="mb-12 border-t border-gray-200 pt-12">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold flex items-center">
-            <span className="text-secondary mr-2">02</span> Quantitative Model
+            Quantitative Model
             <button 
               onClick={() => toggleSection('quantitative-model')} 
               className="ml-4 p-1 rounded-full hover:bg-gray-100 transition-colors"
@@ -236,7 +239,7 @@ const Home = () => {
       <section id="markets-insight" className="mb-12 border-t border-gray-200 pt-12">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold flex items-center">
-            <span className="text-secondary mr-2">03</span> Markets Insight
+            Markets Insight
             <button 
               onClick={() => toggleSection('markets-insight')} 
               className="ml-4 p-1 rounded-full hover:bg-gray-100 transition-colors"
@@ -308,7 +311,7 @@ const Home = () => {
       <section id="our-research" className="mb-12 border-t border-gray-200 pt-12">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold flex items-center">
-            <span className="text-secondary mr-2">04</span> Our Research
+            Our Research
             <button 
               onClick={() => toggleSection('our-research')} 
               className="ml-4 p-1 rounded-full hover:bg-gray-100 transition-colors"
@@ -394,7 +397,7 @@ const Home = () => {
       <section id="macro-report" className="mb-12 border-t border-gray-200 pt-12">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold flex items-center">
-            <span className="text-secondary mr-2">05</span> Macro Report
+            Macro Report
             <button 
               onClick={() => toggleSection('macro-report')} 
               className="ml-4 p-1 rounded-full hover:bg-gray-100 transition-colors"
@@ -462,7 +465,7 @@ const Home = () => {
       <section id="quantitative-strategies" className="mb-12 border-t border-gray-200 pt-12">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold flex items-center">
-            <span className="text-secondary mr-2">06</span> Quantitative Strategies
+            Quantitative Strategies
             <button 
               onClick={() => toggleSection('quantitative-strategies')} 
               className="ml-4 p-1 rounded-full hover:bg-gray-100 transition-colors"
@@ -513,7 +516,7 @@ const Home = () => {
       <section id="contact" className="mb-12 border-t border-gray-200 pt-12">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold flex items-center">
-            <span className="text-secondary mr-2">07</span> Get in Touch
+            Get in Touch
             <button 
               onClick={() => toggleSection('contact')} 
               className="ml-4 p-1 rounded-full hover:bg-gray-100 transition-colors"
