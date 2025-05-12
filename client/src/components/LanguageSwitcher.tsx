@@ -6,12 +6,12 @@ const LanguageSwitcher = () => {
   const { language, setLanguage } = useLanguage();
 
   return (
-    <div className="flex items-center space-x-2">
+    <div className="flex items-center space-x-3">
       <button 
         onClick={() => setLanguage('it')}
         className={cn(
-          "flex items-center justify-center w-7 h-5 border transition-all hover:shadow-sm overflow-hidden",
-          language === 'it' ? 'border-secondary scale-110' : 'border-gray-300 opacity-70 hover:opacity-100'
+          "flex items-center justify-center w-8 h-6 border shadow-sm overflow-hidden transition-all hover:scale-110",
+          language === 'it' ? 'border-secondary ring-1 ring-secondary scale-110' : 'border-gray-300 opacity-90 hover:opacity-100'
         )}
         title="Passa all'italiano"
         aria-label="Seleziona lingua italiana"
@@ -27,8 +27,8 @@ const LanguageSwitcher = () => {
       <button 
         onClick={() => setLanguage('en')}
         className={cn(
-          "flex items-center justify-center w-7 h-5 border transition-all hover:shadow-sm overflow-hidden",
-          language === 'en' ? 'border-secondary scale-110' : 'border-gray-300 opacity-70 hover:opacity-100'
+          "flex items-center justify-center w-8 h-6 border shadow-sm overflow-hidden transition-all hover:scale-110",
+          language === 'en' ? 'border-secondary ring-1 ring-secondary scale-110' : 'border-gray-300 opacity-90 hover:opacity-100'
         )}
         title="Switch to English"
         aria-label="Select English language"

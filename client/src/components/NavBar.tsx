@@ -69,14 +69,19 @@ const NavBar = () => {
         </nav>
         
         <div className="hidden lg:flex items-center">
-          <LanguageSwitcher />
-          <div className="mx-3 h-4 border-r border-gray-300"></div>
           <Link href="/login" className="px-5 py-2.5 text-sm font-medium text-white bg-primary hover:bg-primary/80 rounded-none transition-colors mr-3">
             {t('login')}
           </Link>
-          <Link href="/contact" className="px-5 py-2.5 text-sm font-medium text-primary blue-gradient hover:brightness-105 rounded-none transition-all">
+          <Link href="/contact" className="px-5 py-2.5 text-sm font-medium text-primary blue-gradient hover:brightness-105 rounded-none transition-all mr-1">
             {t('contact')}
           </Link>
+          <div className="border-l border-gray-300 h-8 mx-3"></div>
+          <div className="relative pr-1">
+            <div className="absolute -top-1 -right-1 text-[9px] text-secondary font-medium bg-white px-1 rounded-sm shadow-sm border border-gray-100">
+              {language.toUpperCase()}
+            </div>
+            <LanguageSwitcher />
+          </div>
         </div>
         
         {/* Mobile Menu Button */}
