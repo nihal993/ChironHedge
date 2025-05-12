@@ -89,7 +89,7 @@ const BarChart = ({
           fontFamily: 'Inter, sans-serif',
         },
         formatter: function (val) {
-          return val.toFixed(1);
+          return typeof val === 'number' ? val.toFixed(1) : val;
         }
       }
     },

@@ -13,8 +13,7 @@ const navLinks = [
   { key: "navbar.marketsInsight", name: "Markets Insight", href: "/markets-insight" },
   { key: "navbar.research", name: "Our Research", href: "/our-research" },
   { key: "navbar.macroReport", name: "Macro Report", href: "/macro-report" },
-  { key: "navbar.strategies", name: "Quantitative Strategies", href: "/quantitative-strategies" },
-  { key: "navbar.contact", name: "Contact Us", href: "/contact" }
+  { key: "navbar.strategies", name: "Quantitative Strategies", href: "/quantitative-strategies" }
 ];
 
 const NavBar = () => {
@@ -69,17 +68,18 @@ const NavBar = () => {
         </nav>
         
         <div className="hidden lg:flex items-center space-x-5">
-          <Link href="/login" className="px-5 py-2.5 text-sm font-medium text-white bg-primary hover:bg-primary/80 rounded-none transition-colors">
-            {t('login')}
-          </Link>
           <Link href="/contact" className="px-5 py-2.5 text-sm font-medium text-primary blue-gradient hover:brightness-105 rounded-none transition-all">
             {t('contact')}
           </Link>
           
           {/* Language Switcher - posizionata uniformemente nella versione desktop */}
-          <div className="relative h-9 flex items-center ml-2">
+          <div className="relative h-9 flex items-center">
             <LanguageSwitcher />
           </div>
+          
+          <Link href="/login" className="px-5 py-2.5 text-sm font-medium text-white bg-primary hover:bg-primary/80 rounded-none transition-colors">
+            {t('login')}
+          </Link>
         </div>
         
         {/* Mobile Menu Button and Language Switcher side by side */}
@@ -126,20 +126,19 @@ const NavBar = () => {
             ))}
             <div className="flex flex-col space-y-3 pt-4 mt-2">
               <Link
-                href="/login"
-                className="w-full px-5 py-2.5 text-center text-sm font-medium text-white bg-primary hover:bg-primary/80 rounded-none transition-colors"
-                onClick={closeMenu}
-              >
-                {t('login')}
-              </Link>
-              <Link
                 href="/contact"
                 className="w-full px-5 py-2.5 text-center text-sm font-medium text-primary blue-gradient hover:brightness-105 rounded-none transition-all"
                 onClick={closeMenu}
               >
                 {t('contact')}
               </Link>
-              {/* Rimosso selettore lingua dal menu mobile */}
+              <Link
+                href="/login"
+                className="w-full px-5 py-2.5 text-center text-sm font-medium text-white bg-primary hover:bg-primary/80 rounded-none transition-colors"
+                onClick={closeMenu}
+              >
+                {t('login')}
+              </Link>
             </div>
           </nav>
         </motion.div>
