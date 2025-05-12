@@ -137,6 +137,7 @@ const Home = () => {
               Our proprietary models combine advanced mathematical techniques with machine learning to deliver predictive insights.
             </p>
             
+            {/* Model Tab Set 1 */}
             <div className="gs-chart-container mb-8">
               <Tabs defaultValue="gdp" className="w-full">
                 <TabsList className="grid w-full grid-cols-2 mb-6 bg-gray-50">
@@ -195,6 +196,93 @@ const Home = () => {
                   </div>
                 </TabsContent>
               </Tabs>
+            </div>
+            
+            {/* Model Set 2 - Factor & Strategy Analysis */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+              <div className="gs-chart-container bg-white">
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className="gs-chart-title">Investment Factor Analysis</h3>
+                  <span className="gs-subtle-text">Updated: May 11, 2025</span>
+                </div>
+                <div className="h-72 mb-6">
+                  <MultiLineChart 
+                    series={[
+                      { name: 'Value', data: factorPerformance[0].data },
+                      { name: 'Growth', data: factorPerformance[1].data },
+                      { name: 'Momentum', data: factorPerformance[2].data },
+                      { name: 'Quality', data: factorPerformance[3].data }
+                    ]}
+                    categories={months}
+                    title=""
+                    height={280}
+                    colors={['#0033A0', '#0052CC', '#1D7AFC', '#4C9AFF']}
+                  />
+                </div>
+                <div className="flex justify-between items-center pt-4 border-t border-gray-100">
+                  <div className="max-w-md">
+                    <p className="gs-subtle-text">
+                      Our factor analysis identifies market anomalies through proprietary multi-factor regression models.
+                    </p>
+                  </div>
+                  <a href="#" className="gs-arrow-link">
+                    View white paper <ArrowRight className="h-4 w-4" />
+                  </a>
+                </div>
+              </div>
+              
+              <div className="gs-chart-container bg-white">
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className="gs-chart-title">Quantitative Strategy Assessment</h3>
+                  <span className="gs-subtle-text">Updated: May 9, 2025</span>
+                </div>
+                <div className="h-72 mb-6">
+                  <RadarChart 
+                    data={portfolioMetrics}
+                    categories={metricLabels}
+                    title=""
+                    height={280}
+                    colors={['#0033A0']}
+                  />
+                </div>
+                <div className="flex justify-between items-center pt-4 border-t border-gray-100">
+                  <div className="max-w-md">
+                    <p className="gs-subtle-text">
+                      Our multi-dimensional strategy assessment framework evaluates risk-adjusted returns across market regimes.
+                    </p>
+                  </div>
+                  <a href="#" className="gs-arrow-link">
+                    Read methodology <ArrowRight className="h-4 w-4" />
+                  </a>
+                </div>
+              </div>
+            </div>
+            
+            {/* Model Set 3 - Economic Surprise Index */}
+            <div className="gs-chart-container bg-white mb-8">
+              <div className="flex justify-between items-center mb-6">
+                <h3 className="gs-chart-title">Economic Surprise Index</h3>
+                <span className="gs-subtle-text">Updated: May 12, 2025</span>
+              </div>
+              <div className="h-64 mb-6">
+                <BarChart 
+                  data={economicSurpriseData}
+                  categories={months}
+                  title=""
+                  height={240}
+                  colors={economicSurpriseData.map(val => val >= 0 ? '#0033A0' : '#a3a3a3')}
+                />
+              </div>
+              <div className="flex justify-between items-center pt-4 border-t border-gray-100">
+                <div className="max-w-md">
+                  <p className="gs-subtle-text">
+                    Our proprietary Economic Surprise Index measures the deviation of actual economic releases from consensus forecasts.
+                  </p>
+                </div>
+                <a href="#" className="gs-arrow-link">
+                  View detailed analytics <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
             </div>
           </div>
         )}
@@ -292,114 +380,182 @@ const Home = () => {
               Our research combines rigorous academic methodologies with practical applications for institutional investors.
             </p>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
-              <div className="gs-chart-container bg-white">
-                <div className="flex justify-between items-center mb-6">
-                  <h3 className="gs-chart-title">Investment Factor Analysis</h3>
-                  <span className="gs-subtle-text">Updated: May 11, 2025</span>
-                </div>
-                <div className="h-72 mb-6">
-                  <MultiLineChart 
-                    series={[
-                      { name: 'Value', data: factorPerformance[0].data },
-                      { name: 'Growth', data: factorPerformance[1].data },
-                      { name: 'Momentum', data: factorPerformance[2].data },
-                      { name: 'Quality', data: factorPerformance[3].data }
-                    ]}
-                    categories={months}
-                    title=""
-                    height={280}
-                    colors={['#0033A0', '#0052CC', '#1D7AFC', '#4C9AFF']}
-                  />
-                </div>
-                <div className="flex justify-between items-center pt-4 border-t border-gray-100">
-                  <div className="max-w-md">
-                    <p className="gs-subtle-text">
-                      Our factor analysis identifies market anomalies through proprietary multi-factor regression models.
+            {/* Featured Research - Stile Goldman Sachs */}
+            <div className="mb-12">
+              <h3 className="text-xl font-semibold mb-6 border-b border-gray-200 pb-3">Featured Research</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {/* Report Card 1 */}
+                <div className="bg-white border border-gray-100 overflow-hidden flex flex-col">
+                  <div className="relative h-44 bg-gray-200 overflow-hidden">
+                    <img 
+                      src="https://images.unsplash.com/photo-1582481725274-d63bdf929a9a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                      alt="Global markets report" 
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute bottom-0 right-0 bg-white text-primary px-3 py-1 text-xs font-medium">May 2025</div>
+                  </div>
+                  <div className="p-5 flex-grow">
+                    <div className="text-sm text-blue-600 font-medium uppercase mb-2">Market Outlook</div>
+                    <h4 className="text-lg font-semibold mb-3">Global Markets: Navigating Volatility</h4>
+                    <p className="text-primary/70 text-sm mb-5">
+                      Our analysts examine current market conditions and provide strategic guidance for institutional investors in a changing landscape.
                     </p>
                   </div>
-                  <a href="#" className="gs-arrow-link">
-                    View white paper <ArrowRight className="h-4 w-4" />
-                  </a>
+                  <div className="px-5 py-3 border-t border-gray-100">
+                    <a href="#" className="gs-arrow-link">
+                      Read the report <ArrowRight className="h-4 w-4" />
+                    </a>
+                  </div>
                 </div>
-              </div>
-              
-              <div className="gs-chart-container bg-white">
-                <div className="flex justify-between items-center mb-6">
-                  <h3 className="gs-chart-title">Quantitative Strategy Assessment</h3>
-                  <span className="gs-subtle-text">Updated: May 9, 2025</span>
-                </div>
-                <div className="h-72 mb-6">
-                  <RadarChart 
-                    data={portfolioMetrics}
-                    categories={metricLabels}
-                    title=""
-                    height={280}
-                    colors={['#0033A0']}
-                  />
-                </div>
-                <div className="flex justify-between items-center pt-4 border-t border-gray-100">
-                  <div className="max-w-md">
-                    <p className="gs-subtle-text">
-                      Our multi-dimensional strategy assessment framework evaluates risk-adjusted returns across market regimes.
+                
+                {/* Report Card 2 */}
+                <div className="bg-white border border-gray-100 overflow-hidden flex flex-col">
+                  <div className="relative h-44 bg-gray-200 overflow-hidden">
+                    <img 
+                      src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                      alt="Institutional investor report" 
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute bottom-0 right-0 bg-white text-primary px-3 py-1 text-xs font-medium">April 2025</div>
+                  </div>
+                  <div className="p-5 flex-grow">
+                    <div className="text-sm text-blue-600 font-medium uppercase mb-2">Industry Analysis</div>
+                    <h4 className="text-lg font-semibold mb-3">Financial Services Sector: Strategic Evolution</h4>
+                    <p className="text-primary/70 text-sm mb-5">
+                      Our in-depth analysis of the financial services industry explores strategic priorities and structural disruptions.
                     </p>
                   </div>
-                  <a href="#" className="gs-arrow-link">
-                    Read methodology <ArrowRight className="h-4 w-4" />
-                  </a>
+                  <div className="px-5 py-3 border-t border-gray-100">
+                    <a href="#" className="gs-arrow-link">
+                      Read the report <ArrowRight className="h-4 w-4" />
+                    </a>
+                  </div>
+                </div>
+                
+                {/* Report Card 3 */}
+                <div className="bg-white border border-gray-100 overflow-hidden flex flex-col">
+                  <div className="relative h-44 bg-gray-200 overflow-hidden">
+                    <img 
+                      src="https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                      alt="ESG Investment report" 
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute bottom-0 right-0 bg-white text-primary px-3 py-1 text-xs font-medium">March 2025</div>
+                  </div>
+                  <div className="p-5 flex-grow">
+                    <div className="text-sm text-blue-600 font-medium uppercase mb-2">ESG</div>
+                    <h4 className="text-lg font-semibold mb-3">ESG Investment Framework for Institutions</h4>
+                    <p className="text-primary/70 text-sm mb-5">
+                      Our ESG research team provides a comprehensive framework for integrating sustainability metrics into investment decisions.
+                    </p>
+                  </div>
+                  <div className="px-5 py-3 border-t border-gray-100">
+                    <a href="#" className="gs-arrow-link">
+                      Read the report <ArrowRight className="h-4 w-4" />
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="md:col-span-2 gs-chart-container bg-white">
-                <div className="flex justify-between items-center mb-6">
-                  <h3 className="gs-chart-title">Economic Surprise Index</h3>
-                  <span className="gs-subtle-text">Updated: May 12, 2025</span>
-                </div>
-                <div className="h-64 mb-6">
-                  <BarChart 
-                    data={economicSurpriseData}
-                    categories={months}
-                    title=""
-                    height={240}
-                    colors={economicSurpriseData.map(val => val >= 0 ? '#0033A0' : '#a3a3a3')}
-                  />
-                </div>
-                <div className="flex justify-between items-center pt-4 border-t border-gray-100">
-                  <div className="max-w-md">
-                    <p className="gs-subtle-text">
-                      Our proprietary Economic Surprise Index measures the deviation of actual economic releases from consensus forecasts.
+            {/* Recent Publications */}
+            <div className="flex flex-col md:flex-row gap-8">
+              <div className="md:w-2/3 bg-white border border-gray-100 p-6">
+                <h3 className="text-xl font-semibold mb-6">Recent Publications</h3>
+                <div className="divide-y divide-gray-100">
+                  <div className="py-5">
+                    <div className="flex justify-between items-start mb-2">
+                      <span className="text-sm text-blue-600 font-medium">Macro Economics</span>
+                      <span className="text-xs text-primary/60">May 12, 2025</span>
+                    </div>
+                    <h4 className="font-semibold text-lg mb-2">Factor Timing Framework: Optimizing Allocations</h4>
+                    <p className="text-primary/70 text-sm mb-3">
+                      Quantitative approach to optimal factor allocation across market regimes with systematic implementation guidelines.
                     </p>
+                    <p className="text-xs text-secondary">By Dr. Maria Rossi, Dr. James Chen</p>
                   </div>
+                  
+                  <div className="py-5">
+                    <div className="flex justify-between items-start mb-2">
+                      <span className="text-sm text-blue-600 font-medium">Portfolio Construction</span>
+                      <span className="text-xs text-primary/60">April 28, 2025</span>
+                    </div>
+                    <h4 className="font-semibold text-lg mb-2">Entropy Portfolio Construction: Beyond Markowitz</h4>
+                    <p className="text-primary/70 text-sm mb-3">
+                      Novel optimization methodology with enhanced risk-adjusted returns across varying market conditions.
+                    </p>
+                    <p className="text-xs text-secondary">By Dr. Alessandro Bianchi</p>
+                  </div>
+                  
+                  <div className="py-5">
+                    <div className="flex justify-between items-start mb-2">
+                      <span className="text-sm text-blue-600 font-medium">Fixed Income</span>
+                      <span className="text-xs text-primary/60">March 15, 2025</span>
+                    </div>
+                    <h4 className="font-semibold text-lg mb-2">Yield Curve & Recession Prediction: ML Approaches</h4>
+                    <p className="text-primary/70 text-sm mb-3">
+                      Machine learning approach to yield curve dynamics analysis with improved forecasting accuracy.
+                    </p>
+                    <p className="text-xs text-secondary">By Michael Zhang, PhD</p>
+                  </div>
+                  
+                  <div className="py-5">
+                    <div className="flex justify-between items-start mb-2">
+                      <span className="text-sm text-blue-600 font-medium">Global Markets</span>
+                      <span className="text-xs text-primary/60">February 27, 2025</span>
+                    </div>
+                    <h4 className="font-semibold text-lg mb-2">Systematic Alpha: Cross-Asset Opportunities</h4>
+                    <p className="text-primary/70 text-sm mb-3">
+                      Identifying structural alpha opportunities across global markets using systematic methodologies.
+                    </p>
+                    <p className="text-xs text-secondary">By Dr. Sarah Johnson, Thomas Mueller</p>
+                  </div>
+                </div>
+                <div className="flex justify-end mt-6 pt-4 border-t border-gray-100">
                   <a href="#" className="gs-arrow-link">
-                    View detailed analytics <ArrowRight className="h-4 w-4" />
+                    View all publications <ArrowRight className="h-4 w-4" />
                   </a>
                 </div>
               </div>
               
-              <div className="gs-chart-container bg-white">
-                <h3 className="gs-chart-title mb-6">Recent Publications</h3>
-                <div className="space-y-5">
-                  <div className="pb-4 border-b border-gray-100">
-                    <h4 className="font-medium text-primary mb-1">Factor Timing Framework</h4>
-                    <p className="gs-subtle-text mb-2">Quantitative approach to optimal factor allocation across market regimes.</p>
-                    <p className="text-xs text-secondary">May 2025 · Dr. Maria Rossi, Dr. James Chen</p>
-                  </div>
-                  <div className="pb-4 border-b border-gray-100">
-                    <h4 className="font-medium text-primary mb-1">Entropy Portfolio Construction</h4>
-                    <p className="gs-subtle-text mb-2">Novel optimization methodology with enhanced risk-adjusted returns.</p>
-                    <p className="text-xs text-secondary">April 2025 · Dr. Alessandro Bianchi</p>
-                  </div>
-                  <div className="pb-4 border-b border-gray-100">
-                    <h4 className="font-medium text-primary mb-1">Yield Curve & Recession Prediction</h4>
-                    <p className="gs-subtle-text mb-2">Machine learning approach to yield curve dynamics analysis.</p>
-                    <p className="text-xs text-secondary">March 2025 · Michael Zhang, PhD</p>
-                  </div>
-                </div>
-                <div className="flex justify-end mt-4">
-                  <a href="#" className="gs-arrow-link">
-                    View all publications <ArrowRight className="h-4 w-4" />
+              {/* Research Categories */}
+              <div className="md:w-1/3 bg-white border border-gray-100 p-6">
+                <h3 className="text-xl font-semibold mb-6">Research Categories</h3>
+                <div className="space-y-4">
+                  <a href="#" className="block p-4 border border-gray-100 hover:border-blue-200 hover:bg-blue-50 transition-colors">
+                    <h4 className="font-medium text-lg mb-1">Macro Economic Analysis</h4>
+                    <p className="text-primary/70 text-sm">Global trends, policy impacts, and growth forecasts</p>
+                    <div className="flex justify-between items-center mt-2">
+                      <span className="text-xs text-secondary">24 reports</span>
+                      <span className="text-blue-600 text-sm">→</span>
+                    </div>
+                  </a>
+                  
+                  <a href="#" className="block p-4 border border-gray-100 hover:border-blue-200 hover:bg-blue-50 transition-colors">
+                    <h4 className="font-medium text-lg mb-1">Sector Insights</h4>
+                    <p className="text-primary/70 text-sm">Deep analysis of industry trends and opportunities</p>
+                    <div className="flex justify-between items-center mt-2">
+                      <span className="text-xs text-secondary">36 reports</span>
+                      <span className="text-blue-600 text-sm">→</span>
+                    </div>
+                  </a>
+                  
+                  <a href="#" className="block p-4 border border-gray-100 hover:border-blue-200 hover:bg-blue-50 transition-colors">
+                    <h4 className="font-medium text-lg mb-1">Quantitative Research</h4>
+                    <p className="text-primary/70 text-sm">Statistical models and data-driven investment frameworks</p>
+                    <div className="flex justify-between items-center mt-2">
+                      <span className="text-xs text-secondary">18 reports</span>
+                      <span className="text-blue-600 text-sm">→</span>
+                    </div>
+                  </a>
+                  
+                  <a href="#" className="block p-4 border border-gray-100 hover:border-blue-200 hover:bg-blue-50 transition-colors">
+                    <h4 className="font-medium text-lg mb-1">Policy Research</h4>
+                    <p className="text-primary/70 text-sm">Regulatory impact analysis and policy developments</p>
+                    <div className="flex justify-between items-center mt-2">
+                      <span className="text-xs text-secondary">16 reports</span>
+                      <span className="text-blue-600 text-sm">→</span>
+                    </div>
                   </a>
                 </div>
               </div>
