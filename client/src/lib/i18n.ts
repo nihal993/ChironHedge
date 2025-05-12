@@ -24,8 +24,8 @@ export const translations: Translations = {
     it: 'Analisi di Mercato'
   },
   'navbar.research': {
-    en: 'Research & Analysis',
-    it: 'Ricerca & Analisi'
+    en: 'Research',
+    it: 'Ricerca'
   },
   'navbar.macroReport': {
     en: 'Macroeconomic Analysis',
