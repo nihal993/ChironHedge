@@ -6,11 +6,13 @@ import { motion } from "framer-motion";
 
 const navLinks = [
   { name: "Home", href: "/" },
-  { name: "Chi Siamo", href: "/chi-siamo" },
-  { name: "Ricerche", href: "/ricerche" },
-  { name: "Insights di Mercato", href: "/insights" },
-  { name: "Strategie Quantitative", href: "/strategie" },
-  { name: "Contatti", href: "/contatti" }
+  { name: "News AI", href: "/news-ai" },
+  { name: "Quantitative Model", href: "/quantitative-model" },
+  { name: "Markets Insight", href: "/markets-insight" },
+  { name: "Our Research", href: "/our-research" },
+  { name: "Macro Report", href: "/macro-report" },
+  { name: "Quantitative Strategies", href: "/quantitative-strategies" },
+  { name: "Get in Touch", href: "/contact" }
 ];
 
 const NavBar = () => {

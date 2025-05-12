@@ -3,10 +3,12 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Layout from "@/components/Layout";
 import Home from "@/pages/Home";
-import AboutUs from "@/pages/AboutUs";
-import Research from "@/pages/Research";
-import Insights from "@/pages/Insights";
-import Strategies from "@/pages/Strategies";
+import NewsAI from "@/pages/NewsAI";
+import QuantitativeModel from "@/pages/QuantitativeModel";
+import MarketsInsight from "@/pages/MarketsInsight";
+import OurResearch from "@/pages/OurResearch";
+import MacroReport from "@/pages/MacroReport";
+import QuantitativeStrategies from "@/pages/QuantitativeStrategies";
 import Contact from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
 
@@ -14,11 +16,13 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
-      <Route path="/chi-siamo" component={AboutUs} />
-      <Route path="/ricerche" component={Research} />
-      <Route path="/insights" component={Insights} />
-      <Route path="/strategie" component={Strategies} />
-      <Route path="/contatti" component={Contact} />
+      <Route path="/news-ai" component={NewsAI} />
+      <Route path="/quantitative-model" component={QuantitativeModel} />
+      <Route path="/markets-insight" component={MarketsInsight} />
+      <Route path="/our-research" component={OurResearch} />
+      <Route path="/macro-report" component={MacroReport} />
+      <Route path="/quantitative-strategies" component={QuantitativeStrategies} />
+      <Route path="/contact" component={Contact} />
       <Route component={NotFound} />
     </Switch>
   );
