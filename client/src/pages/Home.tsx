@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "wouter";
-import { ChevronRight, ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { AINews } from "@/lib/openai-service";
 import { apiRequest } from "@/lib/queryClient";
@@ -83,110 +83,39 @@ const Home = () => {
         </div>
       </section>
 
-      {/* News AI Section */}
-      <section id="news-ai" className="gs-section">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="gs-header flex items-center">
-            News AI
-            <button 
-              onClick={() => toggleSection('news-ai')} 
-              className="ml-4 p-1 rounded-full hover:bg-gray-100 transition-colors"
-            >
-              <ChevronDown className={`h-5 w-5 text-secondary transition-transform ${activeSection === 'news-ai' ? 'transform rotate-180' : ''}`} />
-            </button>
-          </h2>
-        </div>
-        
-        {(activeSection === 'news-ai' || activeSection === null) && (
-          <div>
-            <p className="text-lg mb-6 max-w-3xl">
-              AI-powered analysis of financial news providing real-time insights with sentiment assessment.
-            </p>
+      {/* News AI Banner - versione compatta */}
+      <div className="mb-8 bg-gray-50 border-y border-gray-200">
+        <div className="container mx-auto px-6 py-3">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+            <div className="flex items-center mb-2 sm:mb-0">
+              <div className="h-6 w-1 bg-blue-600 mr-3"></div>
+              <span className="text-sm font-medium text-blue-600">Latest Market News</span>
+              <span className="text-xs text-primary/50 ml-3">May 12, 2025</span>
+            </div>
             
-            {/* News Ticker Section - Compact version */}
-            <div className="bg-white border border-gray-200 rounded p-0">
-              <div className="px-6 py-4 border-b border-gray-100 flex justify-between items-center">
-                <h3 className="gs-chart-title mb-0">Today's Key Market News</h3>
-                <span className="gs-subtle-text">May 12, 2025 · Updated 30m ago</span>
-              </div>
+            <div className="flex items-center space-x-1 text-primary">
+              <button className="p-1 rounded hover:bg-gray-200">
+                <span className="h-4 w-4 flex items-center justify-center">&#8249;</span>
+              </button>
               
-              <div className="divide-y divide-gray-100">
-                <div className="p-5 hover:bg-gray-50 transition-colors">
-                  <div className="flex justify-between items-start mb-2">
-                    <div className="flex items-center">
-                      <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-100 text-green-800 text-xs font-medium mr-3">
-                        +
-                      </span>
-                      <span className="text-xs text-secondary font-medium">Federal Reserve</span>
-                    </div>
-                    <span className="text-xs text-primary/50">14:32 ET</span>
-                  </div>
-                  <h4 className="font-medium text-base mb-2">Federal Reserve Announces Shift in Interest Rate Policy</h4>
-                  <p className="text-primary/70 text-sm">
-                    {t('newsAI.federalReserve')}
-                  </p>
-                  <div className="flex justify-between items-center mt-3">
-                    <span className="text-xs text-primary/60">Source: Bloomberg Financial</span>
-                    <a href="#" className="gs-arrow-link">
-                      Read Analysis <ArrowRight className="h-4 w-4" />
-                    </a>
-                  </div>
-                </div>
-                
-                <div className="p-5 hover:bg-gray-50 transition-colors">
-                  <div className="flex justify-between items-start mb-2">
-                    <div className="flex items-center">
-                      <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-red-100 text-red-800 text-xs font-medium mr-3">
-                        −
-                      </span>
-                      <span className="text-xs text-secondary font-medium">Tech Sector</span>
-                    </div>
-                    <span className="text-xs text-primary/50">11:47 ET</span>
-                  </div>
-                  <h4 className="font-medium text-base mb-2">Tech Sector Valuations Face Scrutiny Amid AI Integration Challenges</h4>
-                  <p className="text-primary/70 text-sm">
-                    Technology company valuations are under renewed scrutiny as investors reassess the timeline and implementation challenges associated with artificial intelligence integration.
-                  </p>
-                  <div className="flex justify-between items-center mt-3">
-                    <span className="text-xs text-primary/60">Source: Wall Street Journal</span>
-                    <a href="#" className="gs-arrow-link">
-                      Read Analysis <ArrowRight className="h-4 w-4" />
-                    </a>
-                  </div>
-                </div>
-                
-                <div className="p-5 hover:bg-gray-50 transition-colors">
-                  <div className="flex justify-between items-start mb-2">
-                    <div className="flex items-center">
-                      <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-blue-100 text-blue-800 text-xs font-medium mr-3">
-                        ⦿
-                      </span>
-                      <span className="text-xs text-secondary font-medium">Emerging Markets</span>
-                    </div>
-                    <span className="text-xs text-primary/50">09:15 ET</span>
-                  </div>
-                  <h4 className="font-medium text-base mb-2">Emerging Markets Bond Yields Display Unusual Pattern Shift</h4>
-                  <p className="text-primary/70 text-sm">
-                    Emerging market bond yields have exhibited an atypical pattern shift in recent trading sessions, pointing to a potential recalibration of risk assessment by institutional investors.
-                  </p>
-                  <div className="flex justify-between items-center mt-3">
-                    <span className="text-xs text-primary/60">Source: Reuters</span>
-                    <a href="#" className="gs-arrow-link">
-                      Read Analysis <ArrowRight className="h-4 w-4" />
-                    </a>
-                  </div>
+              <div className="max-w-xl overflow-hidden">
+                <div className="whitespace-nowrap overflow-hidden text-ellipsis text-sm">
+                  <span className="font-medium mr-2 text-green-600">Federal Reserve:</span>
+                  Federal Reserve Announces Shift in Interest Rate Policy
                 </div>
               </div>
               
-              <div className="px-6 py-4 border-t border-gray-100 flex justify-end">
-                <a href="#" className="gs-arrow-link">
-                  View all news <ArrowRight className="h-4 w-4" />
-                </a>
-              </div>
+              <button className="p-1 rounded hover:bg-gray-200">
+                <span className="h-4 w-4 flex items-center justify-center">&#8250;</span>
+              </button>
+              
+              <a href="/news-ai" className="ml-2 text-blue-600 text-sm font-medium flex items-center">
+                More News <ArrowRight className="h-3 w-3 ml-1" />
+              </a>
             </div>
           </div>
-        )}
-      </section>
+        </div>
+      </div>
 
       {/* Quantitative Model Section */}
       <section id="quantitative-model" className="gs-section">
@@ -650,7 +579,7 @@ const Home = () => {
                   />
                 </div>
                 <button className="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center">
-                  View strategy details <ChevronRight className="h-4 w-4 ml-1" />
+                  View strategy details <span className="ml-1">&#8250;</span>
                 </button>
               </div>
             ))}
