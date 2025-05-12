@@ -170,67 +170,84 @@ const Home = () => {
       </section>
 
       {/* Quantitative Model Section */}
-      <section id="quantitative-model" className="mb-12 border-t border-gray-200 pt-12">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold flex items-center">
+      <section id="quantitative-model" className="gs-section">
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="gs-header flex items-center">
             Quantitative Model
             <button 
               onClick={() => toggleSection('quantitative-model')} 
               className="ml-4 p-1 rounded-full hover:bg-gray-100 transition-colors"
             >
-              <ChevronDown className={`h-5 w-5 transition-transform ${activeSection === 'quantitative-model' ? 'transform rotate-180' : ''}`} />
+              <ChevronDown className={`h-5 w-5 text-secondary transition-transform ${activeSection === 'quantitative-model' ? 'transform rotate-180' : ''}`} />
             </button>
           </h2>
         </div>
         
         {(activeSection === 'quantitative-model' || activeSection === null) && (
-          <div className="bg-white border border-gray-200 p-6">
-            <Tabs defaultValue="gdp" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 mb-6">
-                <TabsTrigger value="gdp">GDP Growth</TabsTrigger>
-                <TabsTrigger value="inflation">Inflation</TabsTrigger>
-              </TabsList>
-              
-              <TabsContent value="gdp" className="pt-4">
-                <h3 className="text-lg font-bold mb-2">GDP Growth Forecast (%)</h3>
-                <p className="text-primary/70 mb-4 text-sm">
-                  Our proprietary GDP growth forecast model shows a gradual slowing in global economic activity over the next 12 months.
-                </p>
-                <div className="h-64 mb-4">
-                  <AreaChart 
-                    data={gdpGrowthData}
-                    categories={months}
-                    title="GDP Growth Forecast"
-                    height={240}
-                  />
-                </div>
-                <div className="flex justify-end">
-                  <button className="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center">
-                    View detailed analysis <ChevronRight className="h-4 w-4 ml-1" />
-                  </button>
-                </div>
-              </TabsContent>
-              
-              <TabsContent value="inflation" className="pt-4">
-                <h3 className="text-lg font-bold mb-2">Inflation Trends (%)</h3>
-                <p className="text-primary/70 mb-4 text-sm">
-                  Our inflation forecasting model projects a gradual decline in inflation rates across major economies in the coming year.
-                </p>
-                <div className="h-64 mb-4">
-                  <LineChart 
-                    data={inflationData}
-                    categories={months}
-                    title="Inflation Forecast"
-                    height={240}
-                  />
-                </div>
-                <div className="flex justify-end">
-                  <button className="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center">
-                    View detailed analysis <ChevronRight className="h-4 w-4 ml-1" />
-                  </button>
-                </div>
-              </TabsContent>
-            </Tabs>
+          <div>
+            <p className="text-lg mb-6 max-w-3xl">
+              Our proprietary models combine advanced mathematical techniques with machine learning to deliver predictive insights.
+            </p>
+            
+            <div className="gs-chart-container mb-8">
+              <Tabs defaultValue="gdp" className="w-full">
+                <TabsList className="grid w-full grid-cols-2 mb-6 bg-gray-50">
+                  <TabsTrigger value="gdp" className="text-primary font-medium">Global GDP Forecast</TabsTrigger>
+                  <TabsTrigger value="inflation" className="text-primary font-medium">Inflation Projection</TabsTrigger>
+                </TabsList>
+                
+                <TabsContent value="gdp" className="pt-4">
+                  <div className="flex justify-between items-center mb-6">
+                    <h3 className="gs-chart-title">GDP Growth Forecast Model</h3>
+                    <span className="gs-subtle-text">Updated: May 10, 2025</span>
+                  </div>
+                  <div className="h-72 mb-6">
+                    <AreaChart 
+                      data={gdpGrowthData}
+                      categories={months}
+                      title=""
+                      height={280}
+                      colors={['#0033A0', '#0052CC']}
+                    />
+                  </div>
+                  <div className="flex justify-between items-center pt-4 border-t border-gray-100">
+                    <div className="max-w-md">
+                      <p className="gs-subtle-text">
+                        Our proprietary recursive neural network forecasts GDP with 87% higher accuracy than traditional models.
+                      </p>
+                    </div>
+                    <a href="#" className="gs-arrow-link">
+                      View methodology <ArrowRight className="h-4 w-4" />
+                    </a>
+                  </div>
+                </TabsContent>
+                
+                <TabsContent value="inflation" className="pt-4">
+                  <div className="flex justify-between items-center mb-6">
+                    <h3 className="gs-chart-title">Inflation Rate Projection Model</h3>
+                    <span className="gs-subtle-text">Updated: May 8, 2025</span>
+                  </div>
+                  <div className="h-72 mb-6">
+                    <LineChart 
+                      data={inflationData}
+                      categories={months}
+                      title=""
+                      height={280}
+                    />
+                  </div>
+                  <div className="flex justify-between items-center pt-4 border-t border-gray-100">
+                    <div className="max-w-md">
+                      <p className="gs-subtle-text">
+                        Our inflation model incorporates 143 distinct variables for superior predictive power in rate forecasting.
+                      </p>
+                    </div>
+                    <a href="#" className="gs-arrow-link">
+                      View methodology <ArrowRight className="h-4 w-4" />
+                    </a>
+                  </div>
+                </TabsContent>
+              </Tabs>
+            </div>
           </div>
         )}
       </section>
@@ -308,84 +325,134 @@ const Home = () => {
       </section>
 
       {/* Our Research Section */}
-      <section id="our-research" className="mb-12 border-t border-gray-200 pt-12">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold flex items-center">
-            Our Research
+      <section id="our-research" className="gs-section bg-gray-50">
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="gs-header flex items-center">
+            Research & Analysis
             <button 
               onClick={() => toggleSection('our-research')} 
               className="ml-4 p-1 rounded-full hover:bg-gray-100 transition-colors"
             >
-              <ChevronDown className={`h-5 w-5 transition-transform ${activeSection === 'our-research' ? 'transform rotate-180' : ''}`} />
+              <ChevronDown className={`h-5 w-5 text-secondary transition-transform ${activeSection === 'our-research' ? 'transform rotate-180' : ''}`} />
             </button>
           </h2>
         </div>
         
         {(activeSection === 'our-research' || activeSection === null) && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="border border-gray-200 p-6">
-              <h3 className="text-xl font-bold mb-4">Factor Performance</h3>
-              <div className="h-64 mb-4">
-                <MultiLineChart 
-                  series={[
-                    { name: 'Value', data: factorPerformance[0].data },
-                    { name: 'Growth', data: factorPerformance[1].data },
-                    { name: 'Momentum', data: factorPerformance[2].data },
-                    { name: 'Quality', data: factorPerformance[3].data }
-                  ]}
-                  categories={months}
-                  title="Factor Performance Trend (%)"
-                  height={240}
-                  colors={['#0033A0', '#0052CC', '#1D7AFC', '#4C9AFF']}
-                />
+          <div>
+            <p className="text-lg mb-8 max-w-3xl">
+              Our research combines rigorous academic methodologies with practical applications for institutional investors.
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+              <div className="gs-chart-container bg-white">
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className="gs-chart-title">Investment Factor Analysis</h3>
+                  <span className="gs-subtle-text">Updated: May 11, 2025</span>
+                </div>
+                <div className="h-72 mb-6">
+                  <MultiLineChart 
+                    series={[
+                      { name: 'Value', data: factorPerformance[0].data },
+                      { name: 'Growth', data: factorPerformance[1].data },
+                      { name: 'Momentum', data: factorPerformance[2].data },
+                      { name: 'Quality', data: factorPerformance[3].data }
+                    ]}
+                    categories={months}
+                    title=""
+                    height={280}
+                    colors={['#0033A0', '#0052CC', '#1D7AFC', '#4C9AFF']}
+                  />
+                </div>
+                <div className="flex justify-between items-center pt-4 border-t border-gray-100">
+                  <div className="max-w-md">
+                    <p className="gs-subtle-text">
+                      Our factor analysis identifies market anomalies through proprietary multi-factor regression models.
+                    </p>
+                  </div>
+                  <a href="#" className="gs-arrow-link">
+                    View white paper <ArrowRight className="h-4 w-4" />
+                  </a>
+                </div>
+              </div>
+              
+              <div className="gs-chart-container bg-white">
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className="gs-chart-title">Quantitative Strategy Assessment</h3>
+                  <span className="gs-subtle-text">Updated: May 9, 2025</span>
+                </div>
+                <div className="h-72 mb-6">
+                  <RadarChart 
+                    data={portfolioMetrics}
+                    categories={metricLabels}
+                    title=""
+                    height={280}
+                    colors={['#0033A0']}
+                  />
+                </div>
+                <div className="flex justify-between items-center pt-4 border-t border-gray-100">
+                  <div className="max-w-md">
+                    <p className="gs-subtle-text">
+                      Our multi-dimensional strategy assessment framework evaluates risk-adjusted returns across market regimes.
+                    </p>
+                  </div>
+                  <a href="#" className="gs-arrow-link">
+                    Read methodology <ArrowRight className="h-4 w-4" />
+                  </a>
+                </div>
               </div>
             </div>
             
-            <div className="border border-gray-200 p-6">
-              <h3 className="text-xl font-bold mb-4">Portfolio Metrics</h3>
-              <div className="h-64 mb-4">
-                <RadarChart 
-                  data={portfolioMetrics}
-                  categories={metricLabels}
-                  title="Strategy Assessment"
-                  height={240}
-                  colors={['#0033A0']}
-                />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="md:col-span-2 gs-chart-container bg-white">
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className="gs-chart-title">Economic Surprise Index</h3>
+                  <span className="gs-subtle-text">Updated: May 12, 2025</span>
+                </div>
+                <div className="h-64 mb-6">
+                  <BarChart 
+                    data={economicSurpriseData}
+                    categories={months}
+                    title=""
+                    height={240}
+                    colors={economicSurpriseData.map(val => val >= 0 ? '#0033A0' : '#a3a3a3')}
+                  />
+                </div>
+                <div className="flex justify-between items-center pt-4 border-t border-gray-100">
+                  <div className="max-w-md">
+                    <p className="gs-subtle-text">
+                      Our proprietary Economic Surprise Index measures the deviation of actual economic releases from consensus forecasts.
+                    </p>
+                  </div>
+                  <a href="#" className="gs-arrow-link">
+                    View detailed analytics <ArrowRight className="h-4 w-4" />
+                  </a>
+                </div>
               </div>
-            </div>
-            
-            <div className="border border-gray-200 p-6">
-              <h3 className="text-xl font-bold mb-4">Economic Surprises</h3>
-              <div className="h-64 mb-4">
-                <BarChart 
-                  data={economicSurpriseData}
-                  categories={months}
-                  title="Economic Surprise Index"
-                  height={240}
-                  colors={economicSurpriseData.map(val => val >= 0 ? '#0033A0' : '#a3a3a3')}
-                />
-              </div>
-            </div>
-            
-            <div className="border border-gray-200 p-6">
-              <h3 className="text-xl font-bold mb-4">Latest Research Papers</h3>
-              <div className="space-y-3">
-                <div className="p-3 border-b border-gray-100">
-                  <h4 className="font-bold">Factor Timing: A Quantitative Framework</h4>
-                  <p className="text-xs text-primary/60">May 2025 · Dr. Maria Rossi, Dr. James Chen</p>
+              
+              <div className="gs-chart-container bg-white">
+                <h3 className="gs-chart-title mb-6">Recent Publications</h3>
+                <div className="space-y-5">
+                  <div className="pb-4 border-b border-gray-100">
+                    <h4 className="font-medium text-primary mb-1">Factor Timing Framework</h4>
+                    <p className="gs-subtle-text mb-2">Quantitative approach to optimal factor allocation across market regimes.</p>
+                    <p className="text-xs text-secondary">May 2025 · Dr. Maria Rossi, Dr. James Chen</p>
+                  </div>
+                  <div className="pb-4 border-b border-gray-100">
+                    <h4 className="font-medium text-primary mb-1">Entropy Portfolio Construction</h4>
+                    <p className="gs-subtle-text mb-2">Novel optimization methodology with enhanced risk-adjusted returns.</p>
+                    <p className="text-xs text-secondary">April 2025 · Dr. Alessandro Bianchi</p>
+                  </div>
+                  <div className="pb-4 border-b border-gray-100">
+                    <h4 className="font-medium text-primary mb-1">Yield Curve & Recession Prediction</h4>
+                    <p className="gs-subtle-text mb-2">Machine learning approach to yield curve dynamics analysis.</p>
+                    <p className="text-xs text-secondary">March 2025 · Michael Zhang, PhD</p>
+                  </div>
                 </div>
-                <div className="p-3 border-b border-gray-100">
-                  <h4 className="font-bold">Entropy-Based Portfolio Construction</h4>
-                  <p className="text-xs text-primary/60">April 2025 · Dr. Alessandro Bianchi, Sarah Johnson</p>
-                </div>
-                <div className="p-3 border-b border-gray-100">
-                  <h4 className="font-bold">Yield Curve Dynamics and Recession Prediction</h4>
-                  <p className="text-xs text-primary/60">March 2025 · Michael Zhang, PhD, Emma Roberts</p>
-                </div>
-                <div className="flex justify-end mt-3">
-                  <button className="text-secondary hover:text-secondary/80 text-sm font-medium flex items-center">
-                    View all publications <ChevronRight className="h-4 w-4 ml-1" />
-                  </button>
+                <div className="flex justify-end mt-4">
+                  <a href="#" className="gs-arrow-link">
+                    View all publications <ArrowRight className="h-4 w-4" />
+                  </a>
                 </div>
               </div>
             </div>
@@ -394,67 +461,127 @@ const Home = () => {
       </section>
 
       {/* Macro Report Section */}
-      <section id="macro-report" className="mb-12 border-t border-gray-200 pt-12">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold flex items-center">
-            Macro Report
+      <section id="macro-report" className="gs-section">
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="gs-header flex items-center">
+            Macroeconomic Analysis
             <button 
               onClick={() => toggleSection('macro-report')} 
               className="ml-4 p-1 rounded-full hover:bg-gray-100 transition-colors"
             >
-              <ChevronDown className={`h-5 w-5 transition-transform ${activeSection === 'macro-report' ? 'transform rotate-180' : ''}`} />
+              <ChevronDown className={`h-5 w-5 text-secondary transition-transform ${activeSection === 'macro-report' ? 'transform rotate-180' : ''}`} />
             </button>
           </h2>
         </div>
         
         {(activeSection === 'macro-report' || activeSection === null) && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="border border-gray-200 p-6">
-              <h3 className="text-xl font-bold mb-4">Global GDP Growth</h3>
-              <div className="h-64 mb-4">
-                <BarChart 
-                  data={[5.2, 4.1, 3.6, 7.8, 3.2, 2.1]}
-                  categories={['US', 'Eurozone', 'UK', 'China', 'Japan', 'Brazil']}
-                  title="GDP Growth by Region (%)"
-                  height={240}
-                  horizontal={true}
-                />
+          <div>
+            <p className="text-lg mb-8 max-w-3xl">
+              Our macroeconomic analysis provides a comprehensive view of global economic conditions and forecasts.
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+              <div className="gs-chart-container">
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className="gs-chart-title">Global Economic Growth</h3>
+                  <span className="gs-subtle-text">Updated: May 12, 2025</span>
+                </div>
+                <div className="h-72 mb-6">
+                  <BarChart 
+                    data={[5.2, 4.1, 3.6, 7.8, 3.2, 2.1]}
+                    categories={['US', 'Eurozone', 'UK', 'China', 'Japan', 'Brazil']}
+                    title=""
+                    height={280}
+                    horizontal={true}
+                  />
+                </div>
+                <div className="flex justify-between items-center pt-4 border-t border-gray-100">
+                  <div className="max-w-md">
+                    <p className="gs-subtle-text">
+                      Annual GDP growth forecasts based on our proprietary leading indicators framework and econometric models.
+                    </p>
+                  </div>
+                  <a href="#" className="gs-arrow-link">
+                    View full report <ArrowRight className="h-4 w-4" />
+                  </a>
+                </div>
+              </div>
+              
+              <div className="gs-chart-container">
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className="gs-chart-title">Global Inflation Trends</h3>
+                  <span className="gs-subtle-text">Updated: May 10, 2025</span>
+                </div>
+                <div className="h-72 mb-6">
+                  <LineChart 
+                    data={[3.8, 4.2, 5.1, 2.1, 1.8, 5.6]}
+                    categories={['US', 'Eurozone', 'UK', 'China', 'Japan', 'Brazil']}
+                    title=""
+                    height={280}
+                  />
+                </div>
+                <div className="flex justify-between items-center pt-4 border-t border-gray-100">
+                  <div className="max-w-md">
+                    <p className="gs-subtle-text">
+                      Annual inflation rates forecast using our hybrid approach combining cost-push and demand-pull dynamics.
+                    </p>
+                  </div>
+                  <a href="#" className="gs-arrow-link">
+                    View forecast methodology <ArrowRight className="h-4 w-4" />
+                  </a>
+                </div>
               </div>
             </div>
             
-            <div className="border border-gray-200 p-6">
-              <h3 className="text-xl font-bold mb-4">Inflation Trends</h3>
-              <div className="h-64 mb-4">
-                <LineChart 
-                  data={[3.8, 4.2, 5.1, 2.1, 1.8, 5.6]}
-                  categories={['US', 'Eurozone', 'UK', 'China', 'Japan', 'Brazil']}
-                  title="Inflation by Region (%)"
-                  height={240}
-                />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="gs-chart-container">
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className="gs-chart-title">Manufacturing PMI</h3>
+                  <span className="gs-subtle-text">Updated: May 9, 2025</span>
+                </div>
+                <div className="h-72 mb-6">
+                  <AreaChart 
+                    data={[52.1, 49.8, 48.6, 53.2, 48.9, 51.4]}
+                    categories={['US', 'Eurozone', 'UK', 'China', 'Japan', 'Brazil']}
+                    title=""
+                    height={280}
+                  />
+                </div>
+                <div className="flex justify-between items-center pt-4 border-t border-gray-100">
+                  <div className="max-w-md">
+                    <p className="gs-subtle-text">
+                      Manufacturing Purchasing Managers' Index readings with our proprietary diffusion analysis methodology.
+                    </p>
+                  </div>
+                  <a href="#" className="gs-arrow-link">
+                    View indicator details <ArrowRight className="h-4 w-4" />
+                  </a>
+                </div>
               </div>
-            </div>
-            
-            <div className="border border-gray-200 p-6">
-              <h3 className="text-xl font-bold mb-4">Manufacturing PMI</h3>
-              <div className="h-64 mb-4">
-                <AreaChart 
-                  data={[52.1, 49.8, 48.6, 53.2, 48.9, 51.4]}
-                  categories={['US', 'Eurozone', 'UK', 'China', 'Japan', 'Brazil']}
-                  title="Manufacturing PMI by Region"
-                  height={240}
-                />
-              </div>
-            </div>
-            
-            <div className="border border-gray-200 p-6">
-              <h3 className="text-xl font-bold mb-4">Central Bank Rates</h3>
-              <div className="h-64 mb-4">
-                <BarChart 
-                  data={[4.75, 3.75, 5.0, 3.55, 0.25, 10.75]}
-                  categories={['US Fed', 'ECB', 'BoE', 'PBoC', 'BoJ', 'BCB']}
-                  title="Policy Rates (%)"
-                  height={240}
-                />
+              
+              <div className="gs-chart-container">
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className="gs-chart-title">Central Bank Policy Rates</h3>
+                  <span className="gs-subtle-text">Updated: May 11, 2025</span>
+                </div>
+                <div className="h-72 mb-6">
+                  <BarChart 
+                    data={[4.75, 3.75, 5.0, 3.55, 0.25, 10.75]}
+                    categories={['US Fed', 'ECB', 'BoE', 'PBoC', 'BoJ', 'BCB']}
+                    title=""
+                    height={280}
+                  />
+                </div>
+                <div className="flex justify-between items-center pt-4 border-t border-gray-100">
+                  <div className="max-w-md">
+                    <p className="gs-subtle-text">
+                      Current policy rates with our proprietary forecasting model projections for the next four quarters.
+                    </p>
+                  </div>
+                  <a href="#" className="gs-arrow-link">
+                    View rate projections <ArrowRight className="h-4 w-4" />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
