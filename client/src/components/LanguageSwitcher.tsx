@@ -55,50 +55,50 @@ const LanguageSwitcher = () => {
 
   return (
     <div className="relative" ref={dropdownRef}>
-      <button 
+      <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-center w-8 h-6 border shadow-sm overflow-hidden transition-all hover:scale-105"
-        title={language === 'en' ? 'Change language' : 'Cambia lingua'}
-        aria-label="Language switcher"
+        className={cn(
+          "flex items-center justify-center w-8 h-6 rounded overflow-hidden border border-gray-200",
+          isOpen ? "ring-2 ring-blue-500" : "hover:border-gray-300"
+        )}
+        aria-label="Change language"
       >
         {language === 'en' ? <USFlag /> : <ItalianFlag />}
       </button>
       
       {isOpen && (
-        <div className="fixed right-4 top-16 w-32 bg-white shadow-lg rounded-sm z-50 border border-gray-200 overflow-hidden">
-          <div className="py-1">
-            <button 
-              className={cn(
-                "w-full px-3 py-2 text-left text-sm flex items-center space-x-2 hover:bg-gray-100 transition-colors",
-                language === 'en' && "bg-gray-50 font-medium"
-              )}
-              onClick={() => {
-                setLanguage('en');
-                setIsOpen(false);
-              }}
-            >
-              <div className="w-6 h-4 overflow-hidden">
-                <USFlag />
-              </div>
-              <span>English</span>
-            </button>
-            
-            <button 
-              className={cn(
-                "w-full px-3 py-2 text-left text-sm flex items-center space-x-2 hover:bg-gray-100 transition-colors",
-                language === 'it' && "bg-gray-50 font-medium"
-              )}
-              onClick={() => {
-                setLanguage('it');
-                setIsOpen(false);
-              }}
-            >
-              <div className="w-6 h-4 overflow-hidden">
-                <ItalianFlag />
-              </div>
-              <span>Italiano</span>
-            </button>
-          </div>
+        <div className="absolute right-0 mt-2 bg-white border border-gray-200 rounded shadow-lg z-10 w-40">
+          <button
+            className={cn(
+              "flex items-center gap-3 w-full text-left px-4 py-2 hover:bg-gray-50",
+              language === 'en' ? "bg-blue-50" : ""
+            )}
+            onClick={() => {
+              setLanguage('en');
+              setIsOpen(false);
+            }}
+          >
+            <div className="w-6 h-4">
+              <USFlag />
+            </div>
+            <span>English</span>
+          </button>
+          
+          <button
+            className={cn(
+              "flex items-center gap-3 w-full text-left px-4 py-2 hover:bg-gray-50",
+              language === 'it' ? "bg-blue-50" : ""
+            )}
+            onClick={() => {
+              setLanguage('it');
+              setIsOpen(false);
+            }}
+          >
+            <div className="w-6 h-4">
+              <ItalianFlag />
+            </div>
+            <span>Italiano</span>
+          </button>
         </div>
       )}
     </div>
