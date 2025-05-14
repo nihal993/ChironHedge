@@ -156,6 +156,26 @@ export const translations: Translations = {
     en: 'May 9, 2025',
     it: '9 Maggio 2025'
   },
+  'home.marketsInsight': {
+    en: 'Markets Insight',
+    it: 'Analisi dei Mercati'
+  },
+  'home.marketPerformance': {
+    en: 'Market Performance',
+    it: 'Performance di Mercato'
+  },
+  'home.marketVolatility': {
+    en: 'Market Volatility',
+    it: 'Volatilità di Mercato'
+  },
+  'home.interestRates': {
+    en: 'Interest Rates',
+    it: 'Tassi di Interesse'
+  },
+  'home.assetCorrelation': {
+    en: 'Asset Correlation',
+    it: 'Correlazione tra Asset'
+  },
   
   // Our Research Section
   'ourResearch.title': {
