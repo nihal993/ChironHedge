@@ -76,6 +76,22 @@ export const translations: Translations = {
     en: 'More News',
     it: 'Altre Notizie'
   },
+  'home.quantitativeModel': {
+    en: 'Quantitative Model',
+    it: 'Modello Quantitativo'
+  },
+  'home.modelDescription': {
+    en: 'Our proprietary models combine advanced mathematical techniques with machine learning to deliver predictive insights.',
+    it: 'I nostri modelli proprietari combinano tecniche matematiche avanzate con il machine learning per fornire informazioni predittive.'
+  },
+  'home.gdpTab': {
+    en: 'Global GDP Forecast',
+    it: 'Previsione PIL Globale'
+  },
+  'home.inflationTab': {
+    en: 'Inflation Projection',
+    it: 'Proiezione Inflazione'
+  },
   
   // Our Research Section
   'ourResearch.title': {
