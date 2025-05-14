@@ -184,11 +184,23 @@ export const translations: Translations = {
     en: 'Quantitative Strategies',
     it: 'Strategie Quantitative'
   },
+  'home.exploreOurResearch': {
+    en: 'Explore Our Research',
+    it: 'Esplora le Nostre Ricerche'
+  },
   
   // Our Research Section
   'ourResearch.title': {
     en: 'Our Research',
     it: 'Le Nostre Ricerche'
+  },
+  'home.researchTitle': {
+    en: 'Research',
+    it: 'Ricerca'
+  },
+  'home.researchDescription': {
+    en: 'Our research combines rigorous academic methodologies with practical applications for institutional investors.',
+    it: 'La nostra ricerca combina metodologie accademiche rigorose con applicazioni pratiche per investitori istituzionali.'
   },
   'ourResearch.description': {
     en: 'Cutting-edge financial research combining rigorous academic methodologies with practical applications for institutional investors.',
