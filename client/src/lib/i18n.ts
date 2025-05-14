@@ -584,6 +584,20 @@ export const translations: Translations = {
   'contact.form.inquiryType.support': {
     en: 'Technical Support',
     it: 'Supporto Tecnico'
+  },
+  
+  // Additional Research Page keys
+  'research.viewAllBtn': {
+    en: 'View All Research',
+    it: 'Vedi Tutte le Ricerche'
+  },
+  'research.viewCategoryBtn': {
+    en: 'View Category',
+    it: 'Vedi Categoria'
+  },
+  'research.reports': {
+    en: 'Reports',
+    it: 'Rapporti'
   }
 };
 
