@@ -173,8 +173,8 @@ const Home = () => {
                 
                 <TabsContent value="inflation" className="pt-4">
                   <div className="flex justify-between items-center mb-6">
-                    <h3 className="gs-chart-title">Inflation Rate Projection Model</h3>
-                    <span className="gs-subtle-text">Updated: May 8, 2025</span>
+                    <h3 className="gs-chart-title">{t('home.inflationTitle')}</h3>
+                    <span className="gs-subtle-text">{t('home.updated')}: {t('home.inflationUpdateDate')}</span>
                   </div>
                   <div className="h-72 mb-6">
                     <LineChart 
