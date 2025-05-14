@@ -187,7 +187,7 @@ const Home = () => {
                   <div className="flex justify-between items-center pt-4 border-t border-gray-100">
                     <div className="max-w-md">
                       <p className="gs-subtle-text">
-                        Our inflation model incorporates 143 distinct variables for superior predictive power in rate forecasting.
+                        {t('home.inflationModelDesc')}
                       </p>
                     </div>
                     <a href="#" className="gs-arrow-link">

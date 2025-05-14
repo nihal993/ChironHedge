@@ -120,6 +120,10 @@ export const translations: Translations = {
     en: 'May 8, 2025',
     it: '8 Maggio 2025'
   },
+  'home.inflationModelDesc': {
+    en: 'Our inflation model incorporates 143 distinct variables for superior predictive power in rate forecasting.',
+    it: 'Il nostro modello di inflazione incorpora 143 variabili distinte per una potenza predittiva superiore nelle previsioni dei tassi.'
+  },
   
   // Our Research Section
   'ourResearch.title': {
