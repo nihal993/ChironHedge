@@ -19,6 +19,7 @@ export const translations: Translations = {
     en: 'Quantitative Model',
     it: 'Modello Quantitativo'
   },
+
   'navbar.marketsInsight': {
     en: 'Markets Insight',
     it: 'Analisi di Mercato'

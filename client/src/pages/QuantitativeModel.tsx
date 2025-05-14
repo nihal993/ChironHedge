@@ -13,6 +13,7 @@ import {
   Legend
 } from "recharts";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 // Sample data for quantitative models
 const volatilityModelData = [
@@ -77,6 +78,8 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 };
 
 const QuantitativeModel = () => {
+  const { t } = useLanguage();
+  
   return (
     <section className="py-20 md:py-24 bg-white">
       <div className="container mx-auto px-4">
@@ -86,9 +89,9 @@ const QuantitativeModel = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Quantitative Models</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">{t('quantModel.title')}</h2>
           <p className="text-primary/70 max-w-3xl mx-auto">
-            Explore our suite of sophisticated quantitative models that provide unique insights into market dynamics, risk factors, and investment opportunities.
+            {t('quantModel.description')}
           </p>
         </motion.div>
         
