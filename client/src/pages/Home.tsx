@@ -147,8 +147,8 @@ const Home = () => {
                 
                 <TabsContent value="gdp" className="pt-4">
                   <div className="flex justify-between items-center mb-6">
-                    <h3 className="gs-chart-title">GDP Growth Forecast Model</h3>
-                    <span className="gs-subtle-text">Updated: May 10, 2025</span>
+                    <h3 className="gs-chart-title">{t('home.gdpChartTitle')}</h3>
+                    <span className="gs-subtle-text">{t('home.updated')}: {t('home.updateDate')}</span>
                   </div>
                   <div className="h-72 mb-6">
                     <AreaChart 
@@ -162,7 +162,7 @@ const Home = () => {
                   <div className="flex justify-between items-center pt-4 border-t border-gray-100">
                     <div className="max-w-md">
                       <p className="gs-subtle-text">
-                        Our proprietary recursive neural network forecasts GDP with 87% higher accuracy than traditional models.
+                        {t('home.gdpAccuracy')}
                       </p>
                     </div>
                     <a href="#" className="gs-arrow-link">
