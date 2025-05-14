@@ -108,6 +108,18 @@ export const translations: Translations = {
     en: 'Our proprietary recursive neural network forecasts GDP with 87% higher accuracy than traditional models.',
     it: 'La nostra rete neurale ricorsiva proprietaria prevede il PIL con una precisione dell\'87% superiore rispetto ai modelli tradizionali.'
   },
+  'home.viewMethodology': {
+    en: 'View methodology',
+    it: 'Visualizza metodologia'
+  },
+  'home.inflationTitle': {
+    en: 'Inflation Rate Projection Model',
+    it: 'Modello di Proiezione del Tasso di Inflazione'
+  },
+  'home.inflationUpdateDate': {
+    en: 'May 8, 2025',
+    it: '8 Maggio 2025'
+  },
   
   // Our Research Section
   'ourResearch.title': {
