@@ -106,7 +106,10 @@ const NewsTicker = () => {
                 transition={{ duration: 0.3 }}
                 className="whitespace-nowrap overflow-hidden text-ellipsis text-center"
               >
-                <span className={`font-medium mr-2 ${getSentimentClass(news[currentIndex].sentiment)}`}>
+                <span className="text-white/70 text-xs mr-2">
+                  {news[currentIndex].date}
+                </span>
+                <span className="font-medium mr-2 text-white">
                   {news[currentIndex].category}:
                 </span>
                 {news[currentIndex].title}

@@ -48,7 +48,7 @@ const NewsAI = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">AI-Powered Financial News Analysis</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">AI-Powered Financial News</h2>
           <p className="text-primary/70 max-w-3xl mx-auto">
             Stay ahead of market developments with our AI-curated financial news, offering data-driven analysis of global economic trends and market indicators.
           </p>
