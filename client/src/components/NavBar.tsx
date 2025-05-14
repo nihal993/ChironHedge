@@ -46,7 +46,7 @@ const NavBar = () => {
       <div className="container mx-auto px-4 flex items-center justify-between border-b border-gray-200">
         <Link href="/" className="flex items-center py-4">
           <span className="text-xl md:text-2xl font-bold text-primary">
-            Quantum<span className="text-secondary">Finance</span>
+            Chiron<span className="text-secondary">Research</span>
           </span>
         </Link>
         
