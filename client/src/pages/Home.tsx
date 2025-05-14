@@ -166,7 +166,7 @@ const Home = () => {
                       </p>
                     </div>
                     <a href="#" className="gs-arrow-link">
-                      View methodology <ArrowRight className="h-4 w-4" />
+                      {t('home.viewMethodology')} <ArrowRight className="h-4 w-4" />
                     </a>
                   </div>
                 </TabsContent>
@@ -191,7 +191,7 @@ const Home = () => {
                       </p>
                     </div>
                     <a href="#" className="gs-arrow-link">
-                      View methodology <ArrowRight className="h-4 w-4" />
+                      {t('home.viewMethodology')} <ArrowRight className="h-4 w-4" />
                     </a>
                   </div>
                 </TabsContent>
@@ -202,8 +202,8 @@ const Home = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
               <div className="gs-chart-container bg-white">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className="gs-chart-title">Investment Factor Analysis</h3>
-                  <span className="gs-subtle-text">Updated: May 11, 2025</span>
+                  <h3 className="gs-chart-title">{t('home.factorAnalysisTitle')}</h3>
+                  <span className="gs-subtle-text">{t('home.updated')}: {t('home.factorAnalysisUpdated')}</span>
                 </div>
                 <div className="h-72 mb-6">
                   <MultiLineChart 
@@ -222,11 +222,11 @@ const Home = () => {
                 <div className="flex justify-between items-center pt-4 border-t border-gray-100">
                   <div className="max-w-md">
                     <p className="gs-subtle-text">
-                      Our factor analysis identifies market anomalies through proprietary multi-factor regression models.
+                      {t('home.factorAnalysisDescription')}
                     </p>
                   </div>
                   <a href="#" className="gs-arrow-link">
-                    View white paper <ArrowRight className="h-4 w-4" />
+                    {t('home.viewWhitePaper')} <ArrowRight className="h-4 w-4" />
                   </a>
                 </div>
               </div>
