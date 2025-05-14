@@ -5,6 +5,7 @@ import {
   Mail, 
   Phone 
 } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { 
   Form, 
   FormControl, 
@@ -24,21 +25,23 @@ import { useForm } from "react-hook-form";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 
-const formSchema = z.object({
-  nome: z.string().min(2, { message: "Il nome deve avere almeno 2 caratteri" }),
-  cognome: z.string().min(2, { message: "Il cognome deve avere almeno 2 caratteri" }),
-  email: z.string().email({ message: "Email non valida" }),
-  organizzazione: z.string().min(2, { message: "Inserisci la tua organizzazione" }),
-  interesse: z.string().min(1, { message: "Seleziona un'area di interesse" }),
-  messaggio: z.string().optional(),
-  privacy: z.boolean().refine(val => val === true, {
-    message: "Devi accettare l'informativa sulla privacy",
-  }),
-});
-
 const Contact = () => {
+  const { t } = useLanguage();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const formSchema = z.object({
+    nome: z.string().min(2, { message: t('contact.form.validation.firstname') }),
+    cognome: z.string().min(2, { message: t('contact.form.validation.lastname') }),
+    email: z.string().email({ message: t('contact.form.validation.email') }),
+    organizzazione: z.string().optional(),
+    telefono: z.string().optional(),
+    interesse: z.string().min(1, { message: "Seleziona un'area di interesse" }),
+    messaggio: z.string().min(10, { message: t('contact.form.validation.message') }),
+    privacy: z.boolean().refine(val => val === true, {
+      message: t('contact.form.validation.privacy'),
+    }),
+  });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -47,6 +50,7 @@ const Contact = () => {
       cognome: "",
       email: "",
       organizzazione: "",
+      telefono: "",
       interesse: "",
       messaggio: "",
       privacy: false,
@@ -58,15 +62,15 @@ const Contact = () => {
     try {
       await apiRequest("POST", "/api/contact", values);
       toast({
-        title: "Richiesta inviata",
-        description: "Grazie per averci contattato. Ti risponderemo al più presto.",
+        title: t('contact.form.success'),
+        description: t('contact.form.success.description'),
         variant: "default",
       });
       form.reset();
     } catch (error) {
       toast({
-        title: "Errore",
-        description: "Si è verificato un errore nell'invio della richiesta. Riprova più tardi.",
+        title: t('contact.form.error'),
+        description: t('contact.form.error.description'),
         variant: "destructive",
       });
     } finally {
@@ -83,70 +87,63 @@ const Contact = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Contattaci</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">{t('contact.title')}</h2>
             <p className="text-primary/70 mb-12 max-w-lg">
-              Siamo a disposizione per discutere le tue esigenze di ricerca finanziaria avanzata e come possiamo supportare le tue decisioni d'investimento.
+              {t('contact.description')}
             </p>
             
-            <div className="space-y-8 mb-12">
-              <div className="flex items-start">
-                <div className="rounded-full bg-secondary/20 p-3 mr-4 flex-shrink-0">
-                  <MapPin className="h-5 w-5 text-secondary" />
+            <div className="space-y-6">
+              <div className="flex items-start space-x-4">
+                <div className="bg-neutral p-3 rounded-full">
+                  <MapPin className="text-secondary w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="font-bold mb-2">Sede principale</h3>
-                  <p className="text-primary/70">Via della Spiga 20, 20121 Milano, Italia</p>
+                  <h3 className="font-bold text-lg mb-1">{t('contact.info.address')}</h3>
+                  <p className="text-primary/70">Via Milano 123, 20100 Milano, Italia</p>
                 </div>
               </div>
               
-              <div className="flex items-start">
-                <div className="rounded-full bg-secondary/20 p-3 mr-4 flex-shrink-0">
-                  <Mail className="h-5 w-5 text-secondary" />
+              <div className="flex items-start space-x-4">
+                <div className="bg-neutral p-3 rounded-full">
+                  <Mail className="text-secondary w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="font-bold mb-2">Email</h3>
-                  <p className="text-primary/70">info@quantumfinance.com</p>
+                  <h3 className="font-bold text-lg mb-1">{t('contact.info.email')}</h3>
+                  <p className="text-primary/70">info@chironedge.com</p>
                 </div>
               </div>
               
-              <div className="flex items-start">
-                <div className="rounded-full bg-secondary/20 p-3 mr-4 flex-shrink-0">
-                  <Phone className="h-5 w-5 text-secondary" />
+              <div className="flex items-start space-x-4">
+                <div className="bg-neutral p-3 rounded-full">
+                  <Phone className="text-secondary w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="font-bold mb-2">Telefono</h3>
-                  <p className="text-primary/70">+39 02 1234 5678</p>
+                  <h3 className="font-bold text-lg mb-1">{t('contact.info.phone')}</h3>
+                  <p className="text-primary/70">+39 02 1234567</p>
                 </div>
               </div>
-            </div>
-            
-            <div className="rounded-xl overflow-hidden shadow-lg">
-              <img 
-                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400&q=80" 
-                alt="Modern financial district in Milan" 
-                className="w-full h-auto"
-              />
             </div>
           </motion.div>
           
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="bg-white rounded-xl shadow-md p-6 md:p-8"
           >
+            <h3 className="text-xl font-bold mb-4">{t('contact.form.title')}</h3>
+            
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="bg-neutral rounded-xl shadow-md p-8">
-                <h3 className="text-2xl font-bold mb-6">Richiedi Informazioni</h3>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <FormField
                     control={form.control}
                     name="nome"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Nome *</FormLabel>
+                        <FormLabel>{t('contact.form.firstname')}</FormLabel>
                         <FormControl>
-                          <Input placeholder="Il tuo nome" {...field} />
+                          <Input placeholder="Mario" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -158,9 +155,9 @@ const Contact = () => {
                     name="cognome"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Cognome *</FormLabel>
+                        <FormLabel>{t('contact.form.lastname')}</FormLabel>
                         <FormControl>
-                          <Input placeholder="Il tuo cognome" {...field} />
+                          <Input placeholder="Rossi" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -172,50 +169,61 @@ const Contact = () => {
                   control={form.control}
                   name="email"
                   render={({ field }) => (
-                    <FormItem className="mb-4">
-                      <FormLabel>Email *</FormLabel>
+                    <FormItem>
+                      <FormLabel>{t('contact.form.email')}</FormLabel>
                       <FormControl>
-                        <Input placeholder="La tua email aziendale" {...field} />
+                        <Input placeholder="mario.rossi@example.com" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
                 
-                <FormField
-                  control={form.control}
-                  name="organizzazione"
-                  render={({ field }) => (
-                    <FormItem className="mb-4">
-                      <FormLabel>Organizzazione *</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Nome della tua organizzazione" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <FormField
+                    control={form.control}
+                    name="organizzazione"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>{t('contact.form.company')}</FormLabel>
+                        <FormControl>
+                          <Input placeholder="Azienda SpA" {...field} />
+                        </FormControl>
+                      </FormItem>
+                    )}
+                  />
+                  
+                  <FormField
+                    control={form.control}
+                    name="telefono"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>{t('contact.form.phone')}</FormLabel>
+                        <FormControl>
+                          <Input placeholder="+39 123 456 7890" {...field} />
+                        </FormControl>
+                      </FormItem>
+                    )}
+                  />
+                </div>
                 
                 <FormField
                   control={form.control}
                   name="interesse"
                   render={({ field }) => (
-                    <FormItem className="mb-4">
-                      <FormLabel>Area di interesse *</FormLabel>
+                    <FormItem>
+                      <FormLabel>{t('contact.form.inquiry')}</FormLabel>
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
                           <SelectTrigger>
-                            <SelectValue placeholder="Seleziona un'area di interesse" />
+                            <SelectValue placeholder="Seleziona un argomento" />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="macro">Analisi Macro</SelectItem>
-                          <SelectItem value="volatilita">Strategie di Volatilità</SelectItem>
-                          <SelectItem value="credit">Credit Research</SelectItem>
-                          <SelectItem value="equity">Equity Factors</SelectItem>
-                          <SelectItem value="fixed-income">Fixed Income</SelectItem>
-                          <SelectItem value="alternative-data">Alternative Data</SelectItem>
-                          <SelectItem value="custom">Soluzioni Customizzate</SelectItem>
+                          <SelectItem value="generale">{t('contact.form.inquiryType.general')}</SelectItem>
+                          <SelectItem value="ricerca">{t('contact.form.inquiryType.services')}</SelectItem>
+                          <SelectItem value="partnership">{t('contact.form.inquiryType.partnership')}</SelectItem>
+                          <SelectItem value="supporto">{t('contact.form.inquiryType.support')}</SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -227,12 +235,12 @@ const Contact = () => {
                   control={form.control}
                   name="messaggio"
                   render={({ field }) => (
-                    <FormItem className="mb-6">
-                      <FormLabel>Messaggio</FormLabel>
+                    <FormItem>
+                      <FormLabel>{t('contact.form.message')}</FormLabel>
                       <FormControl>
                         <Textarea 
-                          placeholder="Dettagli sulla tua richiesta..." 
-                          rows={4} 
+                          placeholder="Descrivi nel dettaglio la tua richiesta..."
+                          className="min-h-[120px]"
                           {...field} 
                         />
                       </FormControl>
@@ -245,29 +253,29 @@ const Contact = () => {
                   control={form.control}
                   name="privacy"
                   render={({ field }) => (
-                    <FormItem className="mb-6">
-                      <div className="flex items-start space-x-2">
-                        <FormControl>
-                          <Checkbox 
-                            checked={field.value} 
-                            onCheckedChange={field.onChange}
-                          />
-                        </FormControl>
-                        <FormLabel className="text-sm text-primary/70 font-normal">
-                          Acconsento al trattamento dei dati personali come indicato nell'informativa sulla privacy. *
+                    <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                      <FormControl>
+                        <Checkbox
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
+                      <div className="space-y-1 leading-none">
+                        <FormLabel className="text-sm font-normal">
+                          {t('contact.form.privacy')}
                         </FormLabel>
+                        <FormMessage />
                       </div>
-                      <FormMessage />
                     </FormItem>
                   )}
                 />
                 
                 <Button 
                   type="submit" 
+                  className="w-full" 
                   disabled={isSubmitting}
-                  className="w-full gold-gradient hover:brightness-105 text-primary"
                 >
-                  {isSubmitting ? "Invio in corso..." : "Invia richiesta"}
+                  {isSubmitting ? t('contact.form.sending') : t('contact.form.send')}
                 </Button>
               </form>
             </Form>
