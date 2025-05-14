@@ -190,6 +190,84 @@ export const translations: Translations = {
   'contact': {
     en: 'Contact Us',
     it: 'Contattaci'
+  },
+  
+  // Footer
+  'footer.companyName': {
+    en: 'ChironEdge',
+    it: 'ChironEdge'
+  },
+  'footer.tagline': {
+    en: 'Advanced quantitative research solutions for institutional investors.',
+    it: 'Soluzioni di ricerca quantitativa avanzata per investitori istituzionali.'
+  },
+  'footer.services': {
+    en: 'Our Services',
+    it: 'I nostri servizi'
+  },
+  'footer.company': {
+    en: 'Company',
+    it: 'Azienda'
+  },
+  'footer.legal': {
+    en: 'Legal',
+    it: 'Legale'
+  },
+  'footer.aboutUs': {
+    en: 'About Us',
+    it: 'Chi Siamo'
+  },
+  'footer.leadership': {
+    en: 'Leadership',
+    it: 'Leadership'
+  },
+  'footer.careers': {
+    en: 'Careers',
+    it: 'Carriere'
+  },
+  'footer.media': {
+    en: 'Media',
+    it: 'Media'
+  },
+  'footer.newsletter': {
+    en: 'Newsletter',
+    it: 'Newsletter'
+  },
+  'footer.privacy': {
+    en: 'Privacy Policy',
+    it: 'Informativa sulla Privacy'
+  },
+  'footer.terms': {
+    en: 'Terms of Service',
+    it: 'Termini di Servizio'
+  },
+  'footer.risk': {
+    en: 'Risk Warnings',
+    it: 'Avvisi di Rischio'
+  },
+  'footer.cookie': {
+    en: 'Cookie Policy',
+    it: 'Politica dei Cookie'
+  },
+  'footer.security': {
+    en: 'Security',
+    it: 'Sicurezza'
+  },
+  'footer.accessibility': {
+    en: 'Accessibility',
+    it: 'Accessibilità'
+  },
+  'footer.copyright': {
+    en: '© ${year} ChironEdge Global Services Ltd. All rights reserved.',
+    it: '© ${year} ChironEdge Global Services Ltd. Tutti i diritti riservati.'
+  },
+  'footer.registration': {
+    en: 'Company Reg: 01234567890 | Authorized and regulated by Financial Conduct Authority',
+    it: 'Registrazione azienda: 01234567890 | Autorizzata e regolamentata dall\'Autorità di Condotta Finanziaria'
+  },
+  'footer.disclaimer': {
+    en: 'Disclaimer: The information provided is for informational purposes only and does not constitute investment advice or financial recommendations. Past performance is not indicative of future results. Investments involve risk.',
+    it: 'Disclaimer: Le informazioni fornite sono solo a scopo informativo e non costituiscono consulenza sugli investimenti o raccomandazioni finanziarie. I risultati passati non sono indicativi di risultati futuri. Gli investimenti comportano rischi.'
   }
 };
 

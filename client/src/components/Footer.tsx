@@ -3,16 +3,25 @@ import {
   FaLinkedin, 
   FaTwitter 
 } from "react-icons/fa";
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Footer = () => {
+  const { t } = useLanguage();
+  const year = new Date().getFullYear();
+  
+  // Helper function to handle dynamic year in translation string
+  const formatCopyright = (str: string) => {
+    return str.replace('${year}', year.toString());
+  };
+  
   return (
     <footer className="bg-primary text-white">
       <div className="container mx-auto px-4 py-8 lg:py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
           <div>
-            <h3 className="text-lg font-bold mb-4">ChironEdge</h3>
+            <h3 className="text-lg font-bold mb-4">{t('footer.companyName')}</h3>
             <p className="text-neutral-300 text-sm mb-6">
-              Soluzioni di ricerca quantitativa avanzata per investitori istituzionali.
+              {t('footer.tagline')}
             </p>
             <div className="flex space-x-4">
               <a 
@@ -37,51 +46,49 @@ const Footer = () => {
           </div>
           
           <div>
-            <h4 className="text-sm font-bold uppercase tracking-wider mb-4">Our Services</h4>
+            <h4 className="text-sm font-bold uppercase tracking-wider mb-4">{t('footer.services')}</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/news-ai" className="text-neutral-300 hover:text-secondary transition-colors">News AI</Link></li>
-              <li><Link href="/quantitative-model" className="text-neutral-300 hover:text-secondary transition-colors">Quantitative Model</Link></li>
-              <li><Link href="/markets-insight" className="text-neutral-300 hover:text-secondary transition-colors">Markets Insight</Link></li>
-              <li><Link href="/our-research" className="text-neutral-300 hover:text-secondary transition-colors">Our Research</Link></li>
-              <li><Link href="/macro-report" className="text-neutral-300 hover:text-secondary transition-colors">Macro Report</Link></li>
-              <li><Link href="/quantitative-strategies" className="text-neutral-300 hover:text-secondary transition-colors">Quantitative Strategies</Link></li>
+              <li><Link href="/news-ai" className="text-neutral-300 hover:text-secondary transition-colors">{t('navbar.newsAI')}</Link></li>
+              <li><Link href="/quantitative-model" className="text-neutral-300 hover:text-secondary transition-colors">{t('navbar.quantitativeModel')}</Link></li>
+              <li><Link href="/markets-insight" className="text-neutral-300 hover:text-secondary transition-colors">{t('navbar.marketsInsight')}</Link></li>
+              <li><Link href="/our-research" className="text-neutral-300 hover:text-secondary transition-colors">{t('navbar.research')}</Link></li>
+              <li><Link href="/macro-report" className="text-neutral-300 hover:text-secondary transition-colors">{t('navbar.macroReport')}</Link></li>
+              <li><Link href="/quantitative-strategies" className="text-neutral-300 hover:text-secondary transition-colors">{t('navbar.strategies')}</Link></li>
             </ul>
           </div>
           
           <div>
-            <h4 className="text-sm font-bold uppercase tracking-wider mb-4">Company</h4>
+            <h4 className="text-sm font-bold uppercase tracking-wider mb-4">{t('footer.company')}</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/about" className="text-neutral-300 hover:text-secondary transition-colors">About Us</Link></li>
-              <li><Link href="/leadership" className="text-neutral-300 hover:text-secondary transition-colors">Leadership</Link></li>
-              <li><Link href="/careers" className="text-neutral-300 hover:text-secondary transition-colors">Careers</Link></li>
-              <li><Link href="/media" className="text-neutral-300 hover:text-secondary transition-colors">Media</Link></li>
-              <li><Link href="/contact" className="text-neutral-300 hover:text-secondary transition-colors">Contact</Link></li>
-              <li><Link href="/newsletter" className="text-neutral-300 hover:text-secondary transition-colors">Newsletter</Link></li>
+              <li><Link href="/about" className="text-neutral-300 hover:text-secondary transition-colors">{t('footer.aboutUs')}</Link></li>
+              <li><Link href="/leadership" className="text-neutral-300 hover:text-secondary transition-colors">{t('footer.leadership')}</Link></li>
+              <li><Link href="/careers" className="text-neutral-300 hover:text-secondary transition-colors">{t('footer.careers')}</Link></li>
+              <li><Link href="/media" className="text-neutral-300 hover:text-secondary transition-colors">{t('footer.media')}</Link></li>
+              <li><Link href="/contact" className="text-neutral-300 hover:text-secondary transition-colors">{t('contact')}</Link></li>
+              <li><Link href="/newsletter" className="text-neutral-300 hover:text-secondary transition-colors">{t('footer.newsletter')}</Link></li>
             </ul>
           </div>
           
           <div>
-            <h4 className="text-sm font-bold uppercase tracking-wider mb-4">Legal</h4>
+            <h4 className="text-sm font-bold uppercase tracking-wider mb-4">{t('footer.legal')}</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/privacy" className="text-neutral-300 hover:text-secondary transition-colors">Privacy Policy</Link></li>
-              <li><Link href="/terms" className="text-neutral-300 hover:text-secondary transition-colors">Terms of Service</Link></li>
-              <li><Link href="/risk-warnings" className="text-neutral-300 hover:text-secondary transition-colors">Risk Warnings</Link></li>
-              <li><Link href="/cookie-policy" className="text-neutral-300 hover:text-secondary transition-colors">Cookie Policy</Link></li>
-              <li><Link href="/security" className="text-neutral-300 hover:text-secondary transition-colors">Security</Link></li>
-              <li><Link href="/accessibility" className="text-neutral-300 hover:text-secondary transition-colors">Accessibility</Link></li>
+              <li><Link href="/privacy" className="text-neutral-300 hover:text-secondary transition-colors">{t('footer.privacy')}</Link></li>
+              <li><Link href="/terms" className="text-neutral-300 hover:text-secondary transition-colors">{t('footer.terms')}</Link></li>
+              <li><Link href="/risk-warnings" className="text-neutral-300 hover:text-secondary transition-colors">{t('footer.risk')}</Link></li>
+              <li><Link href="/cookie-policy" className="text-neutral-300 hover:text-secondary transition-colors">{t('footer.cookie')}</Link></li>
+              <li><Link href="/security" className="text-neutral-300 hover:text-secondary transition-colors">{t('footer.security')}</Link></li>
+              <li><Link href="/accessibility" className="text-neutral-300 hover:text-secondary transition-colors">{t('footer.accessibility')}</Link></li>
             </ul>
           </div>
         </div>
         
         <div className="border-t border-neutral-800 pt-6 text-xs text-neutral-400">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p>© {new Date().getFullYear()} ChironEdge Global Services Ltd. All rights reserved.</p>
-            <p className="mt-4 md:mt-0">Company Reg: 01234567890 | Authorized and regulated by Financial Conduct Authority</p>
+            <p>{formatCopyright(t('footer.copyright'))}</p>
+            <p className="mt-4 md:mt-0">{t('footer.registration')}</p>
           </div>
           <div className="mt-6">
-            <p>
-              Disclaimer: The information provided is for informational purposes only and does not constitute investment advice or financial recommendations. Past performance is not indicative of future results. Investments involve risk.
-            </p>
+            <p>{t('footer.disclaimer')}</p>
           </div>
         </div>
       </div>
