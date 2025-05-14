@@ -76,7 +76,7 @@ const Home = () => {
                 onClick={() => toggleSection('our-research')}
                 className="gs-blue-btn px-8 py-4 text-lg"
               >
-                Explore Our Research
+                {t('home.exploreOurResearch')}
               </button>
             </div>
           </div>
@@ -338,7 +338,7 @@ const Home = () => {
       <section id="our-research" className="gs-section bg-gray-50">
         <div className="flex justify-between items-center mb-8">
           <h2 className="gs-header flex items-center">
-            Research
+            {t('home.researchTitle')}
             <button 
               onClick={() => toggleSection('our-research')} 
               className="ml-4 p-1 rounded-full hover:bg-gray-100 transition-colors"
@@ -351,7 +351,7 @@ const Home = () => {
         {(activeSection === 'our-research' || activeSection === null) && (
           <div>
             <p className="text-lg mb-8 max-w-3xl">
-              Our research combines rigorous academic methodologies with practical applications for institutional investors.
+              {t('home.researchDescription')}
             </p>
             
             {/* Featured Research - Stile Goldman Sachs */}
