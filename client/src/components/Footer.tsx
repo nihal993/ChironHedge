@@ -10,7 +10,7 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-8 lg:py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
           <div>
-            <h3 className="text-lg font-bold mb-4">ChironResearch</h3>
+            <h3 className="text-lg font-bold mb-4">Banane&Carote</h3>
             <p className="text-neutral-300 text-sm mb-6">
               Soluzioni di ricerca quantitativa avanzata per investitori istituzionali.
             </p>
