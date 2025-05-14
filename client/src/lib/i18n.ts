@@ -598,6 +598,34 @@ export const translations: Translations = {
   'research.reports': {
     en: 'Reports',
     it: 'Rapporti'
+  },
+  'research.customTitle': {
+    en: 'Custom Research',
+    it: 'Ricerche Personalizzate'
+  },
+  'research.customDescription': {
+    en: 'In addition to our regular research, we offer customized research projects for specific needs.',
+    it: 'Oltre alle nostre ricerche regolari, offriamo progetti di ricerca su misura per esigenze specifiche.'
+  },
+  'research.customFeature1': {
+    en: 'Detailed analysis of specific sectors or assets',
+    it: 'Analisi dettagliata di settori o asset specifici'
+  },
+  'research.customFeature2': {
+    en: 'Development of exclusive proprietary models',
+    it: 'Sviluppo di modelli proprietari esclusivi'
+  },
+  'research.customFeature3': {
+    en: 'Integration with existing investment processes',
+    it: 'Integrazione con processi di investimento esistenti'
+  },
+  'research.customFeature4': {
+    en: 'Dedicated team of quantitative analysts',
+    it: 'Team dedicato di analisti quantitativi'
+  },
+  'research.contactUs': {
+    en: 'Contact Us',
+    it: 'Contattaci'
   }
 };
 
