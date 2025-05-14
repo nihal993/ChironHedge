@@ -268,6 +268,114 @@ export const translations: Translations = {
   'footer.disclaimer': {
     en: 'Disclaimer: The information provided is for informational purposes only and does not constitute investment advice or financial recommendations. Past performance is not indicative of future results. Investments involve risk.',
     it: 'Disclaimer: Le informazioni fornite sono solo a scopo informativo e non costituiscono consulenza sugli investimenti o raccomandazioni finanziarie. I risultati passati non sono indicativi di risultati futuri. Gli investimenti comportano rischi.'
+  },
+  
+  // About Us Section in Home
+  'aboutUs.title': {
+    en: 'About Us',
+    it: 'Chi Siamo'
+  },
+  'aboutUs.description1': {
+    en: 'ChironEdge is a cutting-edge financial research firm, founded by a team of Italian engineers and economists specialized in quantitative analysis and financial markets.',
+    it: 'ChironEdge è un\'azienda di ricerca finanziaria all\'avanguardia, fondata da un team di ingegneri ed economisti italiani specializzati in analisi quantitativa e mercati finanziari.'
+  },
+  'aboutUs.description2': {
+    en: 'Our approach combines traditional fundamental analysis with advanced quantitative methodologies, using proprietary algorithms and machine learning techniques to identify investment opportunities and manage risk with precision.',
+    it: 'Il nostro approccio combina l\'analisi fondamentale tradizionale con metodologie quantitative avanzate, utilizzando algoritmi proprietari e tecniche di machine learning per identificare opportunità di investimento e gestire il rischio con precisione.'
+  },
+  'aboutUs.description3': {
+    en: 'We specialize in macroeconomic analysis, statistical modeling, and the development of systematic investment strategies that have proven their effectiveness through various market cycles.',
+    it: 'Siamo specializzati in analisi macroeconomica, modellazione statistica e sviluppo di strategie di investimento sistematiche che hanno dimostrato la loro efficacia attraverso vari cicli di mercato.'
+  },
+  'aboutUs.description4': {
+    en: 'Our team combines diverse expertise with backgrounds in economics, quantitative finance, data engineering, and artificial intelligence to deliver innovative financial solutions.',
+    it: 'Il nostro team combina diverse competenze nei campi dell\'economia, della finanza quantitativa, dell\'ingegneria dei dati e dell\'intelligenza artificiale per fornire soluzioni finanziarie innovative.'
+  },
+  
+  // Strategies Section
+  'strategies.title': {
+    en: 'Quantitative Strategies',
+    it: 'Strategie Quantitative'
+  },
+  'strategies.description': {
+    en: 'Our proprietary strategies combine cutting-edge machine learning techniques, big data, and traditional financial modeling.',
+    it: 'Le nostre strategie proprietarie uniscono tecniche all\'avanguardia di machine learning, big data e modellazione finanziaria tradizionale.'
+  },
+  'strategies.explore': {
+    en: 'Explore the strategy',
+    it: 'Esplora la strategia'
+  },
+  'strategies.performance': {
+    en: 'Performance YTD',
+    it: 'Performance YTD'
+  },
+  'strategies.custom.title': {
+    en: 'Custom Solutions',
+    it: 'Soluzioni Customizzate'
+  },
+  'strategies.custom.description': {
+    en: 'We develop tailored quantitative strategies based on the specific needs, constraints, and objectives of our institutional clients.',
+    it: 'Sviluppiamo strategie quantitative su misura in base alle esigenze specifiche, ai vincoli e agli obiettivi dei nostri clienti istituzionali.'
+  },
+  'strategies.custom.feature1': {
+    en: 'Implementation of custom ESG constraints',
+    it: 'Implementazione di vincoli ESG personalizzati'
+  },
+  'strategies.custom.feature2': {
+    en: 'Integration with existing systems and processes',
+    it: 'Integrazione con i sistemi e processi esistenti'
+  },
+  'strategies.custom.feature3': {
+    en: 'Optimization for specific risk-return objectives',
+    it: 'Ottimizzazione per obiettivi specifici di rischio-rendimento'
+  },
+  'strategies.custom.feature4': {
+    en: 'Complete implementation support, including production-ready code',
+    it: 'Supporto implementativo completo, incluso codice produzione-ready'
+  },
+  'strategies.custom.request': {
+    en: 'Request a consultation',
+    it: 'Richiedi una consulenza'
+  },
+  'strategies.performance.title': {
+    en: 'Performance Comparison',
+    it: 'Confronto di Performance'
+  },
+  'strategies.performance.description': {
+    en: 'Our strategies have consistently outperformed reference benchmarks over the past 5 years.',
+    it: 'Le nostre strategie hanno costantemente sovraperformato i benchmark di riferimento negli ultimi 5 anni.'
+  },
+  'strategies.performance.chart.title': {
+    en: 'Performance Comparison',
+    it: 'Confronto Performance'
+  },
+  'strategies.performance.chiron': {
+    en: 'ChironEdge Strategies',
+    it: 'Strategie ChironEdge'
+  },
+  'strategies.performance.benchmark': {
+    en: 'Market Benchmark',
+    it: 'Benchmark di mercato'
+  },
+  'strategies.performance.alpha': {
+    en: 'Generated Alpha',
+    it: 'Alpha Generato'
+  },
+  'strategies.performance.sharpe': {
+    en: 'Sharpe Ratio',
+    it: 'Sharpe Ratio'
+  },
+  'strategies.performance.drawdown': {
+    en: 'Max Drawdown',
+    it: 'Max Drawdown'
+  },
+  'strategies.performance.annual': {
+    en: 'annualized (5 years)',
+    it: 'annualizzato (5 anni)'
+  },
+  'strategies.performance.vs': {
+    en: 'vs',
+    it: 'vs'
   }
 };
 

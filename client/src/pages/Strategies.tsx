@@ -3,8 +3,10 @@ import { motion } from "framer-motion";
 import { strategies } from "@/lib/data";
 import FinancialChart from "@/components/FinancialChart";
 import { Check } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Strategies = () => {
+  const { t } = useLanguage();
   return (
     <section id="strategie" className="py-20 md:py-24 bg-neutral">
       <div className="container mx-auto px-4">
@@ -14,9 +16,9 @@ const Strategies = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Strategie Quantitative</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">{t('strategies.title')}</h2>
           <p className="text-primary/70 max-w-3xl mx-auto">
-            Le nostre strategie proprietarie uniscono tecniche all'avanguardia di machine learning, big data e modellazione finanziaria tradizionale.
+            {t('strategies.description')}
           </p>
         </motion.div>
         
@@ -56,11 +58,11 @@ const Strategies = () => {
                   </div>
                   <div className="flex justify-between items-center">
                     <div>
-                      <p className="text-sm text-primary/70">Performance YTD</p>
+                      <p className="text-sm text-primary/70">{t('strategies.performance')}</p>
                       <p className="text-lg font-bold text-secondary">{strategy.performance}</p>
                     </div>
                     <Link href={`/strategie/${strategy.id}`} className="text-secondary hover:text-secondary/80 font-medium">
-                      Esplora la strategia
+                      {t('strategies.explore')}
                     </Link>
                   </div>
                 </div>
@@ -78,30 +80,30 @@ const Strategies = () => {
         >
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
-              <h3 className="text-2xl font-bold mb-4">Soluzioni Customizzate</h3>
+              <h3 className="text-2xl font-bold mb-4">{t('strategies.custom.title')}</h3>
               <p className="text-primary/70 mb-6">
-                Sviluppiamo strategie quantitative su misura in base alle esigenze specifiche, ai vincoli e agli obiettivi dei nostri clienti istituzionali.
+                {t('strategies.custom.description')}
               </p>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-start">
                   <Check className="h-5 w-5 text-secondary mt-1 mr-3 flex-shrink-0" />
-                  <span className="text-primary/70">Implementazione di vincoli ESG personalizzati</span>
+                  <span className="text-primary/70">{t('strategies.custom.feature1')}</span>
                 </li>
                 <li className="flex items-start">
                   <Check className="h-5 w-5 text-secondary mt-1 mr-3 flex-shrink-0" />
-                  <span className="text-primary/70">Integrazione con i sistemi e processi esistenti</span>
+                  <span className="text-primary/70">{t('strategies.custom.feature2')}</span>
                 </li>
                 <li className="flex items-start">
                   <Check className="h-5 w-5 text-secondary mt-1 mr-3 flex-shrink-0" />
-                  <span className="text-primary/70">Ottimizzazione per obiettivi specifici di rischio-rendimento</span>
+                  <span className="text-primary/70">{t('strategies.custom.feature3')}</span>
                 </li>
                 <li className="flex items-start">
                   <Check className="h-5 w-5 text-secondary mt-1 mr-3 flex-shrink-0" />
-                  <span className="text-primary/70">Supporto implementativo completo, incluso codice produzione-ready</span>
+                  <span className="text-primary/70">{t('strategies.custom.feature4')}</span>
                 </li>
               </ul>
               <Link href="/contatti" className="inline-flex items-center px-6 py-3 gold-gradient text-primary font-medium rounded-md hover:brightness-105 transition-all">
-                Richiedi una consulenza
+                {t('strategies.custom.request')}
               </Link>
             </div>
             <div>
@@ -123,9 +125,9 @@ const Strategies = () => {
         >
           <div className="grid md:grid-cols-3 gap-8 items-center">
             <div className="md:col-span-2">
-              <h3 className="text-2xl font-bold mb-4">Confronto di Performance</h3>
+              <h3 className="text-2xl font-bold mb-4">{t('strategies.performance.title')}</h3>
               <p className="text-neutral-200 mb-6">
-                Le nostre strategie hanno costantemente sovraperformato i benchmark di riferimento negli ultimi 5 anni.
+                {t('strategies.performance.description')}
               </p>
               <div className="bg-primary-light/20 p-6 rounded-lg">
                 <div className="h-64">

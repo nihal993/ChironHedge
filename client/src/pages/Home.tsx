@@ -881,22 +881,22 @@ const Home = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <div className="mb-16">
-                <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-primary">About Us</h2>
+                <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-primary">{t('aboutUs.title')}</h2>
                 <div className="grid md:grid-cols-2 gap-10">
                   <div>
                     <p className="text-primary/80 mb-6 leading-relaxed">
-                      ChironEdge is a cutting-edge financial research firm, founded by a team of Italian engineers and economists specialized in quantitative analysis and financial markets.
+                      {t('aboutUs.description1')}
                     </p>
                     <p className="text-primary/80 mb-6 leading-relaxed">
-                      Our approach combines traditional fundamental analysis with advanced quantitative methodologies, using proprietary algorithms and machine learning techniques to identify investment opportunities and manage risk with precision.
+                      {t('aboutUs.description2')}
                     </p>
                   </div>
                   <div>
                     <p className="text-primary/80 mb-6 leading-relaxed">
-                      We specialize in macroeconomic analysis, statistical modeling, and the development of systematic investment strategies that have proven their effectiveness through various market cycles.
+                      {t('aboutUs.description3')}
                     </p>
                     <p className="text-primary/80 leading-relaxed">
-                      Our team combines diverse expertise with backgrounds in economics, quantitative finance, data engineering, and artificial intelligence to deliver innovative financial solutions.
+                      {t('aboutUs.description4')}
                     </p>
                   </div>
                 </div>
