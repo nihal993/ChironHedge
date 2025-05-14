@@ -896,7 +896,7 @@ const Home = () => {
                       We specialize in macroeconomic analysis, statistical modeling, and the development of systematic investment strategies that have proven their effectiveness through various market cycles.
                     </p>
                     <p className="text-primary/80 leading-relaxed">
-                      Our team consists of experts from top-tier financial institutions, with backgrounds in economics, quantitative finance, data engineering, and artificial intelligence.
+                      Our team combines diverse expertise with backgrounds in economics, quantitative finance, data engineering, and artificial intelligence to deliver innovative financial solutions.
                     </p>
                   </div>
                 </div>

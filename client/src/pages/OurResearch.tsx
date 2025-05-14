@@ -58,14 +58,14 @@ const teamMembers = [
     id: 1,
     name: "Dr. Alessandro Rossi",
     title: "Chief Research Officer",
-    bio: "Former professor of Financial Economics at MIT with over 20 years of experience in quantitative research.",
+    bio: "PhD in Economics with specialization in quantitative research and computational finance. Leader in developing innovative financial models.",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80"
   },
   {
     id: 2,
     name: "Dr. Maria Chen",
     title: "Head of Quantitative Strategies",
-    bio: "Specializes in machine learning applications in finance. Previously led quant research at a major hedge fund.",
+    bio: "Specializes in machine learning applications in finance and quantitative analysis. Expert in developing predictive algorithms for financial markets.",
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80"
   },
   {
