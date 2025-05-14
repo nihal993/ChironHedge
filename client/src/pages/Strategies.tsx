@@ -134,18 +134,18 @@ const Strategies = () => {
                   <FinancialChart 
                     chartData={[30, 35, 40, 50, 45, 60, 70, 80, 85, 90, 95]} 
                     labels={["2018", "2019", "Q1 2020", "Q2 2020", "Q3 2020", "Q4 2020", "Q1 2021", "Q2 2021", "Q3 2021", "Q4 2021", "2022"]}
-                    title="Confronto Performance"
+                    title={t('strategies.performance.chart.title')}
                     height={240}
                   />
                 </div>
                 <div className="flex justify-between items-center mt-4 text-sm">
                   <div className="flex items-center">
                     <span className="inline-block w-3 h-3 bg-secondary mr-2 rounded-full"></span>
-                    <span>Strategie ChironEdge</span>
+                    <span>{t('strategies.performance.chiron')}</span>
                   </div>
                   <div className="flex items-center">
                     <span className="inline-block w-3 h-3 bg-white/60 mr-2 rounded-full"></span>
-                    <span>Benchmark di mercato</span>
+                    <span>{t('strategies.performance.benchmark')}</span>
                   </div>
                 </div>
               </div>
@@ -153,19 +153,19 @@ const Strategies = () => {
             <div>
               <div className="space-y-6">
                 <div className="bg-primary-light/20 p-4 rounded-lg">
-                  <h4 className="text-lg font-bold mb-2">Alpha Generato</h4>
+                  <h4 className="text-lg font-bold mb-2">{t('strategies.performance.alpha')}</h4>
                   <p className="text-4xl font-bold text-secondary mb-1">+3.8%</p>
-                  <p className="text-sm text-neutral-300">annualizzato (5 anni)</p>
+                  <p className="text-sm text-neutral-300">{t('strategies.performance.annual')}</p>
                 </div>
                 <div className="bg-primary-light/20 p-4 rounded-lg">
-                  <h4 className="text-lg font-bold mb-2">Sharpe Ratio</h4>
+                  <h4 className="text-lg font-bold mb-2">{t('strategies.performance.sharpe')}</h4>
                   <p className="text-4xl font-bold text-secondary mb-1">1.75</p>
-                  <p className="text-sm text-neutral-300">vs 0.92 benchmark</p>
+                  <p className="text-sm text-neutral-300">{t('strategies.performance.vs')} 0.92 benchmark</p>
                 </div>
                 <div className="bg-primary-light/20 p-4 rounded-lg">
-                  <h4 className="text-lg font-bold mb-2">Max Drawdown</h4>
+                  <h4 className="text-lg font-bold mb-2">{t('strategies.performance.drawdown')}</h4>
                   <p className="text-4xl font-bold text-secondary mb-1">-12.4%</p>
-                  <p className="text-sm text-neutral-300">vs -22.8% benchmark</p>
+                  <p className="text-sm text-neutral-300">{t('strategies.performance.vs')} -22.8% benchmark</p>
                 </div>
               </div>
             </div>
