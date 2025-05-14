@@ -64,6 +64,18 @@ export const translations: Translations = {
     en: 'News AI',
     it: 'News AI'
   },
+  'home.newsTitle': {
+    en: 'Federal Reserve',
+    it: 'Federal Reserve'
+  },
+  'home.newsContent': {
+    en: 'Federal Reserve Announces Shift in Interest Rate Policy',
+    it: 'Federal Reserve Annuncia Cambiamento nella Politica dei Tassi di Interesse'
+  },
+  'home.moreNews': {
+    en: 'More News',
+    it: 'Altre Notizie'
+  },
   
   // Our Research Section
   'ourResearch.title': {
