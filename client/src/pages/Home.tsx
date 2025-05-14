@@ -885,7 +885,7 @@ const Home = () => {
                 <div className="grid md:grid-cols-2 gap-10">
                   <div>
                     <p className="text-primary/80 mb-6 leading-relaxed">
-                      ChironResearch is a cutting-edge financial research firm, founded by a team of quantitative analysts and finance professionals with over 40 years of combined experience in global markets.
+                      ChironEdge is a cutting-edge financial research firm, founded by a team of quantitative analysts and finance professionals with over 40 years of combined experience in global markets.
                     </p>
                     <p className="text-primary/80 mb-6 leading-relaxed">
                       Our approach combines traditional fundamental analysis with advanced quantitative methodologies, using proprietary algorithms and machine learning techniques to identify investment opportunities and manage risk with precision.
