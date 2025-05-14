@@ -68,23 +68,23 @@ const Research = () => {
               <ul className="space-y-3 mb-8">
                 <li className="flex items-start">
                   <Check className="h-5 w-5 text-secondary mt-0.5 mr-3 flex-shrink-0" />
-                  <span className="text-neutral-200">Analisi dettagliata di settori o asset specifici</span>
+                  <span className="text-neutral-200">{t('research.customFeature1')}</span>
                 </li>
                 <li className="flex items-start">
                   <Check className="h-5 w-5 text-secondary mt-0.5 mr-3 flex-shrink-0" />
-                  <span className="text-neutral-200">Sviluppo di modelli proprietari esclusivi</span>
+                  <span className="text-neutral-200">{t('research.customFeature2')}</span>
                 </li>
                 <li className="flex items-start">
                   <Check className="h-5 w-5 text-secondary mt-0.5 mr-3 flex-shrink-0" />
-                  <span className="text-neutral-200">Backtesting di strategie proprietarie</span>
+                  <span className="text-neutral-200">{t('research.customFeature3')}</span>
                 </li>
                 <li className="flex items-start">
                   <Check className="h-5 w-5 text-secondary mt-0.5 mr-3 flex-shrink-0" />
-                  <span className="text-neutral-200">Consulenza per l'implementazione</span>
+                  <span className="text-neutral-200">{t('research.customFeature4')}</span>
                 </li>
               </ul>
-              <Link href="/contatti" className="inline-flex items-center px-6 py-3 gold-gradient text-primary font-medium rounded-md hover:brightness-105 transition-all">
-                Richiedi informazioni
+              <Link href="/contact" className="inline-flex items-center px-6 py-3 gold-gradient text-primary font-medium rounded-md hover:brightness-105 transition-all">
+                {t('research.requestInfo')}
               </Link>
             </div>
             <div className="hidden md:block">
