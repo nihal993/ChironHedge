@@ -356,7 +356,7 @@ const Home = () => {
             
             {/* Featured Research - Stile Goldman Sachs */}
             <div className="mb-10">
-              <h3 className="text-xl font-semibold mb-6 border-b border-gray-200 pb-3">Featured Research</h3>
+              <h3 className="text-xl font-semibold mb-6 border-b border-gray-200 pb-3">{t('home.featuredResearch')}</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* Report Card 1 */}
                 <div className="bg-white border border-gray-100 overflow-hidden flex flex-col">
@@ -369,10 +369,10 @@ const Home = () => {
                     <div className="absolute bottom-0 right-0 bg-white text-primary px-3 py-1 text-xs font-medium">May 2025</div>
                   </div>
                   <div className="p-5 flex-grow">
-                    <div className="text-sm text-blue-600 font-medium uppercase mb-2">Market Outlook</div>
-                    <h4 className="text-lg font-semibold mb-3">Global Markets: Navigating Volatility</h4>
+                    <div className="text-sm text-blue-600 font-medium uppercase mb-2">{t('home.marketOutlook')}</div>
+                    <h4 className="text-lg font-semibold mb-3">{t('home.globalMarketsTitle')}</h4>
                     <p className="text-primary/70 text-sm mb-5">
-                      Our analysts examine current market conditions and provide strategic guidance for institutional investors in a changing landscape.
+                      {t('home.globalMarketsDesc')}
                     </p>
                   </div>
                   <div className="px-5 py-3 border-t border-gray-100">
