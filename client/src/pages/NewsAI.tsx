@@ -86,16 +86,13 @@ const NewsAI = () => {
                   {item.summary}
                 </p>
                 <div className="flex justify-between items-center mt-4 pt-4 border-t border-gray-100">
-                  <span className="text-sm text-primary/60">Source: {item.source}</span>
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs text-blue-600 flex items-center">
-                      <Clock className="h-3 w-3 mr-1" />
-                      {item.date}
-                    </span>
-                    <button className="text-secondary hover:text-secondary/80 text-sm font-medium">
-                      Read More
-                    </button>
-                  </div>
+                  <span className="text-xs text-blue-600 flex items-center">
+                    <Clock className="h-3 w-3 mr-1" />
+                    {item.date}
+                  </span>
+                  <button className="text-secondary hover:text-secondary/80 text-sm font-medium">
+                    Read More
+                  </button>
                 </div>
               </motion.div>
             ))}

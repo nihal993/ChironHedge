@@ -145,9 +145,6 @@ const NewsTicker = () => {
             </div>
             <h3 className="text-xl font-bold mb-4">{activeNews.title}</h3>
             <p className="text-primary/70 mb-6">{activeNews.summary}</p>
-            <div className="flex justify-between items-center pt-4 border-t border-gray-100">
-              <span className="text-sm text-primary/60">Source: {activeNews.source}</span>
-            </div>
           </div>
         </div>
       )}
