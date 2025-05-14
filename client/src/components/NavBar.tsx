@@ -47,7 +47,7 @@ const NavBar = () => {
         <div className="flex items-center">
           <Link href="/" className="flex items-center py-4">
             <div className="h-9 w-auto mr-1">
-              <img src="/images/chiron_logo_original.png" alt="Chiron Logo" className="h-full w-auto object-contain" />
+              <img src="/images/chiron_logo_stylized.png" alt="Chiron Logo" className="h-full w-auto object-contain" />
             </div>
             <span className="text-xl md:text-2xl font-bold text-primary">
               Chiron<span className="text-secondary">Research</span>
