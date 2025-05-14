@@ -139,7 +139,7 @@ const Strategies = () => {
                 <div className="flex justify-between items-center mt-4 text-sm">
                   <div className="flex items-center">
                     <span className="inline-block w-3 h-3 bg-secondary mr-2 rounded-full"></span>
-                    <span>Strategie ChironResearch</span>
+                    <span>Strategie ChironEdge</span>
                   </div>
                   <div className="flex items-center">
                     <span className="inline-block w-3 h-3 bg-white/60 mr-2 rounded-full"></span>
