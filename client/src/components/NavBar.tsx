@@ -51,7 +51,7 @@ const NavBar = () => {
               <img src={logoImage} alt="Chiron Logo" className="w-full h-full object-contain" />
             </div>
             <span className="text-xl md:text-2xl font-bold text-primary">
-              Chiron<span className="text-secondary">Research</span>
+              Chiron<span className="text-secondary">Edge</span>
             </span>
           </Link>
         </div>
