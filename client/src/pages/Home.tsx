@@ -233,8 +233,8 @@ const Home = () => {
               
               <div className="gs-chart-container bg-white">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className="gs-chart-title">Forecast Model Accuracy</h3>
-                  <span className="gs-subtle-text">Updated: May 9, 2025</span>
+                  <h3 className="gs-chart-title">{t('home.forecastModelTitle')}</h3>
+                  <span className="gs-subtle-text">{t('home.updated')}: {t('home.forecastModelUpdated')}</span>
                 </div>
                 <div className="h-72 mb-6">
                   <BarChart 
@@ -249,11 +249,11 @@ const Home = () => {
                 <div className="flex justify-between items-center pt-4 border-t border-gray-100">
                   <div className="max-w-md">
                     <p className="gs-subtle-text">
-                      Accuracy metrics for our proprietary forecasting models measured as percentage of predictions within one standard deviation of actual outcomes.
+                      {t('home.forecastModelDesc')}
                     </p>
                   </div>
                   <a href="#" className="gs-arrow-link">
-                    View model methodology <ArrowRight className="h-4 w-4" />
+                    {t('home.viewModelMethodology')} <ArrowRight className="h-4 w-4" />
                   </a>
                 </div>
               </div>
@@ -266,7 +266,7 @@ const Home = () => {
       <section id="markets-insight" className="mb-12 border-t border-gray-200 pt-12">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold flex items-center">
-            Markets Insight
+            {t('home.marketsInsight')}
             <button 
               onClick={() => toggleSection('markets-insight')} 
               className="ml-4 p-1 rounded-full hover:bg-gray-100 transition-colors"
@@ -279,7 +279,7 @@ const Home = () => {
         {(activeSection === 'markets-insight' || activeSection === null) && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="border border-gray-200 p-6">
-              <h3 className="text-xl font-bold mb-4">Market Performance</h3>
+              <h3 className="text-xl font-bold mb-4">{t('home.marketPerformance')}</h3>
               <div className="h-64 mb-4">
                 <MultiLineChart 
                   series={[
@@ -319,7 +319,7 @@ const Home = () => {
             </div>
             
             <div className="border border-gray-200 p-6">
-              <h3 className="text-xl font-bold mb-4">Market Volatility</h3>
+              <h3 className="text-xl font-bold mb-4">{t('home.marketVolatility')}</h3>
               <div className="h-64 mb-4">
                 <AreaChart 
                   data={volatilityData}
