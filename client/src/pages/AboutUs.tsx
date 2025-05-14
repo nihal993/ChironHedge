@@ -19,7 +19,7 @@ const AboutUs = () => {
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Chi Siamo</h2>
             <p className="text-primary/70 text-lg mb-6">
-              Un team di professionisti con esperienze in prestigiosi hedge fund, banche d'investimento e istituzioni accademiche, uniti dalla passione per la ricerca finanziaria avanzata.
+              Un team di ingegneri e economisti italiani, uniti dalla passione per la ricerca finanziaria avanzata e l'analisi quantitativa dei mercati finanziari.
             </p>
             <p className="text-primary/70 mb-8">
               Forniamo soluzioni di analisi quantitativa che combinano modelli matematici complessi, big data e tecniche di machine learning per identificare opportunità uniche sui mercati globali.
