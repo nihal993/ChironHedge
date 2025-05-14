@@ -72,7 +72,7 @@ const teamMembers = [
     id: 3,
     name: "Dr. James Wilson",
     title: "Head of Macro Research",
-    bio: "Former central banker with extensive experience in monetary policy analysis and global economic research.",
+    bio: "Esperto di analisi macroeconomica e ricerca sui mercati globali. Specializzato in politiche monetarie e impatto sui mercati finanziari.",
     image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300&q=80"
   },
   {
