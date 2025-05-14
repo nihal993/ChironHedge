@@ -295,19 +295,19 @@ const Home = () => {
             </div>
             
             <div className="border border-gray-200 p-6">
-              <h3 className="text-xl font-bold mb-4">Asset Correlation</h3>
+              <h3 className="text-xl font-bold mb-4">{t('home.assetCorrelation')}</h3>
               <div className="h-64 mb-4">
                 <HeatMapChart 
                   data={correlationData}
                   categories={assetClasses}
-                  title="Cross-Asset Correlation"
+                  title={t('home.crossAssetCorrelation')}
                   height={240}
                 />
               </div>
             </div>
             
             <div className="border border-gray-200 p-6">
-              <h3 className="text-xl font-bold mb-4">Interest Rates</h3>
+              <h3 className="text-xl font-bold mb-4">{t('home.interestRates')}</h3>
               <div className="h-64 mb-4">
                 <LineChart 
                   data={interestRateData}
@@ -556,7 +556,7 @@ const Home = () => {
       <section id="quantitative-strategies" className="gs-section bg-gray-50">
         <div className="flex justify-between items-center mb-8">
           <h2 className="gs-header flex items-center">
-            Quantitative Strategies
+            {t('home.quantitativeStrategies')}
             <button 
               onClick={() => toggleSection('quantitative-strategies')} 
               className="ml-4 p-1 rounded-full hover:bg-gray-100 transition-colors"
