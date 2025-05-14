@@ -86,9 +86,9 @@ const AboutUs = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
                 </svg>
               </div>
-              <h3 className="text-xl font-bold mb-3">Ricerca Rigorosa</h3>
+              <h3 className="text-xl font-bold mb-3">{t('aboutpage.values.research')}</h3>
               <p className="text-primary/70">
-                Ogni analisi e modello viene sottoposto a rigorosi test statistici e controlli di robustezza prima di essere condiviso con i clienti.
+                {t('aboutpage.values.research.desc')}
               </p>
             </div>
 
@@ -98,9 +98,9 @@ const AboutUs = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                 </svg>
               </div>
-              <h3 className="text-xl font-bold mb-3">Innovazione Costante</h3>
+              <h3 className="text-xl font-bold mb-3">{t('aboutpage.values.innovation')}</h3>
               <p className="text-primary/70">
-                Investiamo continuamente in nuove metodologie e tecnologie per mantenere un vantaggio competitivo nell'analisi quantitativa.
+                {t('aboutpage.values.innovation.desc')}
               </p>
             </div>
 
@@ -110,9 +110,9 @@ const AboutUs = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
                 </svg>
               </div>
-              <h3 className="text-xl font-bold mb-3">Collaborazione</h3>
+              <h3 className="text-xl font-bold mb-3">{t('aboutpage.values.collaboration')}</h3>
               <p className="text-primary/70">
-                Lavoriamo a stretto contatto con i nostri clienti per comprendere le loro esigenze specifiche e fornire soluzioni personalizzate.
+                {t('aboutpage.values.collaboration.desc')}
               </p>
             </div>
           </div>
@@ -127,30 +127,30 @@ const AboutUs = () => {
         >
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl font-bold mb-6">Il Nostro Approccio</h2>
+              <h2 className="text-3xl font-bold mb-6">{t('aboutpage.approach.title')}</h2>
               <p className="text-primary/70 mb-8">
-                Combiniamo rigore accademico, esperienza pratica di mercato e tecnologie all'avanguardia per generare insight unici e strategie d'investimento efficaci.
+                {t('aboutpage.approach.description')}
               </p>
               <ul className="space-y-4">
                 <li className="flex items-start">
                   <Check className="h-6 w-6 text-secondary mt-0.5 mr-3 flex-shrink-0" />
-                  <span className="text-primary/70">Analisi di big data finanziari e alternativi</span>
+                  <span className="text-primary/70">{t('aboutpage.approach.feature1')}</span>
                 </li>
                 <li className="flex items-start">
                   <Check className="h-6 w-6 text-secondary mt-0.5 mr-3 flex-shrink-0" />
-                  <span className="text-primary/70">Modelli statistici avanzati e machine learning</span>
+                  <span className="text-primary/70">{t('aboutpage.approach.feature2')}</span>
                 </li>
                 <li className="flex items-start">
                   <Check className="h-6 w-6 text-secondary mt-0.5 mr-3 flex-shrink-0" />
-                  <span className="text-primary/70">Backtesting rigoroso su diversi regimi di mercato</span>
+                  <span className="text-primary/70">{t('aboutpage.approach.feature3')}</span>
                 </li>
                 <li className="flex items-start">
                   <Check className="h-6 w-6 text-secondary mt-0.5 mr-3 flex-shrink-0" />
-                  <span className="text-primary/70">Implementazione pratica con codice produzione-ready</span>
+                  <span className="text-primary/70">{t('aboutpage.approach.feature4')}</span>
                 </li>
                 <li className="flex items-start">
                   <Check className="h-6 w-6 text-secondary mt-0.5 mr-3 flex-shrink-0" />
-                  <span className="text-primary/70">Consulenza continua e supporto all'implementazione</span>
+                  <span className="text-primary/70">{t('aboutpage.approach.feature5')}</span>
                 </li>
               </ul>
             </div>

@@ -466,6 +466,124 @@ export const translations: Translations = {
   'aboutpage.approach.feature5': {
     en: 'Ongoing consulting and implementation support',
     it: 'Consulenza continua e supporto all\'implementazione'
+  },
+  
+  // Contact Page
+  'contact.title': {
+    en: 'Contact Us',
+    it: 'Contattaci'
+  },
+  'contact.description': {
+    en: 'We are available to discuss your advanced financial research needs and how we can support your investment decisions.',
+    it: 'Siamo a disposizione per discutere le tue esigenze di ricerca finanziaria avanzata e come possiamo supportare le tue decisioni d\'investimento.'
+  },
+  'contact.info.address': {
+    en: 'Address',
+    it: 'Indirizzo'
+  },
+  'contact.info.email': {
+    en: 'Email',
+    it: 'Email'
+  },
+  'contact.info.phone': {
+    en: 'Phone',
+    it: 'Telefono'
+  },
+  'contact.form.title': {
+    en: 'Send us a message',
+    it: 'Inviaci un messaggio'
+  },
+  'contact.form.firstname': {
+    en: 'First Name',
+    it: 'Nome'
+  },
+  'contact.form.lastname': {
+    en: 'Last Name',
+    it: 'Cognome'
+  },
+  'contact.form.email': {
+    en: 'Email',
+    it: 'Email'
+  },
+  'contact.form.company': {
+    en: 'Company (optional)',
+    it: 'Azienda (opzionale)'
+  },
+  'contact.form.phone': {
+    en: 'Phone (optional)',
+    it: 'Telefono (opzionale)'
+  },
+  'contact.form.inquiry': {
+    en: 'Inquiry Type',
+    it: 'Tipo di richiesta'
+  },
+  'contact.form.message': {
+    en: 'Message',
+    it: 'Messaggio'
+  },
+  'contact.form.privacy': {
+    en: 'I agree to the privacy policy',
+    it: 'Accetto la privacy policy'
+  },
+  'contact.form.send': {
+    en: 'Send Message',
+    it: 'Invia Messaggio'
+  },
+  'contact.form.sending': {
+    en: 'Sending...',
+    it: 'Invio in corso...'
+  },
+  'contact.form.success': {
+    en: 'Request sent',
+    it: 'Richiesta inviata'
+  },
+  'contact.form.success.description': {
+    en: 'Thank you for contacting us. We will respond as soon as possible.',
+    it: 'Grazie per averci contattato. Ti risponderemo al più presto.'
+  },
+  'contact.form.error': {
+    en: 'Error',
+    it: 'Errore'
+  },
+  'contact.form.error.description': {
+    en: 'An error occurred while sending the request. Please try again later.',
+    it: 'Si è verificato un errore nell\'invio della richiesta. Riprova più tardi.'
+  },
+  'contact.form.validation.firstname': {
+    en: 'First name must have at least 2 characters',
+    it: 'Il nome deve avere almeno 2 caratteri'
+  },
+  'contact.form.validation.lastname': {
+    en: 'Last name must have at least 2 characters',
+    it: 'Il cognome deve avere almeno 2 caratteri'
+  },
+  'contact.form.validation.email': {
+    en: 'Invalid email',
+    it: 'Email non valida'
+  },
+  'contact.form.validation.message': {
+    en: 'Message must have at least 10 characters',
+    it: 'Il messaggio deve avere almeno 10 caratteri'
+  },
+  'contact.form.validation.privacy': {
+    en: 'You must accept the privacy policy',
+    it: 'Devi accettare la privacy policy'
+  },
+  'contact.form.inquiryType.general': {
+    en: 'General Information',
+    it: 'Informazioni Generali'
+  },
+  'contact.form.inquiryType.services': {
+    en: 'Research Services',
+    it: 'Servizi di Ricerca'
+  },
+  'contact.form.inquiryType.partnership': {
+    en: 'Partnership Opportunities',
+    it: 'Opportunità di Partnership'
+  },
+  'contact.form.inquiryType.support': {
+    en: 'Technical Support',
+    it: 'Supporto Tecnico'
   }
 };
 
