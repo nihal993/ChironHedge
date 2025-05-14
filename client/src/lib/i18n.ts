@@ -176,6 +176,14 @@ export const translations: Translations = {
     en: 'Asset Correlation',
     it: 'Correlazione tra Asset'
   },
+  'home.crossAssetCorrelation': {
+    en: 'Cross-Asset Correlation',
+    it: 'Correlazione tra Asset Diversi'
+  },
+  'home.quantitativeStrategies': {
+    en: 'Quantitative Strategies',
+    it: 'Strategie Quantitative'
+  },
   
   // Our Research Section
   'ourResearch.title': {
