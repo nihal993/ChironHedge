@@ -377,7 +377,7 @@ const Home = () => {
                   </div>
                   <div className="px-5 py-3 border-t border-gray-100">
                     <a href="#" className="gs-arrow-link">
-                      Read the report <ArrowRight className="h-4 w-4" />
+                      {t('home.readTheReport')} <ArrowRight className="h-4 w-4" />
                     </a>
                   </div>
                 </div>
@@ -401,7 +401,7 @@ const Home = () => {
                   </div>
                   <div className="px-5 py-3 border-t border-gray-100">
                     <a href="#" className="gs-arrow-link">
-                      Read the report <ArrowRight className="h-4 w-4" />
+                      {t('home.readTheReport')} <ArrowRight className="h-4 w-4" />
                     </a>
                   </div>
                 </div>
@@ -425,7 +425,7 @@ const Home = () => {
                   </div>
                   <div className="px-5 py-3 border-t border-gray-100">
                     <a href="#" className="gs-arrow-link">
-                      Read the report <ArrowRight className="h-4 w-4" />
+                      {t('home.readTheReport')} <ArrowRight className="h-4 w-4" />
                     </a>
                   </div>
                 </div>
@@ -828,7 +828,7 @@ const Home = () => {
       <section id="contact" className="mb-12 border-t border-gray-200 pt-12">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold flex items-center">
-            Contact Us
+            {t('home.contactUs')}
             <button 
               onClick={() => toggleSection('contact')} 
               className="ml-4 p-1 rounded-full hover:bg-gray-100 transition-colors"

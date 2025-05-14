@@ -222,6 +222,10 @@ export const translations: Translations = {
     en: 'Read the report',
     it: 'Leggi il report'
   },
+  'home.contactUs': {
+    en: 'Contact Us',
+    it: 'Contattaci'
+  },
   'ourResearch.description': {
     en: 'Cutting-edge financial research combining rigorous academic methodologies with practical applications for institutional investors.',
     it: 'Ricerca finanziaria all\'avanguardia che combina metodologie accademiche rigorose con applicazioni pratiche per investitori istituzionali.'
