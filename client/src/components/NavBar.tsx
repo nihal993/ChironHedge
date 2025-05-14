@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useLanguage } from "@/contexts/LanguageContext";
+import centaurLogo from "@/assets/centaur-logo.svg";
 
 const navLinks = [
   { key: "home", name: "Home", href: "/" },
@@ -45,59 +46,8 @@ const NavBar = () => {
     )}>
       <div className="container mx-auto px-4 flex items-center justify-between border-b border-gray-200">
         <div className="flex items-center">
-          <div className="mr-3">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-primary">
-              {/* Centaur body (horse part) */}
-              <path 
-                d="M20 16C20 16 18 20 14 20C10 20 8 16 8 16L8 13L9 12L10 11L12 10L14 10.5L16 11L18 13L20 16Z" 
-                fill="currentColor" 
-                opacity="0.8"
-              />
-              {/* Legs */}
-              <path 
-                d="M10 18L11 22M14 18L13 22" 
-                stroke="currentColor" 
-                strokeWidth="1.5" 
-                strokeLinecap="round"
-              />
-              {/* Human torso */}
-              <path 
-                d="M12 10C14 10 15 8 15 6C15 4 14 2 12 2C10 2 9 4 9 6C9 8 10 10 12 10Z" 
-                fill="currentColor"
-              />
-              {/* Arm with bow */}
-              <path 
-                d="M8 7C7 7 6 8 6 9C6 10 7 11 7 11" 
-                stroke="currentColor" 
-                strokeWidth="1.5" 
-                strokeLinecap="round"
-              />
-              {/* Bow string */}
-              <path 
-                d="M7 6L7 12" 
-                stroke="currentColor" 
-                strokeWidth="0.8" 
-                strokeLinecap="round"
-              />
-              {/* Arrow */}
-              <path 
-                d="M7 9H3" 
-                stroke="currentColor" 
-                strokeWidth="1" 
-                strokeLinecap="round"
-              />
-              {/* Arrow tip */}
-              <path 
-                d="M3 9L4 8M3 9L4 10" 
-                stroke="currentColor" 
-                strokeWidth="1" 
-                strokeLinecap="round"
-              />
-              {/* Star - wisdom symbol */}
-              <circle cx="12" cy="5" r="0.7" fill="#3B82F6" />
-            </svg>
-          </div>
-          <Link href="/" className="py-4">
+          <Link href="/" className="flex items-center py-4">
+            <img src={centaurLogo} alt="Chiron Research Logo" className="h-12 w-auto mr-3" />
             <span className="text-xl md:text-2xl font-bold text-primary">
               Chiron<span className="text-secondary">Research</span>
             </span>
