@@ -15,9 +15,9 @@ const Research = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Le Nostre Ricerche</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">{t('research.title')}</h2>
           <p className="text-primary/70 max-w-3xl mx-auto">
-            Analisi quantitative avanzate ed insight di mercato per supportare le decisioni d'investimento istituzionali.
+            {t('research.description')}
           </p>
         </motion.div>
         
@@ -42,9 +42,9 @@ const Research = () => {
                   {category.description}
                 </p>
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium bg-neutral inline-block px-3 py-1 rounded-full">{category.reportsCount}+ Reports</span>
-                  <Link href={`/ricerche/${category.id}`} className="text-secondary hover:text-secondary/80 font-medium flex items-center">
-                    Scopri di più <ChevronRight className="h-4 w-4 ml-1" />
+                  <span className="text-xs font-medium bg-neutral inline-block px-3 py-1 rounded-full">{category.reportsCount}+ {t('research.reports')}</span>
+                  <Link href={`/our-research/${category.id}`} className="text-secondary hover:text-secondary/80 font-medium flex items-center">
+                    {t('research.viewCategoryBtn')} <ChevronRight className="h-4 w-4 ml-1" />
                   </Link>
                 </div>
               </div>
@@ -61,9 +61,9 @@ const Research = () => {
         >
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
-              <h3 className="text-2xl font-bold mb-4">Ricerche Personalizzate</h3>
+              <h3 className="text-2xl font-bold mb-4">{t('research.customTitle')}</h3>
               <p className="mb-6 text-neutral-300">
-                Oltre alle nostre ricerche regolari, offriamo progetti di ricerca su misura per esigenze specifiche.
+                {t('research.customDescription')}
               </p>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-start">
