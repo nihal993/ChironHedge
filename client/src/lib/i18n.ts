@@ -92,6 +92,22 @@ export const translations: Translations = {
     en: 'Inflation Projection',
     it: 'Proiezione Inflazione'
   },
+  'home.gdpChartTitle': {
+    en: 'GDP Growth Forecast Model',
+    it: 'Modello di Previsione Crescita PIL'
+  },
+  'home.updated': {
+    en: 'Updated',
+    it: 'Aggiornato'
+  },
+  'home.updateDate': {
+    en: 'May 10, 2025',
+    it: '10 Maggio 2025'
+  },
+  'home.gdpAccuracy': {
+    en: 'Our proprietary recursive neural network forecasts GDP with 87% higher accuracy than traditional models.',
+    it: 'La nostra rete neurale ricorsiva proprietaria prevede il PIL con una precisione dell\'87% superiore rispetto ai modelli tradizionali.'
+  },
   
   // Our Research Section
   'ourResearch.title': {
