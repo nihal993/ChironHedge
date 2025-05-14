@@ -64,6 +64,16 @@ export const translations: Translations = {
     en: 'News AI',
     it: 'News AI'
   },
+  
+  // Our Research Section
+  'ourResearch.title': {
+    en: 'Our Research',
+    it: 'Le Nostre Ricerche'
+  },
+  'ourResearch.description': {
+    en: 'Cutting-edge financial research combining rigorous academic methodologies with practical applications for institutional investors.',
+    it: 'Ricerca finanziaria all\'avanguardia che combina metodologie accademiche rigorose con applicazioni pratiche per investitori istituzionali.'
+  },
   'newsAI.description': {
     en: 'AI-powered analysis of financial news providing real-time insights with sentiment assessment.',
     it: 'Analisi alimentata da IA delle notizie finanziarie che fornisce approfondimenti in tempo reale con valutazione del sentiment.'
