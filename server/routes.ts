@@ -9,61 +9,49 @@ const mockFinancialNews = [
     id: "news-1",
     title: "Federal Reserve Announces Shift in Interest Rate Policy",
     summary: "In a significant policy adjustment, the Federal Reserve has indicated a potential pivot in its approach to interest rates, suggesting a more accommodative stance may be forthcoming as inflation metrics show signs of moderation.",
-    date: "May 12, 2025",
+    date: "15:42",
     source: "Bloomberg Financial",
-    category: "Monetary Policy",
-    sentiment: "positive",
-    confidence: 0.87
+    category: "Monetary Policy"
   },
   {
     id: "news-2",
     title: "Global Supply Chain Resilience Index Shows Marked Improvement",
     summary: "The latest Global Supply Chain Resilience Index reveals substantial improvements in supply chain stability across major economies, with key manufacturing hubs demonstrating enhanced adaptability to market disruptions.",
-    date: "May 11, 2025",
+    date: "14:35",
     source: "Financial Times",
-    category: "Global Trade",
-    sentiment: "positive",
-    confidence: 0.92
+    category: "Global Trade"
   },
   {
     id: "news-3",
     title: "Emerging Markets Bond Yields Display Unusual Pattern Shift",
     summary: "Emerging market bond yields have exhibited an atypical pattern shift in recent trading sessions, pointing to a potential recalibration of risk assessment by institutional investors amid changing macroeconomic conditions.",
-    date: "May 10, 2025",
+    date: "13:22",
     source: "Reuters",
-    category: "Fixed Income",
-    sentiment: "neutral",
-    confidence: 0.78
+    category: "Fixed Income"
   },
   {
     id: "news-4",
     title: "Tech Sector Valuations Face Scrutiny Amid AI Integration Challenges",
     summary: "Technology company valuations are under renewed scrutiny as investors reassess the timeline and implementation challenges associated with artificial intelligence integration into existing product ecosystems.",
-    date: "May 9, 2025",
+    date: "12:08",
     source: "Wall Street Journal",
-    category: "Technology",
-    sentiment: "negative",
-    confidence: 0.81
+    category: "Technology"
   },
   {
     id: "news-5",
     title: "Commodities Markets Respond to Geopolitical Tensions in Key Regions",
     summary: "Global commodities markets are experiencing increased volatility as geopolitical tensions in resource-rich regions prompt concerns about potential supply disruptions and strategic reserve management.",
-    date: "May 8, 2025",
+    date: "11:45",
     source: "Commodity Insights",
-    category: "Commodities",
-    sentiment: "negative",
-    confidence: 0.85
+    category: "Commodities"
   },
   {
     id: "news-6",
     title: "ESG Investment Flows Accelerate Following Regulatory Framework Updates",
     summary: "Environmental, Social, and Governance (ESG) investment vehicles are experiencing accelerated inflows after recent regulatory framework updates in major markets provided greater standardization and transparency requirements.",
-    date: "May 7, 2025",
+    date: "10:30",
     source: "Sustainable Finance Review",
-    category: "ESG Investing",
-    sentiment: "positive",
-    confidence: 0.89
+    category: "ESG Investing"
   }
 ];
 

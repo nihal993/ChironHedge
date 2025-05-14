@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Clock, ExternalLink } from "lucide-react";
 import { AINews } from "@/lib/openai-service";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
@@ -62,14 +62,9 @@ const NewsTicker = () => {
     setActiveNews(null);
   };
 
-  // Sentiment color mapping
-  const getSentimentClass = (sentiment?: string) => {
-    if (!sentiment) return "text-white";
-    switch (sentiment) {
-      case "positive": return "text-green-400";
-      case "negative": return "text-red-400";
-      default: return "text-blue-400";
-    }
+  // Formatting function
+  const formatTime = (time: string) => {
+    return time;
   };
 
   if (isLoading || news.length === 0) {
@@ -136,11 +131,7 @@ const NewsTicker = () => {
           >
             <div className="flex justify-between items-start mb-4">
               <div>
-                <span className={`inline-block text-xs font-medium px-3 py-1 rounded-none ${
-                  activeNews.sentiment === 'positive' ? 'bg-green-100 text-green-800' :
-                  activeNews.sentiment === 'negative' ? 'bg-red-100 text-red-800' :
-                  'bg-blue-100 text-blue-800'
-                }`}>
+                <span className="inline-block text-xs font-medium px-3 py-1 rounded-none bg-blue-100 text-blue-800">
                   {activeNews.category}
                 </span>
                 <span className="text-xs text-primary/50 ml-2">{activeNews.date}</span>
@@ -156,16 +147,6 @@ const NewsTicker = () => {
             <p className="text-primary/70 mb-6">{activeNews.summary}</p>
             <div className="flex justify-between items-center pt-4 border-t border-gray-100">
               <span className="text-sm text-primary/60">Source: {activeNews.source}</span>
-              {activeNews.sentiment && (
-                <span className={`text-xs px-2 py-1 ${
-                  activeNews.sentiment === 'positive' ? 'bg-green-100 text-green-800' :
-                  activeNews.sentiment === 'negative' ? 'bg-red-100 text-red-800' :
-                  'bg-blue-100 text-blue-800'
-                }`}>
-                  {activeNews.sentiment.charAt(0).toUpperCase() + activeNews.sentiment.slice(1)}
-                  {activeNews.confidence && ` (${Math.round((activeNews.confidence || 0) * 100)}%)`}
-                </span>
-              )}
             </div>
           </div>
         </div>
