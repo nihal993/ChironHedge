@@ -616,12 +616,16 @@ export const translations: Translations = {
     it: 'Sviluppo di modelli proprietari esclusivi'
   },
   'research.customFeature3': {
-    en: 'Integration with existing investment processes',
-    it: 'Integrazione con processi di investimento esistenti'
+    en: 'Backtesting of proprietary strategies',
+    it: 'Backtesting di strategie proprietarie'
   },
   'research.customFeature4': {
-    en: 'Dedicated team of quantitative analysts',
-    it: 'Team dedicato di analisti quantitativi'
+    en: 'Implementation consulting',
+    it: 'Consulenza per l\'implementazione'
+  },
+  'research.requestInfo': {
+    en: 'Request Information',
+    it: 'Richiedi informazioni'
   },
   'research.contactUs': {
     en: 'Contact Us',
