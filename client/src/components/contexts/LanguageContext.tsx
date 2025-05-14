@@ -1,5 +1,5 @@
-import { createContext, useState, useContext, ReactNode } from 'react';
-import { Language, translations, t as translate } from '@/lib/i18n';
+import React, { createContext, useContext, useState, ReactNode } from 'react';
+import { Language, t } from '@/lib/i18n';
 
 interface LanguageContextType {
   language: Language;
@@ -7,30 +7,31 @@ interface LanguageContextType {
   t: (key: string) => string;
 }
 
-const defaultState: LanguageContextType = {
-  language: 'en',
-  setLanguage: () => {},
-  t: () => ''
-};
-
-const LanguageContext = createContext<LanguageContextType>(defaultState);
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   const [language, setLanguage] = useState<Language>('en');
 
-  const t = (key: string) => translate(key, language);
+  // Funzione di traduzione basata su chiavi
+  const translate = (key: string) => {
+    return t(key, language);
+  };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider value={{ 
+      language, 
+      setLanguage, 
+      t: translate
+    }}>
       {children}
     </LanguageContext.Provider>
   );
 };
 
-export function useLanguage(): LanguageContextType {
+export const useLanguage = (): LanguageContextType => {
   const context = useContext(LanguageContext);
   if (context === undefined) {
     throw new Error('useLanguage must be used within a LanguageProvider');
   }
   return context;
-}
+};
