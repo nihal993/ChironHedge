@@ -4,12 +4,8 @@ import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { AINews } from "@/lib/openai-service";
 
-// Sentiment color mapping
-const sentimentColors = {
-  positive: "bg-green-100 text-green-800",
-  neutral: "bg-blue-100 text-blue-800",
-  negative: "bg-red-100 text-red-800"
-};
+// Time icon
+import { Clock } from "lucide-react";
 
 const NewsAI = () => {
   const [news, setNews] = useState<AINews[]>([]);
@@ -90,18 +86,16 @@ const NewsAI = () => {
                   {item.summary}
                 </p>
                 <div className="flex justify-between items-center mt-4 pt-4 border-t border-gray-100">
-                  <div className="flex items-center">
-                    <span className="text-sm text-primary/60 mr-3">Source: {item.source}</span>
-                    {item.sentiment && (
-                      <span className={`text-xs px-2 py-1 rounded-full ${sentimentColors[item.sentiment] || 'bg-gray-100 text-gray-800'}`}>
-                        {item.sentiment.charAt(0).toUpperCase() + item.sentiment.slice(1)}
-                        {item.confidence && ` (${Math.round(item.confidence * 100)}%)`}
-                      </span>
-                    )}
+                  <span className="text-sm text-primary/60">Source: {item.source}</span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs text-blue-600 flex items-center">
+                      <Clock className="h-3 w-3 mr-1" />
+                      {item.date}
+                    </span>
+                    <button className="text-secondary hover:text-secondary/80 text-sm font-medium">
+                      Read More
+                    </button>
                   </div>
-                  <button className="text-secondary hover:text-secondary/80 text-sm font-medium">
-                    Read Full Analysis
-                  </button>
                 </div>
               </motion.div>
             ))}
