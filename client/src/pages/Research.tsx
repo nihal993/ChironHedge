@@ -2,8 +2,10 @@ import { Link } from "wouter";
 import { ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { researchCategories } from "@/lib/data";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Research = () => {
+  const { t } = useLanguage();
   return (
     <section id="ricerche" className="py-20 md:py-24 bg-neutral">
       <div className="container mx-auto px-4">
