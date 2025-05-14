@@ -98,16 +98,16 @@ const QuantitativeModel = () => {
         <div className="mb-16">
           <Tabs defaultValue="volatility" className="w-full">
             <TabsList className="grid w-full grid-cols-1 md:grid-cols-3 mb-8">
-              <TabsTrigger value="volatility">Volatility Forecasting</TabsTrigger>
-              <TabsTrigger value="factors">Factor Returns</TabsTrigger>
-              <TabsTrigger value="yield">Yield Curve Analysis</TabsTrigger>
+              <TabsTrigger value="volatility">{t('quantModel.volatilityTab')}</TabsTrigger>
+              <TabsTrigger value="factors">{t('quantModel.factorTab')}</TabsTrigger>
+              <TabsTrigger value="yield">{t('quantModel.yieldTab')}</TabsTrigger>
             </TabsList>
             
             <TabsContent value="volatility" className="pt-4">
               <div className="bg-neutral p-6 rounded-xl shadow-sm">
-                <h3 className="text-xl font-bold mb-2">Volatility Forecasting Model</h3>
+                <h3 className="text-xl font-bold mb-2">{t('quantModel.volatilityTitle')}</h3>
                 <p className="text-primary/70 mb-6">
-                  Our proprietary volatility prediction model leverages machine learning algorithms to forecast expected market volatility, comparing it with realized values and historical averages.
+                  {t('quantModel.volatilityDescription')}
                 </p>
                 <div className="h-96">
                   <ResponsiveContainer width="100%" height="100%">
@@ -175,9 +175,9 @@ const QuantitativeModel = () => {
             
             <TabsContent value="factors" className="pt-4">
               <div className="bg-neutral p-6 rounded-xl shadow-sm">
-                <h3 className="text-xl font-bold mb-2">Equity Factor Returns</h3>
+                <h3 className="text-xl font-bold mb-2">{t('quantModel.factorTitle')}</h3>
                 <p className="text-primary/70 mb-6">
-                  Analysis of major equity factor performance across time periods, showing the cyclicality and relative strength of different investment styles.
+                  {t('quantModel.factorDescription')}
                 </p>
                 <div className="h-96">
                   <ResponsiveContainer width="100%" height="100%">
@@ -241,9 +241,9 @@ const QuantitativeModel = () => {
             
             <TabsContent value="yield" className="pt-4">
               <div className="bg-neutral p-6 rounded-xl shadow-sm">
-                <h3 className="text-xl font-bold mb-2">Yield Curve Analysis</h3>
+                <h3 className="text-xl font-bold mb-2">{t('quantModel.yieldTitle')}</h3>
                 <p className="text-primary/70 mb-6">
-                  Comparative view of yield curves across different time periods, with analysis of curve shape, steepness, and implications for economic outlook.
+                  {t('quantModel.yieldDescription')}
                 </p>
                 <div className="h-96">
                   <ResponsiveContainer width="100%" height="100%">
