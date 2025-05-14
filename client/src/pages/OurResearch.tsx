@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { ChevronRight } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { researchCategories } from "@/lib/data";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 // Sample research papers data
 const researchPapers = [
@@ -85,6 +86,8 @@ const teamMembers = [
 ];
 
 const OurResearch = () => {
+  const { t } = useLanguage();
+  
   return (
     <section className="py-20 md:py-24 bg-white">
       <div className="container mx-auto px-4">
