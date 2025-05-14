@@ -202,6 +202,26 @@ export const translations: Translations = {
     en: 'Our research combines rigorous academic methodologies with practical applications for institutional investors.',
     it: 'La nostra ricerca combina metodologie accademiche rigorose con applicazioni pratiche per investitori istituzionali.'
   },
+  'home.featuredResearch': {
+    en: 'Featured Research',
+    it: 'Ricerca in Evidenza'
+  },
+  'home.marketOutlook': {
+    en: 'Market Outlook',
+    it: 'Previsioni di Mercato'
+  },
+  'home.globalMarketsTitle': {
+    en: 'Global Markets: Navigating Volatility',
+    it: 'Mercati Globali: Navigare la Volatilità'
+  },
+  'home.globalMarketsDesc': {
+    en: 'Our analysts examine current market conditions and provide strategic guidance for institutional investors in a changing landscape.',
+    it: 'I nostri analisti esaminano le condizioni attuali del mercato e forniscono una guida strategica per gli investitori istituzionali in un panorama in evoluzione.'
+  },
+  'home.readTheReport': {
+    en: 'Read the report',
+    it: 'Leggi il report'
+  },
   'ourResearch.description': {
     en: 'Cutting-edge financial research combining rigorous academic methodologies with practical applications for institutional investors.',
     it: 'Ricerca finanziaria all\'avanguardia che combina metodologie accademiche rigorose con applicazioni pratiche per investitori istituzionali.'
