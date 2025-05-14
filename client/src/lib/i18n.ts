@@ -99,12 +99,48 @@ export const translations: Translations = {
   
   // Quantitative Model Section
   'quantModel.title': {
-    en: 'Quantitative Model',
-    it: 'Modello Quantitativo'
+    en: 'Quantitative Models',
+    it: 'Modelli Quantitativi'
+  },
+  'quantModel.volatilityTab': {
+    en: 'Volatility Forecasting',
+    it: 'Previsione Volatilità'
+  },
+  'quantModel.factorTab': {
+    en: 'Factor Returns',
+    it: 'Rendimenti Fattoriali'
+  },
+  'quantModel.yieldTab': {
+    en: 'Yield Curve Analysis',
+    it: 'Analisi Curva dei Rendimenti'
   },
   'quantModel.description': {
-    en: 'Our proprietary models combine advanced mathematical techniques with machine learning to deliver predictive insights.',
-    it: 'I nostri modelli proprietari combinano tecniche matematiche avanzate con il machine learning per fornire insight predittivi.'
+    en: 'Explore our suite of sophisticated quantitative models that provide unique insights into market dynamics, risk factors, and investment opportunities.',
+    it: 'Esplora la nostra suite di modelli quantitativi sofisticati che forniscono approfondimenti unici sulle dinamiche di mercato, i fattori di rischio e le opportunità di investimento.'
+  },
+  'quantModel.volatilityTitle': {
+    en: 'Volatility Forecasting Model',
+    it: 'Modello di Previsione della Volatilità'
+  },
+  'quantModel.volatilityDescription': {
+    en: 'Our proprietary volatility prediction model leverages machine learning algorithms to forecast expected market volatility, comparing it with realized values and historical averages.',
+    it: 'Il nostro modello proprietario di previsione della volatilità utilizza algoritmi di machine learning per prevedere la volatilità attesa del mercato, confrontandola con valori realizzati e medie storiche.'
+  },
+  'quantModel.factorTitle': {
+    en: 'Equity Factor Returns',
+    it: 'Rendimenti dei Fattori Azionari'
+  },
+  'quantModel.factorDescription': {
+    en: 'Analysis of major equity factor performance across time periods, showing the cyclicality and relative strength of different investment styles.',
+    it: 'Analisi dei rendimenti dei principali fattori azionari in diversi periodi, che mostra la ciclicità e la forza relativa dei diversi stili di investimento.'
+  },
+  'quantModel.yieldTitle': {
+    en: 'Yield Curve Analysis',
+    it: 'Analisi della Curva dei Rendimenti'
+  },
+  'quantModel.yieldDescription': {
+    en: 'Comparative view of yield curves across different time periods, with analysis of curve shape, steepness, and implications for economic outlook.',
+    it: 'Visione comparativa delle curve dei rendimenti in diversi periodi di tempo, con analisi della forma della curva, della pendenza e delle implicazioni per le prospettive economiche.'
   },
   'quantModel.gdpTitle': {
     en: 'Global GDP Forecast',
