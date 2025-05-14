@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const AboutUs = () => {
+  const { t } = useLanguage();
   return (
     <section id="chi-siamo" className="py-20 md:py-24 bg-white">
       <div className="container mx-auto px-4">
@@ -17,29 +19,29 @@ const AboutUs = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Chi Siamo</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">{t('aboutpage.title')}</h2>
             <p className="text-primary/70 text-lg mb-6">
-              Un team di ingegneri e economisti italiani, uniti dalla passione per la ricerca finanziaria avanzata e l'analisi quantitativa dei mercati finanziari.
+              {t('aboutpage.description')}
             </p>
             <p className="text-primary/70 mb-8">
-              Forniamo soluzioni di analisi quantitativa che combinano modelli matematici complessi, big data e tecniche di machine learning per identificare opportunità uniche sui mercati globali.
+              {t('aboutpage.approach')}
             </p>
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-neutral p-5 rounded-lg">
                 <p className="text-secondary text-3xl font-bold mb-2">15+</p>
-                <p className="text-primary/70">Anni di esperienza su mercati globali</p>
+                <p className="text-primary/70">{t('aboutpage.stats.years')}</p>
               </div>
               <div className="bg-neutral p-5 rounded-lg">
                 <p className="text-secondary text-3xl font-bold mb-2">30+</p>
-                <p className="text-primary/70">Pubblicazioni accademiche</p>
+                <p className="text-primary/70">{t('aboutpage.stats.publications')}</p>
               </div>
               <div className="bg-neutral p-5 rounded-lg">
                 <p className="text-secondary text-3xl font-bold mb-2">$50B+</p>
-                <p className="text-primary/70">Asset supportati dalle nostre ricerche</p>
+                <p className="text-primary/70">{t('aboutpage.stats.assets')}</p>
               </div>
               <div className="bg-neutral p-5 rounded-lg">
                 <p className="text-secondary text-3xl font-bold mb-2">98%</p>
-                <p className="text-primary/70">Tasso di ritenzione clienti</p>
+                <p className="text-primary/70">{t('aboutpage.stats.retention')}</p>
               </div>
             </div>
           </motion.div>
@@ -71,9 +73,9 @@ const AboutUs = () => {
           transition={{ duration: 0.5 }}
         >
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">La Nostra Missione</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">{t('aboutpage.mission.title')}</h2>
             <p className="text-primary/70 max-w-3xl mx-auto">
-              Combinare l'eccellenza accademica con l'esperienza pratica di mercato per offrire soluzioni quantitative all'avanguardia.
+              {t('aboutpage.mission.description')}
             </p>
           </div>
 

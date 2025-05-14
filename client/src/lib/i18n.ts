@@ -376,6 +376,96 @@ export const translations: Translations = {
   'strategies.performance.vs': {
     en: 'vs',
     it: 'vs'
+  },
+  
+  // About Us Page
+  'aboutpage.title': {
+    en: 'About Us',
+    it: 'Chi Siamo'
+  },
+  'aboutpage.description': {
+    en: 'A team of Italian engineers and economists, united by a passion for advanced financial research and quantitative market analysis.',
+    it: 'Un team di ingegneri e economisti italiani, uniti dalla passione per la ricerca finanziaria avanzata e l\'analisi quantitativa dei mercati finanziari.'
+  },
+  'aboutpage.approach': {
+    en: 'We provide quantitative analysis solutions that combine complex mathematical models, big data, and machine learning techniques to identify unique opportunities in global markets.',
+    it: 'Forniamo soluzioni di analisi quantitativa che combinano modelli matematici complessi, big data e tecniche di machine learning per identificare opportunità uniche sui mercati globali.'
+  },
+  'aboutpage.stats.years': {
+    en: 'Years of experience in global markets',
+    it: 'Anni di esperienza su mercati globali'
+  },
+  'aboutpage.stats.publications': {
+    en: 'Academic publications',
+    it: 'Pubblicazioni accademiche'
+  },
+  'aboutpage.stats.assets': {
+    en: 'Assets supported by our research',
+    it: 'Asset supportati dalle nostre ricerche'
+  },
+  'aboutpage.stats.retention': {
+    en: 'Client retention rate',
+    it: 'Tasso di ritenzione clienti'
+  },
+  'aboutpage.mission.title': {
+    en: 'Our Mission',
+    it: 'La Nostra Missione'
+  },
+  'aboutpage.mission.description': {
+    en: 'Combine academic excellence with practical market experience to offer cutting-edge quantitative solutions.',
+    it: 'Combinare l\'eccellenza accademica con l\'esperienza pratica di mercato per offrire soluzioni quantitative all\'avanguardia.'
+  },
+  'aboutpage.values.research': {
+    en: 'Rigorous Research',
+    it: 'Ricerca Rigorosa'
+  },
+  'aboutpage.values.research.desc': {
+    en: 'Every analysis and model undergoes rigorous statistical tests and robustness checks before being shared with clients.',
+    it: 'Ogni analisi e modello viene sottoposto a rigorosi test statistici e controlli di robustezza prima di essere condiviso con i clienti.'
+  },
+  'aboutpage.values.innovation': {
+    en: 'Constant Innovation',
+    it: 'Innovazione Costante'
+  },
+  'aboutpage.values.innovation.desc': {
+    en: 'We continuously invest in new methodologies and technologies to maintain a competitive advantage in quantitative analysis.',
+    it: 'Investiamo continuamente in nuove metodologie e tecnologie per mantenere un vantaggio competitivo nell\'analisi quantitativa.'
+  },
+  'aboutpage.values.collaboration': {
+    en: 'Collaboration',
+    it: 'Collaborazione'
+  },
+  'aboutpage.values.collaboration.desc': {
+    en: 'We work closely with our clients to understand their specific needs and provide tailored solutions.',
+    it: 'Lavoriamo a stretto contatto con i nostri clienti per comprendere le loro esigenze specifiche e fornire soluzioni personalizzate.'
+  },
+  'aboutpage.approach.title': {
+    en: 'Our Approach',
+    it: 'Il Nostro Approccio'
+  },
+  'aboutpage.approach.description': {
+    en: 'We combine academic rigor, practical market experience, and cutting-edge technologies to generate unique insights and effective investment strategies.',
+    it: 'Combiniamo rigore accademico, esperienza pratica di mercato e tecnologie all\'avanguardia per generare insight unici e strategie d\'investimento efficaci.'
+  },
+  'aboutpage.approach.feature1': {
+    en: 'Analysis of financial and alternative big data',
+    it: 'Analisi di big data finanziari e alternativi'
+  },
+  'aboutpage.approach.feature2': {
+    en: 'Advanced statistical models and machine learning',
+    it: 'Modelli statistici avanzati e machine learning'
+  },
+  'aboutpage.approach.feature3': {
+    en: 'Rigorous backtesting across different market regimes',
+    it: 'Backtesting rigoroso su diversi regimi di mercato'
+  },
+  'aboutpage.approach.feature4': {
+    en: 'Practical implementation with production-ready code',
+    it: 'Implementazione pratica con codice produzione-ready'
+  },
+  'aboutpage.approach.feature5': {
+    en: 'Ongoing consulting and implementation support',
+    it: 'Consulenza continua e supporto all\'implementazione'
   }
 };
 
