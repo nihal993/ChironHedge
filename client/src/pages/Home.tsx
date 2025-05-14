@@ -875,6 +875,70 @@ const Home = () => {
             </div>
           </div>
         </div>
+
+        {/* Chi Siamo e Mission Section */}
+        <div className="py-20 bg-gray-50">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto">
+              <div className="mb-16">
+                <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-primary">Chi Siamo</h2>
+                <div className="grid md:grid-cols-2 gap-10">
+                  <div>
+                    <p className="text-primary/80 mb-6 leading-relaxed">
+                      ChironResearch è un'azienda di ricerca finanziaria all'avanguardia, fondata da un team di analisti quantitativi e professionisti del settore finanziario con oltre 40 anni di esperienza combinata nei mercati globali.
+                    </p>
+                    <p className="text-primary/80 mb-6 leading-relaxed">
+                      Il nostro approccio unisce analisi fondamentale tradizionale con metodologie quantitative avanzate, utilizzando algoritmi proprietari e tecniche di machine learning per identificare opportunità d'investimento e gestire il rischio con precisione.
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-primary/80 mb-6 leading-relaxed">
+                      Siamo specializzati nell'analisi macroeconomica, nella modellazione statistica e nello sviluppo di strategie di investimento sistematiche che hanno dimostrato la loro efficacia in vari cicli di mercato.
+                    </p>
+                    <p className="text-primary/80 leading-relaxed">
+                      Il nostro team è composto da esperti provenienti da istituzioni finanziarie di primo livello, con background in economia, finanza quantitativa, ingegneria dei dati e intelligenza artificiale.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-primary">La Nostra Mission</h2>
+                <div className="bg-white p-8 border border-gray-100 shadow-sm rounded-lg">
+                  <p className="text-primary/80 text-center text-lg italic mb-8">
+                    "Democratizzare l'accesso ad analisi finanziarie di livello istituzionale e offrire strategie d'investimento basate sui dati che aiutino i nostri clienti a navigare con successo la complessità dei mercati finanziari globali."
+                  </p>
+                  
+                  <div className="grid md:grid-cols-3 gap-6 text-center">
+                    <div className="p-5">
+                      <div className="bg-blue-50 w-14 h-14 mx-auto mb-4 rounded-full flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="text-secondary"><path d="M7 12a5 5 0 0 1 5-5v0a5 5 0 0 1 5 5v0"/><path d="M12 7V3h-3"/><path d="m15 6 2-3"/><path d="M13.6 17.2a3 3 0 0 1-2.2.8h0a3 3 0 0 1-2.8-2m1.8-1h3.2"/><circle cx="12" cy="12" r="10"/></svg>
+                      </div>
+                      <h3 className="text-primary font-semibold mb-2">Innovazione</h3>
+                      <p className="text-primary/70 text-sm">Sviluppiamo continuamente nuove metodologie e modelli analitici per affrontare le sfide dei mercati in evoluzione.</p>
+                    </div>
+                    
+                    <div className="p-5">
+                      <div className="bg-blue-50 w-14 h-14 mx-auto mb-4 rounded-full flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="text-secondary"><circle cx="11" cy="11" r="8"/><line x1="21" x2="16.65" y1="21" y2="16.65"/><path d="M8 11h6"/></svg>
+                      </div>
+                      <h3 className="text-primary font-semibold mb-2">Precisione</h3>
+                      <p className="text-primary/70 text-sm">La nostra ricerca si basa su dati verificabili e analisi rigorose, con un impegno costante per l'accuratezza e la qualità.</p>
+                    </div>
+                    
+                    <div className="p-5">
+                      <div className="bg-blue-50 w-14 h-14 mx-auto mb-4 rounded-full flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="text-secondary"><path d="M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a1 1 0 0 1 1.733 0L16.3 8.9a.7.7 0 0 1-.626 1.1"/><path d="M19 14.5a3.5 3.5 0 0 0-3.5-3.5h-1a3.5 3.5 0 0 0-7 0h-1a3.5 3.5 0 0 0-3.5 3.5"/><path d="M14 15h-4v5h4"/></svg>
+                      </div>
+                      <h3 className="text-primary font-semibold mb-2">Integrità</h3>
+                      <p className="text-primary/70 text-sm">Manteniamo i più alti standard etici e di trasparenza in tutte le nostre analisi e raccomandazioni.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
