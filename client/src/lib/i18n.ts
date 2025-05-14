@@ -124,6 +124,38 @@ export const translations: Translations = {
     en: 'Our inflation model incorporates 143 distinct variables for superior predictive power in rate forecasting.',
     it: 'Il nostro modello di inflazione incorpora 143 variabili distinte per una potenza predittiva superiore nelle previsioni dei tassi.'
   },
+  'home.factorAnalysisTitle': {
+    en: 'Investment Factor Analysis',
+    it: 'Analisi dei Fattori di Investimento'
+  },
+  'home.factorAnalysisDescription': {
+    en: 'Our factor analysis identifies market anomalies through proprietary multi-factor regression models.',
+    it: 'La nostra analisi dei fattori identifica le anomalie di mercato attraverso modelli di regressione multi-fattoriale proprietari.'
+  },
+  'home.viewWhitePaper': {
+    en: 'View white paper',
+    it: 'Visualizza white paper'
+  },
+  'home.forecastModelTitle': {
+    en: 'Forecast Model Accuracy',
+    it: 'Precisione del Modello di Previsione'
+  },
+  'home.forecastModelDesc': {
+    en: 'Accuracy metrics for our proprietary forecasting models measured as percentage of predictions within one standard deviation of actual outcomes.',
+    it: 'Metriche di accuratezza per i nostri modelli di previsione proprietari misurate come percentuale di previsioni entro una deviazione standard dai risultati effettivi.'
+  },
+  'home.viewModelMethodology': {
+    en: 'View model methodology',
+    it: 'Visualizza metodologia del modello'
+  },
+  'home.factorAnalysisUpdated': {
+    en: 'May 11, 2025',
+    it: '11 Maggio 2025'
+  },
+  'home.forecastModelUpdated': {
+    en: 'May 9, 2025',
+    it: '9 Maggio 2025'
+  },
   
   // Our Research Section
   'ourResearch.title': {
