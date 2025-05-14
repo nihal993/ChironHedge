@@ -134,15 +134,15 @@ const Home = () => {
         {(activeSection === 'quantitative-model' || activeSection === null) && (
           <div>
             <p className="text-lg mb-6 max-w-3xl">
-              Our proprietary models combine advanced mathematical techniques with machine learning to deliver predictive insights.
+              {t('home.modelDescription')}
             </p>
             
             {/* Model Tab Set 1 */}
             <div className="gs-chart-container mb-8">
               <Tabs defaultValue="gdp" className="w-full">
                 <TabsList className="grid w-full grid-cols-2 mb-6 bg-gray-50">
-                  <TabsTrigger value="gdp" className="text-primary font-medium">Global GDP Forecast</TabsTrigger>
-                  <TabsTrigger value="inflation" className="text-primary font-medium">Inflation Projection</TabsTrigger>
+                  <TabsTrigger value="gdp" className="text-primary font-medium">{t('home.gdpTab')}</TabsTrigger>
+                  <TabsTrigger value="inflation" className="text-primary font-medium">{t('home.inflationTab')}</TabsTrigger>
                 </TabsList>
                 
                 <TabsContent value="gdp" className="pt-4">
