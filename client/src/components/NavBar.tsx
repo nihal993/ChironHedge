@@ -45,6 +45,37 @@ const NavBar = () => {
     )}>
       <div className="container mx-auto px-4 flex items-center justify-between border-b border-gray-200">
         <Link href="/" className="flex items-center py-4">
+          <div className="mr-2">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-primary">
+              {/* Stylized centaur - torso and legs */}
+              <path 
+                d="M11 13L9 19M13 13L15 19M14 11V14M10 11V14" 
+                stroke="currentColor" 
+                strokeWidth="1.2" 
+                strokeLinecap="round"
+              />
+              <path 
+                d="M12 13C14 13 16 11 16 9C16 7 14 6 12 6C10 6 8 7 8 9C8 11 10 13 12 13Z" 
+                fill="currentColor" 
+                opacity="0.9"
+              />
+              {/* Horse body */}
+              <path 
+                d="M18 9C18 9 17 13 14 13C11 13 10 9 10 9L12 7L14 7L16 8L18 9Z" 
+                fill="currentColor" 
+                opacity="0.7"
+              />
+              {/* Bow - symbol of Chiron */}
+              <path 
+                d="M7 8C7 8 6 10 7 12" 
+                stroke="currentColor" 
+                strokeWidth="1.2" 
+                strokeLinecap="round"
+              />
+              {/* Star - wisdom */}
+              <circle cx="13" cy="8" r="0.7" fill="#3B82F6" />
+            </svg>
+          </div>
           <span className="text-xl md:text-2xl font-bold text-primary">
             Chiron<span className="text-secondary">Research</span>
           </span>
