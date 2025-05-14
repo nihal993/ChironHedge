@@ -100,8 +100,8 @@ const Home = () => {
               
               <div className="max-w-xl overflow-hidden">
                 <div className="whitespace-nowrap overflow-hidden text-ellipsis text-sm">
-                  <span className="font-medium mr-2 text-green-600">Federal Reserve:</span>
-                  Federal Reserve Announces Shift in Interest Rate Policy
+                  <span className="font-medium mr-2 text-green-600">{t('home.newsTitle')}:</span>
+                  {t('home.newsContent')}
                 </div>
               </div>
               
@@ -110,7 +110,7 @@ const Home = () => {
               </button>
               
               <a href="/news-ai" className="ml-2 text-blue-600 text-sm font-medium flex items-center">
-                More News <ArrowRight className="h-3 w-3 ml-1" />
+                {t('home.moreNews')} <ArrowRight className="h-3 w-3 ml-1" />
               </a>
             </div>
           </div>
@@ -121,7 +121,7 @@ const Home = () => {
       <section id="quantitative-model" className="gs-section">
         <div className="flex justify-between items-center mb-8">
           <h2 className="gs-header flex items-center">
-            Quantitative Model
+            {t('home.quantitativeModel')}
             <button 
               onClick={() => toggleSection('quantitative-model')} 
               className="ml-4 p-1 rounded-full hover:bg-gray-100 transition-colors"
