@@ -97,6 +97,7 @@ const LanguageSwitcher = ({ onLanguageChange }: LanguageSwitcherProps) => {
             onClick={() => {
               setLanguage('it');
               setIsOpen(false);
+              onLanguageChange?.('it');
             }}
           >
             <div className="w-6 h-4">
