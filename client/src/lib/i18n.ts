@@ -698,17 +698,17 @@ export const translations: Translations = {
     en: 'Systematic approach to fixed income investing that targets absolute returns across interest rate environments with dynamic duration management.',
     it: 'Approccio sistematico all\'investimento a reddito fisso che mira a rendimenti assoluti in diversi ambienti di tassi di interesse con gestione dinamica della duration.'
   },
-  'strategies.metrics': {
-    en: {
-      sharpe: 'Sharpe',
-      vol: 'Vol',
-      maxdd: 'Max DD'
-    },
-    it: {
-      sharpe: 'Sharpe',
-      vol: 'Vol',
-      maxdd: 'Max DD'
-    }
+  'strategies.metrics.sharpe': {
+    en: 'Sharpe',
+    it: 'Sharpe'
+  },
+  'strategies.metrics.vol': {
+    en: 'Vol',
+    it: 'Vol'
+  },
+  'strategies.metrics.maxdd': {
+    en: 'Max DD',
+    it: 'Max DD'
   },
   'strategies.viewDetails': {
     en: 'View strategy details',
