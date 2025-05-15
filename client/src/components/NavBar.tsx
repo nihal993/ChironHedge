@@ -4,7 +4,23 @@ import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import LanguageSwitcher from "./LanguageSwitcher";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { Language, useLanguage } from "@/contexts/LanguageContext";
+import React from "react";
+
+// Componente wrapper per LanguageSwitcher che accetta una callback
+const LanguageSwitcherWithCallback = ({ onLanguageChange }: { onLanguageChange: () => void }) => {
+  const { language, setLanguage } = useLanguage();
+
+  const handleLanguageChange = (newLang: Language) => {
+    setLanguage(newLang);
+    onLanguageChange();
+  };
+
+  // Clone del componente LanguageSwitcher con onClick modificato
+  return (
+    <LanguageSwitcher onLanguageChange={handleLanguageChange} />
+  );
+};
 import logoImage from "@/assets/logo.png";
 
 const navLinks = [
@@ -141,7 +157,9 @@ const NavBar = () => {
               
               {/* Language Switcher nel menu mobile */}
               <div className="flex justify-center py-3 border-t border-gray-100 mt-2">
-                <LanguageSwitcher />
+                <LanguageSwitcherWithCallback 
+                  onLanguageChange={() => closeMenu()}
+                />
               </div>
             </div>
           </nav>

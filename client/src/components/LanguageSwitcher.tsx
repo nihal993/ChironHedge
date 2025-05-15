@@ -1,8 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useLanguage, Language } from '@/contexts/LanguageContext';
 import { cn } from '@/lib/utils';
 
-const LanguageSwitcher = () => {
+interface LanguageSwitcherProps {
+  onLanguageChange?: (lang: Language) => void;
+}
+
+const LanguageSwitcher = ({ onLanguageChange }: LanguageSwitcherProps) => {
   const { language, setLanguage } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -76,6 +80,7 @@ const LanguageSwitcher = () => {
             onClick={() => {
               setLanguage('en');
               setIsOpen(false);
+              onLanguageChange?.('en');
             }}
           >
             <div className="w-6 h-4">
