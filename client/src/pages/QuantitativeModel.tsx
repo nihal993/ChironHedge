@@ -155,19 +155,19 @@ const QuantitativeModel = () => {
                 </div>
                 <div className="grid md:grid-cols-3 gap-4 mt-8">
                   <div className="bg-white p-4 rounded shadow-sm">
-                    <p className="text-sm text-primary/60 mb-1">Model Accuracy</p>
+                    <p className="text-sm text-primary/60 mb-1">{t('chart.modelAccuracy')}</p>
                     <p className="text-2xl font-bold text-secondary">92.7%</p>
-                    <p className="text-xs text-primary/50">Last 12 months</p>
+                    <p className="text-xs text-primary/50">{t('chart.lastMonths')}</p>
                   </div>
                   <div className="bg-white p-4 rounded shadow-sm">
-                    <p className="text-sm text-primary/60 mb-1">Average Deviation</p>
+                    <p className="text-sm text-primary/60 mb-1">{t('chart.averageDeviation')}</p>
                     <p className="text-2xl font-bold text-secondary">±1.2%</p>
-                    <p className="text-xs text-primary/50">Predicted vs. Realized</p>
+                    <p className="text-xs text-primary/50">{t('chart.predictedVsRealized')}</p>
                   </div>
                   <div className="bg-white p-4 rounded shadow-sm">
-                    <p className="text-sm text-primary/60 mb-1">Current Forecast</p>
+                    <p className="text-sm text-primary/60 mb-1">{t('chart.currentForecast')}</p>
                     <p className="text-2xl font-bold text-secondary">22.4%</p>
-                    <p className="text-xs text-primary/50">Next 30 days</p>
+                    <p className="text-xs text-primary/50">{t('chart.next30days')}</p>
                   </div>
                 </div>
               </div>

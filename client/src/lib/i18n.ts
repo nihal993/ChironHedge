@@ -385,6 +385,72 @@ export const translations: Translations = {
     it: 'Visualizza report'
   },
   
+  // Chart and Data labels
+  'chart.modelAccuracy': {
+    en: 'Model Accuracy',
+    it: 'Precisione del Modello'
+  },
+  'chart.lastMonths': {
+    en: 'Last 12 months',
+    it: 'Ultimi 12 mesi'
+  },
+  'chart.averageDeviation': {
+    en: 'Average Deviation',
+    it: 'Deviazione Media'
+  },
+  'chart.predictedVsRealized': {
+    en: 'Predicted vs. Realized',
+    it: 'Previsto vs. Realizzato'
+  },
+  'chart.currentForecast': {
+    en: 'Current Forecast',
+    it: 'Previsione Attuale'
+  },
+  'chart.next30days': {
+    en: 'Next 30 days',
+    it: 'Prossimi 30 giorni'
+  },
+  'chart.realized': {
+    en: 'Realized',
+    it: 'Realizzato'
+  },
+  'chart.predicted': {
+    en: 'Predicted',
+    it: 'Previsto'
+  },
+  'chart.historical': {
+    en: 'Historical',
+    it: 'Storico'
+  },
+  'chart.value': {
+    en: 'Value',
+    it: 'Valore'
+  },
+  'chart.momentum': {
+    en: 'Momentum',
+    it: 'Momentum'
+  },
+  'chart.quality': {
+    en: 'Quality',
+    it: 'Qualità'
+  },
+  'chart.lowVol': {
+    en: 'Low Volatility',
+    it: 'Bassa Volatilità'
+  },
+  'chart.current': {
+    en: 'Current',
+    it: 'Attuale'
+  },
+  'chart.lastMonth': {
+    en: 'Last Month',
+    it: 'Mese Scorso'
+  },
+  'chart.lastYear': {
+    en: 'Last Year',
+    it: 'Anno Scorso'
+  },
+  
   // Auth and Contact
   'login': {
     en: 'Login',
