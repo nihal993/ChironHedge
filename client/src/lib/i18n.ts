@@ -446,6 +446,10 @@ export const translations: Translations = {
     en: 'View forecast methodology',
     it: 'Visualizza metodologia di previsione'
   },
+  'macroReport.viewAllMacro': {
+    en: 'View all macroeconomic analysis',
+    it: 'Visualizza tutte le analisi macroeconomiche'
+  },
   
   // Common actions
   'action.viewAll': {
@@ -649,6 +653,14 @@ export const translations: Translations = {
   'strategies.description': {
     en: 'Our proprietary strategies combine cutting-edge machine learning techniques, big data, and traditional financial modeling.',
     it: 'Le nostre strategie proprietarie uniscono tecniche all\'avanguardia di machine learning, big data e modellazione finanziaria tradizionale.'
+  },
+  'strategies.systemDescription': {
+    en: 'Our systematic quantitative strategies harness advanced mathematics and machine learning for consistent alpha generation across market conditions.',
+    it: 'Le nostre strategie quantitative sistematiche sfruttano matematica avanzata e apprendimento automatico per generare alpha consistente in diverse condizioni di mercato.'
+  },
+  'strategies.multiAsset': {
+    en: 'Multi-Asset',
+    it: 'Multi-Asset'
   },
   'strategies.explore': {
     en: 'Explore the strategy',

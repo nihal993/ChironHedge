@@ -524,8 +524,8 @@ const Home = () => {
               
               <div className="gs-chart-container">
                 <div className="flex justify-between items-center mb-4">
-                  <h3 className="gs-chart-title">Global Inflation Trends</h3>
-                  <span className="gs-subtle-text">Updated: May 10, 2025</span>
+                  <h3 className="gs-chart-title">{t('macroReport.globalInflationTrends')}</h3>
+                  <span className="gs-subtle-text">{t('macroReport.updated')}: May 10, 2025</span>
                 </div>
                 <div className="h-64 mb-4">
                   <LineChart 
@@ -537,7 +537,7 @@ const Home = () => {
                 </div>
                 <div className="flex justify-end pt-3 border-t border-gray-100">
                   <a href="#" className="gs-arrow-link">
-                    View forecast methodology <ArrowRight className="h-4 w-4" />
+                    {t('macroReport.viewForecastMethodology')} <ArrowRight className="h-4 w-4" />
                   </a>
                 </div>
               </div>
@@ -545,7 +545,7 @@ const Home = () => {
             
             <div className="flex justify-end mb-2">
               <a href="#" className="gs-arrow-link">
-                View all macroeconomic analysis <ArrowRight className="h-4 w-4" />
+                {t('macroReport.viewAllMacro')} <ArrowRight className="h-4 w-4" />
               </a>
             </div>
           </div>
@@ -569,7 +569,7 @@ const Home = () => {
         {(activeSection === 'quantitative-strategies' || activeSection === null) && (
           <div>
             <p className="text-lg mb-8 max-w-3xl">
-              Our systematic quantitative strategies harness advanced mathematics and machine learning for consistent alpha generation across market conditions.
+              {t('strategies.systemDescription')}
             </p>
             
             {/* Strategy Cards Row 1 */}
