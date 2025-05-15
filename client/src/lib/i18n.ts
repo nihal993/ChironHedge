@@ -666,6 +666,14 @@ export const translations: Translations = {
     en: 'Equity Focus',
     it: 'Focus Azionario'
   },
+  'strategies.multiFactorEquity': {
+    en: 'Multi-Factor Equity Alpha',
+    it: 'Alpha Azionario Multi-Fattoriale'
+  },
+  'strategies.systematicEquity': {
+    en: 'Systematic equity selection combining value, momentum, quality, and low volatility factors with adaptive weighting algorithm.',
+    it: 'Selezione azionaria sistematica che combina fattori di valore, momentum, qualità e bassa volatilità con un algoritmo di ponderazione adattivo.'
+  },
   'strategies.fixedIncome': {
     en: 'Fixed Income',
     it: 'Reddito Fisso'

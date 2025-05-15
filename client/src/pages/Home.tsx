@@ -612,10 +612,10 @@ const Home = () => {
               
               <div className="bg-white border border-gray-100 p-6 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex justify-between mb-4">
-                  <span className="px-3 py-1 bg-blue-50 text-blue-600 text-xs font-medium rounded-full">Equities</span>
+                  <span className="px-3 py-1 bg-blue-50 text-blue-600 text-xs font-medium rounded-full">{t('strategies.equityFocus')}</span>
                   <span className="text-green-600 font-bold">+21.2%</span>
                 </div>
-                <h3 className="text-xl font-bold mb-3">Multi-Factor Equity Alpha</h3>
+                <h3 className="text-xl font-bold mb-3">{t('strategies.multiFactorEquity')}</h3>
                 <p className="text-primary/70 text-sm mb-5">
                   Systematic equity selection combining value, momentum, quality, and low volatility factors with adaptive weighting algorithm.
                 </p>
