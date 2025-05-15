@@ -12,6 +12,7 @@ import QuantitativeStrategies from "@/pages/QuantitativeStrategies";
 import Contact from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
 import AboutUs from "@/pages/AboutUs";
+import WhitePaper from "@/pages/WhitePaper";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { useEffect } from "react";
 
@@ -34,6 +35,7 @@ function Router() {
       <Route path="/quantitative-strategies" component={QuantitativeStrategies} />
       <Route path="/contact" component={Contact} />
       <Route path="/about" component={AboutUs} />
+      <Route path="/whitepaper" component={WhitePaper} />
       <Route component={NotFound} />
     </Switch>
   );

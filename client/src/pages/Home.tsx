@@ -225,9 +225,9 @@ const Home = () => {
                       {t('home.factorAnalysisDescription')}
                     </p>
                   </div>
-                  <a href="#" className="gs-arrow-link">
+                  <Link href="/whitepaper" className="gs-arrow-link">
                     {t('home.viewWhitePaper')} <ArrowRight className="h-4 w-4" />
-                  </a>
+                  </Link>
                 </div>
               </div>
               
