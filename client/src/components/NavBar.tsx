@@ -7,15 +7,7 @@ import LanguageSwitcher from "./LanguageSwitcher";
 import { Language, useLanguage } from "@/contexts/LanguageContext";
 import React from "react";
 
-// Componente wrapper per LanguageSwitcher che accetta una callback per chiudere il menu mobile
-const MobileLanguageSwitcher = ({ closeMenuCallback }: { closeMenuCallback: () => void }) => {
-  const handleLanguageChange = () => {
-    // Chiudi il menu quando la lingua viene cambiata
-    closeMenuCallback();
-  };
 
-  return <LanguageSwitcher onLanguageChange={handleLanguageChange} />;
-};
 import logoImage from "@/assets/logo.png";
 
 const navLinks = [
@@ -84,7 +76,7 @@ const NavBar = () => {
         </nav>
         
         <div className="hidden lg:flex items-center space-x-5">
-          <Link href="/contact" className="px-5 py-2.5 text-sm font-medium text-primary blue-gradient hover:brightness-105 rounded-none transition-all">
+          <Link href="/contact" className="px-5 py-2.5 text-sm font-medium text-white bg-secondary hover:bg-secondary/90 rounded-none transition-all">
             {t('contact')}
           </Link>
           
@@ -137,7 +129,7 @@ const NavBar = () => {
             <div className="flex flex-col space-y-3 pt-4 mt-2">
               <Link
                 href="/contact"
-                className="w-full px-5 py-2.5 text-center text-sm font-medium text-primary blue-gradient hover:brightness-105 rounded-none transition-all"
+                className="w-full px-5 py-2.5 text-center text-sm font-medium text-white bg-secondary hover:bg-secondary/90 rounded-none transition-all"
                 onClick={closeMenu}
               >
                 {t('contact')}
@@ -152,7 +144,7 @@ const NavBar = () => {
               
               {/* Language Switcher nel menu mobile */}
               <div className="flex justify-center py-3 border-t border-gray-100 mt-2">
-                <MobileLanguageSwitcher closeMenuCallback={closeMenu} />
+                <LanguageSwitcher onLanguageChange={() => closeMenu()} />
               </div>
             </div>
           </nav>

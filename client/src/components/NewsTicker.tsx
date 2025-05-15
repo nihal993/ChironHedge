@@ -4,6 +4,8 @@ import { ChevronLeft, ChevronRight, Clock, ExternalLink } from "lucide-react";
 import { AINews } from "@/lib/openai-service";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const NewsTicker = () => {
   const [news, setNews] = useState<AINews[]>([]);
@@ -11,6 +13,8 @@ const NewsTicker = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [activeNews, setActiveNews] = useState<AINews | null>(null);
   const { toast } = useToast();
+  const { t, language } = useLanguage();
+  const isMobile = useIsMobile();
 
   // Fetch AI-generated news from our API
   useEffect(() => {
@@ -24,8 +28,8 @@ const NewsTicker = () => {
       } catch (error) {
         console.error("Error fetching AI news:", error);
         toast({
-          title: "Error",
-          description: "Failed to load news. Please try again later.",
+          title: t('news.errorTitle'),
+          description: t('news.errorDescription'),
           variant: "destructive",
         });
         setIsLoading(false);
@@ -95,14 +99,15 @@ const NewsTicker = () => {
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentIndex}
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: -20, opacity: 0 }}
+                initial={isMobile ? { x: 100, opacity: 0 } : { y: 20, opacity: 0 }}
+                animate={isMobile ? { x: 0, opacity: 1 } : { y: 0, opacity: 1 }}
+                exit={isMobile ? { x: -100, opacity: 0 } : { y: -20, opacity: 0 }}
                 transition={{ duration: 0.3 }}
                 className="whitespace-nowrap overflow-hidden text-ellipsis text-center"
+                style={{ fontSize: isMobile ? '0.875rem' : 'inherit' }}
               >
                 <span className="text-white/70 text-xs mr-2">
-                  {news[currentIndex].date}
+                  {t('newsAI.updated')} {news[currentIndex].date}
                 </span>
                 <span className="font-medium mr-2 text-white">
                   {news[currentIndex].category}:
