@@ -617,7 +617,7 @@ const Home = () => {
                 </div>
                 <h3 className="text-xl font-bold mb-3">{t('strategies.multiFactorEquity')}</h3>
                 <p className="text-primary/70 text-sm mb-5">
-                  Systematic equity selection combining value, momentum, quality, and low volatility factors with adaptive weighting algorithm.
+                  {t('strategies.systematicEquity')}
                 </p>
                 <div className="h-40 mb-5">
                   <LineChart 
@@ -817,7 +817,7 @@ const Home = () => {
             
             <div className="flex justify-center">
               <a href="#" className="px-6 py-3 bg-blue-600 text-white hover:bg-blue-700 transition-colors text-sm font-medium flex items-center">
-                View all quantitative strategies <ArrowRight className="h-4 w-4 ml-2" />
+                {t('strategies.viewAll')} <ArrowRight className="h-4 w-4 ml-2" />
               </a>
             </div>
           </div>

@@ -722,6 +722,10 @@ export const translations: Translations = {
     en: 'View strategy details',
     it: 'Vedi dettagli strategia'
   },
+  'strategies.viewAll': {
+    en: 'View all quantitative strategies',
+    it: 'Visualizza tutte le strategie quantitative'
+  },
   'strategies.explore': {
     en: 'Explore the strategy',
     it: 'Esplora la strategia'
