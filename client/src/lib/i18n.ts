@@ -388,6 +388,30 @@ export const translations: Translations = {
     en: 'Our ESG research team provides a comprehensive framework for integrating sustainability metrics into investment decisions.',
     it: 'Il nostro team di ricerca ESG fornisce un framework completo per integrare le metriche di sostenibilità nelle decisioni di investimento.'
   },
+  'research.quantitative': {
+    en: 'Quantitative Research',
+    it: 'Ricerca Quantitativa'
+  },
+  'research.dataDriven': {
+    en: 'Data-driven frameworks',
+    it: 'Framework basati sui dati'
+  },
+  'research.marketStructure': {
+    en: 'Market Structure',
+    it: 'Struttura di Mercato'
+  },
+  'research.liquidityAnalysis': {
+    en: 'Liquidity and flow analysis',
+    it: 'Analisi di liquidità e flussi'
+  },
+  'research.policyResearch': {
+    en: 'Policy Research',
+    it: 'Ricerca sulle Politiche'
+  },
+  'research.regulatoryAnalysis': {
+    en: 'Regulatory analysis',
+    it: 'Analisi normativa'
+  },
   
   // Macro Report Section
   'macroReport.title': {

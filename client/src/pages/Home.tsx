@@ -435,45 +435,45 @@ const Home = () => {
             {/* Research Categories */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
               <a href="#" className="block p-4 border border-gray-100 bg-white hover:border-blue-200 hover:bg-blue-50 transition-colors">
-                <h4 className="font-medium text-lg mb-1">Macro Economic Analysis</h4>
-                <p className="text-primary/70 text-sm">Global trends, policy impacts</p>
+                <h4 className="font-medium text-lg mb-1">{t('research.macroEconomic')}</h4>
+                <p className="text-primary/70 text-sm">{t('research.globalTrends')}</p>
                 <div className="flex justify-between items-center mt-2">
-                  <span className="text-xs text-secondary">24 reports</span>
-                  <span className="text-blue-600 text-sm">→</span>
+                  <span className="text-xs text-secondary">24 {t('research.reportCount')}</span>
+                  <span className="text-secondary text-sm">→</span>
                 </div>
               </a>
               
               <a href="#" className="block p-4 border border-gray-100 bg-white hover:border-blue-200 hover:bg-blue-50 transition-colors">
-                <h4 className="font-medium text-lg mb-1">Sector Insights</h4>
-                <p className="text-primary/70 text-sm">Industry trends analysis</p>
+                <h4 className="font-medium text-lg mb-1">{t('research.sectorInsights')}</h4>
+                <p className="text-primary/70 text-sm">{t('research.industryTrends')}</p>
                 <div className="flex justify-between items-center mt-2">
-                  <span className="text-xs text-secondary">36 reports</span>
-                  <span className="text-blue-600 text-sm">→</span>
+                  <span className="text-xs text-secondary">36 {t('research.reportCount')}</span>
+                  <span className="text-secondary text-sm">→</span>
                 </div>
               </a>
               
               <a href="#" className="block p-4 border border-gray-100 bg-white hover:border-blue-200 hover:bg-blue-50 transition-colors">
-                <h4 className="font-medium text-lg mb-1">Quantitative Research</h4>
-                <p className="text-primary/70 text-sm">Data-driven frameworks</p>
+                <h4 className="font-medium text-lg mb-1">{t('research.quantitative')}</h4>
+                <p className="text-primary/70 text-sm">{t('research.dataDriven')}</p>
                 <div className="flex justify-between items-center mt-2">
-                  <span className="text-xs text-secondary">18 reports</span>
-                  <span className="text-blue-600 text-sm">→</span>
+                  <span className="text-xs text-secondary">18 {t('research.reportCount')}</span>
+                  <span className="text-secondary text-sm">→</span>
                 </div>
               </a>
               
               <a href="#" className="block p-4 border border-gray-100 bg-white hover:border-blue-200 hover:bg-blue-50 transition-colors">
-                <h4 className="font-medium text-lg mb-1">Policy Research</h4>
-                <p className="text-primary/70 text-sm">Regulatory analysis</p>
+                <h4 className="font-medium text-lg mb-1">{t('research.policyResearch')}</h4>
+                <p className="text-primary/70 text-sm">{t('research.regulatoryAnalysis')}</p>
                 <div className="flex justify-between items-center mt-2">
-                  <span className="text-xs text-secondary">16 reports</span>
-                  <span className="text-blue-600 text-sm">→</span>
+                  <span className="text-xs text-secondary">16 {t('research.reportCount')}</span>
+                  <span className="text-secondary text-sm">→</span>
                 </div>
               </a>
             </div>
             
             <div className="flex justify-end">
               <a href="#" className="gs-arrow-link">
-                View all research <ArrowRight className="h-4 w-4" />
+                {t('research.viewAll')} <ArrowRight className="h-4 w-4" />
               </a>
             </div>
           </div>
