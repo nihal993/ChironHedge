@@ -11,6 +11,7 @@ import MacroReport from "@/pages/MacroReport";
 import QuantitativeStrategies from "@/pages/QuantitativeStrategies";
 import Contact from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
+import AboutUs from "@/pages/AboutUs";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 
 function Router() {
@@ -24,6 +25,7 @@ function Router() {
       <Route path="/macro-report" component={MacroReport} />
       <Route path="/quantitative-strategies" component={QuantitativeStrategies} />
       <Route path="/contact" component={Contact} />
+      <Route path="/about" component={AboutUs} />
       <Route component={NotFound} />
     </Switch>
   );
