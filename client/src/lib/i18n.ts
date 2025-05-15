@@ -250,6 +250,14 @@ export const translations: Translations = {
     en: 'ago',
     it: 'fa'
   },
+  'news.errorTitle': {
+    en: 'Error',
+    it: 'Errore'
+  },
+  'news.errorDescription': {
+    en: 'Failed to load news. Please try again later.',
+    it: 'Impossibile caricare le notizie. Si prega di riprovare più tardi.'
+  },
   'newsAI.source': {
     en: 'Source',
     it: 'Fonte'
