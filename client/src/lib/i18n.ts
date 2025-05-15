@@ -412,6 +412,10 @@ export const translations: Translations = {
     en: 'Regulatory analysis',
     it: 'Analisi normativa'
   },
+  'research.viewAll': {
+    en: 'View all research',
+    it: 'Visualizza tutte le ricerche'
+  },
   
   // Macro Report Section
   'macroReport.title': {
@@ -421,6 +425,26 @@ export const translations: Translations = {
   'macroReport.description': {
     en: 'Our macroeconomic analysis provides a comprehensive view of global economic conditions and forecasts.',
     it: 'La nostra analisi macroeconomica fornisce una visione completa delle condizioni economiche globali e delle previsioni.'
+  },
+  'macroReport.globalEconomicGrowth': {
+    en: 'Global Economic Growth',
+    it: 'Crescita Economica Globale'
+  },
+  'macroReport.globalInflationTrends': {
+    en: 'Global Inflation Trends',
+    it: 'Tendenze dell\'Inflazione Globale'
+  },
+  'macroReport.updated': {
+    en: 'Updated',
+    it: 'Aggiornato'
+  },
+  'macroReport.viewFullReport': {
+    en: 'View full report',
+    it: 'Visualizza rapporto completo'
+  },
+  'macroReport.viewForecastMethodology': {
+    en: 'View forecast methodology',
+    it: 'Visualizza metodologia di previsione'
   },
   
   // Common actions

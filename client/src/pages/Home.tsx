@@ -484,7 +484,7 @@ const Home = () => {
       <section id="macro-report" className="gs-section">
         <div className="flex justify-between items-center mb-6">
           <h2 className="gs-header flex items-center">
-            Macroeconomic Analysis
+            {t('macroReport.title')}
             <button 
               onClick={() => toggleSection('macro-report')} 
               className="ml-4 p-1 rounded-full hover:bg-gray-100 transition-colors"
@@ -497,14 +497,14 @@ const Home = () => {
         {(activeSection === 'macro-report' || activeSection === null) && (
           <div>
             <p className="text-lg mb-6 max-w-3xl">
-              Our macroeconomic analysis provides a view of global economic conditions and forecasts.
+              {t('macroReport.description')}
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
               <div className="gs-chart-container">
                 <div className="flex justify-between items-center mb-4">
-                  <h3 className="gs-chart-title">Global Economic Growth</h3>
-                  <span className="gs-subtle-text">Updated: May 12, 2025</span>
+                  <h3 className="gs-chart-title">{t('macroReport.globalEconomicGrowth')}</h3>
+                  <span className="gs-subtle-text">{t('macroReport.updated')}: May 12, 2025</span>
                 </div>
                 <div className="h-64 mb-4">
                   <BarChart 
@@ -517,7 +517,7 @@ const Home = () => {
                 </div>
                 <div className="flex justify-end pt-3 border-t border-gray-100">
                   <a href="#" className="gs-arrow-link">
-                    View full report <ArrowRight className="h-4 w-4" />
+                    {t('macroReport.viewFullReport')} <ArrowRight className="h-4 w-4" />
                   </a>
                 </div>
               </div>
