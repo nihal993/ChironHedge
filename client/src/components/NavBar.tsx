@@ -84,7 +84,7 @@ const NavBar = () => {
         </nav>
         
         <div className="hidden lg:flex items-center space-x-5">
-          <Link href="/contact" className="px-5 py-2.5 text-sm font-medium text-white bg-secondary hover:bg-secondary/90 rounded-none transition-all">
+          <Link href="/contact" className="px-5 py-2.5 text-sm font-medium text-primary blue-gradient hover:brightness-105 rounded-none transition-all">
             {t('contact')}
           </Link>
           
@@ -137,7 +137,7 @@ const NavBar = () => {
             <div className="flex flex-col space-y-3 pt-4 mt-2">
               <Link
                 href="/contact"
-                className="w-full px-5 py-2.5 text-center text-sm font-medium text-white bg-secondary hover:bg-secondary/90 rounded-none transition-all"
+                className="w-full px-5 py-2.5 text-center text-sm font-medium text-primary blue-gradient hover:brightness-105 rounded-none transition-all"
                 onClick={closeMenu}
               >
                 {t('contact')}
