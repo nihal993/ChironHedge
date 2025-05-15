@@ -796,7 +796,7 @@ export const translations: Translations = {
     en: 'Explore the strategy',
     it: 'Esplora la strategia'
   },
-  'strategies.performance': {
+  'strategies.performanceYTD': {
     en: 'Performance YTD',
     it: 'Performance YTD'
   },
