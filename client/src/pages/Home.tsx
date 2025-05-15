@@ -88,8 +88,8 @@ const Home = () => {
         <div className="container mx-auto px-6 py-3">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
             <div className="flex items-center mb-2 sm:mb-0">
-              <div className="h-6 w-1 bg-blue-600 mr-3"></div>
-              <span className="text-sm font-medium text-blue-600">Latest Market News</span>
+              <div className="h-6 w-1 bg-secondary mr-3"></div>
+              <span className="text-sm font-medium text-secondary">{t('home.latestMarketNews')}</span>
               <span className="text-xs text-primary/50 ml-3">May 12, 2025</span>
             </div>
             
@@ -109,7 +109,7 @@ const Home = () => {
                 <span className="h-4 w-4 flex items-center justify-center">&#8250;</span>
               </button>
               
-              <a href="/news-ai" className="ml-2 text-blue-600 text-sm font-medium flex items-center">
+              <a href="/news-ai" className="ml-2 text-secondary text-sm font-medium flex items-center">
                 {t('home.moreNews')} <ArrowRight className="h-3 w-3 ml-1" />
               </a>
             </div>

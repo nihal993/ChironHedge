@@ -168,6 +168,10 @@ export const translations: Translations = {
     en: 'Market Volatility',
     it: 'Volatilità di Mercato'
   },
+  'home.latestMarketNews': {
+    en: 'Latest Market News',
+    it: 'Ultime Notizie di Mercato'
+  },
   'home.interestRates': {
     en: 'Interest Rates',
     it: 'Tassi di Interesse'
@@ -355,6 +359,34 @@ export const translations: Translations = {
   'research.description': {
     en: 'Our research combines rigorous academic methodologies with practical applications for institutional investors.',
     it: 'La nostra ricerca combina rigorose metodologie accademiche con applicazioni pratiche per investitori istituzionali.'
+  },
+  'research.macroEconomic': {
+    en: 'Macro Economic Analysis',
+    it: 'Analisi Macroeconomica'
+  },
+  'research.globalTrends': {
+    en: 'Global trends, policy impacts',
+    it: 'Tendenze globali, impatti politici'
+  },
+  'research.reportCount': {
+    en: 'reports',
+    it: 'report'
+  },
+  'research.sectorInsights': {
+    en: 'Sector Insights',
+    it: 'Analisi Settoriale'
+  },
+  'research.industryTrends': {
+    en: 'Industry trends analysis',
+    it: 'Analisi delle tendenze industriali'
+  },
+  'research.esgFramework': {
+    en: 'ESG Investment Framework for Institutions',
+    it: 'Framework ESG per Investimenti Istituzionali'
+  },
+  'research.esgDescription': {
+    en: 'Our ESG research team provides a comprehensive framework for integrating sustainability metrics into investment decisions.',
+    it: 'Il nostro team di ricerca ESG fornisce un framework completo per integrare le metriche di sostenibilità nelle decisioni di investimento.'
   },
   
   // Macro Report Section
