@@ -425,6 +425,64 @@ export const translations: Translations = {
     it: 'Visualizza tutte le ricerche'
   },
   
+  // Quantitative Strategies Section
+  'quantStrategies.title': {
+    en: 'Quantitative Strategies',
+    it: 'Strategie Quantitative'
+  },
+  'quantStrategies.subtitle': {
+    en: 'Proprietary systematic investment approaches combining advanced mathematical models, machine learning, and financial expertise to generate alpha across market conditions.',
+    it: 'Approcci di investimento sistematici proprietari che combinano modelli matematici avanzati, machine learning ed esperienza finanziaria per generare alpha in diverse condizioni di mercato.'
+  },
+  'strategies.featured': {
+    en: 'Featured Strategies',
+    it: 'Strategie in Evidenza'
+  },
+  'strategies.performance': {
+    en: 'Performance',
+    it: 'Performance'
+  },
+  'strategies.risk': {
+    en: 'Risk',
+    it: 'Rischio'
+  },
+  'strategies.sharpe': {
+    en: 'Sharpe',
+    it: 'Sharpe'
+  },
+  'strategies.strategyDetails': {
+    en: 'Strategy Details',
+    it: 'Dettagli della Strategia'
+  },
+  'strategies.backtest': {
+    en: 'Backtest Results',
+    it: 'Risultati del Backtest'
+  },
+  'strategies.cumulativeReturn': {
+    en: 'Cumulative Return',
+    it: 'Rendimento Cumulativo'
+  },
+  'strategies.drawdowns': {
+    en: 'Maximum Drawdowns',
+    it: 'Drawdown Massimi'
+  },
+  'strategies.monthlyReturns': {
+    en: 'Monthly Returns',
+    it: 'Rendimenti Mensili'
+  },
+  'strategies.performanceMetrics': {
+    en: 'Performance Metrics',
+    it: 'Metriche di Performance'
+  },
+  'strategies.strategy': {
+    en: 'Strategy',
+    it: 'Strategia'
+  },
+  'strategies.benchmark': {
+    en: 'Benchmark',
+    it: 'Benchmark'
+  },
+  
   // Macro Report Section
   'macroReport.title': {
     en: 'Macroeconomic Analysis',

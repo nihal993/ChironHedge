@@ -4,6 +4,7 @@ import { Link } from "wouter";
 import { ChevronRight } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import FinancialChart from "@/components/FinancialChart";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { 
   AreaChart, 
   Area, 
