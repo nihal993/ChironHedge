@@ -662,6 +662,58 @@ export const translations: Translations = {
     en: 'Multi-Asset',
     it: 'Multi-Asset'
   },
+  'strategies.equityFocus': {
+    en: 'Equity Focus',
+    it: 'Focus Azionario'
+  },
+  'strategies.fixedIncome': {
+    en: 'Fixed Income',
+    it: 'Reddito Fisso'
+  },
+  'strategies.globalTactical': {
+    en: 'Global Tactical Asset Allocation',
+    it: 'Allocazione Tattica Globale degli Asset'
+  },
+  'strategies.factorRotation': {
+    en: 'Multi-Factor Rotation Strategy',
+    it: 'Strategia di Rotazione Multi-Fattoriale'
+  },
+  'strategies.absoluteReturn': {
+    en: 'Absolute Return Fixed Income',
+    it: 'Reddito Fisso a Ritorno Assoluto'
+  },
+  'strategies.ytdPerformance': {
+    en: 'YTD Performance',
+    it: 'Performance YTD'
+  },
+  'strategies.dynamicAllocation': {
+    en: 'Dynamic allocation across global asset classes driven by proprietary regime identification and risk parity optimization techniques.',
+    it: 'Allocazione dinamica tra classi di attività globali guidata da tecniche proprietarie di identificazione del regime e ottimizzazione della parità di rischio.'
+  },
+  'strategies.factorDescription': {
+    en: 'Adaptive factor rotation strategy that dynamically adjusts equity factor exposures based on market regime forecasts and risk models.',
+    it: 'Strategia di rotazione fattoriale adattiva che regola dinamicamente le esposizioni ai fattori azionari in base alle previsioni del regime di mercato e ai modelli di rischio.'
+  },
+  'strategies.absoluteDescription': {
+    en: 'Systematic approach to fixed income investing that targets absolute returns across interest rate environments with dynamic duration management.',
+    it: 'Approccio sistematico all\'investimento a reddito fisso che mira a rendimenti assoluti in diversi ambienti di tassi di interesse con gestione dinamica della duration.'
+  },
+  'strategies.metrics': {
+    en: {
+      sharpe: 'Sharpe',
+      vol: 'Vol',
+      maxdd: 'Max DD'
+    },
+    it: {
+      sharpe: 'Sharpe',
+      vol: 'Vol',
+      maxdd: 'Max DD'
+    }
+  },
+  'strategies.viewDetails': {
+    en: 'View strategy details',
+    it: 'Vedi dettagli strategia'
+  },
   'strategies.explore': {
     en: 'Explore the strategy',
     it: 'Esplora la strategia'
