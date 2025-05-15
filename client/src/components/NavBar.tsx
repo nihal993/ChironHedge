@@ -138,6 +138,11 @@ const NavBar = () => {
               >
                 {t('login')}
               </Link>
+              
+              {/* Language Switcher nel menu mobile */}
+              <div className="flex justify-center py-3 border-t border-gray-100 mt-2">
+                <LanguageSwitcher />
+              </div>
             </div>
           </nav>
         </motion.div>
