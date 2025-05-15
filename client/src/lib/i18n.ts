@@ -440,7 +440,7 @@ export const translations: Translations = {
     en: 'Featured Strategies',
     it: 'Strategie in Evidenza'
   },
-  'strategies.multiAsset': {
+  'strategies.multiAsset1': {
     en: 'Multi-Asset',
     it: 'Multi-Asset'
   },
@@ -738,7 +738,7 @@ export const translations: Translations = {
     en: 'Our systematic quantitative strategies harness advanced mathematics and machine learning for consistent alpha generation across market conditions.',
     it: 'Le nostre strategie quantitative sistematiche sfruttano matematica avanzata e apprendimento automatico per generare alpha consistente in diverse condizioni di mercato.'
   },
-  'strategies.multiAsset': {
+  'strategies.multiAssetDiv': {
     en: 'Multi-Asset',
     it: 'Multi-Asset'
   },
