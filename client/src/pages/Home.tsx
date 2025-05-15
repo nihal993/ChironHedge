@@ -593,15 +593,15 @@ const Home = () => {
                 </div>
                 <div className="grid grid-cols-3 gap-4 mb-4">
                   <div className="text-center p-2 bg-gray-50">
-                    <p className="text-xs text-primary/60">Sharpe</p>
+                    <p className="text-xs text-primary/60">{t('strategies.metrics.sharpe')}</p>
                     <p className="text-primary font-bold">1.94</p>
                   </div>
                   <div className="text-center p-2 bg-gray-50">
-                    <p className="text-xs text-primary/60">Vol</p>
+                    <p className="text-xs text-primary/60">{t('strategies.metrics.vol')}</p>
                     <p className="text-primary font-bold">9.2%</p>
                   </div>
                   <div className="text-center p-2 bg-gray-50">
-                    <p className="text-xs text-primary/60">Max DD</p>
+                    <p className="text-xs text-primary/60">{t('strategies.metrics.maxdd')}</p>
                     <p className="text-primary font-bold">-8.1%</p>
                   </div>
                 </div>
