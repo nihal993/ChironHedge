@@ -482,6 +482,10 @@ export const translations: Translations = {
     en: 'Benchmark',
     it: 'Benchmark'
   },
+  'strategies.metric': {
+    en: 'Metric',
+    it: 'Metrica'
+  },
   
   // Macro Report Section
   'macroReport.title': {

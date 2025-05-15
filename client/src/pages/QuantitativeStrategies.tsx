@@ -306,7 +306,7 @@ const QuantitativeStrategies = () => {
               
               <TabsContent value="drawdowns" className="pt-4">
                 <div className="bg-white p-6 rounded-lg shadow-sm">
-                  <h4 className="text-lg font-bold mb-4">Historical Drawdowns (%)</h4>
+                  <h4 className="text-lg font-bold mb-4">{t('strategies.drawdowns')}</h4>
                   <div className="h-96">
                     <ResponsiveContainer width="100%" height="100%">
                       <BarChart
@@ -339,7 +339,7 @@ const QuantitativeStrategies = () => {
               
               <TabsContent value="monthly" className="pt-4">
                 <div className="bg-white p-6 rounded-lg shadow-sm">
-                  <h4 className="text-lg font-bold mb-4">Monthly Returns (Last 12 Months)</h4>
+                  <h4 className="text-lg font-bold mb-4">{t('strategies.monthlyReturns')}</h4>
                   <div className="h-96">
                     <ResponsiveContainer width="100%" height="100%">
                       <BarChart
@@ -388,14 +388,14 @@ const QuantitativeStrategies = () => {
               
               <TabsContent value="metrics" className="pt-4">
                 <div className="bg-white p-6 rounded-lg shadow-sm">
-                  <h4 className="text-lg font-bold mb-4">Performance Metrics</h4>
+                  <h4 className="text-lg font-bold mb-4">{t('strategies.performanceMetrics')}</h4>
                   <div className="overflow-x-auto">
                     <table className="w-full">
                       <thead>
                         <tr className="border-b border-gray-200">
-                          <th className="text-left py-3 px-4 font-semibold text-sm">Metric</th>
-                          <th className="text-left py-3 px-4 font-semibold text-sm">{strategy.title}</th>
-                          <th className="text-left py-3 px-4 font-semibold text-sm">Benchmark</th>
+                          <th className="text-left py-3 px-4 font-semibold text-sm">{t('strategies.metric')}</th>
+                          <th className="text-left py-3 px-4 font-semibold text-sm">{t('strategies.strategy')}</th>
+                          <th className="text-left py-3 px-4 font-semibold text-sm">{t('strategies.benchmark')}</th>
                         </tr>
                       </thead>
                       <tbody>
