@@ -61,15 +61,32 @@ const yieldCurveData = [
 ];
 
 const CustomTooltip = ({ active, payload, label }: any) => {
+  const { t } = useLanguage();
+  
   if (active && payload && payload.length) {
     return (
       <div className="bg-white p-3 shadow-md rounded border border-gray-100">
         <p className="font-bold">{label}</p>
-        {payload.map((entry: any, index: number) => (
-          <p key={`item-${index}`} style={{ color: entry.color }}>
-            {entry.name}: {entry.value.toFixed(2)}
-          </p>
-        ))}
+        {payload.map((entry: any, index: number) => {
+          // Traduci il nome della serie se necessario
+          let translatedName = entry.name;
+          if (entry.dataKey === 'realized') translatedName = t('chart.realized');
+          if (entry.dataKey === 'predicted') translatedName = t('chart.predicted');
+          if (entry.dataKey === 'historical') translatedName = t('chart.historical');
+          if (entry.dataKey === 'value') translatedName = t('chart.value');
+          if (entry.dataKey === 'momentum') translatedName = t('chart.momentum');
+          if (entry.dataKey === 'quality') translatedName = t('chart.quality');
+          if (entry.dataKey === 'lowVol') translatedName = t('chart.lowVol');
+          if (entry.dataKey === 'current') translatedName = t('chart.current');
+          if (entry.dataKey === 'lastMonth') translatedName = t('chart.lastMonth');
+          if (entry.dataKey === 'lastYear') translatedName = t('chart.lastYear');
+          
+          return (
+            <p key={`item-${index}`} style={{ color: entry.color }}>
+              {translatedName}: {entry.value.toFixed(2)}
+            </p>
+          );
+        })}
       </div>
     );
   }
@@ -155,19 +172,19 @@ const QuantitativeModel = () => {
                 </div>
                 <div className="grid md:grid-cols-3 gap-4 mt-8">
                   <div className="bg-white p-4 rounded shadow-sm">
-                    <p className="text-sm text-primary/60 mb-1">Model Accuracy</p>
+                    <p className="text-sm text-primary/60 mb-1">{t('chart.modelAccuracy')}</p>
                     <p className="text-2xl font-bold text-secondary">92.7%</p>
-                    <p className="text-xs text-primary/50">Last 12 months</p>
+                    <p className="text-xs text-primary/50">{t('chart.lastMonths')}</p>
                   </div>
                   <div className="bg-white p-4 rounded shadow-sm">
-                    <p className="text-sm text-primary/60 mb-1">Average Deviation</p>
+                    <p className="text-sm text-primary/60 mb-1">{t('chart.averageDeviation')}</p>
                     <p className="text-2xl font-bold text-secondary">±1.2%</p>
-                    <p className="text-xs text-primary/50">Predicted vs. Realized</p>
+                    <p className="text-xs text-primary/50">{t('chart.predictedVsRealized')}</p>
                   </div>
                   <div className="bg-white p-4 rounded shadow-sm">
-                    <p className="text-sm text-primary/60 mb-1">Current Forecast</p>
+                    <p className="text-sm text-primary/60 mb-1">{t('chart.currentForecast')}</p>
                     <p className="text-2xl font-bold text-secondary">22.4%</p>
-                    <p className="text-xs text-primary/50">Next 30 days</p>
+                    <p className="text-xs text-primary/50">{t('chart.next30days')}</p>
                   </div>
                 </div>
               </div>

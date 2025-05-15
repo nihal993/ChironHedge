@@ -168,6 +168,10 @@ export const translations: Translations = {
     en: 'Market Volatility',
     it: 'Volatilità di Mercato'
   },
+  'home.latestMarketNews': {
+    en: 'Latest Market News',
+    it: 'Ultime Notizie di Mercato'
+  },
   'home.interestRates': {
     en: 'Interest Rates',
     it: 'Tassi di Interesse'
@@ -245,6 +249,14 @@ export const translations: Translations = {
   'newsAI.ago': {
     en: 'ago',
     it: 'fa'
+  },
+  'news.errorTitle': {
+    en: 'Error',
+    it: 'Errore'
+  },
+  'news.errorDescription': {
+    en: 'Failed to load news. Please try again later.',
+    it: 'Impossibile caricare le notizie. Si prega di riprovare più tardi.'
   },
   'newsAI.source': {
     en: 'Source',
@@ -356,6 +368,62 @@ export const translations: Translations = {
     en: 'Our research combines rigorous academic methodologies with practical applications for institutional investors.',
     it: 'La nostra ricerca combina rigorose metodologie accademiche con applicazioni pratiche per investitori istituzionali.'
   },
+  'research.macroEconomic': {
+    en: 'Macro Economic Analysis',
+    it: 'Analisi Macroeconomica'
+  },
+  'research.globalTrends': {
+    en: 'Global trends, policy impacts',
+    it: 'Tendenze globali, impatti politici'
+  },
+  'research.reportCount': {
+    en: 'reports',
+    it: 'report'
+  },
+  'research.sectorInsights': {
+    en: 'Sector Insights',
+    it: 'Analisi Settoriale'
+  },
+  'research.industryTrends': {
+    en: 'Industry trends analysis',
+    it: 'Analisi delle tendenze industriali'
+  },
+  'research.esgFramework': {
+    en: 'ESG Investment Framework for Institutions',
+    it: 'Framework ESG per Investimenti Istituzionali'
+  },
+  'research.esgDescription': {
+    en: 'Our ESG research team provides a comprehensive framework for integrating sustainability metrics into investment decisions.',
+    it: 'Il nostro team di ricerca ESG fornisce un framework completo per integrare le metriche di sostenibilità nelle decisioni di investimento.'
+  },
+  'research.quantitative': {
+    en: 'Quantitative Research',
+    it: 'Ricerca Quantitativa'
+  },
+  'research.dataDriven': {
+    en: 'Data-driven frameworks',
+    it: 'Framework basati sui dati'
+  },
+  'research.marketStructure': {
+    en: 'Market Structure',
+    it: 'Struttura di Mercato'
+  },
+  'research.liquidityAnalysis': {
+    en: 'Liquidity and flow analysis',
+    it: 'Analisi di liquidità e flussi'
+  },
+  'research.policyResearch': {
+    en: 'Policy Research',
+    it: 'Ricerca sulle Politiche'
+  },
+  'research.regulatoryAnalysis': {
+    en: 'Regulatory analysis',
+    it: 'Analisi normativa'
+  },
+  'research.viewAll': {
+    en: 'View all research',
+    it: 'Visualizza tutte le ricerche'
+  },
   
   // Macro Report Section
   'macroReport.title': {
@@ -365,6 +433,30 @@ export const translations: Translations = {
   'macroReport.description': {
     en: 'Our macroeconomic analysis provides a comprehensive view of global economic conditions and forecasts.',
     it: 'La nostra analisi macroeconomica fornisce una visione completa delle condizioni economiche globali e delle previsioni.'
+  },
+  'macroReport.globalEconomicGrowth': {
+    en: 'Global Economic Growth',
+    it: 'Crescita Economica Globale'
+  },
+  'macroReport.globalInflationTrends': {
+    en: 'Global Inflation Trends',
+    it: 'Tendenze dell\'Inflazione Globale'
+  },
+  'macroReport.updated': {
+    en: 'Updated',
+    it: 'Aggiornato'
+  },
+  'macroReport.viewFullReport': {
+    en: 'View full report',
+    it: 'Visualizza rapporto completo'
+  },
+  'macroReport.viewForecastMethodology': {
+    en: 'View forecast methodology',
+    it: 'Visualizza metodologia di previsione'
+  },
+  'macroReport.viewAllMacro': {
+    en: 'View all macroeconomic analysis',
+    it: 'Visualizza tutte le analisi macroeconomiche'
   },
   
   // Common actions
@@ -383,6 +475,72 @@ export const translations: Translations = {
   'action.viewReport': {
     en: 'View report',
     it: 'Visualizza report'
+  },
+  
+  // Chart and Data labels
+  'chart.modelAccuracy': {
+    en: 'Model Accuracy',
+    it: 'Precisione del Modello'
+  },
+  'chart.lastMonths': {
+    en: 'Last 12 months',
+    it: 'Ultimi 12 mesi'
+  },
+  'chart.averageDeviation': {
+    en: 'Average Deviation',
+    it: 'Deviazione Media'
+  },
+  'chart.predictedVsRealized': {
+    en: 'Predicted vs. Realized',
+    it: 'Previsto vs. Realizzato'
+  },
+  'chart.currentForecast': {
+    en: 'Current Forecast',
+    it: 'Previsione Attuale'
+  },
+  'chart.next30days': {
+    en: 'Next 30 days',
+    it: 'Prossimi 30 giorni'
+  },
+  'chart.realized': {
+    en: 'Realized',
+    it: 'Realizzato'
+  },
+  'chart.predicted': {
+    en: 'Predicted',
+    it: 'Previsto'
+  },
+  'chart.historical': {
+    en: 'Historical',
+    it: 'Storico'
+  },
+  'chart.value': {
+    en: 'Value',
+    it: 'Valore'
+  },
+  'chart.momentum': {
+    en: 'Momentum',
+    it: 'Momentum'
+  },
+  'chart.quality': {
+    en: 'Quality',
+    it: 'Qualità'
+  },
+  'chart.lowVol': {
+    en: 'Low Volatility',
+    it: 'Bassa Volatilità'
+  },
+  'chart.current': {
+    en: 'Current',
+    it: 'Attuale'
+  },
+  'chart.lastMonth': {
+    en: 'Last Month',
+    it: 'Mese Scorso'
+  },
+  'chart.lastYear': {
+    en: 'Last Year',
+    it: 'Anno Scorso'
   },
   
   // Auth and Contact
@@ -503,6 +661,78 @@ export const translations: Translations = {
   'strategies.description': {
     en: 'Our proprietary strategies combine cutting-edge machine learning techniques, big data, and traditional financial modeling.',
     it: 'Le nostre strategie proprietarie uniscono tecniche all\'avanguardia di machine learning, big data e modellazione finanziaria tradizionale.'
+  },
+  'strategies.systemDescription': {
+    en: 'Our systematic quantitative strategies harness advanced mathematics and machine learning for consistent alpha generation across market conditions.',
+    it: 'Le nostre strategie quantitative sistematiche sfruttano matematica avanzata e apprendimento automatico per generare alpha consistente in diverse condizioni di mercato.'
+  },
+  'strategies.multiAsset': {
+    en: 'Multi-Asset',
+    it: 'Multi-Asset'
+  },
+  'strategies.equityFocus': {
+    en: 'Equity Focus',
+    it: 'Focus Azionario'
+  },
+  'strategies.multiFactorEquity': {
+    en: 'Multi-Factor Equity Alpha',
+    it: 'Alpha Azionario Multi-Fattoriale'
+  },
+  'strategies.systematicEquity': {
+    en: 'Systematic equity selection combining value, momentum, quality, and low volatility factors with adaptive weighting algorithm.',
+    it: 'Selezione azionaria sistematica che combina fattori di valore, momentum, qualità e bassa volatilità con un algoritmo di ponderazione adattivo.'
+  },
+  'strategies.fixedIncome': {
+    en: 'Fixed Income',
+    it: 'Reddito Fisso'
+  },
+  'strategies.globalTactical': {
+    en: 'Global Tactical Asset Allocation',
+    it: 'Allocazione Tattica Globale degli Asset'
+  },
+  'strategies.factorRotation': {
+    en: 'Multi-Factor Rotation Strategy',
+    it: 'Strategia di Rotazione Multi-Fattoriale'
+  },
+  'strategies.absoluteReturn': {
+    en: 'Absolute Return Fixed Income',
+    it: 'Reddito Fisso a Ritorno Assoluto'
+  },
+  'strategies.ytdPerformance': {
+    en: 'YTD Performance',
+    it: 'Performance YTD'
+  },
+  'strategies.dynamicAllocation': {
+    en: 'Dynamic allocation across global asset classes driven by proprietary regime identification and risk parity optimization techniques.',
+    it: 'Allocazione dinamica tra classi di attività globali guidata da tecniche proprietarie di identificazione del regime e ottimizzazione della parità di rischio.'
+  },
+  'strategies.factorDescription': {
+    en: 'Adaptive factor rotation strategy that dynamically adjusts equity factor exposures based on market regime forecasts and risk models.',
+    it: 'Strategia di rotazione fattoriale adattiva che regola dinamicamente le esposizioni ai fattori azionari in base alle previsioni del regime di mercato e ai modelli di rischio.'
+  },
+  'strategies.absoluteDescription': {
+    en: 'Systematic approach to fixed income investing that targets absolute returns across interest rate environments with dynamic duration management.',
+    it: 'Approccio sistematico all\'investimento a reddito fisso che mira a rendimenti assoluti in diversi ambienti di tassi di interesse con gestione dinamica della duration.'
+  },
+  'strategies.metrics.sharpe': {
+    en: 'Sharpe',
+    it: 'Sharpe'
+  },
+  'strategies.metrics.vol': {
+    en: 'Vol',
+    it: 'Vol'
+  },
+  'strategies.metrics.maxdd': {
+    en: 'Max DD',
+    it: 'Max DD'
+  },
+  'strategies.viewDetails': {
+    en: 'View strategy details',
+    it: 'Vedi dettagli strategia'
+  },
+  'strategies.viewAll': {
+    en: 'View all quantitative strategies',
+    it: 'Visualizza tutte le strategie quantitative'
   },
   'strategies.explore': {
     en: 'Explore the strategy',

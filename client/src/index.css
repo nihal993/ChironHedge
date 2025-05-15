@@ -14,17 +14,17 @@
   --popover-foreground: 0 0% 0%;
   --primary: 0 0% 0%;       /* Black - Primary color */
   --primary-foreground: 0 0% 100%;
-  --secondary: 220 60% 40%; /* Blue accent (like GS) */
+  --secondary: 212 100% 25%;  /* Blu Chiron (navy blue) */
   --secondary-foreground: 0 0% 100%;
   --muted: 210 20% 98%;     /* Light gray for backgrounds */
   --muted-foreground: 0 0% 45%;
-  --accent: 220 60% 40%;    /* Blue accent */
+  --accent: 212 100% 25%;   /* Blu Chiron (navy blue) */
   --accent-foreground: 0 0% 100%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
   --border: 0 0% 92%;
   --input: 0 0% 92%;
-  --ring: 220 60% 40%;      /* Blue accent */
+  --ring: 212 100% 25%;     /* Blu Chiron (navy blue) */
   --radius: 0rem;           /* Square corners */
 }
 
@@ -102,7 +102,7 @@
 }
 
 .gs-blue-btn {
-  background: linear-gradient(135deg, #0033A0 0%, #0052CC 100%);
+  background: hsl(var(--secondary));
   color: white;
   padding: 0.75rem 1.5rem;
   border: none;

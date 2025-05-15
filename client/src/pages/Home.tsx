@@ -88,8 +88,8 @@ const Home = () => {
         <div className="container mx-auto px-6 py-3">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
             <div className="flex items-center mb-2 sm:mb-0">
-              <div className="h-6 w-1 bg-blue-600 mr-3"></div>
-              <span className="text-sm font-medium text-blue-600">Latest Market News</span>
+              <div className="h-6 w-1 bg-secondary mr-3"></div>
+              <span className="text-sm font-medium text-secondary">{t('home.latestMarketNews')}</span>
               <span className="text-xs text-primary/50 ml-3">May 12, 2025</span>
             </div>
             
@@ -109,7 +109,7 @@ const Home = () => {
                 <span className="h-4 w-4 flex items-center justify-center">&#8250;</span>
               </button>
               
-              <a href="/news-ai" className="ml-2 text-blue-600 text-sm font-medium flex items-center">
+              <a href="/news-ai" className="ml-2 text-secondary text-sm font-medium flex items-center">
                 {t('home.moreNews')} <ArrowRight className="h-3 w-3 ml-1" />
               </a>
             </div>
@@ -435,45 +435,45 @@ const Home = () => {
             {/* Research Categories */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
               <a href="#" className="block p-4 border border-gray-100 bg-white hover:border-blue-200 hover:bg-blue-50 transition-colors">
-                <h4 className="font-medium text-lg mb-1">Macro Economic Analysis</h4>
-                <p className="text-primary/70 text-sm">Global trends, policy impacts</p>
+                <h4 className="font-medium text-lg mb-1">{t('research.macroEconomic')}</h4>
+                <p className="text-primary/70 text-sm">{t('research.globalTrends')}</p>
                 <div className="flex justify-between items-center mt-2">
-                  <span className="text-xs text-secondary">24 reports</span>
-                  <span className="text-blue-600 text-sm">→</span>
+                  <span className="text-xs text-secondary">24 {t('research.reportCount')}</span>
+                  <span className="text-secondary text-sm">→</span>
                 </div>
               </a>
               
               <a href="#" className="block p-4 border border-gray-100 bg-white hover:border-blue-200 hover:bg-blue-50 transition-colors">
-                <h4 className="font-medium text-lg mb-1">Sector Insights</h4>
-                <p className="text-primary/70 text-sm">Industry trends analysis</p>
+                <h4 className="font-medium text-lg mb-1">{t('research.sectorInsights')}</h4>
+                <p className="text-primary/70 text-sm">{t('research.industryTrends')}</p>
                 <div className="flex justify-between items-center mt-2">
-                  <span className="text-xs text-secondary">36 reports</span>
-                  <span className="text-blue-600 text-sm">→</span>
+                  <span className="text-xs text-secondary">36 {t('research.reportCount')}</span>
+                  <span className="text-secondary text-sm">→</span>
                 </div>
               </a>
               
               <a href="#" className="block p-4 border border-gray-100 bg-white hover:border-blue-200 hover:bg-blue-50 transition-colors">
-                <h4 className="font-medium text-lg mb-1">Quantitative Research</h4>
-                <p className="text-primary/70 text-sm">Data-driven frameworks</p>
+                <h4 className="font-medium text-lg mb-1">{t('research.quantitative')}</h4>
+                <p className="text-primary/70 text-sm">{t('research.dataDriven')}</p>
                 <div className="flex justify-between items-center mt-2">
-                  <span className="text-xs text-secondary">18 reports</span>
-                  <span className="text-blue-600 text-sm">→</span>
+                  <span className="text-xs text-secondary">18 {t('research.reportCount')}</span>
+                  <span className="text-secondary text-sm">→</span>
                 </div>
               </a>
               
               <a href="#" className="block p-4 border border-gray-100 bg-white hover:border-blue-200 hover:bg-blue-50 transition-colors">
-                <h4 className="font-medium text-lg mb-1">Policy Research</h4>
-                <p className="text-primary/70 text-sm">Regulatory analysis</p>
+                <h4 className="font-medium text-lg mb-1">{t('research.policyResearch')}</h4>
+                <p className="text-primary/70 text-sm">{t('research.regulatoryAnalysis')}</p>
                 <div className="flex justify-between items-center mt-2">
-                  <span className="text-xs text-secondary">16 reports</span>
-                  <span className="text-blue-600 text-sm">→</span>
+                  <span className="text-xs text-secondary">16 {t('research.reportCount')}</span>
+                  <span className="text-secondary text-sm">→</span>
                 </div>
               </a>
             </div>
             
             <div className="flex justify-end">
               <a href="#" className="gs-arrow-link">
-                View all research <ArrowRight className="h-4 w-4" />
+                {t('research.viewAll')} <ArrowRight className="h-4 w-4" />
               </a>
             </div>
           </div>
@@ -484,7 +484,7 @@ const Home = () => {
       <section id="macro-report" className="gs-section">
         <div className="flex justify-between items-center mb-6">
           <h2 className="gs-header flex items-center">
-            Macroeconomic Analysis
+            {t('macroReport.title')}
             <button 
               onClick={() => toggleSection('macro-report')} 
               className="ml-4 p-1 rounded-full hover:bg-gray-100 transition-colors"
@@ -497,14 +497,14 @@ const Home = () => {
         {(activeSection === 'macro-report' || activeSection === null) && (
           <div>
             <p className="text-lg mb-6 max-w-3xl">
-              Our macroeconomic analysis provides a view of global economic conditions and forecasts.
+              {t('macroReport.description')}
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
               <div className="gs-chart-container">
                 <div className="flex justify-between items-center mb-4">
-                  <h3 className="gs-chart-title">Global Economic Growth</h3>
-                  <span className="gs-subtle-text">Updated: May 12, 2025</span>
+                  <h3 className="gs-chart-title">{t('macroReport.globalEconomicGrowth')}</h3>
+                  <span className="gs-subtle-text">{t('macroReport.updated')}: May 12, 2025</span>
                 </div>
                 <div className="h-64 mb-4">
                   <BarChart 
@@ -517,15 +517,15 @@ const Home = () => {
                 </div>
                 <div className="flex justify-end pt-3 border-t border-gray-100">
                   <a href="#" className="gs-arrow-link">
-                    View full report <ArrowRight className="h-4 w-4" />
+                    {t('macroReport.viewFullReport')} <ArrowRight className="h-4 w-4" />
                   </a>
                 </div>
               </div>
               
               <div className="gs-chart-container">
                 <div className="flex justify-between items-center mb-4">
-                  <h3 className="gs-chart-title">Global Inflation Trends</h3>
-                  <span className="gs-subtle-text">Updated: May 10, 2025</span>
+                  <h3 className="gs-chart-title">{t('macroReport.globalInflationTrends')}</h3>
+                  <span className="gs-subtle-text">{t('macroReport.updated')}: May 10, 2025</span>
                 </div>
                 <div className="h-64 mb-4">
                   <LineChart 
@@ -537,7 +537,7 @@ const Home = () => {
                 </div>
                 <div className="flex justify-end pt-3 border-t border-gray-100">
                   <a href="#" className="gs-arrow-link">
-                    View forecast methodology <ArrowRight className="h-4 w-4" />
+                    {t('macroReport.viewForecastMethodology')} <ArrowRight className="h-4 w-4" />
                   </a>
                 </div>
               </div>
@@ -545,7 +545,7 @@ const Home = () => {
             
             <div className="flex justify-end mb-2">
               <a href="#" className="gs-arrow-link">
-                View all macroeconomic analysis <ArrowRight className="h-4 w-4" />
+                {t('macroReport.viewAllMacro')} <ArrowRight className="h-4 w-4" />
               </a>
             </div>
           </div>
@@ -569,19 +569,19 @@ const Home = () => {
         {(activeSection === 'quantitative-strategies' || activeSection === null) && (
           <div>
             <p className="text-lg mb-8 max-w-3xl">
-              Our systematic quantitative strategies harness advanced mathematics and machine learning for consistent alpha generation across market conditions.
+              {t('strategies.systemDescription')}
             </p>
             
             {/* Strategy Cards Row 1 */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               <div className="bg-white border border-gray-100 p-6 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex justify-between mb-4">
-                  <span className="px-3 py-1 bg-blue-50 text-blue-600 text-xs font-medium rounded-full">Multi-Asset</span>
+                  <span className="px-3 py-1 bg-blue-50 text-blue-600 text-xs font-medium rounded-full">{t('strategies.multiAsset')}</span>
                   <span className="text-green-600 font-bold">+16.4%</span>
                 </div>
-                <h3 className="text-xl font-bold mb-3">Global Tactical Asset Allocation</h3>
+                <h3 className="text-xl font-bold mb-3">{t('strategies.globalTactical')}</h3>
                 <p className="text-primary/70 text-sm mb-5">
-                  Dynamic allocation across global asset classes driven by proprietary regime identification and risk parity optimization techniques.
+                  {t('strategies.dynamicAllocation')}
                 </p>
                 <div className="h-40 mb-5">
                   <LineChart 
@@ -593,15 +593,15 @@ const Home = () => {
                 </div>
                 <div className="grid grid-cols-3 gap-4 mb-4">
                   <div className="text-center p-2 bg-gray-50">
-                    <p className="text-xs text-primary/60">Sharpe</p>
+                    <p className="text-xs text-primary/60">{t('strategies.metrics.sharpe')}</p>
                     <p className="text-primary font-bold">1.94</p>
                   </div>
                   <div className="text-center p-2 bg-gray-50">
-                    <p className="text-xs text-primary/60">Vol</p>
+                    <p className="text-xs text-primary/60">{t('strategies.metrics.vol')}</p>
                     <p className="text-primary font-bold">9.2%</p>
                   </div>
                   <div className="text-center p-2 bg-gray-50">
-                    <p className="text-xs text-primary/60">Max DD</p>
+                    <p className="text-xs text-primary/60">{t('strategies.metrics.maxdd')}</p>
                     <p className="text-primary font-bold">-8.1%</p>
                   </div>
                 </div>
@@ -612,12 +612,12 @@ const Home = () => {
               
               <div className="bg-white border border-gray-100 p-6 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex justify-between mb-4">
-                  <span className="px-3 py-1 bg-blue-50 text-blue-600 text-xs font-medium rounded-full">Equities</span>
+                  <span className="px-3 py-1 bg-blue-50 text-blue-600 text-xs font-medium rounded-full">{t('strategies.equityFocus')}</span>
                   <span className="text-green-600 font-bold">+21.2%</span>
                 </div>
-                <h3 className="text-xl font-bold mb-3">Multi-Factor Equity Alpha</h3>
+                <h3 className="text-xl font-bold mb-3">{t('strategies.multiFactorEquity')}</h3>
                 <p className="text-primary/70 text-sm mb-5">
-                  Systematic equity selection combining value, momentum, quality, and low volatility factors with adaptive weighting algorithm.
+                  {t('strategies.systematicEquity')}
                 </p>
                 <div className="h-40 mb-5">
                   <LineChart 
@@ -817,7 +817,7 @@ const Home = () => {
             
             <div className="flex justify-center">
               <a href="#" className="px-6 py-3 bg-blue-600 text-white hover:bg-blue-700 transition-colors text-sm font-medium flex items-center">
-                View all quantitative strategies <ArrowRight className="h-4 w-4 ml-2" />
+                {t('strategies.viewAll')} <ArrowRight className="h-4 w-4 ml-2" />
               </a>
             </div>
           </div>
