@@ -28,8 +28,8 @@ const NewsTicker = () => {
       } catch (error) {
         console.error("Error fetching AI news:", error);
         toast({
-          title: "Error",
-          description: "Failed to load news. Please try again later.",
+          title: t('news.errorTitle'),
+          description: t('news.errorDescription'),
           variant: "destructive",
         });
         setIsLoading(false);
