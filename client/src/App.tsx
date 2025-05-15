@@ -1,4 +1,4 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, useLocation } from "wouter";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Layout from "@/components/Layout";
@@ -13,8 +13,16 @@ import Contact from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
 import AboutUs from "@/pages/AboutUs";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { useEffect } from "react";
 
 function Router() {
+  const [location] = useLocation();
+  
+  // Scrollare all'inizio della pagina quando cambia la route
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+  
   return (
     <Switch>
       <Route path="/" component={Home} />
