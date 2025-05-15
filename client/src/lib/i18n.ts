@@ -1,5 +1,7 @@
 // Language settings and translations
 
+import { strategies } from "./data";
+
 export type Language = 'en' | 'it';
 
 export interface Translations {
@@ -438,9 +440,13 @@ export const translations: Translations = {
     en: 'Featured Strategies',
     it: 'Strategie in Evidenza'
   },
-  'strategies.performance': {
-    en: 'Performance',
-    it: 'Performance'
+  'strategies.multiAsset': {
+    en: 'Multi-Asset',
+    it: 'Multi-Asset'
+  },
+  'strategies.equityFocus': {
+    en: 'Equity Focus',
+    it: 'Focus Azionario'
   },
   'strategies.risk': {
     en: 'Risk',
@@ -449,6 +455,10 @@ export const translations: Translations = {
   'strategies.sharpe': {
     en: 'Sharpe',
     it: 'Sharpe'
+  },
+  'strategies.performance': {
+    en: 'Performance',
+    it: 'Performance'
   },
   'strategies.strategyDetails': {
     en: 'Strategy Details',
@@ -732,7 +742,7 @@ export const translations: Translations = {
     en: 'Multi-Asset',
     it: 'Multi-Asset'
   },
-  'strategies.equityFocus': {
+  'strategies.equityFocus2': {
     en: 'Equity Focus',
     it: 'Focus Azionario'
   },
