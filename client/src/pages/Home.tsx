@@ -576,12 +576,12 @@ const Home = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
               <div className="bg-white border border-gray-100 p-6 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex justify-between mb-4">
-                  <span className="px-3 py-1 bg-blue-50 text-blue-600 text-xs font-medium rounded-full">Multi-Asset</span>
+                  <span className="px-3 py-1 bg-blue-50 text-blue-600 text-xs font-medium rounded-full">{t('strategies.multiAsset')}</span>
                   <span className="text-green-600 font-bold">+16.4%</span>
                 </div>
-                <h3 className="text-xl font-bold mb-3">Global Tactical Asset Allocation</h3>
+                <h3 className="text-xl font-bold mb-3">{t('strategies.globalTactical')}</h3>
                 <p className="text-primary/70 text-sm mb-5">
-                  Dynamic allocation across global asset classes driven by proprietary regime identification and risk parity optimization techniques.
+                  {t('strategies.dynamicAllocation')}
                 </p>
                 <div className="h-40 mb-5">
                   <LineChart 
