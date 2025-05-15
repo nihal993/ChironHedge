@@ -157,6 +157,8 @@ const QuantitativeStrategies = () => {
   
   const strategy = quantStrategies.find(s => s.id === selectedStrategy) || quantStrategies[0];
 
+  const { t } = useLanguage();
+  
   return (
     <section className="py-20 md:py-24 bg-white">
       <div className="container mx-auto px-4">
@@ -166,9 +168,9 @@ const QuantitativeStrategies = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Quantitative Strategies</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">{t('quantStrategies.title')}</h2>
           <p className="text-primary/70 max-w-3xl mx-auto">
-            Proprietary systematic investment approaches combining advanced mathematical models, machine learning, and financial expertise to generate alpha across market conditions.
+            {t('quantStrategies.subtitle')}
           </p>
         </motion.div>
         
@@ -178,7 +180,7 @@ const QuantitativeStrategies = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <h3 className="text-2xl font-bold mb-8">Featured Strategies</h3>
+          <h3 className="text-2xl font-bold mb-8">{t('strategies.featured')}</h3>
           <div className="grid md:grid-cols-3 gap-6">
             {quantStrategies.filter(s => s.featured).map((strategy) => (
               <div 
@@ -199,15 +201,15 @@ const QuantitativeStrategies = () => {
                 </p>
                 <div className="flex justify-between items-center mb-4">
                   <div>
-                    <p className="text-xs text-primary/60">YTD Performance</p>
+                    <p className="text-xs text-primary/60">{t('strategies.performance')}</p>
                     <p className="text-lg font-bold text-secondary">{strategy.performance}</p>
                   </div>
                   <div>
-                    <p className="text-xs text-primary/60">Sharpe Ratio</p>
+                    <p className="text-xs text-primary/60">{t('strategies.sharpe')}</p>
                     <p className="text-lg font-bold text-secondary">{strategy.sharpeRatio}</p>
                   </div>
                   <div>
-                    <p className="text-xs text-primary/60">Risk Level</p>
+                    <p className="text-xs text-primary/60">{t('strategies.risk')}</p>
                     <p className="text-lg font-bold text-secondary">{strategy.risk}</p>
                   </div>
                 </div>
@@ -240,22 +242,22 @@ const QuantitativeStrategies = () => {
               </div>
               <div className="mt-4 lg:mt-0">
                 <Link href={`/strategy-detail/${strategy.id}`} className="inline-flex items-center px-5 py-2.5 gold-gradient text-primary font-medium rounded-md hover:brightness-105 transition-all">
-                  Detailed Strategy Analysis
+                  {t('strategies.strategyDetails')}
                 </Link>
               </div>
             </div>
             
             <Tabs defaultValue="performance" className="w-full">
               <TabsList className="grid w-full grid-cols-1 md:grid-cols-4 mb-8">
-                <TabsTrigger value="performance">Performance</TabsTrigger>
-                <TabsTrigger value="drawdowns">Drawdowns</TabsTrigger>
-                <TabsTrigger value="monthly">Monthly Returns</TabsTrigger>
-                <TabsTrigger value="metrics">Key Metrics</TabsTrigger>
+                <TabsTrigger value="performance">{t('strategies.performance')}</TabsTrigger>
+                <TabsTrigger value="drawdowns">{t('strategies.drawdowns')}</TabsTrigger>
+                <TabsTrigger value="monthly">{t('strategies.monthlyReturns')}</TabsTrigger>
+                <TabsTrigger value="metrics">{t('strategies.performanceMetrics')}</TabsTrigger>
               </TabsList>
               
               <TabsContent value="performance" className="pt-4">
                 <div className="bg-white p-6 rounded-lg shadow-sm">
-                  <h4 className="text-lg font-bold mb-4">Cumulative Performance (2-Year)</h4>
+                  <h4 className="text-lg font-bold mb-4">{t('strategies.cumulativeReturn')}</h4>
                   <div className="h-96">
                     <ResponsiveContainer width="100%" height="100%">
                       <LineChart
