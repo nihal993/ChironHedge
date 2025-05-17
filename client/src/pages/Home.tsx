@@ -490,77 +490,7 @@ const Home = () => {
         )}
       </section>
 
-      {/* Macro Report Section - Ridimensionata */}
-      <section id="macro-report" className="gs-section">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="gs-header flex items-center">
-            {t('macroReport.title')}
-            <button 
-              onClick={() => toggleSection('macro-report')} 
-              className="ml-4 p-1 rounded-full hover:bg-gray-100 transition-colors"
-            >
-              <ChevronDown className={`h-5 w-5 text-secondary transition-transform ${activeSection === 'macro-report' ? 'transform rotate-180' : ''}`} />
-            </button>
-          </h2>
-        </div>
-        
-        {(activeSection === 'macro-report' || activeSection === null) && (
-          <div>
-            <p className="text-lg mb-6 max-w-3xl">
-              {t('macroReport.description')}
-            </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
-              <div className="gs-chart-container">
-                <div className="flex justify-between items-center mb-4">
-                  <h3 className="gs-chart-title">{t('macroReport.globalEconomicGrowth')}</h3>
-                  <span className="gs-subtle-text">{t('macroReport.updated')}: May 12, 2025</span>
-                </div>
-                <div className="h-64 mb-4">
-                  <BarChart 
-                    data={[5.2, 4.1, 3.6, 7.8, 3.2, 2.1]}
-                    categories={['US', 'Eurozone', 'UK', 'China', 'Japan', 'Brazil']}
-                    title=""
-                    height={240}
-                    horizontal={true}
-                  />
-                </div>
-                <div className="flex justify-end pt-3 border-t border-gray-100">
-                  <a href="#" className="gs-arrow-link">
-                    {t('macroReport.viewFullReport')} <ArrowRight className="h-4 w-4" />
-                  </a>
-                </div>
-              </div>
-              
-              <div className="gs-chart-container">
-                <div className="flex justify-between items-center mb-4">
-                  <h3 className="gs-chart-title">{t('macroReport.globalInflationTrends')}</h3>
-                  <span className="gs-subtle-text">{t('macroReport.updated')}: May 10, 2025</span>
-                </div>
-                <div className="h-64 mb-4">
-                  <LineChart 
-                    data={[3.8, 4.2, 5.1, 2.1, 1.8, 5.6]}
-                    categories={['US', 'Eurozone', 'UK', 'China', 'Japan', 'Brazil']}
-                    title=""
-                    height={240}
-                  />
-                </div>
-                <div className="flex justify-end pt-3 border-t border-gray-100">
-                  <a href="#" className="gs-arrow-link">
-                    {t('macroReport.viewForecastMethodology')} <ArrowRight className="h-4 w-4" />
-                  </a>
-                </div>
-              </div>
-            </div>
-            
-            <div className="flex justify-end mb-2">
-              <a href="#" className="gs-arrow-link">
-                {t('macroReport.viewAllMacro')} <ArrowRight className="h-4 w-4" />
-              </a>
-            </div>
-          </div>
-        )}
-      </section>
+
 
       {/* Quantitative Strategies Section - Espansa */}
       <section id="quantitative-strategies" className="gs-section bg-gray-50">
