@@ -37,10 +37,8 @@ const Home = () => {
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const { t } = useLanguage();
   
-  const toggleSection = (section: string) => {
-    // Sempre imposta la sezione come attiva e scorri verso di essa
-    setActiveSection(section);
-    
+  // Funzione solo per lo scrolling, senza modificare lo stato delle sezioni
+  const scrollToSection = (section: string) => {
     // Aggiungi un piccolo ritardo per assicurarti che il DOM sia aggiornato
     setTimeout(() => {
       const element = document.getElementById(section);
@@ -51,6 +49,15 @@ const Home = () => {
         window.scrollTo({top: y, behavior: 'smooth'});
       }
     }, 100);
+  };
+  
+  // Funzione per gestire l'espansione/contrazione di una singola sezione
+  const toggleSection = (section: string) => {
+    if (activeSection === section) {
+      setActiveSection(null);
+    } else {
+      setActiveSection(section);
+    }
   };
 
   return (
@@ -76,7 +83,7 @@ const Home = () => {
             </p>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
               <button 
-                onClick={() => toggleSection('our-research')}
+                onClick={() => scrollToSection('our-research')}
                 className="gs-blue-btn px-8 py-4 text-lg"
               >
                 {t('home.exploreOurResearch')}
