@@ -444,14 +444,7 @@ const Home = () => {
             
             {/* Research Categories */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-              <a href="#" className="block p-4 border border-gray-100 bg-white hover:border-blue-200 hover:bg-blue-50 transition-colors">
-                <h4 className="font-medium text-lg mb-1">{t('research.macroEconomic')}</h4>
-                <p className="text-primary/70 text-sm">{t('research.globalTrends')}</p>
-                <div className="flex justify-between items-center mt-2">
-                  <span className="text-xs text-secondary">24 {t('research.reportCount')}</span>
-                  <span className="text-secondary text-sm">→</span>
-                </div>
-              </a>
+
               
               <a href="#" className="block p-4 border border-gray-100 bg-white hover:border-blue-200 hover:bg-blue-50 transition-colors">
                 <h4 className="font-medium text-lg mb-1">{t('research.sectorInsights')}</h4>
