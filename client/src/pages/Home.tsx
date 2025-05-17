@@ -492,11 +492,11 @@ const Home = () => {
         )}
       </section>
 
-      {/* Quantitative Strategies Section - Espansa */}
+      {/* Portfolio Strategies Section - Espansa */}
       <section id="quantitative-strategies" className="gs-section bg-gray-50">
         <div className="flex justify-between items-center mb-8">
           <h2 className="gs-header flex items-center">
-            {t('home.quantitativeStrategies')}
+            {t('home.portfolioStrategies')}
             <button 
               onClick={() => toggleSection('quantitative-strategies')} 
               className="ml-4 p-1 rounded-full hover:bg-gray-100 transition-colors"

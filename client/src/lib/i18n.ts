@@ -35,8 +35,8 @@ export const translations: Translations = {
     it: 'Analisi Macroeconomica'
   },
   'navbar.strategies': {
-    en: 'Quantitative Strategies',
-    it: 'Strategie Quantitative'
+    en: 'Portfolio Strategies',
+    it: 'Strategie di Portafoglio'
   },
   'navbar.contact': {
     en: 'Contact Us',
@@ -186,9 +186,9 @@ export const translations: Translations = {
     en: 'Cross-Asset Correlation',
     it: 'Correlazione tra Asset Diversi'
   },
-  'home.quantitativeStrategies': {
-    en: 'Quantitative Strategies',
-    it: 'Strategie Quantitative'
+  'home.portfolioStrategies': {
+    en: 'Portfolio Strategies',
+    it: 'Strategie di Portafoglio'
   },
   'home.exploreOurResearch': {
     en: 'Explore Our Research',
