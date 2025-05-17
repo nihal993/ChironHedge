@@ -12,9 +12,9 @@ import logoImage from "@/assets/logo.png";
 
 const navLinks = [
   { key: "home", name: "Home", href: "/" },
-  { key: "navbar.quantitativeModel", name: "Quantitative Model", href: "/quantitative-model" },
   { key: "navbar.marketsInsight", name: "Markets Insight", href: "/markets-insight" },
   { key: "navbar.research", name: "Our Research", href: "/our-research" },
+  { key: "navbar.quantitativeModel", name: "Quantitative Model", href: "/quantitative-model" },
   { key: "navbar.strategies", name: "Quantitative Strategies", href: "/quantitative-strategies" }
 ];
 
