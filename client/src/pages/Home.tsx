@@ -38,16 +38,19 @@ const Home = () => {
   const { t } = useLanguage();
   
   const toggleSection = (section: string) => {
-    if (activeSection === section) {
-      setActiveSection(null);
-    } else {
-      setActiveSection(section);
-      // Scroll to the section
+    // Sempre imposta la sezione come attiva e scorri verso di essa
+    setActiveSection(section);
+    
+    // Aggiungi un piccolo ritardo per assicurarti che il DOM sia aggiornato
+    setTimeout(() => {
       const element = document.getElementById(section);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        // Scorri con un offset per tenere conto della navbar fissa
+        const yOffset = -80; 
+        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({top: y, behavior: 'smooth'});
       }
-    }
+    }, 100);
   };
 
   return (
