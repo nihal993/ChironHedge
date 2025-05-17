@@ -127,150 +127,7 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Quantitative Model Section */}
-      <section id="quantitative-model" className="gs-section">
-        <div className="flex justify-between items-center mb-8">
-          <h2 className="gs-header flex items-center">
-            {t('home.quantitativeModel')}
-            <button 
-              onClick={() => toggleSection('quantitative-model')} 
-              className="ml-4 p-1 rounded-full hover:bg-gray-100 transition-colors"
-            >
-              <ChevronDown className={`h-5 w-5 text-secondary transition-transform ${activeSection === 'quantitative-model' ? 'transform rotate-180' : ''}`} />
-            </button>
-          </h2>
-        </div>
-        
-        {(activeSection === 'quantitative-model' || activeSection === null) && (
-          <div>
-            <p className="text-lg mb-6 max-w-3xl">
-              {t('home.modelDescription')}
-            </p>
-            
-            {/* Model Tab Set 1 */}
-            <div className="gs-chart-container mb-8">
-              <Tabs defaultValue="gdp" className="w-full">
-                <TabsList className="grid w-full grid-cols-2 mb-6 bg-gray-50">
-                  <TabsTrigger value="gdp" className="text-primary font-medium">{t('home.gdpTab')}</TabsTrigger>
-                  <TabsTrigger value="inflation" className="text-primary font-medium">{t('home.inflationTab')}</TabsTrigger>
-                </TabsList>
-                
-                <TabsContent value="gdp" className="pt-4">
-                  <div className="flex justify-between items-center mb-6">
-                    <h3 className="gs-chart-title">{t('home.gdpChartTitle')}</h3>
-                    <span className="gs-subtle-text">{t('home.updated')}: {t('home.updateDate')}</span>
-                  </div>
-                  <div className="h-72 mb-6">
-                    <AreaChart 
-                      data={gdpGrowthData}
-                      categories={months}
-                      title=""
-                      height={280}
-                      colors={['#0033A0', '#0052CC']}
-                    />
-                  </div>
-                  <div className="flex justify-between items-center pt-4 border-t border-gray-100">
-                    <div className="max-w-md">
-                      <p className="gs-subtle-text">
-                        {t('home.gdpAccuracy')}
-                      </p>
-                    </div>
-                    <a href="#" className="gs-arrow-link">
-                      {t('home.viewMethodology')} <ArrowRight className="h-4 w-4" />
-                    </a>
-                  </div>
-                </TabsContent>
-                
-                <TabsContent value="inflation" className="pt-4">
-                  <div className="flex justify-between items-center mb-6">
-                    <h3 className="gs-chart-title">{t('home.inflationTitle')}</h3>
-                    <span className="gs-subtle-text">{t('home.updated')}: {t('home.inflationUpdateDate')}</span>
-                  </div>
-                  <div className="h-72 mb-6">
-                    <LineChart 
-                      data={inflationData}
-                      categories={months}
-                      title=""
-                      height={280}
-                    />
-                  </div>
-                  <div className="flex justify-between items-center pt-4 border-t border-gray-100">
-                    <div className="max-w-md">
-                      <p className="gs-subtle-text">
-                        {t('home.inflationModelDesc')}
-                      </p>
-                    </div>
-                    <a href="#" className="gs-arrow-link">
-                      {t('home.viewMethodology')} <ArrowRight className="h-4 w-4" />
-                    </a>
-                  </div>
-                </TabsContent>
-              </Tabs>
-            </div>
-            
-            {/* Model Set 2 - Factor & Strategy Analysis */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-              <div className="gs-chart-container bg-white">
-                <div className="flex justify-between items-center mb-6">
-                  <h3 className="gs-chart-title">{t('home.factorAnalysisTitle')}</h3>
-                  <span className="gs-subtle-text">{t('home.updated')}: {t('home.factorAnalysisUpdated')}</span>
-                </div>
-                <div className="h-72 mb-6">
-                  <MultiLineChart 
-                    series={[
-                      { name: 'Value', data: factorPerformance[0].data },
-                      { name: 'Growth', data: factorPerformance[1].data },
-                      { name: 'Momentum', data: factorPerformance[2].data },
-                      { name: 'Quality', data: factorPerformance[3].data }
-                    ]}
-                    categories={months}
-                    title=""
-                    height={280}
-                    colors={['#0033A0', '#0052CC', '#1D7AFC', '#4C9AFF']}
-                  />
-                </div>
-                <div className="flex justify-between items-center pt-4 border-t border-gray-100">
-                  <div className="max-w-md">
-                    <p className="gs-subtle-text">
-                      {t('home.factorAnalysisDescription')}
-                    </p>
-                  </div>
-                  <Link href="/whitepaper" className="gs-arrow-link">
-                    {t('home.viewWhitePaper')} <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </div>
-              </div>
-              
-              <div className="gs-chart-container bg-white">
-                <div className="flex justify-between items-center mb-6">
-                  <h3 className="gs-chart-title">{t('home.forecastModelTitle')}</h3>
-                  <span className="gs-subtle-text">{t('home.updated')}: {t('home.forecastModelUpdated')}</span>
-                </div>
-                <div className="h-72 mb-6">
-                  <BarChart 
-                    data={[92.6, 87.3, 75.8, 89.4, 94.1, 82.7]}
-                    categories={['GDP', 'Inflation', 'FX Rates', 'Rates', 'Commodities', 'Equities']}
-                    title=""
-                    height={280}
-                    horizontal={true}
-                    colors={['#0033A0', '#0052CC', '#1D7AFC', '#4C9AFF', '#6685CC', '#8BA6E0']}
-                  />
-                </div>
-                <div className="flex justify-between items-center pt-4 border-t border-gray-100">
-                  <div className="max-w-md">
-                    <p className="gs-subtle-text">
-                      {t('home.forecastModelDesc')}
-                    </p>
-                  </div>
-                  <a href="#" className="gs-arrow-link">
-                    {t('home.viewModelMethodology')} <ArrowRight className="h-4 w-4" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-      </section>
+
 
       {/* Markets Insight Section */}
       <section id="markets-insight" className="mb-12 border-t border-gray-200 pt-12">
@@ -490,7 +347,150 @@ const Home = () => {
         )}
       </section>
 
-
+      {/* Quantitative Model Section */}
+      <section id="quantitative-model" className="gs-section">
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="gs-header flex items-center">
+            {t('home.quantitativeModel')}
+            <button 
+              onClick={() => toggleSection('quantitative-model')} 
+              className="ml-4 p-1 rounded-full hover:bg-gray-100 transition-colors"
+            >
+              <ChevronDown className={`h-5 w-5 text-secondary transition-transform ${activeSection === 'quantitative-model' ? 'transform rotate-180' : ''}`} />
+            </button>
+          </h2>
+        </div>
+        
+        {(activeSection === 'quantitative-model' || activeSection === null) && (
+          <div>
+            <p className="text-lg mb-6 max-w-3xl">
+              {t('home.modelDescription')}
+            </p>
+            
+            {/* Model Tab Set 1 */}
+            <div className="gs-chart-container mb-8">
+              <Tabs defaultValue="gdp" className="w-full">
+                <TabsList className="grid w-full grid-cols-2 mb-6 bg-gray-50">
+                  <TabsTrigger value="gdp" className="text-primary font-medium">{t('home.gdpTab')}</TabsTrigger>
+                  <TabsTrigger value="inflation" className="text-primary font-medium">{t('home.inflationTab')}</TabsTrigger>
+                </TabsList>
+                
+                <TabsContent value="gdp" className="pt-4">
+                  <div className="flex justify-between items-center mb-6">
+                    <h3 className="gs-chart-title">{t('home.gdpChartTitle')}</h3>
+                    <span className="gs-subtle-text">{t('home.updated')}: {t('home.updateDate')}</span>
+                  </div>
+                  <div className="h-72 mb-6">
+                    <AreaChart 
+                      data={gdpGrowthData}
+                      categories={months}
+                      title=""
+                      height={280}
+                      colors={['#0033A0', '#0052CC']}
+                    />
+                  </div>
+                  <div className="flex justify-between items-center pt-4 border-t border-gray-100">
+                    <div className="max-w-md">
+                      <p className="gs-subtle-text">
+                        {t('home.gdpAccuracy')}
+                      </p>
+                    </div>
+                    <a href="#" className="gs-arrow-link">
+                      {t('home.viewMethodology')} <ArrowRight className="h-4 w-4" />
+                    </a>
+                  </div>
+                </TabsContent>
+                
+                <TabsContent value="inflation" className="pt-4">
+                  <div className="flex justify-between items-center mb-6">
+                    <h3 className="gs-chart-title">{t('home.inflationTitle')}</h3>
+                    <span className="gs-subtle-text">{t('home.updated')}: {t('home.inflationUpdateDate')}</span>
+                  </div>
+                  <div className="h-72 mb-6">
+                    <LineChart 
+                      data={inflationData}
+                      categories={months}
+                      title=""
+                      height={280}
+                    />
+                  </div>
+                  <div className="flex justify-between items-center pt-4 border-t border-gray-100">
+                    <div className="max-w-md">
+                      <p className="gs-subtle-text">
+                        {t('home.inflationModelDesc')}
+                      </p>
+                    </div>
+                    <a href="#" className="gs-arrow-link">
+                      {t('home.viewMethodology')} <ArrowRight className="h-4 w-4" />
+                    </a>
+                  </div>
+                </TabsContent>
+              </Tabs>
+            </div>
+            
+            {/* Model Set 2 - Factor & Strategy Analysis */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+              <div className="gs-chart-container bg-white">
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className="gs-chart-title">{t('home.factorAnalysisTitle')}</h3>
+                  <span className="gs-subtle-text">{t('home.updated')}: {t('home.factorAnalysisUpdated')}</span>
+                </div>
+                <div className="h-72 mb-6">
+                  <MultiLineChart 
+                    series={[
+                      { name: 'Value', data: factorPerformance[0].data },
+                      { name: 'Growth', data: factorPerformance[1].data },
+                      { name: 'Momentum', data: factorPerformance[2].data },
+                      { name: 'Quality', data: factorPerformance[3].data }
+                    ]}
+                    categories={months}
+                    title=""
+                    height={280}
+                    colors={['#0033A0', '#0052CC', '#1D7AFC', '#4C9AFF']}
+                  />
+                </div>
+                <div className="flex justify-between items-center pt-4 border-t border-gray-100">
+                  <div className="max-w-md">
+                    <p className="gs-subtle-text">
+                      {t('home.factorAnalysisDescription')}
+                    </p>
+                  </div>
+                  <Link href="/whitepaper" className="gs-arrow-link">
+                    {t('home.viewWhitePaper')} <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
+              </div>
+              
+              <div className="gs-chart-container bg-white">
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className="gs-chart-title">{t('home.forecastModelTitle')}</h3>
+                  <span className="gs-subtle-text">{t('home.updated')}: {t('home.forecastModelUpdated')}</span>
+                </div>
+                <div className="h-72 mb-6">
+                  <BarChart 
+                    data={[92.6, 87.3, 75.8, 89.4, 94.1, 82.7]}
+                    categories={['GDP', 'Inflation', 'FX Rates', 'Rates', 'Commodities', 'Equities']}
+                    title=""
+                    height={280}
+                    horizontal={true}
+                    colors={['#0033A0', '#0052CC', '#1D7AFC', '#4C9AFF', '#6685CC', '#8BA6E0']}
+                  />
+                </div>
+                <div className="flex justify-between items-center pt-4 border-t border-gray-100">
+                  <div className="max-w-md">
+                    <p className="gs-subtle-text">
+                      {t('home.forecastModelDesc')}
+                    </p>
+                  </div>
+                  <a href="#" className="gs-arrow-link">
+                    {t('home.viewModelMethodology')} <ArrowRight className="h-4 w-4" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </section>
 
       {/* Quantitative Strategies Section - Espansa */}
       <section id="quantitative-strategies" className="gs-section bg-gray-50">
