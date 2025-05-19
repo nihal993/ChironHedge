@@ -4,36 +4,79 @@ import { motion } from "framer-motion";
 import { researchCategories } from "@/lib/data";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-// Featured Research Papers - esempio di articoli in evidenza
-const featuredPapers = [
-  {
-    id: "paper1",
-    title: "Macroeconomic Implications of Central Bank Digital Currencies",
-    abstract: "Questo studio esamina l'impatto potenziale delle valute digitali delle banche centrali (CBDC) sui sistemi economici globali, con particolare attenzione alle loro implicazioni per la politica monetaria e la stabilità finanziaria.",
-    date: "Maggio 2025",
-    author: "Research Team",
-    category: "Macro"
-  },
-  {
-    id: "paper2",
-    title: "Volatility Risk Premium: Extraction and Applications in Portfolio Construction",
-    abstract: "Questo paper analizza la struttura e l'evoluzione del premio al rischio di volatilità nei mercati azionari e le sue applicazioni pratiche nella costruzione di portafogli resistenti agli shock di mercato.",
-    date: "Aprile 2025",
-    author: "Quantitative Team",
-    category: "Volatility"
-  },
-  {
-    id: "paper3",
-    title: "ESG Integration in Sovereign Fixed Income Analysis",
-    abstract: "Una metodologia innovativa per incorporare i fattori ESG nell'analisi del rischio sovrano, con un framework quantitativo per misurare l'impatto sui rendimenti attesi dei titoli di stato.",
-    date: "Marzo 2025",
-    author: "Credit Team",
-    category: "Fixed Income"
+// Definizione di tipi per gli articoli di ricerca
+interface ResearchPaper {
+  id: string;
+  title: string;
+  abstract: string;
+  date: string;
+  author: string;
+  category: string;
+}
+
+// Featured Research Papers con supporto multilingua
+const getFeaturedPapers = (language: string): ResearchPaper[] => {
+  if (language === 'it') {
+    return [
+      {
+        id: "paper1",
+        title: "Implicazioni Macroeconomiche delle Valute Digitali delle Banche Centrali",
+        abstract: "Questo studio esamina l'impatto potenziale delle valute digitali delle banche centrali (CBDC) sui sistemi economici globali, con particolare attenzione alle loro implicazioni per la politica monetaria e la stabilità finanziaria.",
+        date: "Maggio 2025",
+        author: "Team di Ricerca",
+        category: "Macro"
+      },
+      {
+        id: "paper2",
+        title: "Premio al Rischio di Volatilità: Estrazione e Applicazioni nella Costruzione di Portafogli",
+        abstract: "Questo paper analizza la struttura e l'evoluzione del premio al rischio di volatilità nei mercati azionari e le sue applicazioni pratiche nella costruzione di portafogli resistenti agli shock di mercato.",
+        date: "Aprile 2025",
+        author: "Team Quantitativo",
+        category: "Volatilità"
+      },
+      {
+        id: "paper3",
+        title: "Integrazione ESG nell'Analisi del Reddito Fisso Sovrano",
+        abstract: "Una metodologia innovativa per incorporare i fattori ESG nell'analisi del rischio sovrano, con un framework quantitativo per misurare l'impatto sui rendimenti attesi dei titoli di stato.",
+        date: "Marzo 2025",
+        author: "Team Credito",
+        category: "Reddito Fisso"
+      }
+    ];
+  } else {
+    return [
+      {
+        id: "paper1",
+        title: "Macroeconomic Implications of Central Bank Digital Currencies",
+        abstract: "This study examines the potential impact of central bank digital currencies (CBDCs) on global economic systems, with particular attention to their implications for monetary policy and financial stability.",
+        date: "May 2025",
+        author: "Research Team",
+        category: "Macro"
+      },
+      {
+        id: "paper2",
+        title: "Volatility Risk Premium: Extraction and Applications in Portfolio Construction",
+        abstract: "This paper analyzes the structure and evolution of the volatility risk premium in equity markets and its practical applications in constructing portfolios resilient to market shocks.",
+        date: "April 2025",
+        author: "Quantitative Team",
+        category: "Volatility"
+      },
+      {
+        id: "paper3",
+        title: "ESG Integration in Sovereign Fixed Income Analysis",
+        abstract: "An innovative methodology for incorporating ESG factors into sovereign risk analysis, with a quantitative framework for measuring the impact on expected returns of government securities.",
+        date: "March 2025",
+        author: "Credit Team",
+        category: "Fixed Income"
+      }
+    ];
   }
-];
+};
 
 const Research = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  // Ottieni gli articoli nella lingua corrente
+  const papers = getFeaturedPapers(language);
   
   return (
     <section className="py-20 md:py-24 bg-neutral">
@@ -61,7 +104,7 @@ const Research = () => {
             {t('research.featuredPapers')}
           </h3>
           <div className="grid md:grid-cols-3 gap-8">
-            {featuredPapers.map((paper, index) => (
+            {papers.map((paper, index) => (
               <motion.div 
                 key={paper.id}
                 className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all"
