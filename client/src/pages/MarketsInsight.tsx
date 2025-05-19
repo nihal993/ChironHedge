@@ -199,16 +199,16 @@ const MarketsInsight = () => {
             transition={{ duration: 0.5 }}
           >
             <h3 className="text-2xl font-bold mb-6 text-primary border-b pb-2">Major Equity Indices</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {equityIndices.map((chart, index) => (
                 <div key={`equity-${index}`} className="bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100">
                   <h4 className="font-bold text-lg mb-3">{chart.title}</h4>
-                  <div className="h-60 mb-4">
+                  <div className="h-80 mb-4">
                     <FinancialChart 
                       chartData={chart.data}
                       labels={monthlyLabels}
                       title=""
-                      height={240}
+                      height={320}
                     />
                   </div>
                   <p className="text-sm text-primary/70 mt-4">
@@ -227,16 +227,16 @@ const MarketsInsight = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
           >
             <h3 className="text-2xl font-bold mb-6 text-primary border-b pb-2">Fixed Income Markets</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {fixedIncomeMarkets.map((chart, index) => (
                 <div key={`fixed-${index}`} className="bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100">
                   <h4 className="font-bold text-lg mb-3">{chart.title}</h4>
-                  <div className="h-60 mb-4">
+                  <div className="h-80 mb-4">
                     <FinancialChart 
                       chartData={chart.data}
                       labels={monthlyLabels}
                       title=""
-                      height={240}
+                      height={320}
                     />
                   </div>
                   <p className="text-sm text-primary/70 mt-4">
@@ -255,16 +255,16 @@ const MarketsInsight = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <h3 className="text-2xl font-bold mb-6 text-primary border-b pb-2">Commodities and Alternative Assets</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {commoditiesAndAlternatives.map((chart, index) => (
                 <div key={`commodity-${index}`} className="bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100">
                   <h4 className="font-bold text-lg mb-3">{chart.title}</h4>
-                  <div className="h-60 mb-4">
+                  <div className="h-80 mb-4">
                     <FinancialChart 
                       chartData={chart.data}
                       labels={monthlyLabels}
                       title=""
-                      height={240}
+                      height={320}
                     />
                   </div>
                   <p className="text-sm text-primary/70 mt-4">
@@ -283,16 +283,16 @@ const MarketsInsight = () => {
             transition={{ duration: 0.5, delay: 0.3 }}
           >
             <h3 className="text-2xl font-bold mb-6 text-primary border-b pb-2">Economic Indicators</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {economicIndicators.map((chart, index) => (
                 <div key={`economic-${index}`} className="bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100">
                   <h4 className="font-bold text-lg mb-3">{chart.title}</h4>
-                  <div className="h-60 mb-4">
+                  <div className="h-80 mb-4">
                     <FinancialChart 
                       chartData={chart.data}
                       labels={monthlyLabels}
                       title=""
-                      height={240}
+                      height={320}
                     />
                   </div>
                   <p className="text-sm text-primary/70 mt-4">
@@ -311,7 +311,7 @@ const MarketsInsight = () => {
             transition={{ duration: 0.5, delay: 0.4 }}
           >
             <h3 className="text-2xl font-bold mb-6 text-primary border-b pb-2">Market Metrics</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {marketMetrics.map((chart, index) => (
                 <div key={`metric-${index}`} className="bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100">
                   <h4 className="font-bold text-lg mb-3">{chart.title}</h4>
