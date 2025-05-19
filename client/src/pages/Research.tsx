@@ -6,6 +6,35 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 const Research = () => {
   const { t } = useLanguage();
+  
+  // Featured Research Papers - esempio di articoli in evidenza
+  const featuredPapers = [
+    {
+      id: "paper1",
+      title: "Macroeconomic Implications of Central Bank Digital Currencies",
+      abstract: "Questo studio esamina l'impatto potenziale delle valute digitali delle banche centrali (CBDC) sui sistemi economici globali, con particolare attenzione alle loro implicazioni per la politica monetaria e la stabilità finanziaria.",
+      date: "Maggio 2025",
+      author: "Research Team",
+      category: "Macro"
+    },
+    {
+      id: "paper2",
+      title: "Volatility Risk Premium: Extraction and Applications in Portfolio Construction",
+      abstract: "Questo paper analizza la struttura e l'evoluzione del premio al rischio di volatilità nei mercati azionari e le sue applicazioni pratiche nella costruzione di portafogli resistenti agli shock di mercato.",
+      date: "Aprile 2025",
+      author: "Quantitative Team",
+      category: "Volatility"
+    },
+    {
+      id: "paper3",
+      title: "ESG Integration in Sovereign Fixed Income Analysis",
+      abstract: "Una metodologia innovativa per incorporare i fattori ESG nell'analisi del rischio sovrano, con un framework quantitativo per misurare l'impatto sui rendimenti attesi dei titoli di stato.",
+      date: "Marzo 2025",
+      author: "Credit Team",
+      category: "Fixed Income"
+    }
+  ];
+
   return (
     <section id="ricerche" className="py-20 md:py-24 bg-neutral">
       <div className="container mx-auto px-4">
@@ -21,130 +50,88 @@ const Research = () => {
           </p>
         </motion.div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
-          {researchCategories.map((category, index) => (
-            <motion.div 
-              key={category.id}
-              id={category.id}
-              className="bg-white rounded-xl overflow-hidden shadow-md transition-transform hover:-translate-y-1 hover:shadow-lg"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <img 
-                src={category.imageSrc} 
-                alt={category.imageAlt} 
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-4">{category.title}</h3>
-                <p className="text-primary/70 mb-6">
-                  {category.description}
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium bg-neutral inline-block px-3 py-1 rounded-full">{category.reportsCount}+ {t('research.reports')}</span>
-                  <Link href={`/our-research/${category.id}`} className="text-secondary hover:text-secondary/80 font-medium flex items-center">
-                    {t('research.viewCategoryBtn')} <ChevronRight className="h-4 w-4 ml-1" />
-                  </Link>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-        
+        {/* Featured Research Papers */}
         <motion.div 
-          className="bg-primary p-8 md:p-12 rounded-xl text-white mt-12"
+          className="mb-16"
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
         >
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div>
-              <h3 className="text-2xl font-bold mb-4">{t('research.customTitle')}</h3>
-              <p className="mb-6 text-neutral-300">
-                {t('research.customDescription')}
-              </p>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-secondary mt-0.5 mr-3 flex-shrink-0" />
-                  <span className="text-neutral-200">{t('research.customFeature1')}</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-secondary mt-0.5 mr-3 flex-shrink-0" />
-                  <span className="text-neutral-200">{t('research.customFeature2')}</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-secondary mt-0.5 mr-3 flex-shrink-0" />
-                  <span className="text-neutral-200">{t('research.customFeature3')}</span>
-                </li>
-                <li className="flex items-start">
-                  <Check className="h-5 w-5 text-secondary mt-0.5 mr-3 flex-shrink-0" />
-                  <span className="text-neutral-200">{t('research.customFeature4')}</span>
-                </li>
-              </ul>
-              <Link href="/contact" className="inline-flex items-center px-6 py-3 gold-gradient text-primary font-medium rounded-md hover:brightness-105 transition-all">
-                {t('research.requestInfo')}
-              </Link>
-            </div>
-            <div className="hidden md:block">
-              <img 
-                src="https://images.unsplash.com/photo-1607798748738-b15c40d33d57?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500&q=80" 
-                alt="Ricerca personalizzata" 
-                className="w-full h-auto rounded-xl shadow-lg"
-              />
-            </div>
+          <h3 className="text-2xl font-bold mb-6 pb-2 border-b border-gray-200">
+            {t('Featured Research Papers')}
+          </h3>
+          <div className="grid md:grid-cols-3 gap-6">
+            {featuredPapers.map((paper, index) => (
+              <motion.div 
+                key={paper.id}
+                className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
+              >
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-xs font-medium text-white bg-primary rounded-full px-3 py-1">
+                      {paper.category}
+                    </span>
+                    <span className="text-xs text-gray-500">{paper.date}</span>
+                  </div>
+                  <h4 className="text-lg font-bold mb-3">{paper.title}</h4>
+                  <p className="text-primary/70 text-sm mb-4">{paper.abstract}</p>
+                  <div className="flex justify-end">
+                    <Link href={`/research/${paper.id}`} className="text-secondary hover:text-secondary/80 font-medium flex items-center text-sm">
+                      {t('Read More')} <ChevronRight className="h-4 w-4 ml-1" />
+                    </Link>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
         
-        <motion.div 
-          className="bg-white p-8 rounded-xl shadow-md mt-12"
+        {/* Research Categories */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <h3 className="text-2xl font-bold mb-6">Domande Frequenti</h3>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="space-y-6">
-              <div>
-                <h4 className="font-bold mb-2">Quali informazioni contengono i vostri report?</h4>
-                <p className="text-primary/70">I nostri report includono analisi dettagliate, grafici interattivi, codice Python per replicare i risultati e raccomandazioni pratiche per l'implementazione.</p>
-              </div>
-              <div>
-                <h4 className="font-bold mb-2">Con quale frequenza pubblicate nuove ricerche?</h4>
-                <p className="text-primary/70">Pubblichiamo analisi settimanali per i mercati principali e report mensili più approfonditi per ogni area di ricerca.</p>
-              </div>
-              <div>
-                <h4 className="font-bold mb-2">Come posso accedere alle vostre ricerche?</h4>
-                <p className="text-primary/70">Le nostre ricerche sono disponibili tramite abbonamento. Contattaci per maggiori informazioni sui nostri piani.</p>
-              </div>
-            </div>
-            <div className="space-y-6">
-              <div>
-                <h4 className="font-bold mb-2">Le ricerche sono adatte a investitori retail?</h4>
-                <p className="text-primary/70">Le nostre ricerche sono progettate principalmente per investitori istituzionali e professionisti del settore, ma offriamo anche soluzioni semplificate per family office e HNWI.</p>
-              </div>
-              <div>
-                <h4 className="font-bold mb-2">Offrite supporto per l'implementazione?</h4>
-                <p className="text-primary/70">Sì, forniamo supporto completo per l'implementazione delle strategie, inclusi codice, configurazioni e consulenza.</p>
-              </div>
-              <div>
-                <h4 className="font-bold mb-2">Come posso richiedere una demo?</h4>
-                <p className="text-primary/70">Puoi richiedere una demo gratuita compilando il modulo nella pagina <Link href="/contatti" className="text-secondary hover:underline">Contatti</Link> o contattandoci direttamente.</p>
-              </div>
-            </div>
+          <h3 className="text-2xl font-bold mb-6 pb-2 border-b border-gray-200">
+            {t('Research Categories')}
+          </h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {researchCategories.map((category, index) => (
+              <motion.div 
+                key={category.id}
+                id={category.id}
+                className="bg-white rounded-xl overflow-hidden shadow-md transition-transform hover:-translate-y-1 hover:shadow-lg"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
+              >
+                <img 
+                  src={category.imageSrc} 
+                  alt={category.imageAlt} 
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-4">{category.title}</h3>
+                  <p className="text-primary/70 mb-6">
+                    {category.description}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-medium bg-neutral inline-block px-3 py-1 rounded-full">{category.reportsCount}+ {t('research.reports')}</span>
+                    <Link href={`/our-research/${category.id}`} className="text-secondary hover:text-secondary/80 font-medium flex items-center">
+                      {t('research.viewCategoryBtn')} <ChevronRight className="h-4 w-4 ml-1" />
+                    </Link>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
       </div>
     </section>
   );
 };
-
-const Check = ({ className }: { className?: string }) => (
-  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-  </svg>
-);
 
 export default Research;
