@@ -338,7 +338,7 @@ export default function MarketsInsight() {
         <HeatmapCard
           title={t('Sector Performance')}
           subtitle={t('Weekly change percentage')}
-          items={sectorData.map(item => ({ label: item.name, value: item.change }))}
+          items={sectorData}
           getColorForValue={getHeatmapColor}
           format={formatPercent}
           fullWidth={true}

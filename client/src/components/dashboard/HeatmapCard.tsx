@@ -7,7 +7,7 @@ interface HeatmapItemProps {
   color: string;
   textColor: string;
   onClick?: () => void;
-  format?: (value: number) => string;
+  format?: ((value: number) => string) | undefined;
 }
 
 const HeatmapItem: React.FC<HeatmapItemProps> = ({ 
@@ -35,16 +35,18 @@ const HeatmapItem: React.FC<HeatmapItemProps> = ({
 interface HeatmapCardProps {
   title: string;
   subtitle?: string;
-  items: {
-    label: string;
-    value: number;
-  }[];
+  items: Array<{
+    label?: string;
+    value?: number;
+    name?: string;
+    change?: number;
+  }>;
   className?: string;
   fullWidth?: boolean;
   // Funzione per determinare il colore in base al valore
   getColorForValue: (value: number) => { bg: string; text: string };
   format?: (value: number) => string;
-  onItemClick?: (item: { label: string; value: number }) => void;
+  onItemClick?: (item: any) => void;
 }
 
 const HeatmapCard: React.FC<HeatmapCardProps> = ({
@@ -66,12 +68,17 @@ const HeatmapCard: React.FC<HeatmapCardProps> = ({
     >
       <div className="flex flex-wrap gap-2">
         {items.map((item, index) => {
-          const { bg, text } = getColorForValue(item.value);
+          // Supporta sia il formato { label, value } che { name, change }
+          const itemLabel: string = (item.label || item.name || '').toString();
+          const itemValue: number = typeof item.value === 'number' ? item.value : 
+                                    typeof item.change === 'number' ? item.change : 0;
+          const { bg, text } = getColorForValue(itemValue);
+          
           return (
             <HeatmapItem
               key={index}
-              label={item.label}
-              value={item.value}
+              label={itemLabel}
+              value={itemValue}
               color={bg}
               textColor={text}
               format={format}
