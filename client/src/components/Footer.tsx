@@ -48,7 +48,6 @@ const Footer = () => {
           <div>
             <h4 className="text-sm font-bold uppercase tracking-wider mb-4">{t('footer.services')}</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/news-ai" className="text-neutral-300 hover:text-secondary transition-colors">{t('navbar.newsAI')}</Link></li>
               <li><Link href="/quantitative-model" className="text-neutral-300 hover:text-secondary transition-colors">{t('navbar.quantitativeModel')}</Link></li>
               <li><Link href="/markets-insight" className="text-neutral-300 hover:text-secondary transition-colors">{t('navbar.marketsInsight')}</Link></li>
               <li><Link href="/research" className="text-neutral-300 hover:text-secondary transition-colors">{t('navbar.research')}</Link></li>
