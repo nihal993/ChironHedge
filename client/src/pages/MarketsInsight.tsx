@@ -40,60 +40,128 @@ const marketInsightsData = [
   }
 ];
 
-// Sample market data
-const equityData = {
-  labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-  datasets: [
-    {
-      name: "S&P 500",
-      data: [4200, 4150, 4250, 4300, 4400, 4450, 4500, 4550, 4400, 4500, 4600, 4650]
-    },
-    {
-      name: "FTSE 100",
-      data: [7500, 7450, 7550, 7600, 7650, 7700, 7750, 7800, 7750, 7850, 7900, 7950]
-    },
-    {
-      name: "Nikkei 225",
-      data: [28500, 28000, 28700, 29000, 29500, 30000, 30500, 29800, 29500, 30200, 30800, 31000]
-    }
-  ]
-};
+// Sample market data for all charts
+const monthlyLabels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-const bondYields = {
-  labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-  datasets: [
-    {
-      name: "US 10Y",
-      data: [1.5, 1.6, 1.7, 1.6, 1.5, 1.4, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8]
-    },
-    {
-      name: "German 10Y",
-      data: [0.2, 0.3, 0.4, 0.3, 0.2, 0.1, 0.0, 0.1, 0.2, 0.3, 0.4, 0.5]
-    },
-    {
-      name: "UK 10Y",
-      data: [0.9, 1.0, 1.1, 1.0, 0.9, 0.8, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2]
-    }
-  ]
-};
+// Row 1: Major Equity Indices
+const equityIndices = [
+  {
+    title: "S&P 500",
+    description: "The S&P 500 has shown strong resilience despite macroeconomic headwinds, driven primarily by technology and AI-related stocks. Recent price action suggests institutional investors are positioning for continued earnings growth.",
+    data: [4200, 4150, 4250, 4300, 4400, 4450, 4500, 4550, 4400, 4500, 4600, 4650]
+  },
+  {
+    title: "NASDAQ Composite",
+    description: "Technology stocks continue to outperform the broader market, with the NASDAQ showing particular strength in semiconductor, cloud computing, and AI sectors. Valuation concerns remain but are offset by strong earnings growth.",
+    data: [14000, 13800, 14200, 14500, 14700, 15000, 15200, 15300, 15100, 15400, 15700, 16000]
+  },
+  {
+    title: "Euro Stoxx 50",
+    description: "European equities have underperformed US markets, reflecting concerns over economic growth and geopolitical tensions. Banking sector strength has been a positive, while manufacturing continues to face headwinds.",
+    data: [4100, 4050, 4150, 4200, 4250, 4300, 4350, 4320, 4270, 4350, 4400, 4450]
+  },
+  {
+    title: "Nikkei 225",
+    description: "Japanese equities have benefited from accommodative monetary policy and corporate governance reforms. Export-oriented companies have performed particularly well despite regional growth concerns.",
+    data: [28500, 28000, 28700, 29000, 29500, 30000, 30500, 29800, 29500, 30200, 30800, 31000]
+  }
+];
 
-const commoditiesData = {
-  labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-  datasets: [
-    {
-      name: "Gold",
-      data: [1800, 1820, 1840, 1860, 1880, 1900, 1920, 1940, 1930, 1950, 1970, 1990]
-    },
-    {
-      name: "Oil (WTI)",
-      data: [70, 72, 74, 76, 78, 80, 82, 84, 86, 88, 90, 92]
-    },
-    {
-      name: "Copper",
-      data: [4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5.0, 5.1, 5.2, 5.3]
-    }
-  ]
-};
+// Row 2: Fixed Income Markets
+const fixedIncomeMarkets = [
+  {
+    title: "US Treasury Yields (10Y)",
+    description: "US Treasury yields have been gradually rising as the Federal Reserve maintains a hawkish stance on inflation. The yield curve inversion between 2Y and 10Y continues to signal caution about economic growth prospects.",
+    data: [3.8, 3.9, 4.0, 4.1, 4.0, 3.9, 3.8, 3.7, 3.8, 3.9, 4.0, 4.1]
+  },
+  {
+    title: "Investment Grade Spreads",
+    description: "Credit spreads for investment-grade bonds have remained relatively stable, reflecting investor confidence in corporate balance sheets despite higher financing costs. Bank and financial sector spreads have shown more volatility.",
+    data: [1.2, 1.3, 1.4, 1.3, 1.2, 1.1, 1.0, 1.1, 1.2, 1.3, 1.4, 1.5]
+  },
+  {
+    title: "High Yield Bond Performance",
+    description: "High yield bonds have demonstrated resilience despite rising rates, with default rates remaining below historical averages. Energy and consumer discretionary sectors have shown particular strength.",
+    data: [5.5, 5.4, 5.3, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 5.8, 5.7, 5.6]
+  },
+  {
+    title: "Emerging Market Debt",
+    description: "Emerging market debt has faced challenges from dollar strength and rising US rates. Differentiation across countries has increased, with commodity exporters outperforming importers in this environment.",
+    data: [6.5, 6.7, 6.9, 7.0, 6.8, 6.6, 6.5, 6.4, 6.6, 6.8, 7.0, 7.1]
+  }
+];
+
+// Row 3: Commodities and Alternative Assets
+const commoditiesAndAlternatives = [
+  {
+    title: "Gold (USD/oz)",
+    description: "Gold prices have trended higher amid geopolitical uncertainties and persistent inflation concerns. Central bank purchases continue to provide support, while investor positioning suggests further potential upside.",
+    data: [1800, 1820, 1840, 1860, 1880, 1900, 1920, 1940, 1930, 1950, 1970, 1990]
+  },
+  {
+    title: "Crude Oil (WTI)",
+    description: "Oil prices have fluctuated within a range, balancing supply constraints from OPEC+ against demand concerns related to global growth. Geopolitical premium remains embedded in current pricing.",
+    data: [70, 72, 74, 76, 78, 80, 82, 84, 86, 82, 78, 76]
+  },
+  {
+    title: "Bitcoin Performance",
+    description: "Cryptocurrency markets have shown increased institutional adoption despite regulatory uncertainties. Bitcoin's correlation with risk assets remains high, though its role as an inflation hedge continues to be debated.",
+    data: [42000, 44000, 46000, 48000, 47000, 45000, 46000, 48000, 50000, 52000, 54000, 56000]
+  },
+  {
+    title: "REITs Index",
+    description: "Real estate investment trusts have underperformed broader equity markets due to interest rate sensitivity. Industrial and data center REITs have shown relative strength, while office and retail segments continue to face challenges.",
+    data: [1850, 1800, 1780, 1820, 1850, 1870, 1840, 1860, 1890, 1910, 1900, 1920]
+  }
+];
+
+// Row 4: Economic Indicators
+const economicIndicators = [
+  {
+    title: "US Inflation (CPI YoY%)",
+    description: "Inflation readings have moderated from peak levels but remain above central bank targets. Core services inflation has proven persistent, while goods inflation has normalized. Wage growth continues to be closely monitored.",
+    data: [4.2, 4.0, 3.8, 3.7, 3.5, 3.4, 3.3, 3.2, 3.1, 3.0, 2.9, 2.8]
+  },
+  {
+    title: "Global PMI Manufacturing",
+    description: "Manufacturing activity has shown signs of stabilization after a period of contraction. Regional differences remain significant, with North America outperforming Europe, while Asia shows mixed signals.",
+    data: [49.2, 49.5, 49.8, 50.2, 50.5, 50.8, 51.0, 51.2, 51.0, 50.8, 50.6, 50.4]
+  },
+  {
+    title: "US Consumer Confidence",
+    description: "Consumer sentiment has improved despite higher interest rates and persistent inflation. Labor market strength continues to support household spending, though higher-income segments show greater resilience than lower-income groups.",
+    data: [102, 103, 105, 104, 106, 108, 110, 112, 113, 114, 112, 110]
+  },
+  {
+    title: "Global Economic Surprise Index",
+    description: "Economic data has generally outperformed economists' expectations in recent months, with particular strength in labor markets and consumer spending. Regional divergences have increased, with emerging markets showing greater volatility.",
+    data: [-5, -2, 0, 3, 5, 8, 10, 12, 8, 5, 2, 0]
+  }
+];
+
+// Row 5: Market Metrics
+const marketMetrics = [
+  {
+    title: "VIX Volatility Index",
+    description: "Market volatility has remained subdued despite various macro uncertainties, suggesting complacency among investors. Historical patterns indicate current levels may not be sustainable for extended periods.",
+    data: [18, 20, 22, 19, 17, 16, 15, 17, 18, 20, 22, 19]
+  },
+  {
+    title: "US Dollar Index",
+    description: "The US dollar has maintained its strength against major currencies, supported by interest rate differentials and safe-haven flows. This strength continues to impact global trade and emerging market assets.",
+    data: [105, 104, 103, 104, 105, 106, 107, 108, 107, 106, 105, 104]
+  },
+  {
+    title: "Corporate Earnings Growth (%)",
+    description: "Earnings growth has exceeded analysts' expectations, particularly in technology and energy sectors. Margin pressures from higher input costs and wages have been offset by pricing power in many industries.",
+    data: [8, 9, 10, 11, 12, 11, 10, 9, 8, 10, 12, 14]
+  },
+  {
+    title: "Global Liquidity Indicators",
+    description: "Central bank balance sheet contraction has led to tighter financial conditions globally. Market functioning remains orderly despite reduced liquidity, though stress indicators in funding markets require monitoring.",
+    data: [100, 98, 96, 94, 92, 90, 88, 86, 84, 82, 80, 78]
+  }
+];
 
 const categoryColors = {
   "Monetary Policy": "bg-blue-100 text-blue-800",
@@ -105,13 +173,12 @@ const categoryColors = {
 };
 
 const MarketsInsight = () => {
-  const [selectedDataset, setSelectedDataset] = useState("S&P 500");
 
   return (
     <section className="py-20 md:py-24 bg-white">
       <div className="container mx-auto px-4">
         <motion.div 
-          className="text-center mb-16"
+          className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -122,167 +189,145 @@ const MarketsInsight = () => {
           </p>
         </motion.div>
         
-        <div className="grid lg:grid-cols-3 gap-8 mb-16">
-          <div className="lg:col-span-2">
-            <motion.div 
-              className="bg-neutral p-6 rounded-xl shadow-sm mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <h3 className="text-xl font-bold mb-4">Market Performance</h3>
-              
-              <Tabs defaultValue="equities" className="w-full">
-                <TabsList className="grid w-full grid-cols-3 mb-6">
-                  <TabsTrigger value="equities">Equities</TabsTrigger>
-                  <TabsTrigger value="bonds">Bond Yields</TabsTrigger>
-                  <TabsTrigger value="commodities">Commodities</TabsTrigger>
-                </TabsList>
-                
-                <TabsContent value="equities" className="pt-2">
-                  <div className="bg-white p-4 rounded-lg mb-4">
-                    <div className="flex justify-end mb-2">
-                      <div className="flex space-x-4">
-                        {equityData.datasets.map((dataset) => (
-                          <button
-                            key={dataset.name}
-                            className={`text-xs px-3 py-1 rounded-full ${
-                              selectedDataset === dataset.name
-                                ? "bg-secondary text-white"
-                                : "bg-neutral-200 text-primary hover:bg-neutral-300"
-                            }`}
-                            onClick={() => setSelectedDataset(dataset.name)}
-                          >
-                            {dataset.name}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="h-64">
-                      <FinancialChart 
-                        chartData={equityData.datasets.find(d => d.name === selectedDataset)?.data || []}
-                        labels={equityData.labels}
-                        title={selectedDataset}
-                        height={240}
-                      />
-                    </div>
+        {/* Market Charts Grid - 4 columns x 5 rows = 20 charts total */}
+        <div className="mb-12">
+          {/* Row 1 Title: Major Equity Indices */}
+          <motion.div
+            className="mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h3 className="text-2xl font-bold mb-6 text-primary border-b pb-2">Major Equity Indices</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {equityIndices.map((chart, index) => (
+                <div key={`equity-${index}`} className="bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+                  <h4 className="font-bold text-lg mb-3">{chart.title}</h4>
+                  <div className="h-60 mb-4">
+                    <FinancialChart 
+                      chartData={chart.data}
+                      labels={monthlyLabels}
+                      title=""
+                      height={240}
+                    />
                   </div>
-                  <p className="text-sm text-primary/70">
-                    Equity markets continue to show resilience despite rising interest rates, with technology and energy sectors leading performance. However, valuation concerns persist as multiples remain elevated relative to historical averages.
+                  <p className="text-sm text-primary/70 mt-4">
+                    {chart.description}
                   </p>
-                </TabsContent>
-                
-                <TabsContent value="bonds" className="pt-2">
-                  <div className="bg-white p-4 rounded-lg mb-4">
-                    <div className="h-64">
-                      <FinancialChart 
-                        chartData={bondYields.datasets[0].data}
-                        labels={bondYields.labels}
-                        title="US 10Y Treasury Yield"
-                        height={240}
-                      />
-                    </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Row 2 Title: Fixed Income Markets */}
+          <motion.div
+            className="mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <h3 className="text-2xl font-bold mb-6 text-primary border-b pb-2">Fixed Income Markets</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {fixedIncomeMarkets.map((chart, index) => (
+                <div key={`fixed-${index}`} className="bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+                  <h4 className="font-bold text-lg mb-3">{chart.title}</h4>
+                  <div className="h-60 mb-4">
+                    <FinancialChart 
+                      chartData={chart.data}
+                      labels={monthlyLabels}
+                      title=""
+                      height={240}
+                    />
                   </div>
-                  <p className="text-sm text-primary/70">
-                    Bond yields have been trending higher amid persistent inflation and hawkish central bank policies. The yield curve inversion between 2-year and 10-year Treasuries continues to signal potential economic slowdown ahead.
+                  <p className="text-sm text-primary/70 mt-4">
+                    {chart.description}
                   </p>
-                </TabsContent>
-                
-                <TabsContent value="commodities" className="pt-2">
-                  <div className="bg-white p-4 rounded-lg mb-4">
-                    <div className="h-64">
-                      <FinancialChart 
-                        chartData={commoditiesData.datasets[0].data}
-                        labels={commoditiesData.labels}
-                        title="Gold Price (USD/oz)"
-                        height={240}
-                      />
-                    </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Row 3 Title: Commodities and Alternative Assets */}
+          <motion.div
+            className="mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <h3 className="text-2xl font-bold mb-6 text-primary border-b pb-2">Commodities and Alternative Assets</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {commoditiesAndAlternatives.map((chart, index) => (
+                <div key={`commodity-${index}`} className="bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+                  <h4 className="font-bold text-lg mb-3">{chart.title}</h4>
+                  <div className="h-60 mb-4">
+                    <FinancialChart 
+                      chartData={chart.data}
+                      labels={monthlyLabels}
+                      title=""
+                      height={240}
+                    />
                   </div>
-                  <p className="text-sm text-primary/70">
-                    Commodities have shown divergent performance, with energy prices stabilizing after recent volatility. Precious metals continue to benefit from safe-haven demand amid geopolitical tensions and inflation concerns.
-                  </p>
-                </TabsContent>
-              </Tabs>
-            </motion.div>
-            
-            <motion.div 
-              className="bg-primary text-white p-6 rounded-xl shadow-sm"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <h3 className="text-xl font-bold mb-4">Key Market Themes</h3>
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="bg-primary-light/20 p-4 rounded-lg">
-                  <h4 className="font-bold text-secondary mb-2">Inflation Persistence</h4>
-                  <p className="text-neutral-200 text-sm">
-                    Despite monetary tightening, inflation remains above target in major economies, challenging the transitory narrative and potentially forcing more aggressive policy responses.
+                  <p className="text-sm text-primary/70 mt-4">
+                    {chart.description}
                   </p>
                 </div>
-                <div className="bg-primary-light/20 p-4 rounded-lg">
-                  <h4 className="font-bold text-secondary mb-2">Liquidity Contraction</h4>
-                  <p className="text-neutral-200 text-sm">
-                    Global liquidity is shrinking as central banks reduce balance sheets, potentially impacting asset prices that have benefited from abundant liquidity conditions.
-                  </p>
-                </div>
-                <div className="bg-primary-light/20 p-4 rounded-lg">
-                  <h4 className="font-bold text-secondary mb-2">China Economic Transition</h4>
-                  <p className="text-neutral-200 text-sm">
-                    China's shift toward "common prosperity" and away from property-led growth has significant implications for global supply chains and commodity markets.
-                  </p>
-                </div>
-                <div className="bg-primary-light/20 p-4 rounded-lg">
-                  <h4 className="font-bold text-secondary mb-2">Technological Disruption</h4>
-                  <p className="text-neutral-200 text-sm">
-                    Accelerating technological change, particularly in AI and clean energy, is creating new investment opportunities while disrupting traditional business models.
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-          
-          <motion.div 
-            className="lg:col-span-1"
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Row 4 Title: Economic Indicators */}
+          <motion.div
+            className="mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <h3 className="text-xl font-bold mb-4">Latest Insights</h3>
-            <div className="space-y-4">
-              {marketInsightsData.map((insight, index) => (
-                <div 
-                  key={insight.id}
-                  className="bg-neutral p-5 rounded-xl shadow-sm hover:shadow-md transition-shadow"
-                >
-                  <div className="flex justify-between items-start mb-3">
-                    <span className={`inline-block text-xs font-medium px-3 py-1 rounded-full ${categoryColors[insight.category as keyof typeof categoryColors] || "bg-gray-100 text-gray-800"}`}>
-                      {insight.category}
-                    </span>
-                    <span className="text-xs text-primary/50">{insight.date}</span>
+            <h3 className="text-2xl font-bold mb-6 text-primary border-b pb-2">Economic Indicators</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {economicIndicators.map((chart, index) => (
+                <div key={`economic-${index}`} className="bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+                  <h4 className="font-bold text-lg mb-3">{chart.title}</h4>
+                  <div className="h-60 mb-4">
+                    <FinancialChart 
+                      chartData={chart.data}
+                      labels={monthlyLabels}
+                      title=""
+                      height={240}
+                    />
                   </div>
-                  <h4 className="font-bold mb-2">{insight.title}</h4>
-                  <p className="text-primary/70 text-sm mb-3">
-                    {insight.description.length > 120 
-                      ? `${insight.description.substring(0, 120)}...` 
-                      : insight.description}
+                  <p className="text-sm text-primary/70 mt-4">
+                    {chart.description}
                   </p>
-                  <div className="flex justify-between items-center pt-2 border-t border-gray-100">
-                    <span className="text-xs text-primary/60">{insight.type}</span>
-                    <Link href={`/markets-insight/${insight.id}`} className="text-secondary hover:text-secondary/80 text-sm font-medium">
-                      Read More
-                    </Link>
-                  </div>
                 </div>
               ))}
             </div>
-            <div className="mt-6 text-center">
-              <Link href="/all-insights" className="inline-flex items-center px-5 py-2.5 border border-secondary text-secondary font-medium rounded-md hover:bg-secondary/10 transition-colors">
-                View All Market Insights
-                <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-              </Link>
+          </motion.div>
+
+          {/* Row 5 Title: Market Metrics */}
+          <motion.div
+            className="mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <h3 className="text-2xl font-bold mb-6 text-primary border-b pb-2">Market Metrics</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {marketMetrics.map((chart, index) => (
+                <div key={`metric-${index}`} className="bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100">
+                  <h4 className="font-bold text-lg mb-3">{chart.title}</h4>
+                  <div className="h-60 mb-4">
+                    <FinancialChart 
+                      chartData={chart.data}
+                      labels={monthlyLabels}
+                      title=""
+                      height={240}
+                    />
+                  </div>
+                  <p className="text-sm text-primary/70 mt-4">
+                    {chart.description}
+                  </p>
+                </div>
+              ))}
             </div>
           </motion.div>
         </div>
