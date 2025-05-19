@@ -31,7 +31,8 @@ function Router() {
       <Route path="/news-ai" component={NewsAI} />
       <Route path="/quantitative-model" component={QuantitativeModel} />
       <Route path="/markets-insight" component={MarketsInsight} />
-      <Route path="/our-research" component={OurResearch} />
+      {/* Rotta disabilitata per evitare confusione */}
+      {/* <Route path="/our-research" component={OurResearch} /> */}
       <Route path="/research" component={Research} />
       <Route path="/macro-report" component={MacroReport} />
       <Route path="/quantitative-strategies" component={QuantitativeStrategies} />
