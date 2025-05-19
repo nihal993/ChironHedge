@@ -114,7 +114,8 @@ const LineChartCard: React.FC<LineChartCardProps> = ({
       x: {
         grid: {
           display: false,
-          drawBorder: false
+          drawBorder: false,
+          color: '#E5E7EB'
         },
         ticks: {
           font: {
@@ -124,6 +125,7 @@ const LineChartCard: React.FC<LineChartCardProps> = ({
       },
       y: {
         grid: {
+          color: '#E5E7EB',
           borderDash: [2, 4],
           drawBorder: false
         },

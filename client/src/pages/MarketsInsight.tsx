@@ -1,329 +1,488 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { Link } from "wouter";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import FinancialChart from "@/components/FinancialChart";
+import React, { useState } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
+import TimeframeSelector from '@/components/dashboard/TimeframeSelector';
+import CategoryTabs from '@/components/dashboard/CategoryTabs';
+import LineChartCard from '@/components/dashboard/LineChartCard';
+import BarChartCard from '@/components/dashboard/BarChartCard';
+import HeatmapCard from '@/components/dashboard/HeatmapCard';
+import GaugeCard from '@/components/dashboard/GaugeCard';
+import {
+  dashboardCategories,
+  timeframes,
+  yieldCurveData,
+  inflationData,
+  gdpNowData,
+  unemploymentData,
+  fedFundsData,
+  marketIndicesData,
+  sectorPerformanceData,
+  optionsData,
+  yieldCurveFullData
+} from '@/lib/dashboardData';
 
-// Sample market insights data
-const marketInsightsData = [
-  {
-    id: "insight-1",
-    title: "Global Central Bank Policy Divergence Analysis",
-    description: "In-depth examination of the growing divergence in central bank policies across major economies and implications for currency markets and global asset allocation.",
-    type: "Weekly Analysis",
-    date: "May 9, 2025",
-    category: "Monetary Policy"
-  },
-  {
-    id: "insight-2",
-    title: "Commodity Supercycle Evaluation",
-    description: "Structural analysis of whether current commodity price trends represent a new supercycle or a temporary pandemic-recovery phenomenon.",
-    type: "Special Report",
-    date: "May 7, 2025",
-    category: "Commodities"
-  },
-  {
-    id: "insight-3",
-    title: "High Frequency Alternative Data Signals",
-    description: "Exploring the latest high-frequency alternative data sources and their predictive capabilities for equity market movements.",
-    type: "Research Paper",
-    date: "May 5, 2025",
-    category: "Alternative Data"
-  },
-  {
-    id: "insight-4",
-    title: "Corporate Credit Spreads: Risk Premia Analysis",
-    description: "Decomposition of corporate credit spreads into risk premia components, with focus on current market distortions and opportunities.",
-    type: "Monthly Review",
-    date: "May 1, 2025",
-    category: "Fixed Income"
-  }
-];
+export default function MarketsInsight() {
+  const { t } = useLanguage();
+  const [selectedTimeframe, setSelectedTimeframe] = useState('1M');
+  const [activeCategory, setActiveCategory] = useState('Macro');
 
-// Sample market data for all charts
-const monthlyLabels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  // Funzione per ottenere il colore in base al valore (per heatmap)
+  const getHeatmapColor = (value: number) => {
+    if (value > 2) return { bg: '#10B981', text: 'white' }; // Verde forte
+    if (value > 0) return { bg: '#A7F3D0', text: '#065F46' }; // Verde chiaro
+    if (value > -2) return { bg: '#FEE2E2', text: '#7F1D1D' }; // Rosso chiaro
+    return { bg: '#F43F5E', text: 'white' }; // Rosso forte
+  };
 
-// Row 1: Equity Markets
-const equityMarkets = [
-  {
-    title: "S&P 500",
-    description: "The S&P 500 has shown strong resilience despite macroeconomic headwinds, driven primarily by technology and AI-related stocks. Recent price action suggests institutional investors are positioning for continued earnings growth.",
-    data: [4200, 4150, 4250, 4300, 4400, 4450, 4500, 4550, 4400, 4500, 4600, 4650]
-  },
-  {
-    title: "NASDAQ Composite",
-    description: "Technology stocks continue to outperform the broader market, with the NASDAQ showing particular strength in semiconductor, cloud computing, and AI sectors. Valuation concerns remain but are offset by strong earnings growth.",
-    data: [14000, 13800, 14200, 14500, 14700, 15000, 15200, 15300, 15100, 15400, 15700, 16000]
-  },
-  {
-    title: "Nikkei 225",
-    description: "Japanese equities have benefited from accommodative monetary policy and corporate governance reforms. Export-oriented companies have performed particularly well despite regional growth concerns.",
-    data: [28500, 28000, 28700, 29000, 29500, 30000, 30500, 29800, 29500, 30200, 30800, 31000]
-  }
-];
+  // Formato percentuale per i valori
+  const formatPercent = (value: number) => `${value.toFixed(2)}%`;
 
-// Row 2: Fixed Income & Currencies
-const fixedIncomeAndCurrencies = [
-  {
-    title: "US Treasury Yields (10Y)",
-    description: "US Treasury yields have been gradually rising as the Federal Reserve maintains a hawkish stance on inflation. The yield curve inversion between 2Y and 10Y continues to signal caution about economic growth prospects.",
-    data: [3.8, 3.9, 4.0, 4.1, 4.0, 3.9, 3.8, 3.7, 3.8, 3.9, 4.0, 4.1]
-  },
-  {
-    title: "Credit Spreads",
-    description: "Credit spreads for investment-grade bonds have remained relatively stable, reflecting investor confidence in corporate balance sheets despite higher financing costs. Bank and financial sector spreads have shown more volatility.",
-    data: [1.2, 1.3, 1.4, 1.3, 1.2, 1.1, 1.0, 1.1, 1.2, 1.3, 1.4, 1.5]
-  },
-  {
-    title: "US Dollar Index",
-    description: "The US dollar has maintained its strength against major currencies, supported by interest rate differentials and safe-haven flows. This strength continues to impact global trade and emerging market assets.",
-    data: [105, 104, 103, 104, 105, 106, 107, 108, 107, 106, 105, 104]
-  }
-];
+  // Rendering condizionale in base alla categoria selezionata
+  const renderDashboardContent = () => {
+    switch(activeCategory) {
+      case 'Macro':
+        return renderMacroSection();
+      case 'Equity': 
+        return renderEquitySection();
+      case 'Bond Market':
+        return renderBondMarketSection();
+      case 'Volatility':
+        return renderVolatilitySection();
+      case 'Commodities':
+        return renderCommoditiesSection();
+      case 'Credit':
+        return renderCreditSection();
+      case 'Sentiment':
+        return renderSentimentSection();
+      case 'Liquidity':
+        return renderLiquiditySection();
+      default:
+        return renderMacroSection();
+    }
+  };
 
-// Row 3: Commodities & Alternative Assets
-const commoditiesAndAlternatives = [
-  {
-    title: "Gold (USD/oz)",
-    description: "Gold prices have trended higher amid geopolitical uncertainties and persistent inflation concerns. Central bank purchases continue to provide support, while investor positioning suggests further potential upside.",
-    data: [1800, 1820, 1840, 1860, 1880, 1900, 1920, 1940, 1930, 1950, 1970, 1990]
-  },
-  {
-    title: "Crude Oil (WTI)",
-    description: "Oil prices have fluctuated within a range, balancing supply constraints from OPEC+ against demand concerns related to global growth. Geopolitical premium remains embedded in current pricing.",
-    data: [70, 72, 74, 76, 78, 80, 82, 84, 86, 82, 78, 76]
-  },
-  {
-    title: "Bitcoin Performance",
-    description: "Cryptocurrency markets have shown increased institutional adoption despite regulatory uncertainties. Bitcoin's correlation with risk assets remains high, though its role as an inflation hedge continues to be debated.",
-    data: [42000, 44000, 46000, 48000, 47000, 45000, 46000, 48000, 50000, 52000, 54000, 56000]
-  }
-];
+  // Sezione Macro
+  const renderMacroSection = () => {
+    // Dati per il timeframe selezionato
+    const curveData = yieldCurveData[selectedTimeframe as keyof typeof yieldCurveData];
+    const inflation = inflationData[selectedTimeframe as keyof typeof inflationData];
+    const gdp = gdpNowData[selectedTimeframe as keyof typeof gdpNowData];
+    const unemployment = unemploymentData[selectedTimeframe as keyof typeof unemploymentData];
+    
+    // Previsioni del tasso FED
+    const fedProbData = {
+      labels: fedFundsData.probabilities.dates,
+      datasets: [
+        {
+          label: t('Cut Probability'),
+          data: fedFundsData.probabilities.cut.map(v => v * 100),
+          backgroundColor: '#10B981', // Verde
+        },
+        {
+          label: t('No Change Probability'),
+          data: fedFundsData.probabilities.noChange.map(v => v * 100),
+          backgroundColor: '#6B7280', // Grigio
+        },
+        {
+          label: t('Hike Probability'),
+          data: fedFundsData.probabilities.hike.map(v => v * 100),
+          backgroundColor: '#F43F5E', // Rosso
+        }
+      ]
+    };
 
-// Row 4: Economic & Market Indicators
-const economicAndMarketIndicators = [
-  {
-    title: "US Inflation (CPI YoY%)",
-    description: "Inflation readings have moderated from peak levels but remain above central bank targets. Core services inflation has proven persistent, while goods inflation has normalized. Wage growth continues to be closely monitored.",
-    data: [4.2, 4.0, 3.8, 3.7, 3.5, 3.4, 3.3, 3.2, 3.1, 3.0, 2.9, 2.8]
-  },
-  {
-    title: "VIX Volatility Index",
-    description: "Market volatility has remained subdued despite various macro uncertainties, suggesting complacency among investors. Historical patterns indicate current levels may not be sustainable for extended periods.",
-    data: [18, 20, 22, 19, 17, 16, 15, 17, 18, 20, 22, 19]
-  },
-  {
-    title: "Corporate Earnings Growth (%)",
-    description: "Earnings growth has exceeded analysts' expectations, particularly in technology and energy sectors. Margin pressures from higher input costs and wages have been offset by pricing power in many industries.",
-    data: [8, 9, 10, 11, 12, 11, 10, 9, 8, 10, 12, 14]
-  }
-];
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {/* Yield Curve */}
+        <LineChartCard
+          title={t('Yield Curve (2y-10y Spread)')}
+          subtitle={t('Percentage points')}
+          labels={curveData.dates}
+          datasets={[
+            {
+              label: t('2y-10y Spread'),
+              data: curveData.values,
+              borderColor: '#0033A0',
+              fill: true
+            }
+          ]}
+        />
 
-const categoryColors = {
-  "Monetary Policy": "bg-blue-100 text-blue-800",
-  "Commodities": "bg-amber-100 text-amber-800",
-  "Alternative Data": "bg-purple-100 text-purple-800",
-  "Fixed Income": "bg-green-100 text-green-800",
-  "Equities": "bg-red-100 text-red-800",
-  "Currencies": "bg-cyan-100 text-cyan-800"
-};
+        {/* Inflation */}
+        <LineChartCard
+          title={t('Inflation')}
+          subtitle={t('Year-over-year percentage change')}
+          labels={inflation.dates}
+          datasets={[
+            {
+              label: t('CPI'),
+              data: inflation.cpi,
+              borderColor: '#F43F5E'
+            },
+            {
+              label: t('Core CPI'),
+              data: inflation.coreCpi,
+              borderColor: '#FFB020'
+            }
+          ]}
+        />
 
-const MarketsInsight = () => {
-  return (
-    <section className="py-20 md:py-24 bg-white">
-      <div className="container mx-auto px-4">
-        <motion.div 
-          className="text-center mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Markets Insight</h2>
-          <p className="text-primary/70 max-w-3xl mx-auto">
-            Comprehensive analysis of financial markets, identifying key trends, risks, and opportunities across asset classes.
-          </p>
-        </motion.div>
-        
-        {/* Market Charts Grid - 3 columns x 4 rows = 12 charts total */}
-        <div className="mb-12">
-          {/* Row 1: Equity Markets */}
-          <motion.div
-            className="mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <h3 className="text-2xl font-bold mb-6 text-primary border-b pb-2">Equity Markets</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {equityMarkets.map((chart, index) => (
-                <div key={`equity-${index}`} className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100">
-                  <h4 className="font-bold text-lg mb-3">{chart.title}</h4>
-                  <div className="h-80 mb-4">
-                    <FinancialChart 
-                      chartData={chart.data}
-                      labels={monthlyLabels}
-                      title=""
-                      height={320}
-                    />
-                  </div>
-                  <p className="text-sm text-primary/70 mt-4">
-                    {chart.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
+        {/* GDP Now */}
+        <LineChartCard
+          title={t('GDP Growth')}
+          subtitle={t('Quarterly estimates, annualized')}
+          labels={gdp.dates}
+          datasets={[
+            {
+              label: t('USA'),
+              data: gdp.usa,
+              borderColor: '#0033A0'
+            },
+            {
+              label: t('Eurozone'),
+              data: gdp.eu,
+              borderColor: '#1D7AFC'
+            }
+          ]}
+        />
 
-          {/* Row 2: Fixed Income & Currencies */}
-          <motion.div
-            className="mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <h3 className="text-2xl font-bold mb-6 text-primary border-b pb-2">Fixed Income & Currencies</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {fixedIncomeAndCurrencies.map((chart, index) => (
-                <div key={`fixed-${index}`} className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100">
-                  <h4 className="font-bold text-lg mb-3">{chart.title}</h4>
-                  <div className="h-80 mb-4">
-                    <FinancialChart 
-                      chartData={chart.data}
-                      labels={monthlyLabels}
-                      title=""
-                      height={320}
-                    />
-                  </div>
-                  <p className="text-sm text-primary/70 mt-4">
-                    {chart.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
+        {/* Unemployment */}
+        <LineChartCard
+          title={t('Unemployment Rate')}
+          subtitle={t('Percentage of labor force')}
+          labels={unemployment.dates}
+          datasets={[
+            {
+              label: t('Unemployment Rate'),
+              data: unemployment.rate,
+              borderColor: '#0033A0'
+            }
+          ]}
+        />
 
-          {/* Row 3: Commodities & Alternative Assets */}
-          <motion.div
-            className="mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <h3 className="text-2xl font-bold mb-6 text-primary border-b pb-2">Commodities & Alternative Assets</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {commoditiesAndAlternatives.map((chart, index) => (
-                <div key={`commodity-${index}`} className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100">
-                  <h4 className="font-bold text-lg mb-3">{chart.title}</h4>
-                  <div className="h-80 mb-4">
-                    <FinancialChart 
-                      chartData={chart.data}
-                      labels={monthlyLabels}
-                      title=""
-                      height={320}
-                    />
-                  </div>
-                  <p className="text-sm text-primary/70 mt-4">
-                    {chart.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
+        {/* Unemployment Claims */}
+        <LineChartCard
+          title={t('Initial Jobless Claims')}
+          subtitle={t('Thousands, weekly data')}
+          labels={unemployment.dates}
+          datasets={[
+            {
+              label: t('Claims'),
+              data: unemployment.claims,
+              borderColor: '#F43F5E'
+            }
+          ]}
+        />
 
-          {/* Row 4: Economic & Market Indicators */}
-          <motion.div
-            className="mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <h3 className="text-2xl font-bold mb-6 text-primary border-b pb-2">Economic & Market Indicators</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {economicAndMarketIndicators.map((chart, index) => (
-                <div key={`economic-${index}`} className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100">
-                  <h4 className="font-bold text-lg mb-3">{chart.title}</h4>
-                  <div className="h-80 mb-4">
-                    <FinancialChart 
-                      chartData={chart.data}
-                      labels={monthlyLabels}
-                      title=""
-                      height={320}
-                    />
-                  </div>
-                  <p className="text-sm text-primary/70 mt-4">
-                    {chart.description}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-        
-        <motion.div 
-          className="bg-white p-8 rounded-xl shadow-md border border-neutral mt-8"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div>
-              <h3 className="text-2xl font-bold mb-4">Custom Market Analysis</h3>
-              <p className="text-primary/70 mb-6">
-                Our team of analysts can provide customized market analysis focused on specific sectors, regions, or asset classes relevant to your investment strategy.
-              </p>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-start">
-                  <svg className="h-5 w-5 text-secondary mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span className="text-primary/70">Tailored to your investment universe and mandates</span>
-                </li>
-                <li className="flex items-start">
-                  <svg className="h-5 w-5 text-secondary mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span className="text-primary/70">Integration of proprietary quantitative signals</span>
-                </li>
-                <li className="flex items-start">
-                  <svg className="h-5 w-5 text-secondary mt-1 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  <span className="text-primary/70">Regular updates and direct analyst access</span>
-                </li>
-              </ul>
-              <Link href="/contact" className="inline-flex items-center px-6 py-3 gold-gradient text-primary font-medium rounded-md hover:brightness-105 transition-all">
-                Request Custom Analysis
-              </Link>
-            </div>
-            <div className="bg-neutral p-6 rounded-lg">
-              <h4 className="text-xl font-bold mb-4">Upcoming Market Webcasts</h4>
-              <div className="space-y-4">
-                <div className="border-l-4 border-secondary pl-4">
-                  <h5 className="font-bold">Q2 2025 Market Outlook</h5>
-                  <p className="text-sm text-primary/60 mb-1">May 15, 2025 • 10:00 AM EST</p>
-                  <p className="text-xs text-primary/50">With Chief Economist Dr. Alessandro Rossi</p>
-                </div>
-                <div className="border-l-4 border-secondary pl-4">
-                  <h5 className="font-bold">Global Monetary Policy Analysis</h5>
-                  <p className="text-sm text-primary/60 mb-1">May 22, 2025 • 11:00 AM EST</p>
-                  <p className="text-xs text-primary/50">With Head of Fixed Income Research</p>
-                </div>
-                <div className="border-l-4 border-secondary pl-4">
-                  <h5 className="font-bold">Alternative Data Investment Applications</h5>
-                  <p className="text-sm text-primary/60 mb-1">May 29, 2025 • 2:00 PM EST</p>
-                  <p className="text-xs text-primary/50">With Quantitative Strategy Team</p>
-                </div>
-              </div>
-              <button className="w-full mt-6 py-2.5 text-center text-secondary hover:text-secondary/80 font-medium">
-                Register for Webcasts
-              </button>
-            </div>
-          </div>
-        </motion.div>
+        {/* Fed Funds Probabilities */}
+        <BarChartCard
+          title={t('Fed Funds Rate Probabilities')}
+          subtitle={t('Market-implied probabilities for upcoming meetings')}
+          labels={fedProbData.labels}
+          datasets={fedProbData.datasets}
+          height={250}
+          showLegend={true}
+        />
+
+        {/* Current Fed Rate Gauge */}
+        <GaugeCard
+          title={t('Current Fed Funds Rate')}
+          subtitle={t('Next meeting: ') + fedFundsData.current.nextMeeting}
+          value={fedFundsData.current.rate}
+          min={0}
+          max={7}
+          format={(value) => `${value.toFixed(2)}%`}
+          colorRanges={[
+            { from: 0, to: 2, color: '#10B981' }, // Verde (tassi bassi)
+            { from: 2, to: 4, color: '#FFB020' }, // Giallo (tassi medi)
+            { from: 4, to: 7, color: '#F43F5E' }, // Rosso (tassi alti)
+          ]}
+          label={t('Current Rate')}
+        />
+
+        {/* Cut Probability Gauge */}
+        <GaugeCard
+          title={t('Rate Cut Probability')}
+          subtitle={t('Next Fed meeting')}
+          value={fedFundsData.current.cutProb * 100}
+          format={(value) => `${value.toFixed(0)}%`}
+          colorRanges={[
+            { from: 0, to: 33, color: '#F43F5E' }, // Rosso (bassa probabilità)
+            { from: 33, to: 67, color: '#FFB020' }, // Giallo (media probabilità)
+            { from: 67, to: 100, color: '#10B981' }, // Verde (alta probabilità)
+          ]}
+          label={t('Probability')}
+        />
+
+        {/* Hike Probability Gauge */}
+        <GaugeCard
+          title={t('Rate Hike Probability')}
+          subtitle={t('Next Fed meeting')}
+          value={fedFundsData.current.hikeProb * 100}
+          format={(value) => `${value.toFixed(0)}%`}
+          colorRanges={[
+            { from: 0, to: 33, color: '#10B981' }, // Verde (bassa probabilità)
+            { from: 33, to: 67, color: '#FFB020' }, // Giallo (media probabilità)
+            { from: 67, to: 100, color: '#F43F5E' }, // Rosso (alta probabilità)
+          ]}
+          label={t('Probability')}
+        />
       </div>
-    </section>
-  );
-};
+    );
+  };
 
-export default MarketsInsight;
+  // Sezione Equity
+  const renderEquitySection = () => {
+    const indices = marketIndicesData[selectedTimeframe as keyof typeof marketIndicesData];
+    const options = optionsData[selectedTimeframe as keyof typeof optionsData];
+    
+    // Utilizzo i dati settimanali per il performance sector
+    const sectorData = sectorPerformanceData.weekly;
+
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {/* S&P 500 */}
+        <LineChartCard
+          title="S&P 500"
+          subtitle={t('Index value')}
+          labels={indices.dates}
+          datasets={[
+            {
+              label: "S&P 500",
+              data: indices.sp500,
+              borderColor: '#0033A0'
+            }
+          ]}
+        />
+
+        {/* NASDAQ */}
+        <LineChartCard
+          title="NASDAQ"
+          subtitle={t('Index value')}
+          labels={indices.dates}
+          datasets={[
+            {
+              label: "NASDAQ",
+              data: indices.nasdaq,
+              borderColor: '#1D7AFC'
+            }
+          ]}
+        />
+
+        {/* EUROSTOXX */}
+        <LineChartCard
+          title="EUROSTOXX"
+          subtitle={t('Index value')}
+          labels={indices.dates}
+          datasets={[
+            {
+              label: "EUROSTOXX",
+              data: indices.eurostoxx,
+              borderColor: '#4C9AFF'
+            }
+          ]}
+        />
+
+        {/* P/E Ratios */}
+        <LineChartCard
+          title={t('P/E Ratios')}
+          subtitle={t('Price-to-earnings')}
+          labels={indices.dates}
+          datasets={[
+            {
+              label: "S&P 500 P/E",
+              data: indices.pe.sp500,
+              borderColor: '#0033A0'
+            },
+            {
+              label: "NASDAQ P/E",
+              data: indices.pe.nasdaq,
+              borderColor: '#1D7AFC'
+            },
+            {
+              label: "EUROSTOXX P/E",
+              data: indices.pe.eurostoxx,
+              borderColor: '#4C9AFF'
+            }
+          ]}
+        />
+
+        {/* Put/Call Ratio */}
+        <LineChartCard
+          title={t('Put/Call Ratio')}
+          subtitle={t('Market sentiment indicator')}
+          labels={options.dates}
+          datasets={[
+            {
+              label: t('Put/Call Ratio'),
+              data: options.putCallRatio,
+              borderColor: '#F43F5E'
+            }
+          ]}
+        />
+
+        {/* Short Interest */}
+        <LineChartCard
+          title={t('Short Interest')}
+          subtitle={t('Percentage of float')}
+          labels={options.dates}
+          datasets={[
+            {
+              label: t('Short Interest'),
+              data: options.shortInterest,
+              borderColor: '#FFB020'
+            }
+          ]}
+        />
+
+        {/* Sector Performance */}
+        <HeatmapCard
+          title={t('Sector Performance')}
+          subtitle={t('Weekly change percentage')}
+          items={sectorData.map(item => ({ label: item.name, value: item.change }))}
+          getColorForValue={getHeatmapColor}
+          format={formatPercent}
+          fullWidth={true}
+        />
+      </div>
+    );
+  };
+
+  // Altre sezioni (renderizzazione base, da completare con i dati specifici)
+  const renderBondMarketSection = () => {
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <LineChartCard 
+          title={t('Bond Market Dashboard')}
+          subtitle={t('Under construction')}
+          labels={['1M', '3M', '6M', '1Y', '2Y', '5Y', '10Y', '30Y']}
+          datasets={[{
+            label: t('Current Yields'),
+            data: yieldCurveFullData.current.yields,
+            borderColor: '#0033A0'
+          },{
+            label: t('Previous Month'),
+            data: yieldCurveFullData.previousMonth.yields,
+            borderColor: '#1D7AFC'
+          },{
+            label: t('Previous Year'),
+            data: yieldCurveFullData.previousYear.yields,
+            borderColor: '#4C9AFF'
+          }]}
+          fullWidth={true}
+        />
+      </div>
+    );
+  };
+
+  const renderVolatilitySection = () => {
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <LineChartCard 
+          title={t('Volatility Dashboard')}
+          subtitle={t('Under construction')}
+          labels={['1', '2', '3', '4', '5', '6', '7']}
+          datasets={[{
+            label: 'VIX',
+            data: [20, 22, 19, 24, 21, 18, 17],
+            borderColor: '#F43F5E'
+          }]}
+          fullWidth={true}
+        />
+      </div>
+    );
+  };
+
+  const renderCommoditiesSection = () => {
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <LineChartCard 
+          title={t('Commodities Dashboard')}
+          subtitle={t('Under construction')}
+          labels={['1', '2', '3', '4', '5', '6', '7']}
+          datasets={[{
+            label: 'Gold',
+            data: [1850, 1870, 1890, 1920, 1950, 1940, 1960],
+            borderColor: '#FFB020'
+          }]}
+          fullWidth={true}
+        />
+      </div>
+    );
+  };
+
+  const renderCreditSection = () => {
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <LineChartCard 
+          title={t('Credit Dashboard')}
+          subtitle={t('Under construction')}
+          labels={['1', '2', '3', '4', '5', '6', '7']}
+          datasets={[{
+            label: 'IG Spread',
+            data: [1.1, 1.12, 1.15, 1.18, 1.2, 1.19, 1.17],
+            borderColor: '#0033A0'
+          }]}
+          fullWidth={true}
+        />
+      </div>
+    );
+  };
+
+  const renderSentimentSection = () => {
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <LineChartCard 
+          title={t('Sentiment Dashboard')}
+          subtitle={t('Under construction')}
+          labels={['1', '2', '3', '4', '5', '6', '7']}
+          datasets={[{
+            label: 'Bull/Bear Ratio',
+            data: [1.5, 1.7, 1.9, 2.1, 2.0, 1.8, 1.7],
+            borderColor: '#10B981'
+          }]}
+          fullWidth={true}
+        />
+      </div>
+    );
+  };
+
+  const renderLiquiditySection = () => {
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <LineChartCard 
+          title={t('Liquidity Dashboard')}
+          subtitle={t('Under construction')}
+          labels={['1', '2', '3', '4', '5', '6', '7']}
+          datasets={[{
+            label: 'M2 Money Supply',
+            data: [21.5, 21.4, 21.3, 21.4, 21.5, 21.6, 21.7],
+            borderColor: '#0033A0'
+          }]}
+          fullWidth={true}
+        />
+      </div>
+    );
+  };
+
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold mb-6 text-primary">{t('Markets Insight')}</h1>
+      
+      {/* Selettore di timeframe globale */}
+      <TimeframeSelector 
+        selectedTimeframe={selectedTimeframe}
+        onTimeframeChange={setSelectedTimeframe}
+      />
+      
+      {/* Tabs per le categorie della dashboard */}
+      <CategoryTabs 
+        categories={dashboardCategories}
+        activeCategory={activeCategory}
+        onCategoryChange={setActiveCategory}
+      />
+      
+      {/* Contenuto della dashboard */}
+      {renderDashboardContent()}
+    </div>
+  );
+}
