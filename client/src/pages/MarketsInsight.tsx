@@ -315,12 +315,12 @@ const MarketsInsight = () => {
               {marketMetrics.map((chart, index) => (
                 <div key={`metric-${index}`} className="bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100">
                   <h4 className="font-bold text-lg mb-3">{chart.title}</h4>
-                  <div className="h-60 mb-4">
+                  <div className="h-80 mb-4">
                     <FinancialChart 
                       chartData={chart.data}
                       labels={monthlyLabels}
                       title=""
-                      height={240}
+                      height={320}
                     />
                   </div>
                   <p className="text-sm text-primary/70 mt-4">
