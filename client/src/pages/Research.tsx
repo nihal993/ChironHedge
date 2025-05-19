@@ -58,7 +58,7 @@ const Research = () => {
           transition={{ duration: 0.5, delay: 0.1 }}
         >
           <h3 className="text-2xl font-bold mb-8 pb-4 border-b border-gray-200">
-            Featured Research Papers
+            {t('research.featuredPapers')}
           </h3>
           <div className="grid md:grid-cols-3 gap-8">
             {featuredPapers.map((paper, index) => (
@@ -80,7 +80,7 @@ const Research = () => {
                   <p className="text-primary/70 text-sm mb-4">{paper.abstract}</p>
                   <div className="flex justify-end mt-auto pt-4 border-t border-gray-100">
                     <Link href={`/research/${paper.id}`} className="text-secondary hover:text-secondary/80 font-medium flex items-center text-sm">
-                      Read More <ChevronRight className="h-4 w-4 ml-1" />
+                      {t('research.readMore')} <ChevronRight className="h-4 w-4 ml-1" />
                     </Link>
                   </div>
                 </div>
@@ -97,7 +97,7 @@ const Research = () => {
           className="mb-16"
         >
           <h3 className="text-2xl font-bold mb-8 pb-4 border-b border-gray-200">
-            Research Categories
+            {t('research.researchCategories')}
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {researchCategories.map((category, index) => (
@@ -119,9 +119,9 @@ const Research = () => {
                     {category.description}
                   </p>
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-medium bg-neutral inline-block px-3 py-1 rounded-full">{category.reportsCount}+ Research Reports</span>
+                    <span className="text-xs font-medium bg-neutral inline-block px-3 py-1 rounded-full">{category.reportsCount}+ {t('research.reports')}</span>
                     <Link href={`/research/${category.id}`} className="text-secondary hover:text-secondary/80 font-medium flex items-center">
-                      View Papers <ChevronRight className="h-4 w-4 ml-1" />
+                      {t('research.viewPapers')} <ChevronRight className="h-4 w-4 ml-1" />
                     </Link>
                   </div>
                 </div>

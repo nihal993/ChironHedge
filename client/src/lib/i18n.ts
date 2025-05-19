@@ -1104,6 +1104,26 @@ export const translations: Translations = {
     en: 'Reports',
     it: 'Rapporti'
   },
+  'research.featuredPapers': {
+    en: 'Featured Research Papers',
+    it: 'Articoli di Ricerca in Evidenza'
+  },
+  'research.readMore': {
+    en: 'Read More',
+    it: 'Leggi di Più'
+  },
+  'research.researchCategories': {
+    en: 'Research Categories',
+    it: 'Categorie di Ricerca'
+  },
+  'research.researchReports': {
+    en: 'Research Reports',
+    it: 'Rapporti di Ricerca'
+  },
+  'research.viewPapers': {
+    en: 'View Papers',
+    it: 'Vedi Articoli'
+  },
   'research.customTitle': {
     en: 'Custom Research',
     it: 'Ricerche Personalizzate'
