@@ -13,6 +13,7 @@ import Contact from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
 import AboutUs from "@/pages/AboutUs";
 import WhitePaper from "@/pages/WhitePaper";
+import Research from "@/pages/Research";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { useEffect } from "react";
 
@@ -31,6 +32,7 @@ function Router() {
       <Route path="/quantitative-model" component={QuantitativeModel} />
       <Route path="/markets-insight" component={MarketsInsight} />
       <Route path="/our-research" component={OurResearch} />
+      <Route path="/research" component={Research} />
       <Route path="/macro-report" component={MacroReport} />
       <Route path="/quantitative-strategies" component={QuantitativeStrategies} />
       <Route path="/contact" component={Contact} />
