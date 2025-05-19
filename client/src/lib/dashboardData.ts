@@ -2,6 +2,18 @@
 // Timeframes disponibili per tutti i dati
 export const timeframes = ['1M', '3M', '6M', 'YTD', '1Y', '3Y', '5Y', 'MAX'];
 
+// Categorie dashboard
+export const dashboardCategories = [
+  'Macro', 
+  'Equity', 
+  'Bond Market', 
+  'Volatility', 
+  'Commodities', 
+  'Credit', 
+  'Sentiment', 
+  'Liquidity'
+];
+
 // 1. Macro View Data
 export const yieldCurveData = {
   '1M': {

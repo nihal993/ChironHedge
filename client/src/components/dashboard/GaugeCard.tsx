@@ -101,12 +101,9 @@ const GaugeCard: React.FC<GaugeCardProps> = ({
       },
     },
     labels: [label || ''],
-    colors: colorRanges.map(range => {
-      if (value >= range.from && value <= range.to) {
-        return range.color;
-      }
-      return colorRanges[0].color; // Default
-    }).filter(color => color !== colorRanges[0].color)[0] || colorRanges[0].color
+    colors: [(
+      colorRanges.find(range => value >= range.from && value <= range.to)?.color || colorRanges[0].color
+    )]
   };
 
   return (
