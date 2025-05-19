@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
-import { researchCategories } from "@/lib/data";
+import { researchCategories, ResearchCategory } from "@/lib/data";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 // Definizione di tipi per gli articoli di ricerca
@@ -14,69 +14,120 @@ interface ResearchPaper {
   category: string;
 }
 
-// Featured Research Papers con supporto multilingua
-const getFeaturedPapers = (language: string): ResearchPaper[] => {
-  if (language === 'it') {
-    return [
-      {
-        id: "paper1",
-        title: "Implicazioni Macroeconomiche delle Valute Digitali delle Banche Centrali",
-        abstract: "Questo studio esamina l'impatto potenziale delle valute digitali delle banche centrali (CBDC) sui sistemi economici globali, con particolare attenzione alle loro implicazioni per la politica monetaria e la stabilità finanziaria.",
-        date: "Maggio 2025",
-        author: "Team di Ricerca",
-        category: "Macro"
-      },
-      {
-        id: "paper2",
-        title: "Premio al Rischio di Volatilità: Estrazione e Applicazioni nella Costruzione di Portafogli",
-        abstract: "Questo paper analizza la struttura e l'evoluzione del premio al rischio di volatilità nei mercati azionari e le sue applicazioni pratiche nella costruzione di portafogli resistenti agli shock di mercato.",
-        date: "Aprile 2025",
-        author: "Team Quantitativo",
-        category: "Volatilità"
-      },
-      {
-        id: "paper3",
-        title: "Integrazione ESG nell'Analisi del Reddito Fisso Sovrano",
-        abstract: "Una metodologia innovativa per incorporare i fattori ESG nell'analisi del rischio sovrano, con un framework quantitativo per misurare l'impatto sui rendimenti attesi dei titoli di stato.",
-        date: "Marzo 2025",
-        author: "Team Credito",
-        category: "Reddito Fisso"
-      }
-    ];
-  } else {
-    return [
-      {
-        id: "paper1",
-        title: "Macroeconomic Implications of Central Bank Digital Currencies",
-        abstract: "This study examines the potential impact of central bank digital currencies (CBDCs) on global economic systems, with particular attention to their implications for monetary policy and financial stability.",
-        date: "May 2025",
-        author: "Research Team",
-        category: "Macro"
-      },
-      {
-        id: "paper2",
-        title: "Volatility Risk Premium: Extraction and Applications in Portfolio Construction",
-        abstract: "This paper analyzes the structure and evolution of the volatility risk premium in equity markets and its practical applications in constructing portfolios resilient to market shocks.",
-        date: "April 2025",
-        author: "Quantitative Team",
-        category: "Volatility"
-      },
-      {
-        id: "paper3",
-        title: "ESG Integration in Sovereign Fixed Income Analysis",
-        abstract: "An innovative methodology for incorporating ESG factors into sovereign risk analysis, with a quantitative framework for measuring the impact on expected returns of government securities.",
-        date: "March 2025",
-        author: "Credit Team",
-        category: "Fixed Income"
-      }
-    ];
+// Featured Research Papers in italiano
+const italianPapers: ResearchPaper[] = [
+  {
+    id: "paper1",
+    title: "Implicazioni Macroeconomiche delle Valute Digitali delle Banche Centrali",
+    abstract: "Questo studio esamina l'impatto potenziale delle valute digitali delle banche centrali (CBDC) sui sistemi economici globali, con particolare attenzione alle loro implicazioni per la politica monetaria e la stabilità finanziaria.",
+    date: "Maggio 2025",
+    author: "Team di Ricerca",
+    category: "Macro"
+  },
+  {
+    id: "paper2",
+    title: "Premio al Rischio di Volatilità: Estrazione e Applicazioni nella Costruzione di Portafogli",
+    abstract: "Questo paper analizza la struttura e l'evoluzione del premio al rischio di volatilità nei mercati azionari e le sue applicazioni pratiche nella costruzione di portafogli resistenti agli shock di mercato.",
+    date: "Aprile 2025",
+    author: "Team Quantitativo",
+    category: "Volatilità"
+  },
+  {
+    id: "paper3",
+    title: "Integrazione ESG nell'Analisi del Reddito Fisso Sovrano",
+    abstract: "Una metodologia innovativa per incorporare i fattori ESG nell'analisi del rischio sovrano, con un framework quantitativo per misurare l'impatto sui rendimenti attesi dei titoli di stato.",
+    date: "Marzo 2025",
+    author: "Team Credito",
+    category: "Reddito Fisso"
   }
-};
+];
+
+// Featured Research Papers in inglese
+const englishPapers: ResearchPaper[] = [
+  {
+    id: "paper1",
+    title: "Macroeconomic Implications of Central Bank Digital Currencies",
+    abstract: "This study examines the potential impact of central bank digital currencies (CBDCs) on global economic systems, with particular attention to their implications for monetary policy and financial stability.",
+    date: "May 2025",
+    author: "Research Team",
+    category: "Macro"
+  },
+  {
+    id: "paper2",
+    title: "Volatility Risk Premium: Extraction and Applications in Portfolio Construction",
+    abstract: "This paper analyzes the structure and evolution of the volatility risk premium in equity markets and its practical applications in constructing portfolios resilient to market shocks.",
+    date: "April 2025",
+    author: "Quantitative Team",
+    category: "Volatility"
+  },
+  {
+    id: "paper3",
+    title: "ESG Integration in Sovereign Fixed Income Analysis",
+    abstract: "An innovative methodology for incorporating ESG factors into sovereign risk analysis, with a quantitative framework for measuring the impact on expected returns of government securities.",
+    date: "March 2025",
+    author: "Credit Team",
+    category: "Fixed Income"
+  }
+];
+
+// Categorie di ricerca in italiano
+const italianCategories: ResearchCategory[] = [
+  {
+    id: "macro",
+    title: "Analisi Macroeconomica",
+    description: "Valutazioni tempestive sui principali trend macroeconomici e il loro impatto sui mercati globali.",
+    imageSrc: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300&q=80",
+    imageAlt: "Modelli finanziari matematici",
+    reportsCount: 20
+  },
+  {
+    id: "volatility",
+    title: "Volatilità",
+    description: "Modelli proprietari di previsione della volatilità e strategie di trading relative.",
+    imageSrc: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300&q=80",
+    imageAlt: "Visualizzazione della volatilità",
+    reportsCount: 15
+  },
+  {
+    id: "credit",
+    title: "Ricerca sul Credito",
+    description: "Analisi approfondite sui mercati del credito con focus su pricing relativo e anomalie.",
+    imageSrc: "https://images.unsplash.com/photo-1620714223084-8fcacc6dfd8d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300&q=80",
+    imageAlt: "Visualizzazione dati mercato del credito",
+    reportsCount: 18
+  },
+  {
+    id: "equity",
+    title: "Fattori Azionari",
+    description: "Ricerche sui fattori azionari, dalla value al momentum, con applicazioni pratiche.",
+    imageSrc: "https://images.unsplash.com/photo-1560221328-12fe60f83ab8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300&q=80",
+    imageAlt: "Modelli di fattori azionari",
+    reportsCount: 25
+  },
+  {
+    id: "fixed-income",
+    title: "Strategie di Reddito Fisso",
+    description: "Strategie di trading e investimento sui mercati obbligazionari globali.",
+    imageSrc: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300&q=80",
+    imageAlt: "Modelli di strategia a reddito fisso",
+    reportsCount: 22
+  },
+  {
+    id: "alternative-data",
+    title: "Dati Alternativi",
+    description: "Sfruttamento di dataset non convenzionali per generare alpha nei mercati finanziari.",
+    imageSrc: "https://images.unsplash.com/photo-1607798748738-b15c40d33d57?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300&q=80",
+    imageAlt: "Visualizzazione di dati alternativi",
+    reportsCount: 12
+  }
+];
 
 const Research = () => {
   const { t, language } = useLanguage();
-  // Ottieni gli articoli nella lingua corrente
-  const papers = getFeaturedPapers(language);
+  
+  // Seleziona gli articoli e le categorie in base alla lingua
+  const papers = language === 'it' ? italianPapers : englishPapers;
+  const categories = language === 'it' ? italianCategories : researchCategories;
   
   return (
     <section className="py-20 md:py-24 bg-neutral">
@@ -87,9 +138,9 @@ const Research = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Research</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">{t('research.title')}</h2>
           <p className="text-primary/70 max-w-3xl mx-auto">
-            Explore our cutting-edge research and insights that drive quantitative investment strategies and market analysis
+            {t('research.description')}
           </p>
         </motion.div>
         
@@ -143,7 +194,7 @@ const Research = () => {
             {t('research.researchCategories')}
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {researchCategories.map((category, index) => (
+            {categories.map((category, index) => (
               <motion.div 
                 key={category.id}
                 className="bg-white rounded-xl overflow-hidden shadow-md transition-transform hover:-translate-y-1 hover:shadow-lg"
