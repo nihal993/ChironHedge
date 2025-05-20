@@ -506,7 +506,18 @@ export default function MarketsInsight() {
   };
 
   const renderVolatilitySection = () => {
-    const sampleDates = ['2025-01-01', '2025-02-01', '2025-03-01', '2025-04-01', '2025-05-01', '2025-05-15'];
+    // Ottieni i dati della volatilità per il timeframe selezionato
+    const volData = volatilityData[selectedTimeframe as keyof typeof volatilityData];
+    const volRiskPremium = volRiskPremiumData[selectedTimeframe as keyof typeof volRiskPremiumData];
+    const vixTermStructure = vixTermStructureData;
+    
+    // Funzione per ottenere il colore in base al valore (per heatmap di volatilità)
+    const getVolHeatmapColor = (value: number) => {
+      if (value > 25) return { bg: '#F43F5E', text: 'white' }; // Rosso forte (alta volatilità)
+      if (value > 15) return { bg: '#FEE2E2', text: '#7F1D1D' }; // Rosso chiaro
+      if (value > 10) return { bg: '#FFF7AE', text: '#854D0E' }; // Giallo
+      return { bg: '#D1FAE5', text: '#065F46' }; // Verde chiaro (bassa volatilità)
+    };
     
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -514,10 +525,10 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('VIX Index')}
           subtitle={t('Implied volatility, percentage')}
-          labels={sampleDates}
+          labels={volData.dates}
           datasets={[{
             label: t('VIX'),
-            data: [18, 20, 17, 15, 14, 13],
+            data: volData.vix,
             borderColor: '#F43F5E'
           }]}
         />

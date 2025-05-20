@@ -488,7 +488,20 @@ export const volatilityData = {
     dates: ['2025-04-01', '2025-04-08', '2025-04-15', '2025-04-22', '2025-05-01', '2025-05-08', '2025-05-15'],
     vix: [18, 19, 20, 19, 21, 22, 20],
     vvix: [85, 87, 90, 88, 92, 95, 90],
-    skew: [130, 131, 133, 132, 134, 135, 132]
+    skew: [130, 131, 133, 132, 134, 135, 132],
+    realizedVol: [14.5, 15.2, 16.1, 15.8, 16.5, 17.3, 16.2],
+    putCallRatio: [0.95, 0.96, 0.98, 0.97, 0.99, 1.01, 0.98],
+    currentRegime: 35,
+    assetClassVol: [
+      {assetClass: 'US Equities', level: 14},
+      {assetClass: 'EU Equities', level: 18},
+      {assetClass: 'EM Equities', level: 23},
+      {assetClass: 'US Treasuries', level: 6},
+      {assetClass: 'Corporate Bonds', level: 8},
+      {assetClass: 'Currencies', level: 10},
+      {assetClass: 'Commodities', level: 22},
+      {assetClass: 'Crypto', level: 45}
+    ]
   },
   '3M': {
     dates: ['2025-02-01', '2025-02-15', '2025-03-01', '2025-03-15', '2025-04-01', '2025-04-15', '2025-05-01', '2025-05-15'],
