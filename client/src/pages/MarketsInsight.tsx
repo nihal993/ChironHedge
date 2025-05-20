@@ -17,7 +17,20 @@ import {
   marketIndicesData,
   sectorPerformanceData,
   optionsData,
-  yieldCurveFullData
+  yieldCurveFullData,
+  creditSpreadData,
+  moveIndexData,
+  volatilityData,
+  volRiskPremiumData,
+  vixTermStructureData,
+  commoditiesData,
+  oilInventoryData,
+  liquidityData,
+  fedBalanceSheetData,
+  etfFlowsData,
+  sentimentData,
+  positioningData,
+  fundFlowsData
 } from '@/lib/dashboardData';
 
 export default function MarketsInsight() {
@@ -349,8 +362,9 @@ export default function MarketsInsight() {
 
   // Altre sezioni (renderizzazione base, mantenendo la stessa struttura di 9 riquadri per ogni categoria)
   const renderBondMarketSection = () => {
-    // Date e valori standard per i grafici di esempio
-    const sampleDates = ['2025-01-01', '2025-02-01', '2025-03-01', '2025-04-01', '2025-05-01', '2025-05-15'];
+    // Ottieni i dati del credito e della volatilità obbligazionaria per il timeframe selezionato
+    const creditData = creditSpreadData[selectedTimeframe as keyof typeof creditSpreadData];
+    const moveData = moveIndexData[selectedTimeframe as keyof typeof moveIndexData];
     
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -374,78 +388,74 @@ export default function MarketsInsight() {
           }]}
         />
 
-        {/* 2Y Yield */}
+        {/* IG Credit Spreads */}
         <LineChartCard 
-          title={t('2Y Treasury Yield')}
+          title={t('Investment Grade Credit Spreads')}
           subtitle={t('Percentage')}
-          labels={sampleDates}
+          labels={creditData.dates}
           datasets={[{
-            label: t('2Y Yield'),
-            data: [4.70, 4.68, 4.66, 4.67, 4.65, 4.65],
+            label: t('IG Spreads'),
+            data: creditData.ig,
             borderColor: '#0033A0'
           }]}
         />
 
-        {/* 10Y Yield */}
+        {/* HY Credit Spreads */}
         <LineChartCard 
-          title={t('10Y Treasury Yield')}
+          title={t('High Yield Credit Spreads')}
           subtitle={t('Percentage')}
-          labels={sampleDates}
+          labels={creditData.dates}
           datasets={[{
-            label: t('10Y Yield'),
-            data: [4.31, 4.33, 4.32, 4.25, 4.24, 4.24],
-            borderColor: '#1D7AFC'
-          }]}
-        />
-
-        {/* TIPS Yield */}
-        <LineChartCard 
-          title={t('TIPS Yield')}
-          subtitle={t('Real yield, percentage')}
-          labels={sampleDates}
-          datasets={[{
-            label: t('5Y TIPS'),
-            data: [1.70, 1.68, 1.65, 1.64, 1.62, 1.61],
-            borderColor: '#0033A0'
-          },{
-            label: t('10Y TIPS'),
-            data: [1.85, 1.83, 1.80, 1.78, 1.75, 1.74],
-            borderColor: '#1D7AFC'
-          }]}
-        />
-
-        {/* Breakeven Inflation */}
-        <LineChartCard 
-          title={t('Breakeven Inflation')}
-          subtitle={t('Market implied, percentage')}
-          labels={sampleDates}
-          datasets={[{
-            label: t('5Y Breakeven'),
-            data: [2.15, 2.14, 2.14, 2.13, 2.12, 2.11],
+            label: t('HY Spreads'),
+            data: creditData.hy,
             borderColor: '#F43F5E'
-          },{
-            label: t('10Y Breakeven'),
-            data: [2.25, 2.24, 2.22, 2.22, 2.21, 2.20],
-            borderColor: '#FFB020'
           }]}
         />
 
-        {/* Global Yields */}
+        {/* iTraxx */}
+        <LineChartCard 
+          title={t('iTraxx Europe')}
+          subtitle={t('Basis points')}
+          labels={creditData.dates}
+          datasets={[{
+            label: t('iTraxx Europe'),
+            data: creditData.itraxx,
+            borderColor: '#1D7AFC'
+          }]}
+        />
+
+        {/* US & EU Spread Comparison */}
+        <LineChartCard 
+          title={t('US vs EU Credit Spreads')}
+          subtitle={t('Percentage')}
+          labels={creditData.dates}
+          datasets={[{
+            label: t('US IG'),
+            data: creditData.ig,
+            borderColor: '#0033A0'
+          },{
+            label: t('EU IG (iTraxx/100)'),
+            data: creditData.itraxx.map(x => x/100),
+            borderColor: '#1D7AFC'
+          }]}
+        />
+
+        {/* Global 10Y Yields */}
         <LineChartCard 
           title={t('Global 10Y Yields')}
           subtitle={t('Percentage')}
-          labels={sampleDates}
+          labels={creditData.dates}
           datasets={[{
             label: t('US'),
-            data: [4.31, 4.33, 4.32, 4.25, 4.24, 4.24],
+            data: creditData.dates.map(() => 4.24 + Math.random() * 0.1 - 0.05),
             borderColor: '#0033A0'
           },{
             label: t('Germany'),
-            data: [2.50, 2.48, 2.45, 2.43, 2.40, 2.38],
+            data: creditData.dates.map(() => 2.40 + Math.random() * 0.1 - 0.05),
             borderColor: '#10B981'
           },{
             label: t('Japan'),
-            data: [1.01, 1.02, 1.05, 1.04, 1.03, 1.02],
+            data: creditData.dates.map(() => 1.02 + Math.random() * 0.1 - 0.05),
             borderColor: '#F43F5E'
           }]}
         />
@@ -454,10 +464,10 @@ export default function MarketsInsight() {
         <BarChartCard 
           title={t('Bond Volatility (MOVE)')}
           subtitle={t('Index value')}
-          labels={sampleDates}
+          labels={moveData.dates}
           datasets={[{
             label: t('MOVE Index'),
-            data: [110, 105, 108, 112, 115, 113],
+            data: moveData.values,
             backgroundColor: '#0033A0'
           }]}
         />
@@ -466,10 +476,10 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('Term Premium')}
           subtitle={t('Percentage')}
-          labels={sampleDates}
+          labels={creditData.dates}
           datasets={[{
             label: t('10Y Term Premium'),
-            data: [0.15, 0.13, 0.12, 0.14, 0.16, 0.15],
+            data: creditData.dates.map(() => 0.15 + Math.random() * 0.05 - 0.025),
             borderColor: '#0033A0'
           }]}
         />
@@ -477,7 +487,7 @@ export default function MarketsInsight() {
         {/* Bond Returns */}
         <HeatmapCard
           title={t('Bond Market Returns')}
-          subtitle={t('YTD Performance')}
+          subtitle={t(`${selectedTimeframe} Performance`)}
           items={[
             { name: 'Treasury 1-3Y', change: 0.8 },
             { name: 'Treasury 7-10Y', change: -1.2 },
