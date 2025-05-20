@@ -30,10 +30,6 @@ export const translations: Translations = {
     en: 'Research',
     it: 'Ricerca'
   },
-  'navbar.macroReport': {
-    en: 'Macroeconomic Analysis',
-    it: 'Analisi Macroeconomica'
-  },
   'navbar.strategies': {
     en: 'Portfolio Strategies',
     it: 'Strategie di Portafoglio'
@@ -495,40 +491,6 @@ export const translations: Translations = {
   'strategies.metric': {
     en: 'Metric',
     it: 'Metrica'
-  },
-  
-  // Macro Report Section
-  'macroReport.title': {
-    en: 'Macroeconomic Analysis',
-    it: 'Analisi Macroeconomica'
-  },
-  'macroReport.description': {
-    en: 'Our macroeconomic analysis provides a comprehensive view of global economic conditions and forecasts.',
-    it: 'La nostra analisi macroeconomica fornisce una visione completa delle condizioni economiche globali e delle previsioni.'
-  },
-  'macroReport.globalEconomicGrowth': {
-    en: 'Global Economic Growth',
-    it: 'Crescita Economica Globale'
-  },
-  'macroReport.globalInflationTrends': {
-    en: 'Global Inflation Trends',
-    it: 'Tendenze dell\'Inflazione Globale'
-  },
-  'macroReport.updated': {
-    en: 'Updated',
-    it: 'Aggiornato'
-  },
-  'macroReport.viewFullReport': {
-    en: 'View full report',
-    it: 'Visualizza rapporto completo'
-  },
-  'macroReport.viewForecastMethodology': {
-    en: 'View forecast methodology',
-    it: 'Visualizza metodologia di previsione'
-  },
-  'macroReport.viewAllMacro': {
-    en: 'View all macroeconomic analysis',
-    it: 'Visualizza tutte le analisi macroeconomiche'
   },
   
   // Common actions

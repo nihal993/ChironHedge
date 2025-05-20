@@ -6,8 +6,8 @@ import Home from "@/pages/Home";
 import NewsAI from "@/pages/NewsAI";
 import QuantitativeModel from "@/pages/QuantitativeModel";
 import MarketsInsight from "@/pages/MarketsInsight";
-import OurResearch from "@/pages/OurResearch";
-import MacroReport from "@/pages/MacroReport";
+//import OurResearch from "@/pages/OurResearch";
+//import MacroReport from "@/pages/MacroReport";
 import QuantitativeStrategies from "@/pages/QuantitativeStrategies";
 import Contact from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
@@ -34,7 +34,7 @@ function Router() {
       {/* Rotta disabilitata per evitare confusione */}
       {/* <Route path="/our-research" component={OurResearch} /> */}
       <Route path="/research" component={Research} />
-      <Route path="/macro-report" component={MacroReport} />
+      {/* <Route path="/macro-report" component={MacroReport} /> */}
       <Route path="/quantitative-strategies" component={QuantitativeStrategies} />
       <Route path="/contact" component={Contact} />
       <Route path="/about" component={AboutUs} />
