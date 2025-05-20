@@ -33,6 +33,23 @@ import {
   fundFlowsData
 } from '@/lib/dashboardData';
 
+// Funzione di utility per ottenere i dati in modo sicuro
+const safelyGetData = (dataObject: any, timeframe: string, fallbackTimeframe: string = '1M') => {
+  // Se il timeframe richiesto esiste, usalo
+  if (dataObject && dataObject[timeframe]) {
+    return dataObject[timeframe];
+  }
+  // Altrimenti prova a usare il fallback
+  if (dataObject && dataObject[fallbackTimeframe]) {
+    return dataObject[fallbackTimeframe];
+  }
+  // Se fallisce tutto, crea un oggetto di dati fittizio ma sicuro
+  return {
+    dates: ['2025-01-01', '2025-02-01', '2025-03-01', '2025-04-01', '2025-05-01'],
+    values: [0, 0, 0, 0, 0]
+  };
+};
+
 export default function MarketsInsight() {
   const { t } = useLanguage();
   const [selectedTimeframe, setSelectedTimeframe] = useState('1M');
@@ -76,28 +93,28 @@ export default function MarketsInsight() {
   // Sezione Macro
   const renderMacroSection = () => {
     // Dati per il timeframe selezionato
-    const curveData = yieldCurveData[selectedTimeframe as keyof typeof yieldCurveData];
-    const inflation = inflationData[selectedTimeframe as keyof typeof inflationData];
-    const gdp = gdpNowData[selectedTimeframe as keyof typeof gdpNowData];
-    const unemployment = unemploymentData[selectedTimeframe as keyof typeof unemploymentData];
+    const curveData = safelyGetData(yieldCurveData, selectedTimeframe);
+    const inflation = safelyGetData(inflationData, selectedTimeframe);
+    const gdp = safelyGetData(gdpNowData, selectedTimeframe);
+    const unemployment = safelyGetData(unemploymentData, selectedTimeframe);
     
     // Previsioni del tasso FED
     const fedProbData = {
-      labels: fedFundsData.probabilities.dates,
+      labels: fedFundsData.probabilities.dates || [],
       datasets: [
         {
           label: t('Cut Probability'),
-          data: fedFundsData.probabilities.cut.map(v => v * 100),
+          data: (fedFundsData.probabilities.cut || []).map(v => v * 100),
           backgroundColor: '#10B981', // Verde
         },
         {
           label: t('No Change Probability'),
-          data: fedFundsData.probabilities.noChange.map(v => v * 100),
+          data: (fedFundsData.probabilities.noChange || []).map(v => v * 100),
           backgroundColor: '#6B7280', // Grigio
         },
         {
           label: t('Hike Probability'),
-          data: fedFundsData.probabilities.hike.map(v => v * 100),
+          data: (fedFundsData.probabilities.hike || []).map(v => v * 100),
           backgroundColor: '#F43F5E', // Rosso
         }
       ]
@@ -109,11 +126,11 @@ export default function MarketsInsight() {
         <LineChartCard
           title={t('Yield Curve (2y-10y Spread)')}
           subtitle={t('Percentage points')}
-          labels={curveData.dates}
+          labels={curveData.dates || []}
           datasets={[
             {
               label: t('2y-10y Spread'),
-              data: curveData.values,
+              data: curveData.values || [],
               borderColor: '#0033A0',
               fill: true
             }
@@ -124,16 +141,16 @@ export default function MarketsInsight() {
         <LineChartCard
           title={t('Inflation')}
           subtitle={t('Year-over-year percentage change')}
-          labels={inflation.dates}
+          labels={inflation.dates || []}
           datasets={[
             {
               label: t('CPI'),
-              data: inflation.cpi,
+              data: inflation.cpi || [],
               borderColor: '#F43F5E'
             },
             {
               label: t('Core CPI'),
-              data: inflation.coreCpi,
+              data: inflation.coreCpi || [],
               borderColor: '#FFB020'
             }
           ]}
@@ -143,16 +160,16 @@ export default function MarketsInsight() {
         <LineChartCard
           title={t('GDP Growth')}
           subtitle={t('Quarterly estimates, annualized')}
-          labels={gdp.dates}
+          labels={gdp.dates || []}
           datasets={[
             {
               label: t('USA'),
-              data: gdp.usa,
+              data: gdp.usa || [],
               borderColor: '#0033A0'
             },
             {
               label: t('Eurozone'),
-              data: gdp.eu,
+              data: gdp.eu || [],
               borderColor: '#1D7AFC'
             }
           ]}
@@ -162,11 +179,11 @@ export default function MarketsInsight() {
         <LineChartCard
           title={t('Unemployment Rate')}
           subtitle={t('Percentage of labor force')}
-          labels={unemployment.dates}
+          labels={unemployment.dates || []}
           datasets={[
             {
               label: t('Unemployment Rate'),
-              data: unemployment.rate,
+              data: unemployment.rate || [],
               borderColor: '#0033A0'
             }
           ]}
@@ -176,11 +193,11 @@ export default function MarketsInsight() {
         <LineChartCard
           title={t('Initial Jobless Claims')}
           subtitle={t('Thousands, weekly data')}
-          labels={unemployment.dates}
+          labels={unemployment.dates || []}
           datasets={[
             {
               label: t('Claims'),
-              data: unemployment.claims,
+              data: unemployment.claims || [],
               borderColor: '#F43F5E'
             }
           ]}
@@ -199,8 +216,8 @@ export default function MarketsInsight() {
         {/* Current Fed Rate Gauge */}
         <GaugeCard
           title={t('Current Fed Funds Rate')}
-          subtitle={t('Next meeting: ') + fedFundsData.current.nextMeeting}
-          value={fedFundsData.current.rate}
+          subtitle={t('Next meeting: ') + (fedFundsData.current?.nextMeeting || 'TBD')}
+          value={fedFundsData.current?.rate || 4.5}
           min={0}
           max={7}
           format={(value) => `${value.toFixed(2)}%`}
@@ -216,7 +233,7 @@ export default function MarketsInsight() {
         <GaugeCard
           title={t('Rate Cut Probability')}
           subtitle={t('Next Fed meeting')}
-          value={fedFundsData.current.cutProb * 100}
+          value={(fedFundsData.current?.cutProb || 0.5) * 100}
           format={(value) => `${value.toFixed(0)}%`}
           colorRanges={[
             { from: 0, to: 33, color: '#F43F5E' }, // Rosso (bassa probabilità)
@@ -230,7 +247,7 @@ export default function MarketsInsight() {
         <GaugeCard
           title={t('Rate Hike Probability')}
           subtitle={t('Next Fed meeting')}
-          value={fedFundsData.current.hikeProb * 100}
+          value={(fedFundsData.current?.hikeProb || 0.1) * 100}
           format={(value) => `${value.toFixed(0)}%`}
           colorRanges={[
             { from: 0, to: 33, color: '#10B981' }, // Verde (bassa probabilità)
@@ -245,11 +262,11 @@ export default function MarketsInsight() {
 
   // Sezione Equity
   const renderEquitySection = () => {
-    const indices = marketIndicesData[selectedTimeframe as keyof typeof marketIndicesData];
-    const options = optionsData[selectedTimeframe as keyof typeof optionsData];
+    const indices = safelyGetData(marketIndicesData, selectedTimeframe);
+    const options = safelyGetData(optionsData, selectedTimeframe);
     
     // Utilizzo i dati settimanali per il performance sector
-    const sectorData = sectorPerformanceData.weekly;
+    const sectorData = sectorPerformanceData.weekly || [];
 
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -257,11 +274,11 @@ export default function MarketsInsight() {
         <LineChartCard
           title="S&P 500"
           subtitle={t('Index value')}
-          labels={indices.dates}
+          labels={indices.dates || []}
           datasets={[
             {
               label: "S&P 500",
-              data: indices.sp500,
+              data: indices.sp500 || [],
               borderColor: '#0033A0'
             }
           ]}
@@ -271,11 +288,11 @@ export default function MarketsInsight() {
         <LineChartCard
           title="NASDAQ"
           subtitle={t('Index value')}
-          labels={indices.dates}
+          labels={indices.dates || []}
           datasets={[
             {
               label: "NASDAQ",
-              data: indices.nasdaq,
+              data: indices.nasdaq || [],
               borderColor: '#1D7AFC'
             }
           ]}
@@ -285,11 +302,11 @@ export default function MarketsInsight() {
         <LineChartCard
           title="EUROSTOXX"
           subtitle={t('Index value')}
-          labels={indices.dates}
+          labels={indices.dates || []}
           datasets={[
             {
               label: "EUROSTOXX",
-              data: indices.eurostoxx,
+              data: indices.eurostoxx || [],
               borderColor: '#4C9AFF'
             }
           ]}
@@ -299,21 +316,21 @@ export default function MarketsInsight() {
         <LineChartCard
           title={t('P/E Ratios')}
           subtitle={t('Price-to-earnings')}
-          labels={indices.dates}
+          labels={indices.dates || []}
           datasets={[
             {
               label: "S&P 500 P/E",
-              data: indices.pe.sp500,
+              data: indices.pe?.sp500 || [],
               borderColor: '#0033A0'
             },
             {
               label: "NASDAQ P/E",
-              data: indices.pe.nasdaq,
+              data: indices.pe?.nasdaq || [],
               borderColor: '#1D7AFC'
             },
             {
               label: "EUROSTOXX P/E",
-              data: indices.pe.eurostoxx,
+              data: indices.pe?.eurostoxx || [],
               borderColor: '#4C9AFF'
             }
           ]}
@@ -323,11 +340,11 @@ export default function MarketsInsight() {
         <LineChartCard
           title={t('Put/Call Ratio')}
           subtitle={t('Market sentiment indicator')}
-          labels={options.dates}
+          labels={options.dates || []}
           datasets={[
             {
               label: t('Put/Call Ratio'),
-              data: options.putCallRatio,
+              data: options.putCallRatio || [],
               borderColor: '#F43F5E'
             }
           ]}
@@ -337,11 +354,11 @@ export default function MarketsInsight() {
         <LineChartCard
           title={t('Short Interest')}
           subtitle={t('Percentage of float')}
-          labels={options.dates}
+          labels={options.dates || []}
           datasets={[
             {
               label: t('Short Interest'),
-              data: options.shortInterest,
+              data: options.shortInterest || [],
               borderColor: '#FFB020'
             }
           ]}
@@ -363,8 +380,8 @@ export default function MarketsInsight() {
   // Bond Market Section con dati dinamici basati sul timeframe
   const renderBondMarketSection = () => {
     // Ottieni i dati del credito e della volatilità obbligazionaria per il timeframe selezionato
-    const creditData = creditSpreadData[selectedTimeframe as keyof typeof creditSpreadData];
-    const moveData = moveIndexData[selectedTimeframe as keyof typeof moveIndexData];
+    const creditData = safelyGetData(creditSpreadData, selectedTimeframe);
+    const moveData = safelyGetData(moveIndexData, selectedTimeframe);
     
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -372,18 +389,18 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('Yield Curve')}
           subtitle={t('Maturity spectrum')}
-          labels={yieldCurveFullData.current.maturities}
+          labels={yieldCurveFullData.current?.maturities || []}
           datasets={[{
             label: t('Current Yields'),
-            data: yieldCurveFullData.current.yields,
+            data: yieldCurveFullData.current?.yields || [],
             borderColor: '#0033A0'
           },{
             label: t('Previous Month'),
-            data: yieldCurveFullData.previousMonth.yields,
+            data: yieldCurveFullData.previousMonth?.yields || [],
             borderColor: '#1D7AFC'
           },{
             label: t('Previous Year'),
-            data: yieldCurveFullData.previousYear.yields,
+            data: yieldCurveFullData.previousYear?.yields || [],
             borderColor: '#4C9AFF'
           }]}
         />
@@ -392,10 +409,10 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('Investment Grade Credit Spreads')}
           subtitle={t('Percentage')}
-          labels={creditData.dates}
+          labels={creditData.dates || []}
           datasets={[{
             label: t('IG Spreads'),
-            data: creditData.ig,
+            data: creditData.ig || [],
             borderColor: '#0033A0'
           }]}
         />
@@ -404,10 +421,10 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('High Yield Credit Spreads')}
           subtitle={t('Percentage')}
-          labels={creditData.dates}
+          labels={creditData.dates || []}
           datasets={[{
             label: t('HY Spreads'),
-            data: creditData.hy,
+            data: creditData.hy || [],
             borderColor: '#F43F5E'
           }]}
         />
@@ -416,10 +433,10 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('iTraxx Europe')}
           subtitle={t('Basis points')}
-          labels={creditData.dates}
+          labels={creditData.dates || []}
           datasets={[{
             label: t('iTraxx Europe'),
-            data: creditData.itraxx,
+            data: creditData.itraxx || [],
             borderColor: '#1D7AFC'
           }]}
         />
@@ -428,14 +445,14 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('US vs EU Credit Spreads')}
           subtitle={t('Percentage')}
-          labels={creditData.dates}
+          labels={creditData.dates || []}
           datasets={[{
             label: t('US IG'),
-            data: creditData.ig,
+            data: creditData.ig || [],
             borderColor: '#0033A0'
           },{
             label: t('EU IG (iTraxx/100)'),
-            data: creditData.itraxx.map(x => x/100),
+            data: (creditData.itraxx || []).map(x => x ? x/100 : 0),
             borderColor: '#1D7AFC'
           }]}
         />
@@ -444,18 +461,18 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('Global 10Y Yields')}
           subtitle={t('Percentage')}
-          labels={creditData.dates}
+          labels={creditData.dates || []}
           datasets={[{
             label: t('US'),
-            data: creditData.dates.map(() => 4.24 + Math.random() * 0.1 - 0.05),
+            data: (creditData.dates || []).map(() => 4.24 + Math.random() * 0.1 - 0.05),
             borderColor: '#0033A0'
           },{
             label: t('Germany'),
-            data: creditData.dates.map(() => 2.40 + Math.random() * 0.1 - 0.05),
+            data: (creditData.dates || []).map(() => 2.40 + Math.random() * 0.1 - 0.05),
             borderColor: '#10B981'
           },{
             label: t('Japan'),
-            data: creditData.dates.map(() => 1.02 + Math.random() * 0.1 - 0.05),
+            data: (creditData.dates || []).map(() => 1.02 + Math.random() * 0.1 - 0.05),
             borderColor: '#F43F5E'
           }]}
         />
@@ -464,10 +481,10 @@ export default function MarketsInsight() {
         <BarChartCard 
           title={t('Bond Volatility (MOVE)')}
           subtitle={t('Index value')}
-          labels={moveData.dates}
+          labels={moveData.dates || []}
           datasets={[{
             label: t('MOVE Index'),
-            data: moveData.values,
+            data: moveData.values || [],
             backgroundColor: '#0033A0'
           }]}
         />
@@ -476,10 +493,10 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('Term Premium')}
           subtitle={t('Percentage')}
-          labels={creditData.dates}
+          labels={creditData.dates || []}
           datasets={[{
             label: t('10Y Term Premium'),
-            data: creditData.dates.map(() => 0.15 + Math.random() * 0.05 - 0.025),
+            data: (creditData.dates || []).map(() => 0.15 + Math.random() * 0.05 - 0.025),
             borderColor: '#0033A0'
           }]}
         />
@@ -508,9 +525,8 @@ export default function MarketsInsight() {
   // Volatility Section con dati dinamici
   const renderVolatilitySection = () => {
     // Ottieni i dati della volatilità per il timeframe selezionato
-    const volData = volatilityData[selectedTimeframe as keyof typeof volatilityData];
-    const volRiskPremium = volRiskPremiumData[selectedTimeframe as keyof typeof volRiskPremiumData];
-    const vixTermStructure = vixTermStructureData;
+    const volData = safelyGetData(volatilityData, selectedTimeframe);
+    const volRiskPremium = safelyGetData(volRiskPremiumData, selectedTimeframe);
     
     // Funzione per ottenere il colore in base al valore (per heatmap di volatilità)
     const getVolHeatmapColor = (value: number) => {
@@ -521,8 +537,8 @@ export default function MarketsInsight() {
     };
     
     // Prepara dati aggiuntivi per la visualizzazione
-    const realizedVol = volData.dates.map((_, i) => Math.max(5, volData.vix[i] - 2 - Math.random() * 3));
-    const putCallRatio = volData.dates.map(() => 0.85 + Math.random() * 0.3);
+    const realizedVol = (volData.dates || []).map((_, i) => Math.max(5, (volData.vix?.[i] || 15) - 2 - Math.random() * 3));
+    const putCallRatio = (volData.dates || []).map(() => 0.85 + Math.random() * 0.3);
     const currentRegime = 35; // Valore medio (regime di volatilità normale)
     
     // Asset class volatility
@@ -543,10 +559,10 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('VIX Index')}
           subtitle={t('Implied volatility, percentage')}
-          labels={volData.dates}
+          labels={volData.dates || []}
           datasets={[{
             label: t('VIX'),
-            data: volData.vix,
+            data: volData.vix || [],
             borderColor: '#F43F5E'
           }]}
         />
@@ -555,18 +571,18 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('VIX Term Structure')}
           subtitle={t('Curve comparison')}
-          labels={vixTermStructure.current.months}
+          labels={vixTermStructure?.current?.months || []}
           datasets={[{
             label: t('Current'),
-            data: vixTermStructure.current.values,
+            data: vixTermStructure?.current?.values || [],
             borderColor: '#F43F5E'
           },{
             label: t('Previous Month'),
-            data: vixTermStructure.previousMonth.values,
+            data: vixTermStructure?.previousMonth?.values || [],
             borderColor: '#FFB020'
           },{
             label: t('Previous Year'),
-            data: vixTermStructure.previousYear.values,
+            data: vixTermStructure?.previousYear?.values || [],
             borderColor: '#10B981'
           }]}
         />
@@ -575,10 +591,10 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('Volatility Risk Premium')}
           subtitle={t('VIX - Realized volatility')}
-          labels={volRiskPremium.dates}
+          labels={volRiskPremium?.dates || []}
           datasets={[{
             label: t('Risk Premium'),
-            data: volRiskPremium.premium,
+            data: volRiskPremium?.premium || [],
             borderColor: '#0033A0'
           }]}
         />
@@ -587,10 +603,10 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('VVIX Index')}
           subtitle={t('Volatility of VIX')}
-          labels={volData.dates}
+          labels={volData.dates || []}
           datasets={[{
             label: t('VVIX'),
-            data: volData.vvix,
+            data: volData.vvix || [],
             borderColor: '#F43F5E'
           }]}
         />
@@ -599,10 +615,10 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('SKEW Index')}
           subtitle={t('Tail risk indicator')}
-          labels={volData.dates}
+          labels={volData.dates || []}
           datasets={[{
             label: t('SKEW'),
-            data: volData.skew,
+            data: volData.skew || [],
             borderColor: '#FFB020'
           }]}
         />
@@ -611,10 +627,10 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('Implied vs Realized Volatility')}
           subtitle={t('S&P 500, percentage')}
-          labels={volData.dates}
+          labels={volData.dates || []}
           datasets={[{
             label: t('Implied (VIX)'),
-            data: volData.vix,
+            data: volData.vix || [],
             borderColor: '#F43F5E'
           },{
             label: t('Realized (20D)'),
@@ -627,7 +643,7 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('CBOE Put/Call Ratio')}
           subtitle={t('Options market sentiment')}
-          labels={volData.dates}
+          labels={volData.dates || []}
           datasets={[{
             label: t('P/C Ratio'),
             data: putCallRatio,
@@ -668,8 +684,8 @@ export default function MarketsInsight() {
 
   // Commodities Section con dati dinamici
   const renderCommoditiesSection = () => {
-    const commoData = commoditiesData[selectedTimeframe as keyof typeof commoditiesData];
-    const oilData = oilInventoryData[selectedTimeframe as keyof typeof oilInventoryData];
+    const commoData = safelyGetData(commoditiesData, selectedTimeframe);
+    const oilData = safelyGetData(oilInventoryData, selectedTimeframe);
     
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -677,14 +693,14 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('Crude Oil Prices')}
           subtitle={t('USD per barrel')}
-          labels={commoData.dates}
+          labels={commoData.dates || []}
           datasets={[{
             label: t('WTI'),
-            data: commoData.wti,
+            data: commoData.wti || [],
             borderColor: '#0033A0'
           },{
             label: t('Brent'),
-            data: commoData.brent,
+            data: commoData.brent || [],
             borderColor: '#1D7AFC'
           }]}
         />
@@ -693,10 +709,10 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('Natural Gas')}
           subtitle={t('USD per MMBtu')}
-          labels={commoData.dates}
+          labels={commoData.dates || []}
           datasets={[{
             label: t('Natural Gas'),
-            data: commoData.natgas,
+            data: commoData.natgas || [],
             borderColor: '#10B981'
           }]}
         />
@@ -705,14 +721,14 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('Precious Metals')}
           subtitle={t('USD per ounce')}
-          labels={commoData.dates}
+          labels={commoData.dates || []}
           datasets={[{
             label: t('Gold'),
-            data: commoData.gold,
+            data: commoData.gold || [],
             borderColor: '#FFB020'
           },{
             label: t('Silver (x10)'),
-            data: commoData.silver.map(val => val * 10),
+            data: (commoData.silver || []).map(val => val * 10),
             borderColor: '#6B7280'
           }]}
         />
@@ -721,14 +737,14 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('Industrial Metals')}
           subtitle={t('USD per pound/metric ton')}
-          labels={commoData.dates}
+          labels={commoData.dates || []}
           datasets={[{
             label: t('Copper'),
-            data: commoData.copper,
+            data: commoData.copper || [],
             borderColor: '#F43F5E'
           },{
             label: t('Aluminum (x1000)'),
-            data: commoData.aluminum.map(val => val * 1000),
+            data: (commoData.aluminum || []).map(val => val * 1000),
             borderColor: '#6B7280'
           }]}
         />
@@ -737,14 +753,14 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('US Oil Inventories')}
           subtitle={t('Million barrels')}
-          labels={oilData.dates}
+          labels={oilData.dates || []}
           datasets={[{
             label: t('Crude Oil Stocks'),
-            data: oilData.crudeStocks,
+            data: oilData.crudeStocks || [],
             borderColor: '#0033A0'
           },{
             label: t('Gasoline Stocks'),
-            data: oilData.gasolineStocks,
+            data: oilData.gasolineStocks || [],
             borderColor: '#F43F5E'
           }]}
         />
@@ -753,10 +769,10 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('Bloomberg Commodity Index')}
           subtitle={t('Index value')}
-          labels={commoData.dates}
+          labels={commoData.dates || []}
           datasets={[{
             label: t('BCOM Index'),
-            data: commoData.bcom,
+            data: commoData.bcom || [],
             borderColor: '#0033A0'
           }]}
         />
@@ -765,18 +781,18 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('Agricultural Commodities')}
           subtitle={t('Price index, rebased')}
-          labels={commoData.dates}
+          labels={commoData.dates || []}
           datasets={[{
             label: t('Wheat'),
-            data: commoData.wheat,
+            data: commoData.wheat || [],
             borderColor: '#FFB020'
           },{
             label: t('Corn'),
-            data: commoData.corn,
+            data: commoData.corn || [],
             borderColor: '#10B981'
           },{
             label: t('Soybeans'),
-            data: commoData.soybeans,
+            data: commoData.soybeans || [],
             borderColor: '#F43F5E'
           }]}
         />
@@ -785,13 +801,16 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('Energy vs Metals Performance')}
           subtitle={t('Relative performance, rebased')}
-          labels={commoData.dates}
+          labels={commoData.dates || []}
           datasets={[{
             label: t('Energy/Metals Ratio'),
-            data: commoData.dates.map((_, i) => 
-              (commoData.wti[i] + commoData.natgas[i]) / 
-              (commoData.gold[i]/500 + commoData.copper[i]*10)
-            ),
+            data: (commoData.dates || []).map((_, i) => {
+              const wti = commoData.wti?.[i] || 75;
+              const natgas = commoData.natgas?.[i] || 3;
+              const gold = commoData.gold?.[i] || 2000;
+              const copper = commoData.copper?.[i] || 4;
+              return (wti + natgas) / (gold/500 + copper*10);
+            }),
             borderColor: '#0033A0'
           }]}
         />
@@ -801,14 +820,14 @@ export default function MarketsInsight() {
           title={t('Commodity Performance')}
           subtitle={t(`${selectedTimeframe} change percentage`)}
           items={[
-            { name: 'WTI Crude', change: commoData.returns.wti },
-            { name: 'Brent Crude', change: commoData.returns.brent },
-            { name: 'Natural Gas', change: commoData.returns.natgas },
-            { name: 'Gold', change: commoData.returns.gold },
-            { name: 'Silver', change: commoData.returns.silver },
-            { name: 'Copper', change: commoData.returns.copper },
-            { name: 'Aluminum', change: commoData.returns.aluminum },
-            { name: 'Wheat', change: commoData.returns.wheat }
+            { name: 'WTI Crude', change: commoData.returns?.wti || 0 },
+            { name: 'Brent Crude', change: commoData.returns?.brent || 0 },
+            { name: 'Natural Gas', change: commoData.returns?.natgas || 0 },
+            { name: 'Gold', change: commoData.returns?.gold || 0 },
+            { name: 'Silver', change: commoData.returns?.silver || 0 },
+            { name: 'Copper', change: commoData.returns?.copper || 0 },
+            { name: 'Aluminum', change: commoData.returns?.aluminum || 0 },
+            { name: 'Wheat', change: commoData.returns?.wheat || 0 }
           ]}
           getColorForValue={getHeatmapColor}
           format={formatPercent}
@@ -819,7 +838,7 @@ export default function MarketsInsight() {
 
   // Credit Section con dati dinamici
   const renderCreditSection = () => {
-    const creditData = creditSpreadData[selectedTimeframe as keyof typeof creditSpreadData];
+    const creditData = safelyGetData(creditSpreadData, selectedTimeframe);
     
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -827,10 +846,10 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('Investment Grade Credit Spreads')}
           subtitle={t('Percentage')}
-          labels={creditData.dates}
+          labels={creditData.dates || []}
           datasets={[{
             label: t('IG Spreads'),
-            data: creditData.ig,
+            data: creditData.ig || [],
             borderColor: '#0033A0'
           }]}
         />
@@ -839,10 +858,10 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('High Yield Credit Spreads')}
           subtitle={t('Percentage')}
-          labels={creditData.dates}
+          labels={creditData.dates || []}
           datasets={[{
             label: t('HY Spreads'),
-            data: creditData.hy,
+            data: creditData.hy || [],
             borderColor: '#F43F5E'
           }]}
         />
@@ -851,10 +870,13 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('IG vs HY Spread Ratio')}
           subtitle={t('Ratio value')}
-          labels={creditData.dates}
+          labels={creditData.dates || []}
           datasets={[{
             label: t('IG/HY Ratio'),
-            data: creditData.ig.map((val, i) => val / creditData.hy[i]),
+            data: (creditData.ig || []).map((val, i) => {
+              const hy = creditData.hy?.[i] || 1;
+              return val ? val / hy : 0;
+            }),
             borderColor: '#FFB020'
           }]}
         />
@@ -863,14 +885,14 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('European Credit')}
           subtitle={t('iTraxx indices, bps')}
-          labels={creditData.dates}
+          labels={creditData.dates || []}
           datasets={[{
             label: t('iTraxx Europe'),
-            data: creditData.itraxx,
+            data: creditData.itraxx || [],
             borderColor: '#0033A0'
           },{
             label: t('iTraxx Crossover'),
-            data: creditData.dates.map(() => 350 + Math.random() * 50 - 25),
+            data: (creditData.dates || []).map(() => 350 + Math.random() * 50 - 25),
             borderColor: '#F43F5E'
           }]}
         />
@@ -879,10 +901,13 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('US vs EU Credit')}
           subtitle={t('Spread differential, bps')}
-          labels={creditData.dates}
+          labels={creditData.dates || []}
           datasets={[{
             label: t('US-EU IG Differential'),
-            data: creditData.ig.map((val, i) => (val * 100) - creditData.itraxx[i]),
+            data: (creditData.ig || []).map((val, i) => {
+              const itraxx = creditData.itraxx?.[i] || 70;
+              return val ? (val * 100) - itraxx : 0;
+            }),
             borderColor: '#0033A0'
           }]}
         />
@@ -906,14 +931,14 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('Default Rates')}
           subtitle={t('Trailing 12-month, percentage')}
-          labels={creditData.dates}
+          labels={creditData.dates || []}
           datasets={[{
             label: t('IG Default Rate'),
-            data: creditData.dates.map(() => 0.2 + Math.random() * 0.2 - 0.1),
+            data: (creditData.dates || []).map(() => 0.2 + Math.random() * 0.2 - 0.1),
             borderColor: '#0033A0'
           },{
             label: t('HY Default Rate'),
-            data: creditData.dates.map(() => 2.5 + Math.random() * 1.0 - 0.5),
+            data: (creditData.dates || []).map(() => 2.5 + Math.random() * 1.0 - 0.5),
             borderColor: '#F43F5E'
           }]}
         />
@@ -922,14 +947,14 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('Credit Technicals')}
           subtitle={t('Cumulative Flows, $ billions')}
-          labels={creditData.dates}
+          labels={creditData.dates || []}
           datasets={[{
             label: t('IG Fund Flows'),
-            data: creditData.dates.map((_, i) => 20 + i * 2 + Math.random() * 5 - 2.5),
+            data: (creditData.dates || []).map((_, i) => 20 + i * 2 + Math.random() * 5 - 2.5),
             borderColor: '#0033A0'
           },{
             label: t('HY Fund Flows'),
-            data: creditData.dates.map((_, i) => 10 + i * 0.5 + Math.random() * 2 - 1),
+            data: (creditData.dates || []).map((_, i) => 10 + i * 0.5 + Math.random() * 2 - 1),
             borderColor: '#F43F5E'
           }]}
         />
@@ -957,8 +982,8 @@ export default function MarketsInsight() {
 
   // Sentiment Section con dati dinamici
   const renderSentimentSection = () => {
-    const sentiment = sentimentData[selectedTimeframe as keyof typeof sentimentData];
-    const positioning = positioningData[selectedTimeframe as keyof typeof positioningData];
+    const sentiment = safelyGetData(sentimentData, selectedTimeframe);
+    const positioning = safelyGetData(positioningData, selectedTimeframe);
     
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -966,21 +991,21 @@ export default function MarketsInsight() {
         <BarChartCard 
           title={t('AAII Sentiment Survey')}
           subtitle={t('Percentage')}
-          labels={sentiment.dates}
+          labels={sentiment.dates || []}
           datasets={[
             {
               label: t('Bullish'),
-              data: sentiment.aaii.bullish,
+              data: sentiment.aaii?.bullish || [],
               backgroundColor: '#10B981'
             },
             {
               label: t('Neutral'),
-              data: sentiment.aaii.neutral,
+              data: sentiment.aaii?.neutral || [],
               backgroundColor: '#6B7280'
             },
             {
               label: t('Bearish'),
-              data: sentiment.aaii.bearish,
+              data: sentiment.aaii?.bearish || [],
               backgroundColor: '#F43F5E'
             }
           ]}
@@ -991,10 +1016,13 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('Bull-Bear Spread')}
           subtitle={t('Bullish minus bearish, percentage')}
-          labels={sentiment.dates}
+          labels={sentiment.dates || []}
           datasets={[{
             label: t('Spread'),
-            data: sentiment.aaii.bullish.map((val, i) => val - sentiment.aaii.bearish[i]),
+            data: (sentiment.aaii?.bullish || []).map((val, i) => {
+              const bearish = sentiment.aaii?.bearish?.[i] || 0;
+              return val - bearish;
+            }),
             borderColor: '#0033A0'
           }]}
         />
@@ -1003,10 +1031,10 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('Options Sentiment')}
           subtitle={t('Put/Call Ratio')}
-          labels={sentiment.dates}
+          labels={sentiment.dates || []}
           datasets={[{
             label: t('P/C Ratio'),
-            data: sentiment.putCallRatio,
+            data: sentiment.putCallRatio || [],
             borderColor: '#F43F5E'
           }]}
         />
@@ -1015,10 +1043,10 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('Fund Manager Survey')}
           subtitle={t('Net equity allocation, percentage')}
-          labels={sentiment.dates}
+          labels={sentiment.dates || []}
           datasets={[{
             label: t('Equity Allocation'),
-            data: sentiment.fundManagerSurvey.equityAllocation,
+            data: sentiment.fundManagerSurvey?.equityAllocation || [],
             borderColor: '#0033A0'
           }]}
         />
@@ -1027,7 +1055,7 @@ export default function MarketsInsight() {
         <GaugeCard
           title={t('Risk Appetite Index')}
           subtitle={t('Current level')}
-          value={sentiment.riskAppetite}
+          value={sentiment.riskAppetite || 50}
           min={0}
           max={100}
           format={(value) => 
@@ -1050,11 +1078,11 @@ export default function MarketsInsight() {
         <BarChartCard 
           title={t('Net Speculative Positioning')}
           subtitle={t('CFTC data, normalized')}
-          labels={positioning.assets}
+          labels={positioning.assets || []}
           datasets={[{
             label: t('Net Position'),
-            data: positioning.netSpeculative,
-            backgroundColor: positioning.netSpeculative.map(val => 
+            data: positioning.netSpeculative || [],
+            backgroundColor: (positioning.netSpeculative || []).map(val => 
               val > 0 ? '#10B981' : '#F43F5E'
             )
           }]}
@@ -1065,14 +1093,14 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('Global Fund Flows')}
           subtitle={t('Weekly, $ billions')}
-          labels={fundFlowsData.dates}
+          labels={fundFlowsData.dates || []}
           datasets={[{
             label: t('Equity Funds'),
-            data: fundFlowsData.equity,
+            data: fundFlowsData.equity || [],
             borderColor: '#0033A0'
           },{
             label: t('Bond Funds'),
-            data: fundFlowsData.bond,
+            data: fundFlowsData.bond || [],
             borderColor: '#F43F5E'
           }]}
         />
@@ -1081,14 +1109,14 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('Short Interest')}
           subtitle={t('Percentage of float')}
-          labels={sentiment.dates}
+          labels={sentiment.dates || []}
           datasets={[{
             label: t('S&P 500'),
-            data: sentiment.shortInterest.sp500,
+            data: sentiment.shortInterest?.sp500 || [],
             borderColor: '#0033A0'
           },{
             label: t('Russell 2000'),
-            data: sentiment.shortInterest.russell2000,
+            data: sentiment.shortInterest?.russell2000 || [],
             borderColor: '#F43F5E'
           }]}
         />
@@ -1098,27 +1126,66 @@ export default function MarketsInsight() {
           title={t('Sentiment Indicators')}
           subtitle={t('Current readings')}
           items={[
-            { name: t('Retail Sentiment'), value: (sentiment.aaii.bullish[sentiment.aaii.bullish.length-1] - sentiment.aaii.bearish[sentiment.aaii.bearish.length-1]) },
-            { name: t('Risk Appetite'), value: sentiment.riskAppetite - 50 },
-            { name: t('Put/Call Ratio'), value: -(sentiment.putCallRatio[sentiment.putCallRatio.length-1] - 1) * 100 },
-            { name: t('Fund Mgr Bullishness'), value: sentiment.fundManagerSurvey.equityAllocation[sentiment.fundManagerSurvey.equityAllocation.length-1] },
-            { name: t('Short Interest'), value: -sentiment.shortInterest.sp500[sentiment.shortInterest.sp500.length-1] * 10 },
-            { name: t('CNN Fear & Greed'), value: sentiment.riskAppetite - 50 },
-            { name: t('Equity Fund Flows'), value: fundFlowsData.equity[fundFlowsData.equity.length-1] * 2 },
-            { name: t('Margin Debt Change'), value: sentiment.marginDebt[sentiment.marginDebt.length-1] }
+            { name: t('Retail Sentiment'), value: getSentimentValue(sentiment, 'bullBearSpread', 0) },
+            { name: t('Risk Appetite'), value: (sentiment.riskAppetite || 50) - 50 },
+            { name: t('Put/Call Ratio'), value: getPutCallValue(sentiment, -20) },
+            { name: t('Fund Mgr Bullishness'), value: getFundMgrValue(sentiment, 5) },
+            { name: t('Short Interest'), value: getShortInterestValue(sentiment, -5) },
+            { name: t('CNN Fear & Greed'), value: (sentiment.riskAppetite || 50) - 50 },
+            { name: t('Equity Fund Flows'), value: (fundFlowsData.equity?.[fundFlowsData.equity?.length-1] || 0) * 2 },
+            { name: t('Margin Debt Change'), value: sentiment.marginDebt?.[sentiment.marginDebt?.length-1] || 0 }
           ]}
-          getColorForValue={(context) => context > 0 ? '#10B981' : '#F43F5E'}
+          getColorForValue={(value) => value > 0 ? { bg: '#10B981', text: 'white' } : { bg: '#F43F5E', text: 'white' }}
           format={(val) => val.toFixed(1)}
         />
       </div>
     );
   };
 
+  // Helper function for sentiment data
+  const getSentimentValue = (sentiment: any, key: string, defaultValue: number) => {
+    if (sentiment.aaii?.bullish && sentiment.aaii?.bearish) {
+      const lastBullish = sentiment.aaii.bullish[sentiment.aaii.bullish.length-1] || 0;
+      const lastBearish = sentiment.aaii.bearish[sentiment.aaii.bearish.length-1] || 0;
+      return lastBullish - lastBearish;
+    }
+    return defaultValue;
+  };
+
+  // Helper function for put/call ratio
+  const getPutCallValue = (sentiment: any, defaultValue: number) => {
+    if (sentiment.putCallRatio) {
+      const lastValue = sentiment.putCallRatio[sentiment.putCallRatio.length-1] || 1;
+      return -(lastValue - 1) * 100;
+    }
+    return defaultValue;
+  };
+
+  // Helper function for fund manager sentiment
+  const getFundMgrValue = (sentiment: any, defaultValue: number) => {
+    if (sentiment.fundManagerSurvey?.equityAllocation) {
+      return sentiment.fundManagerSurvey.equityAllocation[
+        sentiment.fundManagerSurvey.equityAllocation.length-1
+      ] || defaultValue;
+    }
+    return defaultValue;
+  };
+
+  // Helper function for short interest
+  const getShortInterestValue = (sentiment: any, defaultValue: number) => {
+    if (sentiment.shortInterest?.sp500) {
+      return -sentiment.shortInterest.sp500[
+        sentiment.shortInterest.sp500.length-1
+      ] * 10 || defaultValue;
+    }
+    return defaultValue;
+  };
+
   // Liquidity Section con dati dinamici
   const renderLiquiditySection = () => {
-    const liquidity = liquidityData[selectedTimeframe as keyof typeof liquidityData];
-    const fedBalance = fedBalanceSheetData[selectedTimeframe as keyof typeof fedBalanceSheetData];
-    const etfFlows = etfFlowsData[selectedTimeframe as keyof typeof etfFlowsData];
+    const liquidity = safelyGetData(liquidityData, selectedTimeframe);
+    const fedBalance = safelyGetData(fedBalanceSheetData, selectedTimeframe);
+    const etfFlows = safelyGetData(etfFlowsData, selectedTimeframe);
     
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -1126,10 +1193,10 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('Global Liquidity Conditions')}
           subtitle={t('Index, higher = more liquidity')}
-          labels={liquidity.dates}
+          labels={liquidity.dates || []}
           datasets={[{
             label: t('Liquidity Index'),
-            data: liquidity.globalIndex,
+            data: liquidity.globalIndex || [],
             borderColor: '#0033A0'
           }]}
         />
@@ -1138,18 +1205,18 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('Central Bank Balance Sheets')}
           subtitle={t('Trillion USD')}
-          labels={fedBalance.dates}
+          labels={fedBalance.dates || []}
           datasets={[{
             label: t('Fed'),
-            data: fedBalance.fed,
+            data: fedBalance.fed || [],
             borderColor: '#0033A0'
           },{
             label: t('ECB'),
-            data: fedBalance.ecb,
+            data: fedBalance.ecb || [],
             borderColor: '#1D7AFC'
           },{
             label: t('BoJ'),
-            data: fedBalance.boj,
+            data: fedBalance.boj || [],
             borderColor: '#F43F5E'
           }]}
         />
@@ -1162,9 +1229,9 @@ export default function MarketsInsight() {
           datasets={[{
             label: t('Amount'),
             data: [
-              fedBalance.fed[fedBalance.fed.length-1] * 0.7,
-              fedBalance.fed[fedBalance.fed.length-1] * 0.25,
-              fedBalance.fed[fedBalance.fed.length-1] * 0.05
+              (fedBalance.fed?.[fedBalance.fed?.length-1] || 8) * 0.7,
+              (fedBalance.fed?.[fedBalance.fed?.length-1] || 8) * 0.25,
+              (fedBalance.fed?.[fedBalance.fed?.length-1] || 8) * 0.05
             ],
             backgroundColor: ['#0033A0', '#1D7AFC', '#4C9AFF']
           }]}
@@ -1174,10 +1241,10 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('US Money Supply (M2)')}
           subtitle={t('Trillion USD')}
-          labels={liquidity.dates}
+          labels={liquidity.dates || []}
           datasets={[{
             label: t('M2'),
-            data: liquidity.m2,
+            data: liquidity.m2 || [],
             borderColor: '#0033A0'
           }]}
         />
@@ -1186,10 +1253,10 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('Money Market Fund Assets')}
           subtitle={t('Trillion USD')}
-          labels={liquidity.dates}
+          labels={liquidity.dates || []}
           datasets={[{
             label: t('MMF Assets'),
-            data: liquidity.moneyMarket,
+            data: liquidity.moneyMarket || [],
             borderColor: '#F43F5E'
           }]}
         />
@@ -1198,10 +1265,10 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('Bank Reserves at Fed')}
           subtitle={t('Billion USD')}
-          labels={liquidity.dates}
+          labels={liquidity.dates || []}
           datasets={[{
             label: t('Reserves'),
-            data: liquidity.bankReserves,
+            data: liquidity.bankReserves || [],
             borderColor: '#10B981'
           }]}
         />
@@ -1210,10 +1277,10 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('Repo Market Volume')}
           subtitle={t('Billion USD')}
-          labels={liquidity.dates}
+          labels={liquidity.dates || []}
           datasets={[{
             label: t('Repo Volume'),
-            data: liquidity.repoVolume,
+            data: liquidity.repoVolume || [],
             borderColor: '#FFB020'
           }]}
         />
@@ -1222,14 +1289,14 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('ETF Flows')}
           subtitle={t('Monthly, Billion USD')}
-          labels={etfFlows.dates}
+          labels={etfFlows.dates || []}
           datasets={[{
             label: t('Equity ETFs'),
-            data: etfFlows.equity,
+            data: etfFlows.equity || [],
             borderColor: '#0033A0'
           },{
             label: t('Bond ETFs'),
-            data: etfFlows.bond,
+            data: etfFlows.bond || [],
             borderColor: '#F43F5E'
           }]}
         />
@@ -1248,10 +1315,10 @@ export default function MarketsInsight() {
             { name: 'FX', change: 0.5 },
             { name: 'Commodities', change: -0.4 }
           ]}
-          getColorForValue={(context) => {
-            if (context > 0.5) return { bg: '#10B981', text: 'white' }; // Alta liquidità
-            if (context > -0.5) return { bg: '#A7F3D0', text: '#065F46' }; // Liquidità normale
-            if (context > -1.5) return { bg: '#FEE2E2', text: '#7F1D1D' }; // Bassa liquidità
+          getColorForValue={(value) => {
+            if (value > 0.5) return { bg: '#10B981', text: 'white' }; // Alta liquidità
+            if (value > -0.5) return { bg: '#A7F3D0', text: '#065F46' }; // Liquidità normale
+            if (value > -1.5) return { bg: '#FEE2E2', text: '#7F1D1D' }; // Bassa liquidità
             return { bg: '#F43F5E', text: 'white' }; // Liquidità molto bassa
           }}
           format={(val) => val.toFixed(1)}
