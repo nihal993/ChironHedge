@@ -360,7 +360,7 @@ export default function MarketsInsight() {
     );
   };
 
-  // Altre sezioni (renderizzazione base, mantenendo la stessa struttura di 9 riquadri per ogni categoria)
+  // Bond Market Section con dati dinamici basati sul timeframe
   const renderBondMarketSection = () => {
     // Ottieni i dati del credito e della volatilità obbligazionaria per il timeframe selezionato
     const creditData = creditSpreadData[selectedTimeframe as keyof typeof creditSpreadData];
@@ -505,6 +505,7 @@ export default function MarketsInsight() {
     );
   };
 
+  // Volatility Section con dati dinamici
   const renderVolatilitySection = () => {
     // Ottieni i dati della volatilità per il timeframe selezionato
     const volData = volatilityData[selectedTimeframe as keyof typeof volatilityData];
@@ -518,6 +519,23 @@ export default function MarketsInsight() {
       if (value > 10) return { bg: '#FFF7AE', text: '#854D0E' }; // Giallo
       return { bg: '#D1FAE5', text: '#065F46' }; // Verde chiaro (bassa volatilità)
     };
+    
+    // Prepara dati aggiuntivi per la visualizzazione
+    const realizedVol = volData.dates.map((_, i) => Math.max(5, volData.vix[i] - 2 - Math.random() * 3));
+    const putCallRatio = volData.dates.map(() => 0.85 + Math.random() * 0.3);
+    const currentRegime = 35; // Valore medio (regime di volatilità normale)
+    
+    // Asset class volatility
+    const assetClassVolatility = [
+      { name: 'US Equities', change: 14 },
+      { name: 'EU Equities', change: 18 },
+      { name: 'EM Equities', change: 23 },
+      { name: 'US Treasuries', change: 6 },
+      { name: 'Corporate Bonds', change: 8 },
+      { name: 'Currencies', change: 10 },
+      { name: 'Commodities', change: 22 },
+      { name: 'Crypto', change: 45 }
+    ];
     
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -536,136 +554,138 @@ export default function MarketsInsight() {
         {/* VIX Term Structure */}
         <LineChartCard 
           title={t('VIX Term Structure')}
-          subtitle={t('By maturity, percentage')}
-          labels={['1M', '2M', '3M', '4M', '5M', '6M']}
+          subtitle={t('Curve comparison')}
+          labels={vixTermStructure.current.months}
           datasets={[{
             label: t('Current'),
-            data: [13, 14, 15, 16, 17, 18],
+            data: vixTermStructure.current.values,
             borderColor: '#F43F5E'
           },{
             label: t('Previous Month'),
-            data: [15, 16, 17, 18, 19, 20],
-            borderColor: '#6B7280'
+            data: vixTermStructure.previousMonth.values,
+            borderColor: '#FFB020'
+          },{
+            label: t('Previous Year'),
+            data: vixTermStructure.previousYear.values,
+            borderColor: '#10B981'
           }]}
         />
 
         {/* Volatility Risk Premium */}
         <LineChartCard 
           title={t('Volatility Risk Premium')}
-          subtitle={t('VIX - Realized Vol, percentage points')}
-          labels={sampleDates}
+          subtitle={t('VIX - Realized volatility')}
+          labels={volRiskPremium.dates}
           datasets={[{
-            label: t('Vol Premium'),
-            data: [4.5, 4.3, 3.8, 3.2, 2.8, 2.5],
-            borderColor: '#F43F5E'
-          }]}
-        />
-
-        {/* S&P 500 Realized Volatility */}
-        <LineChartCard 
-          title={t('S&P 500 Realized Volatility')}
-          subtitle={t('10, 30, 60-day, percentage')}
-          labels={sampleDates}
-          datasets={[{
-            label: t('10-day'),
-            data: [9, 11, 10, 8, 8, 7],
-            borderColor: '#F43F5E'
-          },{
-            label: t('30-day'),
-            data: [11, 12, 11, 10, 9, 8],
-            borderColor: '#FFB020'
-          },{
-            label: t('60-day'),
-            data: [13, 13, 12, 11, 10, 9],
+            label: t('Risk Premium'),
+            data: volRiskPremium.premium,
             borderColor: '#0033A0'
           }]}
         />
 
-        {/* SKEW Index */}
+        {/* VVIX Index */}
+        <LineChartCard 
+          title={t('VVIX Index')}
+          subtitle={t('Volatility of VIX')}
+          labels={volData.dates}
+          datasets={[{
+            label: t('VVIX'),
+            data: volData.vvix,
+            borderColor: '#F43F5E'
+          }]}
+        />
+
+        {/* Skew */}
         <LineChartCard 
           title={t('SKEW Index')}
           subtitle={t('Tail risk indicator')}
-          labels={sampleDates}
+          labels={volData.dates}
           datasets={[{
             label: t('SKEW'),
-            data: [125, 130, 135, 140, 138, 135],
-            borderColor: '#F43F5E'
+            data: volData.skew,
+            borderColor: '#FFB020'
           }]}
         />
 
-        {/* Equity Put/Call Ratio */}
+        {/* Implied vs Realized Vol */}
         <LineChartCard 
-          title={t('Equity Put/Call Ratio')}
-          subtitle={t('Options market sentiment')}
-          labels={sampleDates}
+          title={t('Implied vs Realized Volatility')}
+          subtitle={t('S&P 500, percentage')}
+          labels={volData.dates}
           datasets={[{
-            label: t('Put/Call Ratio'),
-            data: [0.85, 0.90, 0.95, 0.93, 0.90, 0.88],
+            label: t('Implied (VIX)'),
+            data: volData.vix,
             borderColor: '#F43F5E'
-          }]}
-        />
-
-        {/* Cross-Asset Volatility */}
-        <BarChartCard 
-          title={t('Cross-Asset Volatility')}
-          subtitle={t('1-month realized, percentage')}
-          labels={[t('Equity'), t('Rates'), t('FX'), t('Credit'), t('Commodities')]}
-          datasets={[{
-            label: t('Current'),
-            data: [10, 7, 6, 8, 12],
-            backgroundColor: '#0033A0'
           },{
-            label: t('1Y Average'),
-            data: [15, 10, 8, 12, 18],
-            backgroundColor: '#6B7280'
+            label: t('Realized (20D)'),
+            data: realizedVol,
+            borderColor: '#0033A0'
           }]}
         />
 
-        {/* Volatility of Volatility */}
+        {/* Put/Call Ratio */}
         <LineChartCard 
-          title={t('Volatility of Volatility')}
-          subtitle={t('VVIX Index')}
-          labels={sampleDates}
+          title={t('CBOE Put/Call Ratio')}
+          subtitle={t('Options market sentiment')}
+          labels={volData.dates}
           datasets={[{
-            label: t('VVIX'),
-            data: [95, 100, 110, 105, 100, 95],
-            borderColor: '#F43F5E'
+            label: t('P/C Ratio'),
+            data: putCallRatio,
+            borderColor: '#FFB020'
           }]}
         />
 
-        {/* Vol Regimes Probability */}
+        {/* Vol Regime */}
         <GaugeCard
-          title={t('Current Vol Regime')}
-          subtitle={t('Market phase identification')}
-          value={70}
+          title={t('Volatility Regime')}
+          subtitle={t('Current market conditions')}
+          value={currentRegime}
           min={0}
           max={100}
-          format={(value) => `${value}%`}
+          format={(value) => 
+            value < 33 ? t('Low Vol') : 
+            value < 67 ? t('Normal Vol') : 
+            t('High Vol')}
           colorRanges={[
-            { from: 0, to: 33, color: '#F43F5E' }, // Alta volatilità
-            { from: 33, to: 67, color: '#FFB020' }, // Media volatilità
-            { from: 67, to: 100, color: '#10B981' }, // Bassa volatilità
+            { from: 0, to: 33, color: '#10B981' }, // Verde (volatilità bassa)
+            { from: 33, to: 67, color: '#FFB020' }, // Giallo (volatilità normale)
+            { from: 67, to: 100, color: '#F43F5E' }, // Rosso (volatilità alta)
           ]}
-          label={t('Low Volatility Regime')}
+          label={t('Current Level')}
+        />
+
+        {/* Vol by Asset Class */}
+        <HeatmapCard
+          title={t('Volatility by Asset Class')}
+          subtitle={t(`${selectedTimeframe} implied volatility levels`)}
+          items={assetClassVolatility}
+          getColorForValue={getVolHeatmapColor}
+          format={(value) => `${value}%`}
         />
       </div>
     );
   };
 
+  // Commodities Section con dati dinamici
   const renderCommoditiesSection = () => {
-    const sampleDates = ['2025-01-01', '2025-02-01', '2025-03-01', '2025-04-01', '2025-05-01', '2025-05-15'];
+    const commoData = commoditiesData[selectedTimeframe as keyof typeof commoditiesData];
+    const oilData = oilInventoryData[selectedTimeframe as keyof typeof oilInventoryData];
     
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {/* Crude Oil */}
         <LineChartCard 
-          title={t('Crude Oil (WTI)')}
+          title={t('Crude Oil Prices')}
           subtitle={t('USD per barrel')}
-          labels={sampleDates}
+          labels={commoData.dates}
           datasets={[{
-            label: t('WTI Crude'),
-            data: [75, 78, 82, 80, 78, 77],
+            label: t('WTI'),
+            data: commoData.wti,
             borderColor: '#0033A0'
+          },{
+            label: t('Brent'),
+            data: commoData.brent,
+            borderColor: '#1D7AFC'
           }]}
         />
 
@@ -673,100 +693,122 @@ export default function MarketsInsight() {
         <LineChartCard 
           title={t('Natural Gas')}
           subtitle={t('USD per MMBtu')}
-          labels={sampleDates}
+          labels={commoData.dates}
           datasets={[{
             label: t('Natural Gas'),
-            data: [2.8, 2.7, 2.5, 2.6, 2.7, 2.8],
-            borderColor: '#1D7AFC'
-          }]}
-        />
-
-        {/* Gold */}
-        <LineChartCard 
-          title={t('Gold')}
-          subtitle={t('USD per troy ounce')}
-          labels={sampleDates}
-          datasets={[{
-            label: t('Gold'),
-            data: [2100, 2150, 2200, 2250, 2300, 2350],
-            borderColor: '#FFB020'
-          }]}
-        />
-
-        {/* Silver */}
-        <LineChartCard 
-          title={t('Silver')}
-          subtitle={t('USD per troy ounce')}
-          labels={sampleDates}
-          datasets={[{
-            label: t('Silver'),
-            data: [27, 28, 29, 30, 31, 32],
-            borderColor: '#6B7280'
-          }]}
-        />
-
-        {/* Copper */}
-        <LineChartCard 
-          title={t('Copper')}
-          subtitle={t('USD per pound')}
-          labels={sampleDates}
-          datasets={[{
-            label: t('Copper'),
-            data: [4.2, 4.3, 4.4, 4.5, 4.6, 4.7],
-            borderColor: '#F43F5E'
-          }]}
-        />
-
-        {/* Agricultural Index */}
-        <LineChartCard 
-          title={t('Agricultural Index')}
-          subtitle={t('Price index')}
-          labels={sampleDates}
-          datasets={[{
-            label: t('Ag Index'),
-            data: [120, 122, 125, 127, 126, 128],
+            data: commoData.natgas,
             borderColor: '#10B981'
           }]}
         />
 
-        {/* Oil Inventories */}
-        <BarChartCard 
-          title={t('US Oil Inventories')}
-          subtitle={t('Millions of barrels')}
-          labels={sampleDates}
-          datasets={[{
-            label: t('Crude Inventories'),
-            data: [420, 415, 410, 405, 400, 395],
-            backgroundColor: '#0033A0'
-          }]}
-        />
-
-        {/* Gold/Oil Ratio */}
+        {/* Gold & Silver */}
         <LineChartCard 
-          title={t('Gold/Oil Ratio')}
-          subtitle={t('Ounces per barrel')}
-          labels={sampleDates}
+          title={t('Precious Metals')}
+          subtitle={t('USD per ounce')}
+          labels={commoData.dates}
           datasets={[{
-            label: t('Gold/Oil Ratio'),
-            data: [28, 27.5, 26.8, 28.1, 29.5, 30.5],
+            label: t('Gold'),
+            data: commoData.gold,
             borderColor: '#FFB020'
+          },{
+            label: t('Silver (x10)'),
+            data: commoData.silver.map(val => val * 10),
+            borderColor: '#6B7280'
           }]}
         />
 
-        {/* Commodity Returns */}
+        {/* Copper & Aluminum */}
+        <LineChartCard 
+          title={t('Industrial Metals')}
+          subtitle={t('USD per pound/metric ton')}
+          labels={commoData.dates}
+          datasets={[{
+            label: t('Copper'),
+            data: commoData.copper,
+            borderColor: '#F43F5E'
+          },{
+            label: t('Aluminum (x1000)'),
+            data: commoData.aluminum.map(val => val * 1000),
+            borderColor: '#6B7280'
+          }]}
+        />
+
+        {/* Oil Inventories */}
+        <LineChartCard 
+          title={t('US Oil Inventories')}
+          subtitle={t('Million barrels')}
+          labels={oilData.dates}
+          datasets={[{
+            label: t('Crude Oil Stocks'),
+            data: oilData.crudeStocks,
+            borderColor: '#0033A0'
+          },{
+            label: t('Gasoline Stocks'),
+            data: oilData.gasolineStocks,
+            borderColor: '#F43F5E'
+          }]}
+        />
+
+        {/* Commodity Index */}
+        <LineChartCard 
+          title={t('Bloomberg Commodity Index')}
+          subtitle={t('Index value')}
+          labels={commoData.dates}
+          datasets={[{
+            label: t('BCOM Index'),
+            data: commoData.bcom,
+            borderColor: '#0033A0'
+          }]}
+        />
+
+        {/* Agriculture */}
+        <LineChartCard 
+          title={t('Agricultural Commodities')}
+          subtitle={t('Price index, rebased')}
+          labels={commoData.dates}
+          datasets={[{
+            label: t('Wheat'),
+            data: commoData.wheat,
+            borderColor: '#FFB020'
+          },{
+            label: t('Corn'),
+            data: commoData.corn,
+            borderColor: '#10B981'
+          },{
+            label: t('Soybeans'),
+            data: commoData.soybeans,
+            borderColor: '#F43F5E'
+          }]}
+        />
+
+        {/* Energy vs Metals Relative Performance */}
+        <LineChartCard 
+          title={t('Energy vs Metals Performance')}
+          subtitle={t('Relative performance, rebased')}
+          labels={commoData.dates}
+          datasets={[{
+            label: t('Energy/Metals Ratio'),
+            data: commoData.dates.map((_, i) => 
+              (commoData.wti[i] + commoData.natgas[i]) / 
+              (commoData.gold[i]/500 + commoData.copper[i]*10)
+            ),
+            borderColor: '#0033A0'
+          }]}
+        />
+
+        {/* Commodity Performance Heatmap */}
         <HeatmapCard
-          title={t('Commodity YTD Returns')}
-          subtitle={t('Percentage change')}
+          title={t('Commodity Performance')}
+          subtitle={t(`${selectedTimeframe} change percentage`)}
           items={[
-            { name: 'WTI Crude', change: -5.2 },
-            { name: 'Brent Crude', change: -4.8 },
-            { name: 'Natural Gas', change: -12.5 },
-            { name: 'Gold', change: 15.3 },
-            { name: 'Silver', change: 18.6 },
-            { name: 'Copper', change: 8.4 },
-            { name: 'Aluminum', change: 3.2 },
-            { name: 'Wheat', change: -2.5 },
-            { name: 'Corn', change: -7.3 }
+            { name: 'WTI Crude', change: commoData.returns.wti },
+            { name: 'Brent Crude', change: commoData.returns.brent },
+            { name: 'Natural Gas', change: commoData.returns.natgas },
+            { name: 'Gold', change: commoData.returns.gold },
+            { name: 'Silver', change: commoData.returns.silver },
+            { name: 'Copper', change: commoData.returns.copper },
+            { name: 'Aluminum', change: commoData.returns.aluminum },
+            { name: 'Wheat', change: commoData.returns.wheat }
           ]}
           getColorForValue={getHeatmapColor}
           format={formatPercent}
@@ -775,417 +817,427 @@ export default function MarketsInsight() {
     );
   };
 
+  // Credit Section con dati dinamici
   const renderCreditSection = () => {
-    const sampleDates = ['2025-01-01', '2025-02-01', '2025-03-01', '2025-04-01', '2025-05-01', '2025-05-15'];
+    const creditData = creditSpreadData[selectedTimeframe as keyof typeof creditSpreadData];
     
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {/* Investment Grade Spreads */}
+        {/* IG Credit Spreads */}
         <LineChartCard 
-          title={t('Investment Grade Spreads')}
-          subtitle={t('Percentage points')}
-          labels={sampleDates}
+          title={t('Investment Grade Credit Spreads')}
+          subtitle={t('Percentage')}
+          labels={creditData.dates}
           datasets={[{
-            label: t('US IG Spread'),
-            data: [1.1, 1.08, 1.06, 1.07, 1.09, 1.10],
+            label: t('IG Spreads'),
+            data: creditData.ig,
             borderColor: '#0033A0'
           }]}
         />
 
-        {/* High Yield Spreads */}
+        {/* HY Credit Spreads */}
         <LineChartCard 
-          title={t('High Yield Spreads')}
-          subtitle={t('Percentage points')}
-          labels={sampleDates}
+          title={t('High Yield Credit Spreads')}
+          subtitle={t('Percentage')}
+          labels={creditData.dates}
           datasets={[{
-            label: t('US HY Spread'),
-            data: [3.8, 3.75, 3.7, 3.85, 4.0, 4.15],
+            label: t('HY Spreads'),
+            data: creditData.hy,
             borderColor: '#F43F5E'
           }]}
         />
 
-        {/* Credit Default Swaps */}
+        {/* IG vs HY Ratio */}
         <LineChartCard 
-          title={t('Credit Default Swaps')}
-          subtitle={t('iTraxx Europe, basis points')}
-          labels={sampleDates}
+          title={t('IG vs HY Spread Ratio')}
+          subtitle={t('Ratio value')}
+          labels={creditData.dates}
+          datasets={[{
+            label: t('IG/HY Ratio'),
+            data: creditData.ig.map((val, i) => val / creditData.hy[i]),
+            borderColor: '#FFB020'
+          }]}
+        />
+
+        {/* EU Credit Spreads */}
+        <LineChartCard 
+          title={t('European Credit')}
+          subtitle={t('iTraxx indices, bps')}
+          labels={creditData.dates}
           datasets={[{
             label: t('iTraxx Europe'),
-            data: [70, 68, 65, 67, 70, 73],
-            borderColor: '#1D7AFC'
-          }]}
-        />
-
-        {/* Credit Ratings Migration */}
-        <BarChartCard 
-          title={t('Credit Ratings Migration')}
-          subtitle={t('Net upgrades/downgrades')}
-          labels={sampleDates}
-          datasets={[{
-            label: t('Net Changes'),
-            data: [5, 8, 3, -2, -5, -3],
-            backgroundColor: (context) => {
-              const value = context.dataset.data[context.dataIndex];
-              return value >= 0 ? '#10B981' : '#F43F5E';
-            }
-          }]}
-        />
-
-        {/* Corporate Default Rate */}
-        <LineChartCard 
-          title={t('Corporate Default Rate')}
-          subtitle={t('Percentage')}
-          labels={sampleDates}
-          datasets={[{
-            label: t('Default Rate'),
-            data: [2.0, 2.1, 2.15, 2.2, 2.25, 2.3],
+            data: creditData.itraxx,
+            borderColor: '#0033A0'
+          },{
+            label: t('iTraxx Crossover'),
+            data: creditData.dates.map(() => 350 + Math.random() * 50 - 25),
             borderColor: '#F43F5E'
           }]}
         />
 
-        {/* IG vs Treasury Spreads */}
+        {/* US vs EU Credit */}
         <LineChartCard 
-          title={t('IG vs Treasury Spreads')}
-          subtitle={t('By rating, percentage points')}
-          labels={sampleDates}
+          title={t('US vs EU Credit')}
+          subtitle={t('Spread differential, bps')}
+          labels={creditData.dates}
           datasets={[{
-            label: t('AAA'),
-            data: [0.4, 0.4, 0.41, 0.42, 0.43, 0.44],
-            borderColor: '#10B981'
-          },{
-            label: t('AA'),
-            data: [0.6, 0.61, 0.62, 0.63, 0.64, 0.65],
-            borderColor: '#1D7AFC'
-          },{
-            label: t('A'),
-            data: [0.9, 0.91, 0.92, 0.93, 0.94, 0.95],
-            borderColor: '#FFB020'
-          },{
-            label: t('BBB'),
-            data: [1.4, 1.42, 1.44, 1.46, 1.48, 1.50],
-            borderColor: '#F43F5E'
-          }]}
-        />
-
-        {/* Credit Risk Premium */}
-        <LineChartCard 
-          title={t('Credit Risk Premium')}
-          subtitle={t('Decomposition, percentage points')}
-          labels={sampleDates}
-          datasets={[{
-            label: t('Default Risk'),
-            data: [0.8, 0.82, 0.84, 0.85, 0.86, 0.87],
-            borderColor: '#F43F5E'
-          },{
-            label: t('Liquidity Premium'),
-            data: [0.3, 0.28, 0.26, 0.25, 0.24, 0.23],
-            borderColor: '#FFB020'
-          }]}
-        />
-
-        {/* EM vs DM Credit */}
-        <LineChartCard 
-          title={t('EM vs DM Credit Spreads')}
-          subtitle={t('Percentage points')}
-          labels={sampleDates}
-          datasets={[{
-            label: t('EM'),
-            data: [3.2, 3.3, 3.4, 3.45, 3.5, 3.55],
-            borderColor: '#F43F5E'
-          },{
-            label: t('DM'),
-            data: [1.1, 1.08, 1.06, 1.07, 1.09, 1.10],
+            label: t('US-EU IG Differential'),
+            data: creditData.ig.map((val, i) => (val * 100) - creditData.itraxx[i]),
             borderColor: '#0033A0'
           }]}
         />
 
-        {/* Sector Credit Spreads */}
+        {/* Credit Quality Breakdown */}
+        <BarChartCard 
+          title={t('Credit Quality Distribution')}
+          subtitle={t('Index weight percentage')}
+          labels={['AAA', 'AA', 'A', 'BBB', 'BB', 'B', 'CCC', '<CCC']}
+          datasets={[{
+            label: t('Weight'),
+            data: [5, 10, 25, 35, 12, 8, 4, 1],
+            backgroundColor: [
+              '#10B981', '#34D399', '#6EE7B7', '#A7F3D0', 
+              '#FEF3C7', '#FDE68A', '#FEE2E2', '#F87171'
+            ]
+          }]}
+        />
+
+        {/* Default Rates */}
+        <LineChartCard 
+          title={t('Default Rates')}
+          subtitle={t('Trailing 12-month, percentage')}
+          labels={creditData.dates}
+          datasets={[{
+            label: t('IG Default Rate'),
+            data: creditData.dates.map(() => 0.2 + Math.random() * 0.2 - 0.1),
+            borderColor: '#0033A0'
+          },{
+            label: t('HY Default Rate'),
+            data: creditData.dates.map(() => 2.5 + Math.random() * 1.0 - 0.5),
+            borderColor: '#F43F5E'
+          }]}
+        />
+
+        {/* Credit Technicals */}
+        <LineChartCard 
+          title={t('Credit Technicals')}
+          subtitle={t('Cumulative Flows, $ billions')}
+          labels={creditData.dates}
+          datasets={[{
+            label: t('IG Fund Flows'),
+            data: creditData.dates.map((_, i) => 20 + i * 2 + Math.random() * 5 - 2.5),
+            borderColor: '#0033A0'
+          },{
+            label: t('HY Fund Flows'),
+            data: creditData.dates.map((_, i) => 10 + i * 0.5 + Math.random() * 2 - 1),
+            borderColor: '#F43F5E'
+          }]}
+        />
+
+        {/* Credit Performance Heatmap */}
         <HeatmapCard
-          title={t('Sector Credit Spreads')}
-          subtitle={t('Current levels')}
+          title={t('Credit Performance')}
+          subtitle={t(`${selectedTimeframe} total return`)}
           items={[
-            { name: 'Financial', change: 1.05 },
-            { name: 'Energy', change: 1.45 },
-            { name: 'Technology', change: 0.95 },
-            { name: 'Healthcare', change: 0.85 },
-            { name: 'Consumer', change: 1.10 },
-            { name: 'Utilities', change: 1.25 },
-            { name: 'Industrials', change: 1.15 },
-            { name: 'Materials', change: 1.30 }
+            { name: 'US IG', change: 1.2 },
+            { name: 'US HY', change: 2.5 },
+            { name: 'EU IG', change: 0.8 },
+            { name: 'EU HY', change: 1.7 },
+            { name: 'EM $ Bonds', change: -0.5 },
+            { name: 'US CLOs', change: 1.3 },
+            { name: 'EU CLOs', change: 0.9 },
+            { name: 'Converts', change: 3.2 }
           ]}
-          getColorForValue={(val) => {
-            if (val < 1.0) return { bg: '#10B981', text: 'white' };
-            if (val < 1.2) return { bg: '#A7F3D0', text: '#065F46' };
-            if (val < 1.4) return { bg: '#FEE2E2', text: '#7F1D1D' };
-            return { bg: '#F43F5E', text: 'white' };
-          }}
-          format={(val) => `${val.toFixed(2)}%`}
+          getColorForValue={getHeatmapColor}
+          format={formatPercent}
         />
       </div>
     );
   };
 
+  // Sentiment Section con dati dinamici
   const renderSentimentSection = () => {
-    const sampleDates = ['2025-01-01', '2025-02-01', '2025-03-01', '2025-04-01', '2025-05-01', '2025-05-15'];
+    const sentiment = sentimentData[selectedTimeframe as keyof typeof sentimentData];
+    const positioning = positioningData[selectedTimeframe as keyof typeof positioningData];
     
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {/* AAII Bull/Bear Ratio */}
-        <LineChartCard 
-          title={t('AAII Bull/Bear Ratio')}
-          subtitle={t('Investor sentiment')}
-          labels={sampleDates}
-          datasets={[{
-            label: t('Bull/Bear Ratio'),
-            data: [1.5, 1.7, 1.9, 2.1, 2.0, 1.8],
-            borderColor: '#10B981'
-          }]}
-        />
-
-        {/* Investor Positioning */}
+        {/* AAII Sentiment */}
         <BarChartCard 
-          title={t('Investor Positioning')}
-          subtitle={t('Net non-commercial futures')}
-          labels={[t('Equities'), t('Bonds'), t('USD'), t('Gold'), t('Oil')]}
-          datasets={[{
-            label: t('Net Positioning'),
-            data: [25, -15, 10, 30, -5],
-            backgroundColor: (context) => {
-              const value = context.dataset.data[context.dataIndex];
-              return value >= 0 ? '#10B981' : '#F43F5E';
+          title={t('AAII Sentiment Survey')}
+          subtitle={t('Percentage')}
+          labels={sentiment.dates}
+          datasets={[
+            {
+              label: t('Bullish'),
+              data: sentiment.aaii.bullish,
+              backgroundColor: '#10B981'
+            },
+            {
+              label: t('Neutral'),
+              data: sentiment.aaii.neutral,
+              backgroundColor: '#6B7280'
+            },
+            {
+              label: t('Bearish'),
+              data: sentiment.aaii.bearish,
+              backgroundColor: '#F43F5E'
             }
-          }]}
+          ]}
+          horizontal={false}
         />
 
-        {/* Fund Flows */}
+        {/* Bull-Bear Spread */}
         <LineChartCard 
-          title={t('Fund Flows')}
-          subtitle={t('Billions USD, 4-week moving avg')}
-          labels={sampleDates}
+          title={t('Bull-Bear Spread')}
+          subtitle={t('Bullish minus bearish, percentage')}
+          labels={sentiment.dates}
           datasets={[{
-            label: t('Equity Funds'),
-            data: [3.5, 4.2, 2.8, 1.5, 0.8, 1.2],
+            label: t('Spread'),
+            data: sentiment.aaii.bullish.map((val, i) => val - sentiment.aaii.bearish[i]),
             borderColor: '#0033A0'
-          },{
-            label: t('Bond Funds'),
-            data: [5.2, 4.8, 5.5, 6.2, 5.8, 5.5],
-            borderColor: '#1D7AFC'
           }]}
         />
 
-        {/* Economic Surprise Index */}
+        {/* Options Sentiment */}
         <LineChartCard 
-          title={t('Economic Surprise Index')}
-          subtitle={t('Citi ESI')}
-          labels={sampleDates}
+          title={t('Options Sentiment')}
+          subtitle={t('Put/Call Ratio')}
+          labels={sentiment.dates}
           datasets={[{
-            label: t('US'),
-            data: [15, 10, 5, -5, -10, -5],
-            borderColor: '#0033A0'
-          },{
-            label: t('Eurozone'),
-            data: [-5, -10, -15, -10, -5, 0],
-            borderColor: '#1D7AFC'
-          }]}
-        />
-
-        {/* Risk Appetite Index */}
-        <LineChartCard 
-          title={t('Risk Appetite Index')}
-          subtitle={t('Proprietary metric')}
-          labels={sampleDates}
-          datasets={[{
-            label: t('Risk Appetite'),
-            data: [65, 68, 72, 75, 73, 70],
-            borderColor: '#FFB020'
-          }]}
-        />
-
-        {/* Put/Call Ratio */}
-        <LineChartCard 
-          title={t('Put/Call Ratio')}
-          subtitle={t('Options sentiment')}
-          labels={sampleDates}
-          datasets={[{
-            label: t('Put/Call'),
-            data: [0.85, 0.88, 0.95, 0.92, 0.90, 0.87],
+            label: t('P/C Ratio'),
+            data: sentiment.putCallRatio,
             borderColor: '#F43F5E'
           }]}
         />
 
-        {/* CNN Fear & Greed */}
+        {/* Fund Manager Survey */}
+        <LineChartCard 
+          title={t('Fund Manager Survey')}
+          subtitle={t('Net equity allocation, percentage')}
+          labels={sentiment.dates}
+          datasets={[{
+            label: t('Equity Allocation'),
+            data: sentiment.fundManagerSurvey.equityAllocation,
+            borderColor: '#0033A0'
+          }]}
+        />
+
+        {/* Risk Appetite */}
         <GaugeCard
-          title={t('CNN Fear & Greed Index')}
-          subtitle={t('Current market sentiment')}
-          value={65}
+          title={t('Risk Appetite Index')}
+          subtitle={t('Current level')}
+          value={sentiment.riskAppetite}
           min={0}
           max={100}
-          format={(value) => `${value}`}
+          format={(value) => 
+            value < 20 ? t('Extreme Fear') : 
+            value < 40 ? t('Fear') : 
+            value < 60 ? t('Neutral') : 
+            value < 80 ? t('Greed') : 
+            t('Extreme Greed')}
           colorRanges={[
-            { from: 0, to: 25, color: '#F43F5E' }, // Extreme Fear
-            { from: 25, to: 45, color: '#FEE2E2' }, // Fear
-            { from: 45, to: 55, color: '#FFB020' }, // Neutral
-            { from: 55, to: 75, color: '#A7F3D0' }, // Greed
-            { from: 75, to: 100, color: '#10B981' }, // Extreme Greed
+            { from: 0, to: 20, color: '#F43F5E' }, // Rosso (paura estrema)
+            { from: 20, to: 40, color: '#FEE2E2' }, // Rosso chiaro (paura)
+            { from: 40, to: 60, color: '#6B7280' }, // Grigio (neutrale)
+            { from: 60, to: 80, color: '#A7F3D0' }, // Verde chiaro (avidità)
+            { from: 80, to: 100, color: '#10B981' }, // Verde (avidità estrema)
           ]}
-          label={t('Greed')}
+          label={t('Sentiment Level')}
+        />
+
+        {/* Positioning - Net Speculative */}
+        <BarChartCard 
+          title={t('Net Speculative Positioning')}
+          subtitle={t('CFTC data, normalized')}
+          labels={positioning.assets}
+          datasets={[{
+            label: t('Net Position'),
+            data: positioning.netSpeculative,
+            backgroundColor: positioning.netSpeculative.map(val => 
+              val > 0 ? '#10B981' : '#F43F5E'
+            )
+          }]}
+          horizontal={true}
+        />
+
+        {/* Fund Flows */}
+        <LineChartCard 
+          title={t('Global Fund Flows')}
+          subtitle={t('Weekly, $ billions')}
+          labels={fundFlowsData.dates}
+          datasets={[{
+            label: t('Equity Funds'),
+            data: fundFlowsData.equity,
+            borderColor: '#0033A0'
+          },{
+            label: t('Bond Funds'),
+            data: fundFlowsData.bond,
+            borderColor: '#F43F5E'
+          }]}
         />
 
         {/* Short Interest */}
         <LineChartCard 
           title={t('Short Interest')}
           subtitle={t('Percentage of float')}
-          labels={sampleDates}
+          labels={sentiment.dates}
           datasets={[{
             label: t('S&P 500'),
-            data: [3.2, 3.3, 3.4, 3.5, 3.4, 3.3],
+            data: sentiment.shortInterest.sp500,
             borderColor: '#0033A0'
           },{
             label: t('Russell 2000'),
-            data: [5.8, 5.9, 6.0, 6.1, 6.0, 5.9],
+            data: sentiment.shortInterest.russell2000,
             borderColor: '#F43F5E'
           }]}
         />
 
-        {/* Sentiment Indicators */}
+        {/* Sentiment Indicators Heatmap */}
         <HeatmapCard
           title={t('Sentiment Indicators')}
-          subtitle={t('Current levels, percentile')}
+          subtitle={t('Current readings')}
           items={[
-            { name: 'AAII Bulls', change: 65 },
-            { name: 'AAII Bears', change: 35 },
-            { name: 'Inst. Sentiment', change: 72 },
-            { name: 'Retail Flows', change: 58 },
-            { name: 'Media Sentiment', change: 62 },
-            { name: 'Options Skew', change: 45 },
-            { name: 'Volatility Term', change: 40 },
-            { name: 'Short Interest', change: 30 }
+            { name: t('Retail Sentiment'), value: (sentiment.aaii.bullish[sentiment.aaii.bullish.length-1] - sentiment.aaii.bearish[sentiment.aaii.bearish.length-1]) },
+            { name: t('Risk Appetite'), value: sentiment.riskAppetite - 50 },
+            { name: t('Put/Call Ratio'), value: -(sentiment.putCallRatio[sentiment.putCallRatio.length-1] - 1) * 100 },
+            { name: t('Fund Mgr Bullishness'), value: sentiment.fundManagerSurvey.equityAllocation[sentiment.fundManagerSurvey.equityAllocation.length-1] },
+            { name: t('Short Interest'), value: -sentiment.shortInterest.sp500[sentiment.shortInterest.sp500.length-1] * 10 },
+            { name: t('CNN Fear & Greed'), value: sentiment.riskAppetite - 50 },
+            { name: t('Equity Fund Flows'), value: fundFlowsData.equity[fundFlowsData.equity.length-1] * 2 },
+            { name: t('Margin Debt Change'), value: sentiment.marginDebt[sentiment.marginDebt.length-1] }
           ]}
-          getColorForValue={(val) => {
-            if (val > 70) return { bg: '#10B981', text: 'white' }; // Bullish
-            if (val > 50) return { bg: '#A7F3D0', text: '#065F46' }; // Somewhat bullish
-            if (val > 30) return { bg: '#FEE2E2', text: '#7F1D1D' }; // Somewhat bearish
-            return { bg: '#F43F5E', text: 'white' }; // Bearish
-          }}
-          format={(val) => `${val}%`}
+          getColorForValue={(context) => context > 0 ? '#10B981' : '#F43F5E'}
+          format={(val) => val.toFixed(1)}
         />
       </div>
     );
   };
 
+  // Liquidity Section con dati dinamici
   const renderLiquiditySection = () => {
-    const sampleDates = ['2025-01-01', '2025-02-01', '2025-03-01', '2025-04-01', '2025-05-01', '2025-05-15'];
+    const liquidity = liquidityData[selectedTimeframe as keyof typeof liquidityData];
+    const fedBalance = fedBalanceSheetData[selectedTimeframe as keyof typeof fedBalanceSheetData];
+    const etfFlows = etfFlowsData[selectedTimeframe as keyof typeof etfFlowsData];
     
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {/* Fed Balance Sheet */}
+        {/* Total Liquidity */}
         <LineChartCard 
-          title={t('Fed Balance Sheet')}
-          subtitle={t('Trillions USD')}
-          labels={sampleDates}
-          datasets={[{
-            label: t('Total Assets'),
-            data: [7.50, 7.48, 7.45, 7.42, 7.40, 7.38],
-            borderColor: '#0033A0'
-          }]}
-        />
-
-        {/* ECB Balance Sheet */}
-        <LineChartCard 
-          title={t('ECB Balance Sheet')}
-          subtitle={t('Trillions EUR')}
-          labels={sampleDates}
-          datasets={[{
-            label: t('Total Assets'),
-            data: [6.8, 6.78, 6.76, 6.74, 6.72, 6.70],
-            borderColor: '#1D7AFC'
-          }]}
-        />
-
-        {/* M2 Money Supply */}
-        <LineChartCard 
-          title={t('M2 Money Supply')}
-          subtitle={t('YoY change, percentage')}
-          labels={sampleDates}
-          datasets={[{
-            label: t('US M2'),
-            data: [2.5, 2.3, 2.1, 2.0, 1.8, 1.7],
-            borderColor: '#0033A0'
-          },{
-            label: t('EU M2'),
-            data: [3.2, 3.0, 2.8, 2.6, 2.5, 2.4],
-            borderColor: '#1D7AFC'
-          }]}
-        />
-
-        {/* Reverse Repo */}
-        <LineChartCard 
-          title={t('Fed Reverse Repo')}
-          subtitle={t('Billions USD')}
-          labels={sampleDates}
-          datasets={[{
-            label: t('Reverse Repo'),
-            data: [280, 260, 240, 220, 200, 180],
-            borderColor: '#0033A0'
-          }]}
-        />
-
-        {/* Banking Reserves */}
-        <LineChartCard 
-          title={t('Banking Reserves')}
-          subtitle={t('Billions USD')}
-          labels={sampleDates}
-          datasets={[{
-            label: t('Reserves'),
-            data: [3200, 3180, 3160, 3140, 3120, 3100],
-            borderColor: '#0033A0'
-          }]}
-        />
-
-        {/* Treasury Issuance */}
-        <BarChartCard 
-          title={t('Treasury Issuance')}
-          subtitle={t('Billions USD, monthly')}
-          labels={['Dec-24', 'Jan-25', 'Feb-25', 'Mar-25', 'Apr-25', 'May-25']}
-          datasets={[{
-            label: t('Issuance'),
-            data: [320, 340, 330, 350, 360, 370],
-            backgroundColor: '#0033A0'
-          }]}
-        />
-
-        {/* Liquidity Conditions */}
-        <LineChartCard 
-          title={t('Liquidity Conditions')}
-          subtitle={t('Index, 100=neutral')}
-          labels={sampleDates}
+          title={t('Global Liquidity Conditions')}
+          subtitle={t('Index, higher = more liquidity')}
+          labels={liquidity.dates}
           datasets={[{
             label: t('Liquidity Index'),
-            data: [95, 94, 93, 92, 91, 90],
+            data: liquidity.globalIndex,
+            borderColor: '#0033A0'
+          }]}
+        />
+
+        {/* Central Bank Assets */}
+        <LineChartCard 
+          title={t('Central Bank Balance Sheets')}
+          subtitle={t('Trillion USD')}
+          labels={fedBalance.dates}
+          datasets={[{
+            label: t('Fed'),
+            data: fedBalance.fed,
+            borderColor: '#0033A0'
+          },{
+            label: t('ECB'),
+            data: fedBalance.ecb,
+            borderColor: '#1D7AFC'
+          },{
+            label: t('BoJ'),
+            data: fedBalance.boj,
             borderColor: '#F43F5E'
           }]}
         />
 
-        {/* ETF Flows */}
+        {/* Fed Balance Sheet Breakdown */}
         <BarChartCard 
-          title={t('ETF Flows')}
-          subtitle={t('Billions USD, weekly')}
-          labels={sampleDates}
+          title={t('Fed Balance Sheet Components')}
+          subtitle={t('Trillion USD')}
+          labels={[t('UST'), t('MBS'), t('Other')]}
           datasets={[{
-            label: t('Equity ETFs'),
-            data: [3.5, 2.8, 2.1, 1.5, 0.8, 1.2],
-            backgroundColor: '#0033A0'
-          },{
-            label: t('Bond ETFs'),
-            data: [2.2, 2.5, 2.8, 3.0, 3.2, 3.0],
-            backgroundColor: '#1D7AFC'
+            label: t('Amount'),
+            data: [
+              fedBalance.fed[fedBalance.fed.length-1] * 0.7,
+              fedBalance.fed[fedBalance.fed.length-1] * 0.25,
+              fedBalance.fed[fedBalance.fed.length-1] * 0.05
+            ],
+            backgroundColor: ['#0033A0', '#1D7AFC', '#4C9AFF']
           }]}
         />
 
-        {/* Market Liquidity */}
+        {/* Money Supply */}
+        <LineChartCard 
+          title={t('US Money Supply (M2)')}
+          subtitle={t('Trillion USD')}
+          labels={liquidity.dates}
+          datasets={[{
+            label: t('M2'),
+            data: liquidity.m2,
+            borderColor: '#0033A0'
+          }]}
+        />
+
+        {/* Money Market Funds */}
+        <LineChartCard 
+          title={t('Money Market Fund Assets')}
+          subtitle={t('Trillion USD')}
+          labels={liquidity.dates}
+          datasets={[{
+            label: t('MMF Assets'),
+            data: liquidity.moneyMarket,
+            borderColor: '#F43F5E'
+          }]}
+        />
+
+        {/* Bank Reserves */}
+        <LineChartCard 
+          title={t('Bank Reserves at Fed')}
+          subtitle={t('Billion USD')}
+          labels={liquidity.dates}
+          datasets={[{
+            label: t('Reserves'),
+            data: liquidity.bankReserves,
+            borderColor: '#10B981'
+          }]}
+        />
+
+        {/* Repo Market */}
+        <LineChartCard 
+          title={t('Repo Market Volume')}
+          subtitle={t('Billion USD')}
+          labels={liquidity.dates}
+          datasets={[{
+            label: t('Repo Volume'),
+            data: liquidity.repoVolume,
+            borderColor: '#FFB020'
+          }]}
+        />
+
+        {/* ETF Flows */}
+        <LineChartCard 
+          title={t('ETF Flows')}
+          subtitle={t('Monthly, Billion USD')}
+          labels={etfFlows.dates}
+          datasets={[{
+            label: t('Equity ETFs'),
+            data: etfFlows.equity,
+            borderColor: '#0033A0'
+          },{
+            label: t('Bond ETFs'),
+            data: etfFlows.bond,
+            borderColor: '#F43F5E'
+          }]}
+        />
+
+        {/* Asset Liquidity Heatmap */}
         <HeatmapCard
-          title={t('Market Liquidity')}
-          subtitle={t('By asset class, Z-score')}
+          title={t('Market Liquidity Conditions')}
+          subtitle={t('By asset class')}
           items={[
             { name: 'US Treasuries', change: 0.8 },
             { name: 'IG Credit', change: 0.3 },
@@ -1196,10 +1248,10 @@ export default function MarketsInsight() {
             { name: 'FX', change: 0.5 },
             { name: 'Commodities', change: -0.4 }
           ]}
-          getColorForValue={(val) => {
-            if (val > 0.5) return { bg: '#10B981', text: 'white' }; // Alta liquidità
-            if (val > -0.5) return { bg: '#A7F3D0', text: '#065F46' }; // Liquidità normale
-            if (val > -1.5) return { bg: '#FEE2E2', text: '#7F1D1D' }; // Bassa liquidità
+          getColorForValue={(context) => {
+            if (context > 0.5) return { bg: '#10B981', text: 'white' }; // Alta liquidità
+            if (context > -0.5) return { bg: '#A7F3D0', text: '#065F46' }; // Liquidità normale
+            if (context > -1.5) return { bg: '#FEE2E2', text: '#7F1D1D' }; // Bassa liquidità
             return { bg: '#F43F5E', text: 'white' }; // Liquidità molto bassa
           }}
           format={(val) => val.toFixed(1)}
@@ -1218,14 +1270,16 @@ export default function MarketsInsight() {
         onTimeframeChange={setSelectedTimeframe}
       />
       
-      {/* Tabs per le categorie della dashboard */}
-      <CategoryTabs 
-        categories={dashboardCategories}
-        activeCategory={activeCategory}
-        onCategoryChange={setActiveCategory}
-      />
+      {/* Tabs per le diverse categorie di dashboard */}
+      <div className="mt-6 mb-8">
+        <CategoryTabs 
+          categories={dashboardCategories}
+          activeCategory={activeCategory}
+          onCategoryChange={setActiveCategory}
+        />
+      </div>
       
-      {/* Contenuto della dashboard */}
+      {/* Contenuto dinamico in base alla categoria selezionata */}
       {renderDashboardContent()}
     </div>
   );
