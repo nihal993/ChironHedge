@@ -13,6 +13,8 @@ import NotFound from "@/pages/not-found";
 import AboutUs from "@/pages/AboutUs";
 import WhitePaper from "@/pages/WhitePaper";
 import Research from "@/pages/Research";
+import Login from "@/pages/Login";
+import Register from "@/pages/Register";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { useEffect } from "react";
 
@@ -24,19 +26,34 @@ function Router() {
     window.scrollTo(0, 0);
   }, [location]);
   
+  // Routes che non usano il Layout (login/register)
+  const authRoutes = ['/login', '/register'];
+  const isAuthRoute = authRoutes.includes(location);
+  
+  if (isAuthRoute) {
+    return (
+      <Switch>
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+      </Switch>
+    );
+  }
+  
   return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/news-ai" component={NewsAI} />
-      <Route path="/quantitative-model" component={QuantitativeModel} />
-      <Route path="/markets-insight" component={MarketsInsight} />
-      <Route path="/research" component={Research} />
-      <Route path="/quantitative-strategies" component={QuantitativeStrategies} />
-      <Route path="/contact" component={Contact} />
-      <Route path="/about" component={AboutUs} />
-      <Route path="/whitepaper" component={WhitePaper} />
-      <Route component={NotFound} />
-    </Switch>
+    <Layout>
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/news-ai" component={NewsAI} />
+        <Route path="/quantitative-model" component={QuantitativeModel} />
+        <Route path="/markets-insight" component={MarketsInsight} />
+        <Route path="/research" component={Research} />
+        <Route path="/quantitative-strategies" component={QuantitativeStrategies} />
+        <Route path="/contact" component={Contact} />
+        <Route path="/about" component={AboutUs} />
+        <Route path="/whitepaper" component={WhitePaper} />
+        <Route component={NotFound} />
+      </Switch>
+    </Layout>
   );
 }
 
@@ -45,9 +62,7 @@ function App() {
     <TooltipProvider>
       <Toaster />
       <LanguageProvider>
-        <Layout>
-          <Router />
-        </Layout>
+        <Router />
       </LanguageProvider>
     </TooltipProvider>
   );

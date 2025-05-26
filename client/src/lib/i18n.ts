@@ -38,6 +38,170 @@ export const translations: Translations = {
     en: 'Contact Us',
     it: 'Contattaci'
   },
+  'navbar.login': {
+    en: 'Login',
+    it: 'Accedi'
+  },
+
+  // Login translations
+  'login.title': {
+    en: 'Welcome back',
+    it: 'Bentornato'
+  },
+  'login.subtitle': {
+    en: 'Enter your credentials to access your account',
+    it: 'Inserisci le tue credenziali per accedere al tuo account'
+  },
+  'login.email': {
+    en: 'Email',
+    it: 'Email'
+  },
+  'login.emailPlaceholder': {
+    en: 'Enter your email',
+    it: 'Inserisci la tua email'
+  },
+  'login.password': {
+    en: 'Password',
+    it: 'Password'
+  },
+  'login.passwordPlaceholder': {
+    en: 'Enter your password',
+    it: 'Inserisci la tua password'
+  },
+  'login.signIn': {
+    en: 'Sign In',
+    it: 'Accedi'
+  },
+  'login.signingIn': {
+    en: 'Signing in...',
+    it: 'Accesso in corso...'
+  },
+  'login.forgotPassword': {
+    en: 'Forgot your password?',
+    it: 'Hai dimenticato la password?'
+  },
+  'login.noAccount': {
+    en: "Don't have an account?",
+    it: 'Non hai un account?'
+  },
+  'login.signUp': {
+    en: 'Sign up',
+    it: 'Registrati'
+  },
+  'login.continueWithGoogle': {
+    en: 'Continue with Google',
+    it: 'Continua con Google'
+  },
+  'login.continueWithMicrosoft': {
+    en: 'Continue with Microsoft',
+    it: 'Continua con Microsoft'
+  },
+  'login.continueWithApple': {
+    en: 'Continue with Apple',
+    it: 'Continua con Apple'
+  },
+  'login.orContinueWith': {
+    en: 'or continue with email',
+    it: 'o continua con email'
+  },
+
+  // Register translations
+  'register.title': {
+    en: 'Create your account',
+    it: 'Crea il tuo account'
+  },
+  'register.subtitle': {
+    en: 'Join ChironEdge to access exclusive financial insights',
+    it: 'Unisciti a ChironEdge per accedere a insights finanziari esclusivi'
+  },
+  'register.firstName': {
+    en: 'First Name',
+    it: 'Nome'
+  },
+  'register.firstNamePlaceholder': {
+    en: 'Enter your first name',
+    it: 'Inserisci il tuo nome'
+  },
+  'register.lastName': {
+    en: 'Last Name',
+    it: 'Cognome'
+  },
+  'register.lastNamePlaceholder': {
+    en: 'Enter your last name',
+    it: 'Inserisci il tuo cognome'
+  },
+  'register.email': {
+    en: 'Email',
+    it: 'Email'
+  },
+  'register.emailPlaceholder': {
+    en: 'Enter your email',
+    it: 'Inserisci la tua email'
+  },
+  'register.password': {
+    en: 'Password',
+    it: 'Password'
+  },
+  'register.passwordPlaceholder': {
+    en: 'Create a password (min 8 characters)',
+    it: 'Crea una password (min 8 caratteri)'
+  },
+  'register.confirmPassword': {
+    en: 'Confirm Password',
+    it: 'Conferma Password'
+  },
+  'register.confirmPasswordPlaceholder': {
+    en: 'Confirm your password',
+    it: 'Conferma la tua password'
+  },
+  'register.createAccount': {
+    en: 'Create Account',
+    it: 'Crea Account'
+  },
+  'register.creatingAccount': {
+    en: 'Creating account...',
+    it: 'Creazione account...'
+  },
+  'register.haveAccount': {
+    en: 'Already have an account?',
+    it: 'Hai già un account?'
+  },
+  'register.signIn': {
+    en: 'Sign in',
+    it: 'Accedi'
+  },
+  'register.continueWithGoogle': {
+    en: 'Continue with Google',
+    it: 'Continua con Google'
+  },
+  'register.continueWithMicrosoft': {
+    en: 'Continue with Microsoft',
+    it: 'Continua con Microsoft'
+  },
+  'register.continueWithApple': {
+    en: 'Continue with Apple',
+    it: 'Continua con Apple'
+  },
+  'register.orContinueWith': {
+    en: 'or continue with email',
+    it: 'o continua con email'
+  },
+  'register.acceptTerms': {
+    en: 'I agree to the',
+    it: 'Accetto i'
+  },
+  'register.termsOfService': {
+    en: 'Terms of Service',
+    it: 'Termini di Servizio'
+  },
+  'register.and': {
+    en: 'and',
+    it: 'e la'
+  },
+  'register.privacyPolicy': {
+    en: 'Privacy Policy',
+    it: 'Privacy Policy'
+  },
   
   // Hero Section
   'hero.subtitle': {
