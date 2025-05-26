@@ -1,2 +1,0 @@
-169:                      View methodology <ArrowRight className="h-4 w-4" />
-194:                      View methodology <ArrowRight className="h-4 w-4" />
