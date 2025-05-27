@@ -229,7 +229,7 @@ const Home = () => {
                 <div className="bg-white border border-gray-100 overflow-hidden flex flex-col">
                   <div className="relative h-44 bg-gray-200 overflow-hidden">
                     <img 
-                      src="https://images.unsplash.com/photo-1582481725274-d63bdf929a9a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
+                      src="https://images.unsplash.com/photo-1560221328-12fe60f83ab8?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
                       alt="Global markets report" 
                       className="w-full h-full object-cover"
                     />

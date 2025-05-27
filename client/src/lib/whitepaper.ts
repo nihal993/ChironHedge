@@ -9,16 +9,16 @@ export interface WhitePaperTranslations {
 
 export const whitepaper: WhitePaperTranslations = {
   title: {
-    en: "Factor Performance in Multi-Asset Quantitative Strategies",
-    it: "Performance dei Fattori nelle Strategie Quantitative Multi-Asset"
+    en: "Beyond Mean-Variance: building robust allocatives architectures",
+    it: "Oltre la media-varianza: la creazione di architetture allocative robuste"
   },
   publishedDate: {
-    en: "Published: May 10, 2025",
-    it: "Pubblicato: 10 Maggio 2025"
+    en: "Published: May 27, 2025",
+    it: "Pubblicato: 27 Maggio 2025"
   },
   authors: {
-    en: "By ChironEdge Research Team",
-    it: "Dal Team di Ricerca ChironEdge"
+    en: "Federico Ciaralli, ChironEdge Research CFO",
+    it: "Federico Ciaralli, CFO di ChironEdge Research"
   },
   summaryTitle: {
     en: "Executive Summary",
