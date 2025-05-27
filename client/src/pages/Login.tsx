@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'wouter';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -26,6 +26,32 @@ export default function Login() {
   const [apiError, setApiError] = useState<string>('');
   const [, setLocation] = useLocation();
   const { toast } = useToast();
+
+  // Handle OAuth callback token from URL parameters
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+    const success = urlParams.get('success');
+    const error = urlParams.get('error');
+
+    if (token && success === 'oauth_login') {
+      // Save JWT token to localStorage
+      localStorage.setItem('auth_token', token);
+      
+      toast({
+        title: "Login successful",
+        description: "Welcome back! Redirecting to dashboard...",
+      });
+      
+      // Clean URL and redirect to homepage
+      window.history.replaceState({}, document.title, '/login');
+      setTimeout(() => {
+        setLocation('/');
+      }, 1000);
+    } else if (error) {
+      setApiError('OAuth authentication failed. Please try again.');
+    }
+  }, [setLocation, toast]);
   
   const {
     register,
@@ -78,8 +104,15 @@ export default function Login() {
   };
 
   const handleSocialLogin = (provider: string) => {
-    // TODO: Implement social login
-    console.log(`Login with ${provider}`);
+    if (provider === 'google') {
+      window.location.href = '/auth/google';
+    } else {
+      // For Microsoft and Apple, you'll need to configure the OAuth providers
+      toast({
+        title: "Coming soon",
+        description: `${provider} login will be available once OAuth credentials are configured.`,
+      });
+    }
   };
 
   return (

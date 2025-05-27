@@ -98,8 +98,15 @@ export default function Register() {
   };
 
   const handleSocialRegister = (provider: string) => {
-    // TODO: Implement social registration
-    console.log(`Register with ${provider}`);
+    if (provider === 'google') {
+      window.location.href = '/auth/google';
+    } else {
+      // For Microsoft and Apple, you'll need to configure the OAuth providers
+      toast({
+        title: "Coming soon",
+        description: `${provider} registration will be available once OAuth credentials are configured.`,
+      });
+    }
   };
 
   return (

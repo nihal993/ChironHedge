@@ -80,51 +80,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         );
         
         // Redirect to frontend with token
-        res.redirect(`/login?token=${token}&success=true`);
-      } catch (error) {
-        res.redirect('/login?error=auth_failed');
-      }
-    }
-  );
-
-  // Microsoft OAuth
-  app.get('/auth/microsoft', passport.authenticate('microsoft', { scope: ['user.read'] }));
-  
-  app.get('/auth/microsoft/callback',
-    passport.authenticate('microsoft', { failureRedirect: '/login?error=microsoft_auth_failed' }),
-    async (req, res) => {
-      try {
-        const user = req.user as any;
-        const token = jwt.sign(
-          { userId: user.id, email: user.email },
-          JWT_SECRET,
-          { expiresIn: "7d" }
-        );
-        
-        // Redirect to frontend with token
-        res.redirect(`/login?token=${token}&success=true`);
-      } catch (error) {
-        res.redirect('/login?error=auth_failed');
-      }
-    }
-  );
-
-  // Apple OAuth
-  app.get('/auth/apple', passport.authenticate('apple', { scope: ['email'] }));
-  
-  app.get('/auth/apple/callback',
-    passport.authenticate('apple', { failureRedirect: '/login?error=apple_auth_failed' }),
-    async (req, res) => {
-      try {
-        const user = req.user as any;
-        const token = jwt.sign(
-          { userId: user.id, email: user.email },
-          JWT_SECRET,
-          { expiresIn: "7d" }
-        );
-        
-        // Redirect to frontend with token
-        res.redirect(`/login?token=${token}&success=true`);
+        res.redirect(`/?token=${token}&success=oauth_login`);
       } catch (error) {
         res.redirect('/login?error=auth_failed');
       }
