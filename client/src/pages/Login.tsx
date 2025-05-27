@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'wouter';
+import { Link, useLocation } from 'wouter';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -8,8 +8,10 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeOff, AlertCircle } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { apiRequest } from '@/lib/queryClient';
+import { useToast } from '@/hooks/use-toast';
 
 const loginSchema = z.object({
   email: z.string().email('Invalid email address'),
@@ -21,6 +23,9 @@ type LoginFormData = z.infer<typeof loginSchema>;
 export default function Login() {
   const { t } = useLanguage();
   const [showPassword, setShowPassword] = useState(false);
+  const [apiError, setApiError] = useState<string>('');
+  const [, setLocation] = useLocation();
+  const { toast } = useToast();
   
   const {
     register,
@@ -31,8 +36,45 @@ export default function Login() {
   });
 
   const onSubmit = async (data: LoginFormData) => {
-    // TODO: Implement login logic
-    console.log('Login data:', data);
+    try {
+      setApiError('');
+      
+      const response = await apiRequest<{
+        success: boolean;
+        message: string;
+        token: string;
+        user: {
+          id: string;
+          email: string;
+          created_at: string;
+        };
+      }>('POST', '/api/login', data);
+
+      if (response.success) {
+        // Save JWT token to localStorage
+        localStorage.setItem('auth_token', response.token);
+        localStorage.setItem('user', JSON.stringify(response.user));
+        
+        toast({
+          title: "Login successful",
+          description: "Welcome back! Redirecting to dashboard...",
+        });
+        
+        // Redirect to homepage after successful login
+        setTimeout(() => {
+          setLocation('/');
+        }, 1000);
+      } else {
+        setApiError(response.message || 'Login failed');
+      }
+    } catch (error: any) {
+      if (error.message) {
+        setApiError(error.message);
+      } else {
+        setApiError('An error occurred during login. Please try again.');
+      }
+      console.error('Login error:', error);
+    }
   };
 
   const handleSocialLogin = (provider: string) => {
@@ -121,6 +163,13 @@ export default function Login() {
 
             {/* Email/Password Form */}
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+              {/* API Error Display */}
+              {apiError && (
+                <div className="flex items-center space-x-2 p-3 bg-red-50 border border-red-200 rounded-md">
+                  <AlertCircle className="h-4 w-4 text-red-600" />
+                  <span className="text-sm text-red-600">{apiError}</span>
+                </div>
+              )}
               <div className="space-y-2">
                 <Label htmlFor="email" className="text-gray-700">
                   {t('login.email')}

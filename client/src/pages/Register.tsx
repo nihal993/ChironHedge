@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'wouter';
+import { Link, useLocation } from 'wouter';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -9,14 +9,14 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeOff, AlertCircle } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { apiRequest } from '@/lib/queryClient';
+import { useToast } from '@/hooks/use-toast';
 
 const registerSchema = z.object({
-  firstName: z.string().min(1, 'First name is required'),
-  lastName: z.string().min(1, 'Last name is required'),
   email: z.string().email('Invalid email address'),
-  password: z.string().min(8, 'Password must be at least 8 characters'),
+  password: z.string().min(6, 'Password must be at least 6 characters'),
   confirmPassword: z.string().min(1, 'Please confirm your password'),
   acceptTerms: z.boolean().refine(val => val === true, 'You must accept the terms and conditions'),
 }).refine((data) => data.password === data.confirmPassword, {
@@ -30,6 +30,9 @@ export default function Register() {
   const { t } = useLanguage();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [apiError, setApiError] = useState<string>('');
+  const [, setLocation] = useLocation();
+  const { toast } = useToast();
   
   const {
     register,
@@ -47,8 +50,51 @@ export default function Register() {
   const acceptTerms = watch('acceptTerms');
 
   const onSubmit = async (data: RegisterFormData) => {
-    // TODO: Implement registration logic
-    console.log('Register data:', data);
+    try {
+      setApiError('');
+      
+      // Extract only email and password for API request
+      const registerData = {
+        email: data.email,
+        password: data.password,
+      };
+      
+      const response = await apiRequest<{
+        success: boolean;
+        message: string;
+        token: string;
+        user: {
+          id: string;
+          email: string;
+          created_at: string;
+        };
+      }>('POST', '/api/register', registerData);
+
+      if (response.success) {
+        // Save JWT token to localStorage
+        localStorage.setItem('auth_token', response.token);
+        localStorage.setItem('user', JSON.stringify(response.user));
+        
+        toast({
+          title: "Account created successfully",
+          description: "Welcome to ChironEdge! Redirecting to dashboard...",
+        });
+        
+        // Redirect to homepage after successful registration
+        setTimeout(() => {
+          setLocation('/');
+        }, 1000);
+      } else {
+        setApiError(response.message || 'Registration failed');
+      }
+    } catch (error: any) {
+      if (error.message) {
+        setApiError(error.message);
+      } else {
+        setApiError('An error occurred during registration. Please try again.');
+      }
+      console.error('Registration error:', error);
+    }
   };
 
   const handleSocialRegister = (provider: string) => {
@@ -137,39 +183,13 @@ export default function Register() {
 
             {/* Registration Form */}
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="firstName" className="text-gray-700">
-                    {t('register.firstName')}
-                  </Label>
-                  <Input
-                    id="firstName"
-                    type="text"
-                    placeholder={t('register.firstNamePlaceholder')}
-                    className="border-gray-200 focus:border-blue-500 focus:ring-blue-500"
-                    {...register('firstName')}
-                  />
-                  {errors.firstName && (
-                    <p className="text-sm text-red-600">{errors.firstName.message}</p>
-                  )}
+              {/* API Error Display */}
+              {apiError && (
+                <div className="flex items-center space-x-2 p-3 bg-red-50 border border-red-200 rounded-md">
+                  <AlertCircle className="h-4 w-4 text-red-600" />
+                  <span className="text-sm text-red-600">{apiError}</span>
                 </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="lastName" className="text-gray-700">
-                    {t('register.lastName')}
-                  </Label>
-                  <Input
-                    id="lastName"
-                    type="text"
-                    placeholder={t('register.lastNamePlaceholder')}
-                    className="border-gray-200 focus:border-blue-500 focus:ring-blue-500"
-                    {...register('lastName')}
-                  />
-                  {errors.lastName && (
-                    <p className="text-sm text-red-600">{errors.lastName.message}</p>
-                  )}
-                </div>
-              </div>
+              )}
 
               <div className="space-y-2">
                 <Label htmlFor="email" className="text-gray-700">
