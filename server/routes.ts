@@ -5,6 +5,7 @@ import { z } from "zod";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { insertUserSchema } from "@shared/schema";
+import { passport } from "./passport";
 
 // Mock financial news data for API
 const mockFinancialNews = [
@@ -62,6 +63,74 @@ const mockFinancialNews = [
 const JWT_SECRET = process.env.JWT_SECRET || "your-super-secret-jwt-key-change-in-production";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // OAuth Routes
+  
+  // Google OAuth
+  app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+  
+  app.get('/auth/google/callback', 
+    passport.authenticate('google', { failureRedirect: '/login?error=google_auth_failed' }),
+    async (req, res) => {
+      try {
+        const user = req.user as any;
+        const token = jwt.sign(
+          { userId: user.id, email: user.email },
+          JWT_SECRET,
+          { expiresIn: "7d" }
+        );
+        
+        // Redirect to frontend with token
+        res.redirect(`/login?token=${token}&success=true`);
+      } catch (error) {
+        res.redirect('/login?error=auth_failed');
+      }
+    }
+  );
+
+  // Microsoft OAuth
+  app.get('/auth/microsoft', passport.authenticate('microsoft', { scope: ['user.read'] }));
+  
+  app.get('/auth/microsoft/callback',
+    passport.authenticate('microsoft', { failureRedirect: '/login?error=microsoft_auth_failed' }),
+    async (req, res) => {
+      try {
+        const user = req.user as any;
+        const token = jwt.sign(
+          { userId: user.id, email: user.email },
+          JWT_SECRET,
+          { expiresIn: "7d" }
+        );
+        
+        // Redirect to frontend with token
+        res.redirect(`/login?token=${token}&success=true`);
+      } catch (error) {
+        res.redirect('/login?error=auth_failed');
+      }
+    }
+  );
+
+  // Apple OAuth
+  app.get('/auth/apple', passport.authenticate('apple', { scope: ['email'] }));
+  
+  app.get('/auth/apple/callback',
+    passport.authenticate('apple', { failureRedirect: '/login?error=apple_auth_failed' }),
+    async (req, res) => {
+      try {
+        const user = req.user as any;
+        const token = jwt.sign(
+          { userId: user.id, email: user.email },
+          JWT_SECRET,
+          { expiresIn: "7d" }
+        );
+        
+        // Redirect to frontend with token
+        res.redirect(`/login?token=${token}&success=true`);
+      } catch (error) {
+        res.redirect('/login?error=auth_failed');
+      }
+    }
+  );
+
   // API routes
   
   // User registration endpoint
