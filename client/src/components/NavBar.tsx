@@ -14,7 +14,6 @@ const navLinks = [
   { key: "home", name: "Home", href: "/" },
   { key: "navbar.marketsInsight", name: "Markets Insight", href: "/markets-insight" },
   { key: "navbar.research", name: "Our Research", href: "/research" },
-  { key: "navbar.quantitativeModel", name: "Quantitative Model", href: "/quantitative-model" },
   { key: "navbar.strategies", name: "Portfolio Strategies", href: "/quantitative-strategies" }
 ];
 

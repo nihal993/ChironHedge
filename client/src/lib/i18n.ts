@@ -17,11 +17,6 @@ export const translations: Translations = {
     en: 'News AI',
     it: 'News AI'
   },
-  'navbar.quantitativeModel': {
-    en: 'Quantitative Model',
-    it: 'Modello Quantitativo'
-  },
-
   'navbar.marketsInsight': {
     en: 'Markets Insight',
     it: 'Analisi di Mercato'
@@ -237,10 +232,6 @@ export const translations: Translations = {
   'home.moreNews': {
     en: 'More News',
     it: 'Altre Notizie'
-  },
-  'home.quantitativeModel': {
-    en: 'Quantitative Model',
-    it: 'Modello Quantitativo'
   },
   'home.modelDescription': {
     en: 'Our proprietary models combine advanced mathematical techniques with machine learning to deliver predictive insights.',

@@ -4,7 +4,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Layout from "@/components/Layout";
 import Home from "@/pages/Home";
 import NewsAI from "@/pages/NewsAI";
-import QuantitativeModel from "@/pages/QuantitativeModel";
 import MarketsInsight from "@/pages/MarketsInsight";
 
 import QuantitativeStrategies from "@/pages/QuantitativeStrategies";
@@ -44,7 +43,6 @@ function Router() {
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/news-ai" component={NewsAI} />
-        <Route path="/quantitative-model" component={QuantitativeModel} />
         <Route path="/markets-insight" component={MarketsInsight} />
         <Route path="/research" component={Research} />
         <Route path="/quantitative-strategies" component={QuantitativeStrategies} />

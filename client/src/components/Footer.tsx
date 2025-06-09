@@ -51,7 +51,6 @@ const Footer = () => {
               
               <li><Link href="/markets-insight" className="text-neutral-300 hover:text-secondary transition-colors">{t('navbar.marketsInsight')}</Link></li>
               <li><Link href="/research" className="text-neutral-300 hover:text-secondary transition-colors">{t('navbar.research')}</Link></li>
-              <li><Link href="/quantitative-model" className="text-neutral-300 hover:text-secondary transition-colors">{t('navbar.quantitativeModel')}</Link></li>
               <li><Link href="/quantitative-strategies" className="text-neutral-300 hover:text-secondary transition-colors">{t('navbar.strategies')}</Link></li>
             </ul>
           </div>
