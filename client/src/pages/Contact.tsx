@@ -109,7 +109,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-bold text-lg mb-1">{t('contact.info.email')}</h3>
-                  <p className="text-primary/70">info@chironedge.com</p>
+                  <p className="text-primary/70">info@chironhedge.com</p>
                 </div>
               </div>
               

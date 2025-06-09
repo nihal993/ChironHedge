@@ -17,8 +17,8 @@ export const whitepaper: WhitePaperTranslations = {
     it: "Pubblicato: 10 Maggio 2025"
   },
   authors: {
-    en: "By ChironEdge Research Team",
-    it: "Dal Team di Ricerca ChironEdge"
+    en: "By ChironHedge Research Team",
+    it: "Dal Team di Ricerca ChironHedge"
   },
   summaryTitle: {
     en: "Executive Summary",

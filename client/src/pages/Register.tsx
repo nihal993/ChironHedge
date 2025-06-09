@@ -66,7 +66,7 @@ export default function Register() {
               <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-sm">C</span>
               </div>
-              <span className="text-2xl font-bold text-gray-900">ChironEdge</span>
+              <span className="text-2xl font-bold text-gray-900">ChironHedge</span>
             </div>
           </Link>
         </div>

@@ -111,8 +111,8 @@ export const translations: Translations = {
     it: 'Crea il tuo account'
   },
   'register.subtitle': {
-    en: 'Join ChironEdge to access exclusive financial insights',
-    it: 'Unisciti a ChironEdge per accedere a insights finanziari esclusivi'
+    en: 'Join ChironHedge to access exclusive financial insights',
+    it: 'Unisciti a ChironHedge per accedere a insights finanziari esclusivi'
   },
   'register.firstName': {
     en: 'First Name',
@@ -753,8 +753,8 @@ export const translations: Translations = {
   
   // Footer
   'footer.companyName': {
-    en: 'ChironEdge',
-    it: 'ChironEdge'
+    en: 'ChironHedge',
+    it: 'ChironHedge'
   },
   'footer.tagline': {
     en: 'Advanced quantitative research solutions for institutional investors.',
@@ -817,8 +817,8 @@ export const translations: Translations = {
     it: 'Accessibilità'
   },
   'footer.copyright': {
-    en: '© ${year} ChironEdge Global Services Ltd. All rights reserved.',
-    it: '© ${year} ChironEdge Global Services Ltd. Tutti i diritti riservati.'
+    en: '© ${year} ChironHedge Global Services Ltd. All rights reserved.',
+    it: '© ${year} ChironHedge Global Services Ltd. Tutti i diritti riservati.'
   },
   'footer.registration': {
     en: 'Company Reg: 01234567890 | Authorized and regulated by Financial Conduct Authority',
@@ -835,8 +835,8 @@ export const translations: Translations = {
     it: 'Chi Siamo'
   },
   'aboutUs.description1': {
-    en: 'ChironEdge is a cutting-edge financial research firm, founded by a team of Italian engineers and economists specialized in quantitative analysis and financial markets.',
-    it: 'ChironEdge è un\'azienda di ricerca finanziaria all\'avanguardia, fondata da un team di ingegneri ed economisti italiani specializzati in analisi quantitativa e mercati finanziari.'
+    en: 'ChironHedge is a cutting-edge financial research firm, founded by a team of Italian engineers and economists specialized in quantitative analysis and financial markets.',
+    it: 'ChironHedge è un\'azienda di ricerca finanziaria all\'avanguardia, fondata da un team di ingegneri ed economisti italiani specializzati in analisi quantitativa e mercati finanziari.'
   },
   'aboutUs.description2': {
     en: 'Our approach combines traditional fundamental analysis with advanced quantitative methodologies, using proprietary algorithms and machine learning techniques to identify investment opportunities and manage risk with precision.',
@@ -981,8 +981,8 @@ export const translations: Translations = {
     it: 'Confronto Performance'
   },
   'strategies.performance.chiron': {
-    en: 'ChironEdge Strategies',
-    it: 'Strategie ChironEdge'
+    en: 'ChironHedge Strategies',
+    it: 'Strategie ChironHedge'
   },
   'strategies.performance.benchmark': {
     en: 'Market Benchmark',
