@@ -59,9 +59,9 @@ const Footer = () => {
             <h4 className="text-sm font-bold uppercase tracking-wider mb-4">{t('footer.company')}</h4>
             <ul className="space-y-2 text-sm">
               <li><Link href="/about" className="text-neutral-300 hover:text-secondary transition-colors">{t('footer.aboutUs')}</Link></li>
-              <li><Link href="/leadership" className="text-neutral-300 hover:text-secondary transition-colors">{t('footer.leadership')}</Link></li>
+              {/* <li><Link href="/leadership" className="text-neutral-300 hover:text-secondary transition-colors">{t('footer.leadership')}</Link></li>
               <li><Link href="/careers" className="text-neutral-300 hover:text-secondary transition-colors">{t('footer.careers')}</Link></li>
-              <li><Link href="/media" className="text-neutral-300 hover:text-secondary transition-colors">{t('footer.media')}</Link></li>
+              <li><Link href="/media" className="text-neutral-300 hover:text-secondary transition-colors">{t('footer.media')}</Link></li> */}
               <li><Link href="/contact" className="text-neutral-300 hover:text-secondary transition-colors">{t('contact')}</Link></li>
               <li><Link href="/newsletter" className="text-neutral-300 hover:text-secondary transition-colors">{t('footer.newsletter')}</Link></li>
             </ul>

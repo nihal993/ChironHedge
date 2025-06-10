@@ -767,18 +767,18 @@ export const translations: Translations = {
     en: 'About Us',
     it: 'Chi Siamo'
   },
-  'footer.leadership': {
-    en: 'Leadership',
-    it: 'Leadership'
-  },
-  'footer.careers': {
-    en: 'Careers',
-    it: 'Carriere'
-  },
-  'footer.media': {
-    en: 'Media',
-    it: 'Media'
-  },
+  // 'footer.leadership': {
+  //   en: 'Leadership',
+  //   it: 'Leadership'
+  // },
+  // 'footer.careers': {
+  //   en: 'Careers',
+  //   it: 'Carriere'
+  // },
+  // 'footer.media': {
+  //   en: 'Media',
+  //   it: 'Media'
+  // },
   'footer.newsletter': {
     en: 'Newsletter',
     it: 'Newsletter'
