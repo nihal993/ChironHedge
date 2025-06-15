@@ -99,7 +99,7 @@ export const handleOpenAIChat = async (req: Request, res: Response) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'gpt-3.5-turbo',
+        model: 'gpt-4o', // the newest OpenAI model is "gpt-4o" which was released May 13, 2024. do not change this unless explicitly requested by the user
         messages: messages,
         max_tokens: 1500,
         temperature: 0.7,
@@ -111,6 +111,17 @@ export const handleOpenAIChat = async (req: Request, res: Response) => {
     if (!response.ok) {
       const errorText = await response.text();
       console.error('OpenAI API Error:', response.status, errorText);
+      
+      if (response.status === 429) {
+        return res.status(429).json({ 
+          error: 'Quota API superata. Per favore verifica il tuo piano di fatturazione OpenAI.' 
+        });
+      } else if (response.status === 401) {
+        return res.status(401).json({ 
+          error: 'Chiave API OpenAI non valida.' 
+        });
+      }
+      
       throw new Error(`OpenAI API error: ${response.status}`);
     }
 
@@ -124,7 +135,7 @@ export const handleOpenAIChat = async (req: Request, res: Response) => {
     res.json({
       message: aiMessage,
       usage: data.usage,
-      model: 'gpt-3.5-turbo'
+      model: 'gpt-4o'
     });
 
   } catch (error) {

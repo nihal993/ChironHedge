@@ -30,6 +30,7 @@ const AIChat: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [provider, setProvider] = useState<AIProvider>('openai');
+  const [apiStatus, setApiStatus] = useState<'unknown' | 'available' | 'quota_exceeded' | 'error'>('unknown');
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -106,10 +107,26 @@ const AIChat: React.FC = () => {
       };
 
       setMessages(prev => [...prev, aiMessage]);
+      setApiStatus('available');
     } catch (error) {
+      let errorText = 'Si è verificato un errore. Riprova più tardi.';
+      
+      if (error instanceof Error) {
+        if (error.message.includes('quota') || error.message.includes('Quota')) {
+          errorText = 'Al momento il servizio AI ha raggiunto il limite di utilizzo. Per favore riprova più tardi o contatta il supporto per informazioni sui piani disponibili.';
+          setApiStatus('quota_exceeded');
+        } else if (error.message.includes('API key') || error.message.includes('401')) {
+          errorText = 'Problema di configurazione del servizio AI. Contatta il supporto tecnico.';
+          setApiStatus('error');
+        } else {
+          errorText = error.message;
+          setApiStatus('error');
+        }
+      }
+      
       const errorMessage: Message = {
         id: Date.now() + 1,
-        text: error instanceof Error ? error.message : 'Si è verificato un errore. Riprova più tardi.',
+        text: errorText,
         sender: 'ai',
         timestamp: new Date()
       };
