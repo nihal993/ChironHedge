@@ -3,7 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { z } from "zod";
 
-import { handleOpenAIChat} from './ai-routes';
+import { handleOpenAIChat, handleClaudeChat, handleAIHealth } from './ai-routes';
 
 
 // Mock financial news data for API
@@ -61,8 +61,10 @@ const mockFinancialNews = [
 export async function registerRoutes(app: Express): Promise<Server> {
   // API routes
   
-  // AI Chat route
+  // AI Chat routes
   app.post('/api/ai/openai', handleOpenAIChat);
+  app.post('/api/ai/claude', handleClaudeChat);
+  app.get('/api/ai/health', handleAIHealth);
   
   // News AI API route
   app.get("/api/news-ai", (req, res) => {

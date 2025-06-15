@@ -64,6 +64,7 @@ function App() {
       <Toaster />
       <LanguageProvider>
         <Router />
+        <AIChat />
       </LanguageProvider>
     </TooltipProvider>
   );
