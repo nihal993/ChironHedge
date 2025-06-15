@@ -2,8 +2,6 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 
-OPEN_AI_KEY = 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
-
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

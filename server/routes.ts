@@ -5,9 +5,6 @@ import { z } from "zod";
 
 import { handleOpenAIChat} from './ai-routes';
 
-// Dopo le tue route esistenti, aggiungi:
-app.post('/api/ai/openai', handleOpenAIChat);
-
 
 // Mock financial news data for API
 const mockFinancialNews = [
@@ -63,6 +60,9 @@ const mockFinancialNews = [
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // API routes
+  
+  // AI Chat route
+  app.post('/api/ai/openai', handleOpenAIChat);
   
   // News AI API route
   app.get("/api/news-ai", (req, res) => {
