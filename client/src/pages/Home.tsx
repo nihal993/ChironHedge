@@ -61,7 +61,7 @@ const Home = () => {
   };
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
       {/* Hero Section */}
       <section id="hero" className="w-full relative overflow-hidden bg-primary h-[600px] mb-12">
         <div className="absolute inset-0 bg-gradient-to-r from-black via-[#0a192f] to-[#0033a0] opacity-90"></div>
@@ -130,7 +130,7 @@ const Home = () => {
 
 
       {/* Markets Insight Section */}
-      <section id="markets-insight" className="mb-12 border-t border-gray-200 pt-12">
+      <section id="markets-insight" className="mb-12 border-t border-gray-200 pt-12 px-6 md:px-16 max-w-[1200px] mx-auto">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold flex items-center">
             {t('home.marketsInsight')}
@@ -202,8 +202,9 @@ const Home = () => {
       </section>
 
       {/* Our Research Section */}
-      <section id="our-research" className="gs-section bg-gray-50">
-        <div className="flex justify-between items-center mb-8">
+      <section id="our-research" className="py-16 bg-gray-50">
+        <div className="px-6 md:px-16 max-w-[1200px] mx-auto">
+          <div className="flex justify-between items-center mb-8">
           <h2 className="gs-header flex items-center">
             {t('home.researchTitle')}
             <button 
@@ -345,11 +346,13 @@ const Home = () => {
             </div>
           </div>
         )}
+        </div>
       </section>
 
       {/* Portfolio Strategies Section - Espansa */}
-      <section id="quantitative-strategies" className="gs-section bg-gray-50">
-        <div className="flex justify-between items-center mb-8">
+      <section id="quantitative-strategies" className="py-16 bg-white">
+        <div className="px-6 md:px-16 max-w-[1200px] mx-auto">
+          <div className="flex justify-between items-center mb-8">
           <h2 className="gs-header flex items-center">
             {t('home.portfolioStrategies')}
             <button 
@@ -617,10 +620,11 @@ const Home = () => {
             </div>
           </div>
         )}
+        </div>
       </section>
 
       {/* Contact Us Section */}
-      <section id="contact" className="mb-12 border-t border-gray-200 pt-12">
+      <section id="contact" className="mb-12 border-t border-gray-200 pt-12 px-6 md:px-16 max-w-[1200px] mx-auto">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-2xl font-bold flex items-center">
             {t('home.contactUs')}
@@ -654,7 +658,7 @@ const Home = () => {
       
       {/* Social Media Banner */}
       <div className="border-t border-gray-200 py-8 bg-gray-50">
-        <div className="container mx-auto px-4">
+        <div className="px-6 md:px-16 max-w-[1200px] mx-auto">
           <div className="flex flex-col items-center justify-center">
             <h3 className="text-lg font-semibold mb-4">Connect with us</h3>
             <div className="flex space-x-6">
@@ -673,7 +677,7 @@ const Home = () => {
 
         {/* About Us and Mission Section */}
         <div className="py-20 bg-gray-50">
-          <div className="container mx-auto px-4">
+          <div className="px-6 md:px-16 max-w-[1200px] mx-auto">
             <div className="max-w-4xl mx-auto">
               <div className="mb-16">
                 <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center text-primary">{t('aboutUs.title')}</h2>
