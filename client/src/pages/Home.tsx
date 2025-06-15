@@ -353,16 +353,16 @@ const Home = () => {
       <section id="quantitative-strategies" className="py-16 bg-white">
         <div className="px-6 md:px-16 max-w-[1200px] mx-auto">
           <div className="flex justify-between items-center mb-8">
-          <h2 className="gs-header flex items-center">
-            {t('home.portfolioStrategies')}
-            <button 
-              onClick={() => toggleSection('quantitative-strategies')} 
-              className="ml-4 p-1 rounded-full hover:bg-gray-100 transition-colors"
-            >
-              <ChevronDown className={`h-5 w-5 text-secondary transition-transform ${activeSection === 'quantitative-strategies' ? 'transform rotate-180' : ''}`} />
-            </button>
-          </h2>
-        </div>
+            <h2 className="gs-header flex items-center">
+              {t('home.portfolioStrategies')}
+              <button 
+                onClick={() => toggleSection('quantitative-strategies')} 
+                className="ml-4 p-1 rounded-full hover:bg-gray-100 transition-colors"
+              >
+                <ChevronDown className={`h-5 w-5 text-secondary transition-transform ${activeSection === 'quantitative-strategies' ? 'transform rotate-180' : ''}`} />
+              </button>
+            </h2>
+          </div>
         
         {(activeSection === 'quantitative-strategies' || activeSection === null) && (
           <div>
