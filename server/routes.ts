@@ -3,6 +3,12 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { z } from "zod";
 
+import { handleOpenAIChat} from './ai-routes';
+
+// Dopo le tue route esistenti, aggiungi:
+app.post('/api/ai/openai', handleOpenAIChat);
+
+
 // Mock financial news data for API
 const mockFinancialNews = [
   {

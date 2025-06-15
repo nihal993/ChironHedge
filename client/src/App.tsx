@@ -16,6 +16,9 @@ import Login from "@/pages/Login";
 import Register from "@/pages/Register";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { useEffect } from "react";
+// client/src/App.tsx
+import AIChat from './components/AIChat';
+
 
 function Router() {
   const [location] = useLocation();
