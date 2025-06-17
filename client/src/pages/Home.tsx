@@ -64,12 +64,21 @@ const Home = () => {
     <div className="flex flex-col w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
       {/* Hero Section */}
       <section id="hero" className="w-full relative overflow-hidden bg-primary h-[600px] mb-12">
-        <div className="absolute inset-0 bg-gradient-to-r from-black via-[#0a192f] to-[#0033a0] opacity-90"></div>
-        <img 
-          src="https://images.unsplash.com/photo-1639322537228-f710d846310a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=600&q=80" 
-          alt="Abstract financial data visualization" 
-          className="w-full h-full object-cover object-center opacity-30"
-        />
+        {/* Video Background */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="https://cdn.pixabay.com/video/2024/06/02/215018_large.mp4" type="video/mp4" />
+        </video>
+        
+        {/* Overlay per migliorare la leggibilità del testo */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-[#0a192f]/60 to-[#0033a0]/50"></div>
+        <div className="absolute inset-0 bg-black/30"></div>
+        
         <div className="absolute inset-0 flex items-center">
           <div className="px-6 md:px-16 max-w-[1100px] mx-auto">
             <div className="border-l-4 border-secondary pl-6 mb-8">
