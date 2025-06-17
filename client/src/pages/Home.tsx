@@ -76,8 +76,8 @@ const Home = () => {
         </video>
         
         {/* Overlay per migliorare la leggibilità del testo */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-[#0a192f]/60 to-[#0033a0]/50"></div>
-        <div className="absolute inset-0 bg-black/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-[#0a192f]/30 to-[#0033a0]/25"></div>
+        <div className="absolute inset-0 bg-black/15"></div>
         
         <div className="absolute inset-0 flex items-center">
           <div className="px-6 md:px-16 max-w-[1100px] mx-auto">
