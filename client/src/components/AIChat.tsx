@@ -161,7 +161,7 @@ const AIChat: React.FC = () => {
 
   if (!isOpen) {
     return (
-      <div className="fixed bottom-6 right-6 z-50">
+      <div className="fixed bottom-20 right-6 z-50">
         <button
           onClick={() => setIsOpen(true)}
           className="bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg transition-all duration-200 hover:scale-105"
@@ -173,7 +173,7 @@ const AIChat: React.FC = () => {
   }
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 w-96 max-w-[90vw]">
+    <div className="fixed bottom-20 right-6 z-50 w-96 max-w-[90vw]">
       <div className="bg-white rounded-lg shadow-2xl border overflow-hidden max-h-[70vh] flex flex-col">
         {/* Header */}
         <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4">

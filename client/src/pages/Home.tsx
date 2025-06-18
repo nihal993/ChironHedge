@@ -105,19 +105,19 @@ const Home = () => {
       {/* News AI Banner - versione compatta */}
       <div className="mb-8 bg-gray-50 border-y border-gray-200">
         <div className="container mx-auto px-6 py-3">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
-            <div className="flex items-center mb-2 sm:mb-0">
+          <div className="flex flex-col sm:flex-row justify-start items-start sm:items-center gap-4">
+            <div className="flex items-center">
               <div className="h-6 w-1 bg-secondary mr-3"></div>
               <span className="text-sm font-medium text-secondary">{t('home.latestMarketNews')}</span>
               <span className="text-xs text-primary/50 ml-3">May 12, 2025</span>
             </div>
             
-            <div className="flex items-center space-x-1 text-primary">
+            <div className="flex items-center space-x-2 text-primary">
               <button className="p-1 rounded hover:bg-gray-200">
                 <span className="h-4 w-4 flex items-center justify-center">&#8249;</span>
               </button>
               
-              <div className="max-w-xl overflow-hidden">
+              <div className="max-w-md overflow-hidden">
                 <div className="whitespace-nowrap overflow-hidden text-ellipsis text-sm">
                   <span className="font-medium mr-2 text-green-600">{t('home.newsTitle')}:</span>
                   {t('home.newsContent')}
@@ -139,18 +139,19 @@ const Home = () => {
 
 
       {/* Markets Insight Section */}
-      <section id="markets-insight" className="mb-12 border-t border-gray-200 pt-12 px-6 md:px-16 max-w-[1200px] mx-auto">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold flex items-center">
-            {t('home.marketsInsight')}
-            <button 
-              onClick={() => toggleSection('markets-insight')} 
-              className="ml-4 p-1 rounded-full hover:bg-gray-100 transition-colors"
-            >
-              <ChevronDown className={`h-5 w-5 transition-transform ${activeSection === 'markets-insight' ? 'transform rotate-180' : ''}`} />
-            </button>
-          </h2>
-        </div>
+      <section id="markets-insight" className="mb-12 border-t border-gray-200 pt-12">
+        <div className="px-6 md:px-16 max-w-[1200px] mx-auto">
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-2xl font-bold flex items-center">
+              {t('home.marketsInsight')}
+              <button 
+                onClick={() => toggleSection('markets-insight')} 
+                className="ml-4 p-1 rounded-full hover:bg-gray-100 transition-colors"
+              >
+                <ChevronDown className={`h-5 w-5 transition-transform ${activeSection === 'markets-insight' ? 'transform rotate-180' : ''}`} />
+              </button>
+            </h2>
+          </div>
         
         {(activeSection === 'markets-insight' || activeSection === null) && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -208,6 +209,7 @@ const Home = () => {
             </div>
           </div>
         )}
+        </div>
       </section>
 
       {/* Our Research Section */}

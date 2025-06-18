@@ -25,26 +25,22 @@ const LanguageSwitcher = ({ onLanguageChange }: LanguageSwitcherProps) => {
     };
   }, []);
 
-  // Bandiera USA - versione molto semplificata
-  const USFlag = () => (
-    <svg viewBox="0 0 100 67" className="w-full h-full">
-      {/* Sfondo bianco */}
-      <rect width="100" height="67" fill="white" />
+  // Bandiera UK - Union Jack semplificata
+  const UKFlag = () => (
+    <svg viewBox="0 0 60 36" className="w-full h-full">
+      {/* Sfondo blu */}
+      <rect width="60" height="36" fill="#012169" />
       
-      {/* Strisce rosse */}
-      <rect y="0" width="100" height="6" fill="#B22234" />
-      <rect y="10" width="100" height="6" fill="#B22234" />
-      <rect y="20" width="100" height="6" fill="#B22234" />
-      <rect y="30" width="100" height="6" fill="#B22234" />
-      <rect y="40" width="100" height="6" fill="#B22234" />
-      <rect y="50" width="100" height="6" fill="#B22234" />
-      <rect y="60" width="100" height="7" fill="#B22234" />
+      {/* Croce bianca di Sant'Andrea (diagonali) */}
+      <path d="M0,0 L60,36 M60,0 L0,36" stroke="white" strokeWidth="4" />
       
-      {/* Area blu */}
-      <rect width="40" height="35" fill="#3C3B6E" />
+      {/* Croce rossa di San Giorgio (verticale e orizzontale) */}
+      <rect x="24" y="0" width="12" height="36" fill="#C8102E" />
+      <rect x="0" y="12" width="60" height="12" fill="#C8102E" />
       
-      {/* Stella semplice al centro */}
-      <circle cx="20" cy="17.5" r="5" fill="white" />
+      {/* Bordi bianchi per la croce di San Giorgio */}
+      <rect x="26" y="0" width="8" height="36" fill="white" />
+      <rect x="0" y="14" width="60" height="8" fill="white" />
     </svg>
   );
 
@@ -67,7 +63,7 @@ const LanguageSwitcher = ({ onLanguageChange }: LanguageSwitcherProps) => {
         )}
         aria-label="Change language"
       >
-        {language === 'en' ? <USFlag /> : <ItalianFlag />}
+        {language === 'en' ? <UKFlag /> : <ItalianFlag />}
       </button>
       
       {isOpen && (
@@ -84,7 +80,7 @@ const LanguageSwitcher = ({ onLanguageChange }: LanguageSwitcherProps) => {
             }}
           >
             <div className="w-6 h-4">
-              <USFlag />
+              <UKFlag />
             </div>
             <span>English</span>
           </button>
