@@ -379,6 +379,106 @@ export const translations: Translations = {
     en: 'Read the report',
     it: 'Leggi il report'
   },
+  
+  // Research Section Translations
+  'home.industryAnalysis': {
+    en: 'Industry Analysis',
+    it: 'Analisi Settoriale'
+  },
+  'home.financialServicesTitle': {
+    en: 'Financial Services Sector: Strategic Evolution',
+    it: 'Settore Servizi Finanziari: Evoluzione Strategica'
+  },
+  'home.financialServicesDesc': {
+    en: 'Our in-depth analysis of the financial services industry explores strategic priorities and structural disruptions.',
+    it: 'La nostra analisi approfondita del settore dei servizi finanziari esplora le priorità strategiche e le disruzioni strutturali.'
+  },
+  'home.esgCategory': {
+    en: 'ESG',
+    it: 'ESG'
+  },
+  'home.esgTitle': {
+    en: 'ESG Investment Framework for Institutions',
+    it: 'Framework di Investimento ESG per Istituzioni'
+  },
+  'home.esgDesc': {
+    en: 'Our ESG research team provides a comprehensive framework for integrating sustainability metrics into investment decisions.',
+    it: 'Il nostro team di ricerca ESG fornisce un framework completo per integrare le metriche di sostenibilità nelle decisioni di investimento.'
+  },
+  
+  // Quantitative Strategies Translations
+  'strategies.multiFactorEquityModel': {
+    en: 'Multi-Factor Equity Model',
+    it: 'Modello Azionario Multi-Fattoriale'
+  },
+  'strategies.multiFactorEquityDesc': {
+    en: 'A comprehensive multi-factor model incorporating value, momentum, quality, and low volatility factors with dynamic allocation based on market regime.',
+    it: 'Un modello multi-fattoriale completo che incorpora fattori di valore, momentum, qualità e bassa volatilità con allocazione dinamica basata sul regime di mercato.'
+  },
+  'strategies.macroTrendFollowing': {
+    en: 'Macro Trend Following',
+    it: 'Macro Trend Following'
+  },
+  'strategies.macroTrendDesc': {
+    en: 'Systematic approach to capturing persistent trends across asset classes, using a proprietary combination of momentum and mean reversion signals.',
+    it: 'Approccio sistematico per catturare trend persistenti tra classi di attività, utilizzando una combinazione proprietaria di segnali di momentum e mean reversion.'
+  },
+  'strategies.volatilityRiskPremium': {
+    en: 'Volatility Risk Premium',
+    it: 'Premio di Rischio Volatilità'
+  },
+  'strategies.volatilityRiskDesc': {
+    en: 'Sophisticated strategy designed to harvest volatility risk premia across equity and fixed income markets while managing tail risk effectively.',
+    it: 'Strategia sofisticata progettata per raccogliere premi di rischio volatilità sui mercati azionari e obbligazionari gestendo efficacemente il tail risk.'
+  },
+  'strategies.altDataArbitrage': {
+    en: 'Alternative Data Arbitrage',
+    it: 'Arbitraggio Dati Alternativi'
+  },
+  'strategies.altDataDesc': {
+    en: 'Leveraging non-traditional data sources including satellite imagery, social sentiment, and supply chain analytics to generate alpha.',
+    it: 'Sfruttare fonti di dati non tradizionali incluse immagini satellitari, sentiment sociale e analisi della supply chain per generare alpha.'
+  },
+  'strategies.statisticalArbitrage': {
+    en: 'Statistical Arbitrage VIX',
+    it: 'Arbitraggio Statistico VIX'
+  },
+  'strategies.statisticalArbDesc': {
+    en: 'Market-neutral strategy exploiting pricing inefficiencies between VIX futures and the underlying volatility surface.',
+    it: 'Strategia market-neutral che sfrutta le inefficienze di pricing tra i futures VIX e la superficie di volatilità sottostante.'
+  },
+  'strategies.globalMacro': {
+    en: 'Global Macro',
+    it: 'Global Macro'
+  },
+  'strategies.globalMacroDesc': {
+    en: 'Top-down investment approach based on global economic and political trends, currency movements, and central bank policies.',
+    it: 'Approccio di investimento top-down basato su trend economici e politici globali, movimenti valutari e politiche delle banche centrali.'
+  },
+  'strategies.fixedIncomeStrategy': {
+    en: 'Fixed Income',
+    it: 'Reddito Fisso'
+  },
+  'strategies.fixedIncomeStrategyDesc': {
+    en: 'Quantitative fixed income strategies focusing on yield curve positioning, credit selection, and duration management.',
+    it: 'Strategie quantitative di reddito fisso focalizzate sul posizionamento della curva dei rendimenti, selezione del credito e gestione della duration.'
+  },
+  'strategies.medium': {
+    en: 'Medium',
+    it: 'Medio'
+  },
+  'strategies.mediumHigh': {
+    en: 'Medium-High',
+    it: 'Medio-Alto'
+  },
+  'strategies.lowMedium': {
+    en: 'Low-Medium',
+    it: 'Basso-Medio'
+  },
+  'strategies.high': {
+    en: 'High',
+    it: 'Alto'
+  },
   'home.contactUs': {
     en: 'Contact Us',
     it: 'Contattaci'
@@ -871,10 +971,7 @@ export const translations: Translations = {
     en: 'Systematic equity selection combining value, momentum, quality, and low volatility factors with adaptive weighting algorithm.',
     it: 'Selezione azionaria sistematica che combina fattori di valore, momentum, qualità e bassa volatilità con un algoritmo di ponderazione adattivo.'
   },
-  'strategies.fixedIncome': {
-    en: 'Fixed Income',
-    it: 'Reddito Fisso'
-  },
+
   'strategies.globalTactical': {
     en: 'Global Tactical Asset Allocation',
     it: 'Allocazione Tattica Globale degli Asset'

@@ -273,10 +273,10 @@ const Home = () => {
                     <div className="absolute bottom-0 right-0 bg-white text-primary px-3 py-1 text-xs font-medium">April 2025</div>
                   </div>
                   <div className="p-5 flex-grow">
-                    <div className="text-sm text-blue-600 font-medium uppercase mb-2">Industry Analysis</div>
-                    <h4 className="text-lg font-semibold mb-3">Financial Services Sector: Strategic Evolution</h4>
+                    <div className="text-sm text-blue-600 font-medium uppercase mb-2">{t('home.industryAnalysis')}</div>
+                    <h4 className="text-lg font-semibold mb-3">{t('home.financialServicesTitle')}</h4>
                     <p className="text-primary/70 text-sm mb-5">
-                      Our in-depth analysis of the financial services industry explores strategic priorities and structural disruptions.
+                      {t('home.financialServicesDesc')}
                     </p>
                   </div>
                   <div className="px-5 py-3 border-t border-gray-100">
@@ -297,10 +297,10 @@ const Home = () => {
                     <div className="absolute bottom-0 right-0 bg-white text-primary px-3 py-1 text-xs font-medium">March 2025</div>
                   </div>
                   <div className="p-5 flex-grow">
-                    <div className="text-sm text-blue-600 font-medium uppercase mb-2">ESG</div>
-                    <h4 className="text-lg font-semibold mb-3">ESG Investment Framework for Institutions</h4>
+                    <div className="text-sm text-blue-600 font-medium uppercase mb-2">{t('home.esgCategory')}</div>
+                    <h4 className="text-lg font-semibold mb-3">{t('home.esgTitle')}</h4>
                     <p className="text-primary/70 text-sm mb-5">
-                      Our ESG research team provides a comprehensive framework for integrating sustainability metrics into investment decisions.
+                      {t('home.esgDesc')}
                     </p>
                   </div>
                   <div className="px-5 py-3 border-t border-gray-100">

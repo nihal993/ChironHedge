@@ -21,53 +21,81 @@ import {
   Line
 } from "recharts";
 
-// Sample strategies data
-const quantStrategies = [
-  {
-    id: "multi-factor",
-    title: "Multi-Factor Equity Model",
-    description: "A comprehensive multi-factor model incorporating value, momentum, quality, and low volatility factors with dynamic allocation based on market regime.",
-    performance: "+12.4%",
-    risk: "Medium",
-    sharpeRatio: "1.85",
-    chartData: [30, 32, 34, 36, 33, 36, 38, 40, 38, 42, 44, 46],
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    featured: true
-  },
-  {
-    id: "macro-trend",
-    title: "Macro Trend Following",
-    description: "Systematic approach to capturing persistent trends across asset classes, using a proprietary combination of momentum and mean reversion signals.",
-    performance: "+15.7%",
-    risk: "Medium-High",
-    sharpeRatio: "1.62",
-    chartData: [25, 28, 30, 28, 32, 36, 40, 38, 42, 46, 44, 48],
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    featured: true
-  },
-  {
-    id: "volatility-premium",
-    title: "Volatility Risk Premium",
-    description: "Sophisticated strategy designed to harvest volatility risk premia across equity and fixed income markets while managing tail risk effectively.",
-    performance: "+9.2%",
-    risk: "Low-Medium",
-    sharpeRatio: "2.10",
-    chartData: [40, 41, 43, 45, 44, 46, 47, 48, 50, 51, 52, 54],
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    featured: true
-  },
-  {
-    id: "alt-data",
-    title: "Alternative Data Alpha",
-    description: "Machine learning approach integrating non-traditional data sources (satellite imagery, consumer transactions, social media sentiment) for equity selection.",
-    performance: "+18.3%",
-    risk: "High",
-    sharpeRatio: "1.45",
-    chartData: [20, 23, 26, 30, 28, 33, 37, 35, 38, 42, 45, 48],
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    featured: false
-  }
-];
+export default function QuantitativeStrategies() {
+  const [selectedStrategy, setSelectedStrategy] = useState("multi-factor");
+  const { t } = useLanguage();
+
+  // Sample strategies data with translation support
+  const getQuantStrategies = () => [
+    {
+      id: "multi-factor",
+      title: t('strategies.multiFactorEquityModel'),
+      description: t('strategies.multiFactorEquityDesc'),
+      performance: "+12.4%",
+      risk: t('strategies.medium'),
+      sharpeRatio: "1.85",
+      chartData: [30, 32, 34, 36, 33, 36, 38, 40, 38, 42, 44, 46],
+      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      featured: true
+    },
+    {
+      id: "macro-trend",
+      title: t('strategies.macroTrendFollowing'),
+      description: t('strategies.macroTrendDesc'),
+      performance: "+15.7%",
+      risk: t('strategies.mediumHigh'),
+      sharpeRatio: "1.62",
+      chartData: [25, 28, 30, 28, 32, 36, 40, 38, 42, 46, 44, 48],
+      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      featured: true
+    },
+    {
+      id: "volatility-premium",
+      title: t('strategies.volatilityRiskPremium'),
+      description: t('strategies.volatilityRiskDesc'),
+      performance: "+9.2%",
+      risk: t('strategies.lowMedium'),
+      sharpeRatio: "2.10",
+      chartData: [40, 41, 43, 45, 44, 46, 47, 48, 50, 51, 52, 54],
+      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      featured: true
+    },
+    {
+      id: "alt-data",
+      title: t('strategies.altDataArbitrage'),
+      description: t('strategies.altDataDesc'),
+      performance: "+18.3%",
+      risk: t('strategies.high'),
+      sharpeRatio: "1.45",
+      chartData: [20, 23, 26, 30, 28, 33, 37, 35, 38, 42, 45, 48],
+      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      featured: false
+    },
+    {
+      id: "statistical-arbitrage",
+      title: t('strategies.statisticalArbitrage'),
+      description: t('strategies.statisticalArbDesc'),
+      performance: "+7.8%",
+      risk: t('strategies.medium'),
+      sharpeRatio: "1.92",
+      chartData: [35, 36, 38, 37, 39, 41, 40, 42, 44, 43, 45, 47],
+      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      featured: false
+    },
+    {
+      id: "global-macro",
+      title: t('strategies.globalMacro'),
+      description: t('strategies.globalMacroDesc'),
+      performance: "+11.2%",
+      risk: t('strategies.mediumHigh'),
+      sharpeRatio: "1.73",
+      chartData: [28, 30, 32, 35, 33, 37, 39, 41, 38, 40, 43, 45],
+      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      featured: false
+    }
+  ];
+
+  const quantStrategies = getQuantStrategies();
 
 // Backtest data
 const backtestData = {
