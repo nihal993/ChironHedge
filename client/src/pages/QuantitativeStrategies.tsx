@@ -97,8 +97,8 @@ export default function QuantitativeStrategies() {
 
   const quantStrategies = getQuantStrategies();
 
-// Backtest data
-const backtestData = {
+  // Backtest data
+  const backtestData = {
   cumulative: [
     { month: "Jan", strategy: 100, benchmark: 100 },
     { month: "Feb", strategy: 102, benchmark: 101 },
@@ -146,10 +146,10 @@ const backtestData = {
     { month: "Nov", strategy: 4.2, benchmark: 2.8 },
     { month: "Dec", strategy: 4.0, benchmark: 1.8 }
   ]
-};
+  };
 
-// Performance metrics
-const performanceMetrics = [
+  // Performance metrics
+  const performanceMetrics = [
   { name: "Annualized Return", strategy: "18.2%", benchmark: "12.5%" },
   { name: "Volatility", strategy: "9.8%", benchmark: "14.2%" },
   { name: "Sharpe Ratio", strategy: "1.85", benchmark: "0.88" },
@@ -157,11 +157,11 @@ const performanceMetrics = [
   { name: "Information Ratio", strategy: "1.42", benchmark: "N/A" },
   { name: "Beta", strategy: "0.65", benchmark: "1.00" },
   { name: "Alpha", strategy: "8.4%", benchmark: "0.0%" },
-  { name: "Sortino Ratio", strategy: "2.45", benchmark: "1.12" }
-];
+    { name: "Sortino Ratio", strategy: "2.45", benchmark: "1.12" }
+  ];
 
-const CustomTooltip = ({ active, payload, label }: any) => {
-  if (active && payload && payload.length) {
+  const CustomTooltip = ({ active, payload, label }: any) => {
+    if (active && payload && payload.length) {
     return (
       <div className="bg-white p-3 shadow-md rounded border border-gray-100">
         <p className="font-bold">{label}</p>
@@ -177,15 +177,11 @@ const CustomTooltip = ({ active, payload, label }: any) => {
     );
   }
 
-  return null;
-};
+    return null;
+  };
 
-const QuantitativeStrategies = () => {
-  const [selectedStrategy, setSelectedStrategy] = useState(quantStrategies[0].id);
-  
+  const [selectedStrategy, setSelectedStrategy] = useState("multi-factor");
   const strategy = quantStrategies.find(s => s.id === selectedStrategy) || quantStrategies[0];
-
-  const { t } = useLanguage();
   
   return (
     <section className="py-20 md:py-24 bg-white">
@@ -618,6 +614,4 @@ const QuantitativeStrategies = () => {
       </div>
     </section>
   );
-};
-
-export default QuantitativeStrategies;
+}
