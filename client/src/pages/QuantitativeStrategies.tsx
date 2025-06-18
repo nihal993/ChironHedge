@@ -22,8 +22,8 @@ import {
 } from "recharts";
 
 export default function QuantitativeStrategies() {
-  const [selectedStrategy, setSelectedStrategy] = useState("multi-factor");
   const { t } = useLanguage();
+  const [selectedStrategy, setSelectedStrategy] = useState("multi-factor");
 
   // Sample strategies data with translation support
   const getQuantStrategies = () => [
@@ -180,7 +180,6 @@ export default function QuantitativeStrategies() {
     return null;
   };
 
-  const [selectedStrategy, setSelectedStrategy] = useState("multi-factor");
   const strategy = quantStrategies.find(s => s.id === selectedStrategy) || quantStrategies[0];
   
   return (
