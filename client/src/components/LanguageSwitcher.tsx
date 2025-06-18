@@ -34,13 +34,13 @@ const LanguageSwitcher = ({ onLanguageChange }: LanguageSwitcherProps) => {
       {/* Croce bianca di Sant'Andrea (diagonali) */}
       <path d="M0,0 L60,36 M60,0 L0,36" stroke="white" strokeWidth="4" />
       
-      {/* Croce rossa di San Giorgio (verticale e orizzontale) */}
-      <rect x="24" y="0" width="12" height="36" fill="#C8102E" />
-      <rect x="0" y="12" width="60" height="12" fill="#C8102E" />
-      
       {/* Bordi bianchi per la croce di San Giorgio */}
-      <rect x="26" y="0" width="8" height="36" fill="white" />
-      <rect x="0" y="14" width="60" height="8" fill="white" />
+      <rect x="24" y="0" width="12" height="36" fill="white" />
+      <rect x="0" y="12" width="60" height="12" fill="white" />
+      
+      {/* Croce rossa di San Giorgio (verticale e orizzontale) */}
+      <rect x="27" y="0" width="6" height="36" fill="#C8102E" />
+      <rect x="0" y="15" width="60" height="6" fill="#C8102E" />
     </svg>
   );
 
