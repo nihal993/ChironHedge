@@ -5,13 +5,14 @@ import Layout from "@/components/Layout";
 import Home from "@/pages/Home";
 import NewsAI from "@/pages/NewsAI";
 import MarketsInsight from "@/pages/MarketsInsight";
-
 import QuantitativeStrategies from "@/pages/QuantitativeStrategies";
 import Contact from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
 import AboutUs from "@/pages/AboutUs";
 import WhitePaper from "@/pages/WhitePaper";
 import Research from "@/pages/Research";
+import DataScience from "@/pages/DataScience";
+import Engineering from "@/pages/Engineering";
 import Login from "@/pages/Login";
 import Register from "@/pages/Register";
 import { LanguageProvider } from "@/contexts/LanguageContext";

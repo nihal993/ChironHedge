@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, Search } from "lucide-react";
+import { Menu, X, Search, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import LanguageSwitcher from "./LanguageSwitcher";
@@ -34,6 +34,7 @@ const NavBar = () => {
   const [searchFocused, setSearchFocused] = useState(false);
   const [currentPhrase, setCurrentPhrase] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
+  const [researchDropdownOpen, setResearchDropdownOpen] = useState(false);
   const { language, t } = useLanguage();
 
   useEffect(() => {
@@ -59,12 +60,12 @@ const NavBar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [location]);
 
-  // Auto-rotate search phrases
+  // Auto-rotate search phrases with typing effect
   useEffect(() => {
     if (!searchFocused && !searchQuery) {
       const interval = setInterval(() => {
         setCurrentPhrase((prev) => (prev + 1) % searchPhrases.length);
-      }, 3000);
+      }, 4000);
       return () => clearInterval(interval);
     }
   }, [searchFocused, searchQuery]);
@@ -115,6 +116,62 @@ const NavBar = () => {
         <nav className="hidden lg:flex items-center h-full">
           {navLinks.map((link) => {
             const isActive = location === "/" ? activeSection === link.id : location === link.href;
+            
+            // Special handling for Research dropdown
+            if (link.key === "navbar.research") {
+              return (
+                <div 
+                  key={link.href} 
+                  className="relative h-full"
+                  onMouseEnter={() => setResearchDropdownOpen(true)}
+                  onMouseLeave={() => setResearchDropdownOpen(false)}
+                >
+                  <button
+                    className={cn(
+                      "nav-link font-medium text-primary hover:text-secondary transition-colors h-full px-4 py-5 flex items-center",
+                      (location.startsWith('/research') || (location === "/" && activeSection === link.id)) ? "text-secondary" : ""
+                    )}
+                  >
+                    {t(link.key)}
+                    <ChevronDown className={`ml-1 h-4 w-4 transition-transform ${researchDropdownOpen ? 'rotate-180' : ''}`} />
+                  </button>
+                  
+                  <AnimatePresence>
+                    {researchDropdownOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute top-full left-0 w-48 bg-white shadow-lg border border-gray-200 rounded-md z-50"
+                      >
+                        <div className="py-2">
+                          <Link
+                            href="/research"
+                            className="block px-4 py-2 text-sm text-primary hover:bg-gray-50 hover:text-secondary transition-colors"
+                          >
+                            Overview
+                          </Link>
+                          <Link
+                            href="/research/data-science"
+                            className="block px-4 py-2 text-sm text-primary hover:bg-gray-50 hover:text-secondary transition-colors"
+                          >
+                            Data Science
+                          </Link>
+                          <Link
+                            href="/research/engineering"
+                            className="block px-4 py-2 text-sm text-primary hover:bg-gray-50 hover:text-secondary transition-colors"
+                          >
+                            Engineering
+                          </Link>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            }
+            
             return (
               <div key={link.href} className="relative">
                 {location === "/" ? (
@@ -163,22 +220,24 @@ const NavBar = () => {
                 onFocus={() => setSearchFocused(true)}
                 onBlur={() => setSearchFocused(false)}
                 className="w-full pl-10 pr-4 py-2 text-sm border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary transition-colors"
-                placeholder={searchFocused || searchQuery ? "" : searchPhrases[currentPhrase]}
+                placeholder={searchFocused || searchQuery ? "Search research topics..." : ""}
               />
-              <AnimatePresence>
-                {!searchFocused && !searchQuery && (
-                  <motion.div
-                    key={currentPhrase}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="absolute left-10 top-1/2 transform -translate-y-1/2 text-sm text-gray-400 pointer-events-none"
-                  >
-                    {searchPhrases[currentPhrase]}
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              {!searchFocused && !searchQuery && (
+                <div className="absolute left-10 top-1/2 transform -translate-y-1/2 text-sm text-gray-400 pointer-events-none overflow-hidden">
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={currentPhrase}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="block"
+                    >
+                      {searchPhrases[currentPhrase]}
+                    </motion.span>
+                  </AnimatePresence>
+                </div>
+              )}
             </div>
           </form>
         </div>
