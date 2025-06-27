@@ -34,31 +34,7 @@ import {
 } from "@/lib/chartData";
 
 const Home = () => {
-  const [activeSection, setActiveSection] = useState<string | null>(null);
   const { t } = useLanguage();
-  
-  // Funzione solo per lo scrolling, senza modificare lo stato delle sezioni
-  const scrollToSection = (section: string) => {
-    // Aggiungi un piccolo ritardo per assicurarti che il DOM sia aggiornato
-    setTimeout(() => {
-      const element = document.getElementById(section);
-      if (element) {
-        // Scorri con un offset per tenere conto della navbar fissa
-        const yOffset = -80; 
-        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({top: y, behavior: 'smooth'});
-      }
-    }, 100);
-  };
-  
-  // Funzione per gestire l'espansione/contrazione di una singola sezione
-  const toggleSection = (section: string) => {
-    if (activeSection === section) {
-      setActiveSection(null);
-    } else {
-      setActiveSection(section);
-    }
-  };
 
   return (
     <div className="flex flex-col w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
@@ -91,12 +67,12 @@ const Home = () => {
               Proprietary models & advanced analytics delivering actionable insights for sophisticated investors.
             </p>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
-              <button 
-                onClick={() => scrollToSection('our-research')}
-                className="gs-blue-btn px-8 py-4 text-lg"
+              <a 
+                href="/research"
+                className="gs-blue-btn px-8 py-4 text-lg inline-block text-center"
               >
                 {t('home.exploreOurResearch')}
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -208,14 +184,8 @@ const Home = () => {
       <section id="our-research" className="py-16 bg-gray-50">
         <div className="px-6 md:px-16 max-w-[1200px] mx-auto">
           <div className="flex justify-between items-center mb-8">
-          <h2 className="gs-header flex items-center">
+          <h2 className="gs-header">
             {t('home.researchTitle')}
-            <button 
-              onClick={() => toggleSection('our-research')} 
-              className="ml-4 p-1 rounded-full hover:bg-gray-100 transition-colors"
-            >
-              <ChevronDown className={`h-5 w-5 text-secondary transition-transform ${activeSection === 'our-research' ? 'transform rotate-180' : ''}`} />
-            </button>
           </h2>
         </div>
         
@@ -355,19 +325,12 @@ const Home = () => {
       <section id="quantitative-strategies" className="py-16 bg-white">
         <div className="px-6 md:px-16 max-w-[1200px] mx-auto">
           <div className="flex justify-between items-center mb-8">
-            <h2 className="gs-header flex items-center">
+            <h2 className="gs-header">
               {t('home.portfolioStrategies')}
-              <button 
-                onClick={() => toggleSection('quantitative-strategies')} 
-                className="ml-4 p-1 rounded-full hover:bg-gray-100 transition-colors"
-              >
-                <ChevronDown className={`h-5 w-5 text-secondary transition-transform ${activeSection === 'quantitative-strategies' ? 'transform rotate-180' : ''}`} />
-              </button>
             </h2>
           </div>
         
-        {(activeSection === 'quantitative-strategies' || activeSection === null) && (
-          <div>
+        <div>
             <p className="text-lg mb-8 max-w-3xl">
               {t('strategies.systemDescription')}
             </p>
@@ -621,26 +584,18 @@ const Home = () => {
               </a>
             </div>
           </div>
-        )}
         </div>
       </section>
 
       {/* Contact Us Section */}
       <section id="contact" className="mb-12 border-t border-gray-200 pt-12 px-6 md:px-16 max-w-[1200px] mx-auto">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold flex items-center">
+          <h2 className="text-2xl font-bold">
             {t('home.contactUs')}
-            <button 
-              onClick={() => toggleSection('contact')} 
-              className="ml-4 p-1 rounded-full hover:bg-gray-100 transition-colors"
-            >
-              <ChevronDown className={`h-5 w-5 transition-transform ${activeSection === 'contact' ? 'transform rotate-180' : ''}`} />
-            </button>
           </h2>
         </div>
         
-        {(activeSection === 'contact' || activeSection === null) && (
-          <div className="border border-gray-200 p-6">
+        <div className="border border-gray-200 p-6">
             <div className="text-center max-w-2xl mx-auto">
               <h3 className="text-xl font-bold mb-4">
                 Ready to elevate your investment strategies?
