@@ -49,6 +49,8 @@ function Router() {
         <Route path="/news-ai" component={NewsAI} />
         <Route path="/markets-insight" component={MarketsInsight} />
         <Route path="/research" component={Research} />
+        <Route path="/research/data-science" component={DataScience} />
+        <Route path="/research/engineering" component={Engineering} />
         <Route path="/quantitative-strategies" component={QuantitativeStrategies} />
         <Route path="/contact" component={Contact} />
         <Route path="/about" component={AboutUs} />

@@ -144,16 +144,9 @@ const Home = () => {
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-bold flex items-center">
               {t('home.marketsInsight')}
-              <button 
-                onClick={() => toggleSection('markets-insight')} 
-                className="ml-4 p-1 rounded-full hover:bg-gray-100 transition-colors"
-              >
-                <ChevronDown className={`h-5 w-5 transition-transform ${activeSection === 'markets-insight' ? 'transform rotate-180' : ''}`} />
-              </button>
             </h2>
           </div>
         
-        {(activeSection === 'markets-insight' || activeSection === null) && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="border border-gray-200 p-6">
               <h3 className="text-xl font-bold mb-4">{t('home.marketPerformance')}</h3>
@@ -208,7 +201,6 @@ const Home = () => {
               </div>
             </div>
           </div>
-        )}
         </div>
       </section>
 
