@@ -52,42 +52,45 @@ const NavBar = () => {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
-      
-      // Detect which section is currently in view
-      if (location === "/") {
-        const sections = ["hero", "markets-insight", "our-research", "quantitative-strategies"];
-        const viewportHeight = window.innerHeight;
-        const scrollPos = window.scrollY + (viewportHeight / 3); // section is active when 1/3 into viewport
-        
-        let currentSection = "hero"; // default to hero
-        
-        for (let i = 0; i < sections.length; i++) {
-          const element = document.getElementById(sections[i]);
-          if (element) {
-            const elementTop = element.offsetTop;
-            const elementBottom = elementTop + element.offsetHeight;
-            
-            // Check if the scroll position is within this section's bounds
-            if (scrollPos >= elementTop && scrollPos < elementBottom) {
-              currentSection = sections[i];
-              break;
-            }
-            // Also check if we're past this section (for last section)
-            else if (scrollPos >= elementTop) {
-              currentSection = sections[i];
-            }
-          }
-        }
-        
-        // Debug logging (disabled)
-        // console.log('Scroll:', Math.round(scrollPos), 'Active section:', currentSection);
-        
-        setActiveSection(currentSection);
-      }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Separate effect for section detection using Intersection Observer
+  useEffect(() => {
+    if (location !== "/") return;
+
+    const sections = ["hero", "markets-insight", "our-research", "quantitative-strategies"];
+    const observerOptions = {
+      rootMargin: '-20% 0px -60% 0px', // Section is active when 20% into viewport
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.id;
+          if (sections.includes(sectionId)) {
+            console.log('Section in view:', sectionId); // Debug log
+            setActiveSection(sectionId);
+          }
+        }
+      });
+    }, observerOptions);
+
+    // Observe all sections
+    sections.forEach(sectionId => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        observer.observe(element);
+      }
+    });
+
+    return () => {
+      observer.disconnect();
+    };
   }, [location]);
 
   // Auto-rotate search phrases with typing effect
