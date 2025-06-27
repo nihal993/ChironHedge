@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { Language, useLanguage } from "@/contexts/LanguageContext";
 import React from "react";
@@ -11,26 +11,63 @@ import React from "react";
 import logoImage from "@/assets/logo.png";
 
 const navLinks = [
-  { key: "home", name: "Home", href: "/" },
-  { key: "navbar.marketsInsight", name: "Markets Insight", href: "/markets-insight" },
-  { key: "navbar.research", name: "Our Research", href: "/research" },
-  { key: "navbar.strategies", name: "Portfolio Strategies", href: "/quantitative-strategies" }
+  { key: "home", name: "Home", href: "/", id: "hero" },
+  { key: "navbar.marketsInsight", name: "Markets Insight", href: "/markets-insight", id: "markets-insight" },
+  { key: "navbar.research", name: "Our Research", href: "/research", id: "our-research" },
+  { key: "navbar.strategies", name: "Portfolio Strategies", href: "/quantitative-strategies", id: "quantitative-strategies" }
+];
+
+const searchPhrases = [
+  "Machine Learning use cases in finance",
+  "LLM and AI agent in market analysis",
+  "Quantitative risk modeling strategies",
+  "Alternative data in portfolio construction",
+  "Deep learning for credit scoring",
+  "NLP for financial sentiment analysis"
 ];
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [location] = useLocation();
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+  const [searchFocused, setSearchFocused] = useState(false);
+  const [currentPhrase, setCurrentPhrase] = useState(0);
+  const [searchQuery, setSearchQuery] = useState("");
   const { language, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
+      
+      // Detect which section is currently in view
+      if (location === "/") {
+        const sections = ["hero", "markets-insight", "our-research", "quantitative-strategies"];
+        const scrollPos = window.scrollY + 100; // offset for navbar height
+        
+        for (let i = sections.length - 1; i >= 0; i--) {
+          const element = document.getElementById(sections[i]);
+          if (element && element.offsetTop <= scrollPos) {
+            setActiveSection(sections[i]);
+            break;
+          }
+        }
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [location]);
+
+  // Auto-rotate search phrases
+  useEffect(() => {
+    if (!searchFocused && !searchQuery) {
+      const interval = setInterval(() => {
+        setCurrentPhrase((prev) => (prev + 1) % searchPhrases.length);
+      }, 3000);
+      return () => clearInterval(interval);
+    }
+  }, [searchFocused, searchQuery]);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -38,6 +75,23 @@ const NavBar = () => {
 
   const closeMenu = () => {
     setIsOpen(false);
+  };
+
+  const scrollToSection = (sectionId: string) => {
+    if (location === "/") {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const yOffset = -80; 
+        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({top: y, behavior: 'smooth'});
+      }
+    }
+  };
+
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // TODO: Implement search functionality
+    console.log('Search query:', searchQuery);
   };
 
   return (
