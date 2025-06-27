@@ -113,19 +113,75 @@ const NavBar = () => {
         
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center h-full">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={cn(
-                "nav-link font-medium text-primary hover:text-secondary transition-colors h-full px-4 py-5 border-b-2",
-                location === link.href ? "border-secondary" : "border-transparent"
-              )}
-            >
-              {link.key === "home" ? link.name : t(link.key)}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = location === "/" ? activeSection === link.id : location === link.href;
+            return (
+              <div key={link.href} className="relative">
+                {location === "/" ? (
+                  <button
+                    onClick={() => scrollToSection(link.id)}
+                    className={cn(
+                      "nav-link font-medium text-primary hover:text-secondary transition-colors h-full px-4 py-5 relative",
+                      isActive ? "text-secondary" : ""
+                    )}
+                  >
+                    {link.key === "home" ? link.name : t(link.key)}
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeNavIndicator"
+                        className="absolute bottom-0 left-0 right-0 h-0.5 bg-secondary"
+                        initial={false}
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                  </button>
+                ) : (
+                  <Link
+                    href={link.href}
+                    className={cn(
+                      "nav-link font-medium text-primary hover:text-secondary transition-colors h-full px-4 py-5 border-b-2",
+                      location === link.href ? "border-secondary" : "border-transparent"
+                    )}
+                  >
+                    {link.key === "home" ? link.name : t(link.key)}
+                  </Link>
+                )}
+              </div>
+            );
+          })}
         </nav>
+
+        {/* Search Bar */}
+        <div className="hidden lg:flex items-center flex-1 max-w-sm mx-8">
+          <form onSubmit={handleSearchSubmit} className="relative w-full">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onFocus={() => setSearchFocused(true)}
+                onBlur={() => setSearchFocused(false)}
+                className="w-full pl-10 pr-4 py-2 text-sm border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary transition-colors"
+                placeholder={searchFocused || searchQuery ? "" : searchPhrases[currentPhrase]}
+              />
+              <AnimatePresence>
+                {!searchFocused && !searchQuery && (
+                  <motion.div
+                    key={currentPhrase}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="absolute left-10 top-1/2 transform -translate-y-1/2 text-sm text-gray-400 pointer-events-none"
+                  >
+                    {searchPhrases[currentPhrase]}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </form>
+        </div>
         
         <div className="hidden lg:flex items-center space-x-5">
           <Link href="/contact" className="px-5 py-2.5 text-sm font-medium text-white bg-secondary hover:bg-secondary/90 rounded-none transition-all">
