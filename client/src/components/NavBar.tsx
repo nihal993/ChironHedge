@@ -58,38 +58,42 @@ const NavBar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Separate effect for section detection using Intersection Observer
+  // Simplified scroll detection with throttling
   useEffect(() => {
     if (location !== "/") return;
 
-    const sections = ["hero", "markets-insight", "our-research", "quantitative-strategies"];
-    const observerOptions = {
-      rootMargin: '-20% 0px -60% 0px', // Section is active when 20% into viewport
-      threshold: 0
+    let ticking = false;
+    
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const sections = ["hero", "markets-insight", "our-research", "quantitative-strategies"];
+          const scrollPos = window.scrollY + 100;
+          
+          let currentSection = "hero";
+          
+          // Find the last section that we've scrolled past
+          for (let i = 0; i < sections.length; i++) {
+            const element = document.getElementById(sections[i]);
+            if (element && element.offsetTop <= scrollPos) {
+              currentSection = sections[i];
+            }
+          }
+          
+          console.log('Active section:', currentSection); // Debug log
+          setActiveSection(currentSection);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const sectionId = entry.target.id;
-          if (sections.includes(sectionId)) {
-            console.log('Section in view:', sectionId); // Debug log
-            setActiveSection(sectionId);
-          }
-        }
-      });
-    }, observerOptions);
-
-    // Observe all sections
-    sections.forEach(sectionId => {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        observer.observe(element);
-      }
-    });
-
+    window.addEventListener("scroll", handleScroll);
+    // Call once to set initial state
+    handleScroll();
+    
     return () => {
-      observer.disconnect();
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [location]);
 
@@ -120,9 +124,14 @@ const NavBar = () => {
     if (location === "/") {
       const element = document.getElementById(sectionId);
       if (element) {
-        const yOffset = -80; 
-        const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({top: y, behavior: 'smooth'});
+        const navbarHeight = 80;
+        const elementTop = element.offsetTop - navbarHeight;
+        window.scrollTo({
+          top: elementTop,
+          behavior: 'smooth'
+        });
+        // Update active section immediately
+        setActiveSection(sectionId);
       }
     }
   };
@@ -247,7 +256,7 @@ const NavBar = () => {
         </nav>
 
         {/* Search Bar */}
-        <div className="hidden lg:flex items-center flex-1 max-w-md mx-6">
+        <div className="hidden lg:flex items-center flex-1 max-w-lg mx-8">
           <form onSubmit={handleSearchSubmit} className="relative w-full">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 z-10" />
