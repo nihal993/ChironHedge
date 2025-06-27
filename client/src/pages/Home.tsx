@@ -610,7 +610,6 @@ const Home = () => {
               </div>
             </div>
           </div>
-        )}
       </section>
       
       {/* Social Media Banner */}
