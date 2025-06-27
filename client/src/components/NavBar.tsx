@@ -44,15 +44,33 @@ const NavBar = () => {
       // Detect which section is currently in view
       if (location === "/") {
         const sections = ["hero", "markets-insight", "our-research", "quantitative-strategies"];
-        const scrollPos = window.scrollY + 100; // offset for navbar height
+        const viewportHeight = window.innerHeight;
+        const scrollPos = window.scrollY + (viewportHeight / 3); // section is active when 1/3 into viewport
         
-        for (let i = sections.length - 1; i >= 0; i--) {
+        let currentSection = "hero"; // default to hero
+        
+        for (let i = 0; i < sections.length; i++) {
           const element = document.getElementById(sections[i]);
-          if (element && element.offsetTop <= scrollPos) {
-            setActiveSection(sections[i]);
-            break;
+          if (element) {
+            const elementTop = element.offsetTop;
+            const elementBottom = elementTop + element.offsetHeight;
+            
+            // Check if the scroll position is within this section's bounds
+            if (scrollPos >= elementTop && scrollPos < elementBottom) {
+              currentSection = sections[i];
+              break;
+            }
+            // Also check if we're past this section (for last section)
+            else if (scrollPos >= elementTop) {
+              currentSection = sections[i];
+            }
           }
         }
+        
+        // Debug logging
+        console.log('Scroll:', Math.round(scrollPos), 'Active section:', currentSection);
+        
+        setActiveSection(currentSection);
       }
     };
 
