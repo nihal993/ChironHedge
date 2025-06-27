@@ -219,8 +219,7 @@ const Home = () => {
           </h2>
         </div>
         
-        {(activeSection === 'our-research' || activeSection === null) && (
-          <div>
+        <div>
             <p className="text-lg mb-8 max-w-3xl">
               {t('home.researchDescription')}
             </p>
@@ -349,7 +348,6 @@ const Home = () => {
               </a>
             </div>
           </div>
-        )}
         </div>
       </section>
 
