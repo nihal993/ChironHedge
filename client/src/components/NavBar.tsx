@@ -343,46 +343,66 @@ const NavBar = () => {
               )}
             </div>
             
-            {/* Search Results Dropdown */}
+            {/* Search Results Dropdown - Enhanced Professional Design */}
             {showSearchResults && (searchResults.length > 0 || isSearching) && (
-              <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-xl z-50 max-h-96 overflow-y-auto">
+              <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-2xl z-50 max-h-[500px] overflow-y-auto">
                 {isSearching ? (
-                  <div className="p-6 text-center text-gray-500">
-                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-secondary mx-auto mb-3"></div>
-                    <span className="text-sm">Searching...</span>
+                  <div className="p-8 text-center text-gray-500">
+                    <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-secondary mx-auto mb-4"></div>
+                    <span className="text-base font-medium">Searching our research database...</span>
                   </div>
                 ) : (
-                  <div className="py-2">
+                  <div className="py-3">
+                    <div className="px-6 py-3 border-b border-gray-100 bg-gray-50">
+                      <p className="text-sm font-semibold text-gray-700">
+                        Found {searchResults.length} result{searchResults.length !== 1 ? 's' : ''} for "{searchQuery}"
+                      </p>
+                    </div>
                     {searchResults.map((result, index) => (
                       <div
                         key={result.id}
                         onClick={() => handleSearchResultClick(result)}
-                        className="px-5 py-4 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0 transition-colors"
+                        className="px-6 py-5 hover:bg-blue-50 cursor-pointer border-b border-gray-100 last:border-b-0 transition-all duration-200 hover:shadow-sm"
                       >
-                        <div className="flex items-start justify-between">
+                        <div className="flex items-start space-x-4">
+                          <div className="flex-shrink-0 mt-1">
+                            <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                              <span className="text-lg">
+                                {result.type === 'page' ? '📄' : 
+                                 result.type === 'research' ? '📊' :
+                                 result.type === 'strategy' ? '💼' : '📰'}
+                              </span>
+                            </div>
+                          </div>
+                          
                           <div className="flex-1 min-w-0">
-                            <h4 className="text-sm font-semibold text-primary mb-1 truncate">
-                              {result.title}
-                            </h4>
-                            <p className="text-sm text-gray-600 mb-3 leading-relaxed line-clamp-3">
+                            <div className="flex items-center space-x-2 mb-2">
+                              <h4 className="text-lg font-semibold text-gray-900 truncate">
+                                {result.title}
+                              </h4>
+                              <span className="flex-shrink-0 bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold uppercase">
+                                {result.type}
+                              </span>
+                            </div>
+                            
+                            <p className="text-gray-600 text-sm leading-relaxed mb-3 line-clamp-2">
                               {result.summary}
                             </p>
+                            
                             <div className="flex items-center justify-between">
-                              <div className="flex items-center space-x-2">
-                                <span className="bg-gray-100 text-gray-700 px-2.5 py-1 rounded-full text-xs font-medium">
+                              <div className="flex items-center space-x-3">
+                                <span className="bg-gray-100 text-gray-700 px-3 py-1.5 rounded-md text-xs font-medium">
                                   {result.category}
                                 </span>
-                                <span className="text-xs text-gray-500 flex items-center">
-                                  <span className="mr-1">
-                                    {result.type === 'page' ? '📄' : 
-                                     result.type === 'research' ? '📊' :
-                                     result.type === 'strategy' ? '💼' : '📰'}
-                                  </span>
-                                  {result.type.charAt(0).toUpperCase() + result.type.slice(1)}
+                                <span className="text-xs text-gray-500 font-medium">
+                                  Relevance: {Math.round(result.relevance * 100)}%
                                 </span>
                               </div>
-                              <div className="text-xs text-gray-400">
-                                Click to open
+                              <div className="flex items-center text-blue-600 text-sm font-medium">
+                                <span className="mr-2">Open</span>
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
                               </div>
                             </div>
                           </div>
@@ -390,14 +410,28 @@ const NavBar = () => {
                       </div>
                     ))}
                     {searchQuery && searchResults.length === 0 && !isSearching && (
-                      <div className="p-6 text-center text-gray-500">
-                        <div className="mb-2">
-                          <svg className="mx-auto h-8 w-8 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <div className="p-8 text-center text-gray-500">
+                        <div className="mb-4">
+                          <svg className="mx-auto h-12 w-12 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                           </svg>
                         </div>
-                        <p className="text-sm font-medium">No results found for "{searchQuery}"</p>
-                        <p className="text-xs mt-1 text-gray-400">Try different keywords or browse our research sections</p>
+                        <p className="text-lg font-semibold text-gray-700 mb-2">No results found for "{searchQuery}"</p>
+                        <p className="text-sm text-gray-500 mb-4">Try different keywords or browse our research sections</p>
+                        <div className="text-left space-y-2 max-w-md mx-auto">
+                          <p className="text-xs font-semibold text-gray-600 uppercase tracking-wide">Suggested searches:</p>
+                          <div className="flex flex-wrap gap-2">
+                            {['Market Analysis', 'AI Research', 'Portfolio Strategy', 'ESG Investment'].map((suggestion) => (
+                              <button
+                                key={suggestion}
+                                onClick={() => setSearchQuery(suggestion)}
+                                className="px-3 py-1 bg-gray-100 hover:bg-gray-200 text-xs text-gray-700 rounded-full transition-colors"
+                              >
+                                {suggestion}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
                       </div>
                     )}
                   </div>
