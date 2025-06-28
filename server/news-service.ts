@@ -130,16 +130,32 @@ export class FinancialNewsService {
       return [];
     }
     
-    return data.feed.slice(0, 10).map((item: any, index: number) => ({
-      id: `av-${index}`,
-      title: item.title,
-      summary: item.summary?.substring(0, 200) + "...",
-      date: this.formatTime(new Date(item.time_published)),
-      source: item.source,
-      category: "Financial Markets",
-      url: item.url,
-      publishedAt: item.time_published
-    })) || [];
+    return data.feed.slice(0, 10).map((item: any, index: number) => {
+      // Parse Alpha Vantage date format (YYYYMMDDTHHMMSS)
+      const dateStr = item.time_published;
+      let parsedDate = new Date();
+      
+      if (dateStr && dateStr.length >= 8) {
+        const year = parseInt(dateStr.substring(0, 4));
+        const month = parseInt(dateStr.substring(4, 6)) - 1; // Month is 0-indexed
+        const day = parseInt(dateStr.substring(6, 8));
+        const hour = dateStr.length >= 10 ? parseInt(dateStr.substring(9, 11)) : 0;
+        const minute = dateStr.length >= 12 ? parseInt(dateStr.substring(11, 13)) : 0;
+        
+        parsedDate = new Date(year, month, day, hour, minute);
+      }
+      
+      return {
+        id: `av-${index}`,
+        title: item.title,
+        summary: item.summary?.substring(0, 200) + "...",
+        date: this.formatTime(parsedDate),
+        source: item.source,
+        category: "Financial Markets",
+        url: item.url,
+        publishedAt: parsedDate.toISOString()
+      };
+    }) || [];
   }
 
   private async getNewsFromPolygon(): Promise<FinancialNews[]> {
@@ -222,10 +238,32 @@ export class FinancialNewsService {
   }
 
   private formatTime(date: Date): string {
-    return date.toLocaleTimeString('en-US', { 
-      hour: '2-digit', 
+    const now = new Date();
+    const diffInHours = Math.abs(now.getTime() - date.getTime()) / (1000 * 60 * 60);
+    
+    if (diffInHours < 24) {
+      // Show time if within 24 hours
+      return date.toLocaleTimeString('en-US', { 
+        hour: '2-digit', 
+        minute: '2-digit',
+        hour12: false 
+      });
+    } else {
+      // Show date if older than 24 hours
+      return date.toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric'
+      });
+    }
+  }
+
+  private formatDateTime(date: Date): string {
+    return date.toLocaleString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
       minute: '2-digit',
-      hour12: false 
+      hour12: false
     });
   }
 

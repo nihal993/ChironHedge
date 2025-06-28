@@ -345,11 +345,11 @@ const NavBar = () => {
             
             {/* Search Results Dropdown */}
             {showSearchResults && (searchResults.length > 0 || isSearching) && (
-              <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-md shadow-lg z-50 max-h-80 overflow-y-auto">
+              <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-xl z-50 max-h-96 overflow-y-auto">
                 {isSearching ? (
-                  <div className="p-4 text-center text-gray-500">
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-secondary mx-auto mb-2"></div>
-                    Searching...
+                  <div className="p-6 text-center text-gray-500">
+                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-secondary mx-auto mb-3"></div>
+                    <span className="text-sm">Searching...</span>
                   </div>
                 ) : (
                   <div className="py-2">
@@ -357,34 +357,46 @@ const NavBar = () => {
                       <div
                         key={result.id}
                         onClick={() => handleSearchResultClick(result)}
-                        className="px-4 py-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0"
+                        className="px-5 py-4 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0 transition-colors"
                       >
-                        <div className="flex items-center justify-between">
-                          <div className="flex-1">
-                            <h4 className="text-sm font-medium text-primary truncate">
+                        <div className="flex items-start justify-between">
+                          <div className="flex-1 min-w-0">
+                            <h4 className="text-sm font-semibold text-primary mb-1 truncate">
                               {result.title}
                             </h4>
-                            <p className="text-xs text-gray-600 mt-1 line-clamp-2">
+                            <p className="text-sm text-gray-600 mb-3 leading-relaxed line-clamp-3">
                               {result.summary}
                             </p>
-                            <div className="flex items-center mt-2 text-xs text-gray-500">
-                              <span className="bg-gray-100 px-2 py-1 rounded-full">
-                                {result.category}
-                              </span>
-                              <span className="ml-2 opacity-60">
-                                {result.type === 'page' ? '📄' : 
-                                 result.type === 'research' ? '📊' :
-                                 result.type === 'strategy' ? '💼' : '📰'} 
-                                {result.type}
-                              </span>
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center space-x-2">
+                                <span className="bg-gray-100 text-gray-700 px-2.5 py-1 rounded-full text-xs font-medium">
+                                  {result.category}
+                                </span>
+                                <span className="text-xs text-gray-500 flex items-center">
+                                  <span className="mr-1">
+                                    {result.type === 'page' ? '📄' : 
+                                     result.type === 'research' ? '📊' :
+                                     result.type === 'strategy' ? '💼' : '📰'}
+                                  </span>
+                                  {result.type.charAt(0).toUpperCase() + result.type.slice(1)}
+                                </span>
+                              </div>
+                              <div className="text-xs text-gray-400">
+                                Click to open
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
                     ))}
                     {searchQuery && searchResults.length === 0 && !isSearching && (
-                      <div className="p-4 text-center text-gray-500">
-                        <p className="text-sm">No results found for "{searchQuery}"</p>
+                      <div className="p-6 text-center text-gray-500">
+                        <div className="mb-2">
+                          <svg className="mx-auto h-8 w-8 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                          </svg>
+                        </div>
+                        <p className="text-sm font-medium">No results found for "{searchQuery}"</p>
                         <p className="text-xs mt-1 text-gray-400">Try different keywords or browse our research sections</p>
                       </div>
                     )}
