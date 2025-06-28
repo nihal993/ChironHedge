@@ -4,7 +4,6 @@ import { storage } from "./storage";
 import { z } from "zod";
 
 import { handleOpenAIChat, handleClaudeChat, handleAIHealth } from './ai-routes';
-import { RealNewsService } from './news-service';
 
 
 // Mock financial news data for API
@@ -67,24 +66,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post('/api/ai/claude', handleClaudeChat);
   app.get('/api/ai/health', handleAIHealth);
   
-  // News AI API route - now with real data
-  app.get("/api/news-ai", async (req, res) => {
-    try {
-      const newsService = new RealNewsService();
-      const realNews = await newsService.getRealNews();
-      
-      // Se non riusciamo a ottenere news reali, usiamo i dati mock come fallback
-      if (!realNews || realNews.length === 0) {
-        console.log('Using mock data as fallback');
-        return res.status(200).json(mockFinancialNews);
-      }
-      
-      res.status(200).json(realNews);
-    } catch (error) {
-      console.error('Error fetching real news:', error);
-      // Fallback ai dati mock in caso di errore
-      res.status(200).json(mockFinancialNews);
-    }
+  // News AI API route
+  app.get("/api/news-ai", (req, res) => {
+    // In a real implementation, this would call the OpenAI API
+    // For now, we'll use mock data
+    res.status(200).json(mockFinancialNews);
   });
   
   // Contact form API route

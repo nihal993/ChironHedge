@@ -16,16 +16,17 @@ const NewsTicker = () => {
   const { t, language } = useLanguage();
   const isMobile = useIsMobile();
 
-  // Fetch real financial news from our API
+  // Fetch AI-generated news from our API
   useEffect(() => {
-    const fetchRealNews = async () => {
+    const fetchAINews = async () => {
       setIsLoading(true);
       try {
+        // Call the API we implemented
         const response = await apiRequest<AINews[]>("GET", "/api/news-ai");
         setNews(response);
         setIsLoading(false);
       } catch (error) {
-        console.error("Error fetching real news:", error);
+        console.error("Error fetching AI news:", error);
         toast({
           title: t('news.errorTitle'),
           description: t('news.errorDescription'),
@@ -35,12 +36,7 @@ const NewsTicker = () => {
       }
     };
 
-    fetchRealNews();
-    
-    // Auto-refresh ogni 15 minuti per ottenere news aggiornate
-    const refreshInterval = setInterval(fetchRealNews, 15 * 60 * 1000);
-    
-    return () => clearInterval(refreshInterval);
+    fetchAINews();
   }, [toast]);
 
   // Auto scroll news
