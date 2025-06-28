@@ -44,9 +44,9 @@ const NewsAI = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">AI-Powered Financial News</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Financial News</h2>
           <p className="text-primary/70 max-w-3xl mx-auto">
-            Stay ahead of market developments with our AI-curated financial news, offering data-driven analysis of global economic trends and market indicators.
+            Stay ahead of market developments with our financial news, offering data-driven analysis of global economic trends and market indicators.
           </p>
         </motion.div>
         
@@ -108,9 +108,9 @@ const NewsAI = () => {
         >
           <div className="grid md:grid-cols-3 gap-8 items-center">
             <div className="md:col-span-2">
-              <h3 className="text-2xl font-bold mb-4">AI News Analysis Technology</h3>
+              <h3 className="text-2xl font-bold mb-4">News Analysis Technology</h3>
               <p className="text-neutral-200 mb-6">
-                Our proprietary AI system continuously analyzes thousands of financial news sources, academic journals, and market data points to identify significant trends and provide actionable insights.
+                Our proprietary system continuously grep thousands of financial news sources, academic journals, and market data points to identify significant trends and provide actionable insights.
               </p>
               <div className="space-y-3">
                 <div className="flex items-start">
@@ -135,7 +135,7 @@ const NewsAI = () => {
             </div>
             <div>
               <button className="w-full py-3 px-6 gold-gradient text-primary font-medium rounded-md hover:brightness-105 transition-all mb-3">
-                Subscribe to AI Insights
+                Subscribe to Financial Insights
               </button>
               <button className="w-full py-3 px-6 bg-transparent border border-secondary text-secondary font-medium rounded-md hover:bg-secondary/10 transition-colors">
                 Learn About Our Technology

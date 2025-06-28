@@ -18,9 +18,51 @@ export class FinancialNewsService {
   private readonly ALPHA_VANTAGE_API_KEY = process.env.ALPHA_VANTAGE_API_KEY;
   private readonly POLYGON_API_KEY = process.env.POLYGON_API_KEY;
   private readonly FMP_API_KEY = process.env.FMP_API_KEY; // Financial Modeling Prep
+  
+  // Smart cache system
+  private newsCache: {
+    data: FinancialNews[];
+    timestamp: number;
+    source: string;
+  } | null = null;
+  
+  private readonly CACHE_DURATION = 2 * 60 * 60 * 1000; // 2 hours in milliseconds
+  private readonly MAX_DAILY_REQUESTS = 20; // Leave 5 requests as buffer
+  private dailyRequestCount = 0;
+  private lastResetDate = new Date().getDate();
 
   constructor() {
     this.checkApiKeys();
+    this.resetDailyCounterIfNeeded();
+  }
+
+  private resetDailyCounterIfNeeded() {
+    const currentDate = new Date().getDate();
+    if (currentDate !== this.lastResetDate) {
+      this.dailyRequestCount = 0;
+      this.lastResetDate = currentDate;
+      log(`Daily request counter reset. Date: ${currentDate}`);
+    }
+  }
+
+  private isCacheValid(): boolean {
+    if (!this.newsCache) return false;
+    const now = Date.now();
+    const cacheAge = now - this.newsCache.timestamp;
+    return cacheAge < this.CACHE_DURATION;
+  }
+
+  private canMakeAPIRequest(): boolean {
+    return this.dailyRequestCount < this.MAX_DAILY_REQUESTS;
+  }
+
+  private updateCache(data: FinancialNews[], source: string) {
+    this.newsCache = {
+      data,
+      timestamp: Date.now(),
+      source
+    };
+    log(`News cache updated with ${data.length} articles from ${source}`);
   }
 
   private checkApiKeys() {
@@ -43,56 +85,69 @@ export class FinancialNewsService {
   }
 
   async getFinancialNews(): Promise<FinancialNews[]> {
-    const newsPromises: Promise<FinancialNews[]>[] = [];
-
-    // Try multiple sources in parallel
-    if (this.NEWS_API_KEY) {
-      newsPromises.push(this.getNewsFromNewsAPI());
+    this.resetDailyCounterIfNeeded();
+    
+    // Check if we have valid cached data
+    if (this.isCacheValid()) {
+      log(`Returning cached news from ${this.newsCache!.source} (${this.newsCache!.data.length} articles)`);
+      return this.newsCache!.data;
     }
-    if (this.ALPHA_VANTAGE_API_KEY) {
-      newsPromises.push(this.getNewsFromAlphaVantage());
-    }
-    if (this.POLYGON_API_KEY) {
-      newsPromises.push(this.getNewsFromPolygon());
-    }
-    if (this.FMP_API_KEY) {
-      newsPromises.push(this.getNewsFromFMP());
-    }
-
-    if (newsPromises.length === 0) {
-      return this.getMockData();
+    
+    // Check if we can make API requests
+    if (!this.canMakeAPIRequest()) {
+      log(`Daily request limit reached (${this.dailyRequestCount}/${this.MAX_DAILY_REQUESTS}). Using fallback data.`);
+      const fallbackData = this.getMockData();
+      this.updateCache(fallbackData, 'Fallback');
+      return fallbackData;
     }
 
-    try {
-      const results = await Promise.allSettled(newsPromises);
-      const allNews: FinancialNews[] = [];
+    const sources = [
+      { fn: () => this.getNewsFromAlphaVantage(), name: 'Alpha Vantage', hasKey: !!this.ALPHA_VANTAGE_API_KEY },
+      { fn: () => this.getNewsFromNewsAPI(), name: 'NewsAPI', hasKey: !!this.NEWS_API_KEY },
+      { fn: () => this.getNewsFromPolygon(), name: 'Polygon', hasKey: !!this.POLYGON_API_KEY },
+      { fn: () => this.getNewsFromFMP(), name: 'FMP', hasKey: !!this.FMP_API_KEY }
+    ];
 
-      results.forEach((result, index) => {
-        if (result.status === 'fulfilled') {
-          allNews.push(...result.value);
-        } else {
-          log(`News source ${index} failed: ${result.reason}`);
-        }
-      });
-
-      // If no news was successfully fetched, return mock data
-      if (allNews.length === 0) {
-        return this.getMockData();
-      }
-
-      // Sort by date and return top 20 most recent
-      const sortedNews = allNews.sort((a, b) => {
-        const dateA = new Date(a.publishedAt || a.date);
-        const dateB = new Date(b.publishedAt || b.date);
-        return dateB.getTime() - dateA.getTime();
-      });
+    let allNews: FinancialNews[] = [];
+    let successfulSource = '';
+    
+    for (const source of sources) {
+      if (!source.hasKey || !this.canMakeAPIRequest()) continue;
       
-      return sortedNews.slice(0, 20);
-
-    } catch (error) {
-      log(`Error fetching news: ${error}`);
-      return this.getMockData();
+      try {
+        this.dailyRequestCount++;
+        log(`Making API request ${this.dailyRequestCount}/${this.MAX_DAILY_REQUESTS} to ${source.name}`);
+        
+        const news = await source.fn();
+        if (news.length > 0) {
+          allNews.push(...news);
+          successfulSource = source.name;
+          log(`${source.name} returned ${news.length} articles`);
+          
+          if (allNews.length >= 10) break; // We have enough news
+        }
+      } catch (error) {
+        log(`${source.name} failed: ${error}`);
+      }
     }
+
+    if (allNews.length === 0) {
+      log('All news sources failed, using fallback data');
+      const fallbackData = this.getMockData();
+      this.updateCache(fallbackData, 'Fallback');
+      return fallbackData;
+    }
+
+    // Sort by date and return top 20 most recent
+    const sortedNews = allNews.sort((a, b) => {
+      const dateA = new Date(a.publishedAt || a.date);
+      const dateB = new Date(b.publishedAt || b.date);
+      return dateB.getTime() - dateA.getTime();
+    });
+    
+    const finalNews = this.removeDuplicatesAndSort(sortedNews.slice(0, 20));
+    this.updateCache(finalNews, successfulSource || 'Mixed Sources');
+    return finalNews;
   }
 
   private async getNewsFromNewsAPI(): Promise<FinancialNews[]> {
