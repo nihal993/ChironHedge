@@ -4,6 +4,8 @@ import { storage } from "./storage";
 import { z } from "zod";
 
 import { handleOpenAIChat, handleClaudeChat, handleAIHealth } from './ai-routes';
+import { newsService } from './news-service';
+import { searchService } from './search-service';
 
 
 // Mock financial news data for API
@@ -66,11 +68,42 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post('/api/ai/claude', handleClaudeChat);
   app.get('/api/ai/health', handleAIHealth);
   
-  // News AI API route
-  app.get("/api/news-ai", (req, res) => {
-    // In a real implementation, this would call the OpenAI API
-    // For now, we'll use mock data
-    res.status(200).json(mockFinancialNews);
+  // News AI API route - now using real financial news
+  app.get("/api/news-ai", async (req, res) => {
+    try {
+      const news = await newsService.getFinancialNews();
+      res.status(200).json(news);
+    } catch (error) {
+      console.error("Error fetching financial news:", error);
+      res.status(500).json({ error: "Failed to fetch news data" });
+    }
+  });
+
+  // Search endpoint for site content
+  app.get("/api/search", (req, res) => {
+    try {
+      const query = req.query.q as string;
+      if (!query) {
+        return res.json([]);
+      }
+      
+      const results = searchService.search(query);
+      res.json(results);
+    } catch (error) {
+      console.error("Search error:", error);
+      res.status(500).json({ error: "Search failed" });
+    }
+  });
+
+  // Search suggestions endpoint
+  app.get("/api/search/suggestions", (req, res) => {
+    try {
+      const suggestions = searchService.getSuggestedSearches();
+      res.json(suggestions);
+    } catch (error) {
+      console.error("Search suggestions error:", error);
+      res.status(500).json({ error: "Failed to get suggestions" });
+    }
   });
   
   // Contact form API route
