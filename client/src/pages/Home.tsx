@@ -59,6 +59,49 @@ const Home = () => {
 
   return (
     <div className="flex flex-col w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
+      {/* News AI Banner - versione compatta */}
+      <div className="mb-8 bg-gray-50 border-y border-gray-200">
+        <div className="container mx-auto px-6 py-3">
+          <div className="flex flex-col sm:flex-row justify-start items-start sm:items-center gap-4">
+            <div className="flex items-center">
+              <div className="h-6 w-1 bg-secondary mr-3"></div>
+              <span className="text-sm font-medium text-secondary">{t('home.latestMarketNews')}</span>
+              <span className="text-xs text-primary/50 ml-3">Live Updates</span>
+            </div>
+
+            <div className="flex items-center gap-2 sm:ml-auto">
+              <button className="p-1 rounded hover:bg-gray-200">
+                <span className="h-4 w-4 flex items-center justify-center">&#8249;</span>
+              </button>
+              
+              <div className="max-w-md overflow-hidden">
+                {newsLoading ? (
+                  <div className="text-sm text-gray-500">Loading latest news...</div>
+                ) : latestNews.length > 0 ? (
+                  <div className="whitespace-nowrap overflow-hidden text-ellipsis text-sm">
+                    <span className="font-medium mr-2 text-green-600">BREAKING:</span>
+                    {latestNews[0].title}
+                  </div>
+                ) : (
+                  <div className="whitespace-nowrap overflow-hidden text-ellipsis text-sm">
+                    <span className="font-medium mr-2 text-green-600">{t('home.newsTitle')}:</span>
+                    {t('home.newsContent')}
+                  </div>
+                )}
+              </div>
+              
+              <button className="p-1 rounded hover:bg-gray-200">
+                <span className="h-4 w-4 flex items-center justify-center">&#8250;</span>
+              </button>
+              
+              <Link to="/news-ai" className="ml-2 text-secondary text-sm font-medium flex items-center">
+                {t('home.moreNews')} <ArrowRight className="h-3 w-3 ml-1" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Hero Section */}
       <section id="hero" className="w-full relative overflow-hidden bg-primary h-[600px] mb-12">
         {/* Video Background */}
@@ -98,48 +141,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* News AI Banner - versione compatta */}
-      <div className="mb-8 bg-gray-50 border-y border-gray-200">
-        <div className="container mx-auto px-6 py-3">
-          <div className="flex flex-col sm:flex-row justify-start items-start sm:items-center gap-4">
-            <div className="flex items-center">
-              <div className="h-6 w-1 bg-secondary mr-3"></div>
-              <span className="text-sm font-medium text-secondary">{t('home.latestMarketNews')}</span>
-              <span className="text-xs text-primary/50 ml-3">Live Updates</span>
-            </div>
-            
-            <div className="flex items-center space-x-2 text-primary">
-              <button className="p-1 rounded hover:bg-gray-200">
-                <span className="h-4 w-4 flex items-center justify-center">&#8249;</span>
-              </button>
-              
-              <div className="max-w-md overflow-hidden">
-                {newsLoading ? (
-                  <div className="text-sm text-gray-500">Loading latest news...</div>
-                ) : latestNews.length > 0 ? (
-                  <div className="whitespace-nowrap overflow-hidden text-ellipsis text-sm">
-                    <span className="font-medium mr-2 text-green-600">BREAKING:</span>
-                    {latestNews[0].title}
-                  </div>
-                ) : (
-                  <div className="whitespace-nowrap overflow-hidden text-ellipsis text-sm">
-                    <span className="font-medium mr-2 text-green-600">{t('home.newsTitle')}:</span>
-                    {t('home.newsContent')}
-                  </div>
-                )}
-              </div>
-              
-              <button className="p-1 rounded hover:bg-gray-200">
-                <span className="h-4 w-4 flex items-center justify-center">&#8250;</span>
-              </button>
-              
-              <Link to="/news-ai" className="ml-2 text-secondary text-sm font-medium flex items-center">
-                {t('home.moreNews')} <ArrowRight className="h-3 w-3 ml-1" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
+
 
 
 
