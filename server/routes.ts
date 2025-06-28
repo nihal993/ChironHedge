@@ -6,6 +6,7 @@ import { z } from "zod";
 import { handleOpenAIChat, handleClaudeChat, handleAIHealth } from './ai-routes';
 import { newsService } from './news-service';
 import { searchService } from './search-service';
+import { pythonChartService } from './python-charts';
 
 
 // Mock financial news data for API
@@ -140,6 +141,33 @@ export async function registerRoutes(app: Express): Promise<Server> {
         success: false, 
         message: "Si è verificato un errore durante l'elaborazione della richiesta." 
       });
+    }
+  });
+
+  // Python Charts API endpoints
+  app.get("/api/python-charts/list", async (req, res) => {
+    try {
+      const scripts = await pythonChartService.getAvailableScripts();
+      res.json(scripts);
+    } catch (error) {
+      console.error("Failed to list Python scripts:", error);
+      res.status(500).json({ error: "Failed to list available scripts" });
+    }
+  });
+
+  app.post("/api/python-charts/execute", async (req, res) => {
+    try {
+      const { scriptName, parameters } = req.body;
+      
+      if (!scriptName) {
+        return res.status(400).json({ error: "Script name is required" });
+      }
+      
+      const result = await pythonChartService.executeScript(scriptName, parameters);
+      res.json(result);
+    } catch (error) {
+      console.error("Failed to execute Python script:", error);
+      res.status(500).json({ error: "Failed to execute Python script", details: error.message });
     }
   });
 

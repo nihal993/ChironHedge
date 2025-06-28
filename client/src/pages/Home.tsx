@@ -81,14 +81,14 @@ const Home = () => {
         <div className="absolute inset-0 bg-black/15"></div>
         
         <div className="absolute inset-0 flex items-center">
-          <div className="px-6 md:px-16 max-w-[1100px] mx-auto">
+          <div className="px-6 md:px-16 max-w-[1300px] mx-auto">
             <div className="border-l-4 border-secondary pl-6 mb-8">
               <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-8">
-                Where Finance meets Data Science. <br />Our team leads the evolution of investing.
+                Quantitative. Transparent. Accessible. <br />We bridge the gap between institutional-grade research and smart investing.
               </h1>
             </div>
             <p className="text-base md:text-xl text-white/80 mb-10 max-w-xl font-light">
-              Advanced research meets real-world results for sophisticated portfolios.
+              ChironHedge delivers algorithmic strategies once reserved for the few - now designed for the many.
             </p>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
               <a 
