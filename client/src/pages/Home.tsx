@@ -58,13 +58,12 @@ const Home = () => {
         <div className="absolute inset-0 flex items-center">
           <div className="px-6 md:px-16 max-w-[1100px] mx-auto">
             <div className="border-l-4 border-secondary pl-6 mb-8">
-              <h5 className="text-secondary font-medium mb-2 text-sm uppercase tracking-wide">Advanced Quantitative Analysis</h5>
               <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-8">
-                Institutional-Grade <br />Research Solutions
+                Where Finance meets Data Science. <br />Our team leads the evolution of investing.
               </h1>
             </div>
             <p className="text-base md:text-xl text-white/80 mb-10 max-w-xl font-light">
-              Proprietary models & advanced analytics delivering actionable insights for sophisticated investors.
+              Advanced research meets real-world results for sophisticated portfolios.
             </p>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
               <a 
