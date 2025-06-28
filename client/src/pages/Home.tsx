@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
@@ -35,6 +35,25 @@ import {
 
 const Home = () => {
   const { t } = useLanguage();
+  const [latestNews, setLatestNews] = useState<AINews[]>([]);
+  const [newsLoading, setNewsLoading] = useState(false);
+
+  // Load latest financial news
+  useEffect(() => {
+    const loadLatestNews = async () => {
+      setNewsLoading(true);
+      try {
+        const news = await apiRequest<AINews[]>("/api/news-ai");
+        setLatestNews(news.slice(0, 3)); // Show only top 3 news items
+      } catch (error) {
+        console.error("Failed to load latest news:", error);
+      } finally {
+        setNewsLoading(false);
+      }
+    };
+
+    loadLatestNews();
+  }, []);
 
   return (
     <div className="flex flex-col w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
@@ -84,7 +103,7 @@ const Home = () => {
             <div className="flex items-center">
               <div className="h-6 w-1 bg-secondary mr-3"></div>
               <span className="text-sm font-medium text-secondary">{t('home.latestMarketNews')}</span>
-              <span className="text-xs text-primary/50 ml-3">May 12, 2025</span>
+              <span className="text-xs text-primary/50 ml-3">Live Updates</span>
             </div>
             
             <div className="flex items-center space-x-2 text-primary">
@@ -206,7 +225,7 @@ const Home = () => {
                       alt="Global markets report" 
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute bottom-0 right-0 bg-white text-primary px-3 py-1 text-xs font-medium">May 2025</div>
+                    <div className="absolute bottom-0 right-0 bg-white text-primary px-3 py-1 text-xs font-medium">{new Date().toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</div>
                   </div>
                   <div className="p-5 flex-grow">
                     <div className="text-sm text-blue-600 font-medium uppercase mb-2">{t('home.marketOutlook')}</div>
@@ -230,7 +249,7 @@ const Home = () => {
                       alt="Institutional investor report" 
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute bottom-0 right-0 bg-white text-primary px-3 py-1 text-xs font-medium">April 2025</div>
+                    <div className="absolute bottom-0 right-0 bg-white text-primary px-3 py-1 text-xs font-medium">{new Date(Date.now() - 30*24*60*60*1000).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</div>
                   </div>
                   <div className="p-5 flex-grow">
                     <div className="text-sm text-blue-600 font-medium uppercase mb-2">{t('home.industryAnalysis')}</div>
@@ -254,7 +273,7 @@ const Home = () => {
                       alt="ESG Investment report" 
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute bottom-0 right-0 bg-white text-primary px-3 py-1 text-xs font-medium">March 2025</div>
+                    <div className="absolute bottom-0 right-0 bg-white text-primary px-3 py-1 text-xs font-medium">{new Date(Date.now() - 60*24*60*60*1000).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</div>
                   </div>
                   <div className="p-5 flex-grow">
                     <div className="text-sm text-blue-600 font-medium uppercase mb-2">{t('home.esgCategory')}</div>
