@@ -1,6 +1,8 @@
+import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
+import { AINews } from "@/lib/openai-service";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { strategies } from "@/lib/data";
@@ -32,6 +34,27 @@ import {
 
 const Home = () => {
   const { t } = useLanguage();
+  const [latestNews, setLatestNews] = useState<AINews[]>([]);
+  const [newsLoading, setNewsLoading] = useState(false);
+
+  // Load latest financial news for banner only
+  useEffect(() => {
+    const loadLatestNews = async () => {
+      setNewsLoading(true);
+      try {
+        const response = await fetch("/api/news-ai");
+        if (!response.ok) throw new Error("Failed to fetch news");
+        const news: AINews[] = await response.json();
+        setLatestNews(news.slice(0, 1)); // Show only first news item for banner
+      } catch (error) {
+        console.error("Failed to load latest news:", error);
+      } finally {
+        setNewsLoading(false);
+      }
+    };
+
+    loadLatestNews();
+  }, []);
 
 
   return (
@@ -91,10 +114,19 @@ const Home = () => {
               </button>
               
               <div className="max-w-md overflow-hidden">
-                <div className="whitespace-nowrap overflow-hidden text-ellipsis text-sm">
-                  <span className="font-medium mr-2 text-green-600">{t('home.newsTitle')}:</span>
-                  {t('home.newsContent')}
-                </div>
+                {newsLoading ? (
+                  <div className="text-sm text-gray-500">Loading latest news...</div>
+                ) : latestNews.length > 0 ? (
+                  <div className="whitespace-nowrap overflow-hidden text-ellipsis text-sm">
+                    <span className="font-medium mr-2 text-green-600">BREAKING:</span>
+                    {latestNews[0].title}
+                  </div>
+                ) : (
+                  <div className="whitespace-nowrap overflow-hidden text-ellipsis text-sm">
+                    <span className="font-medium mr-2 text-green-600">{t('home.newsTitle')}:</span>
+                    {t('home.newsContent')}
+                  </div>
+                )}
               </div>
               
               <button className="p-1 rounded hover:bg-gray-200">
