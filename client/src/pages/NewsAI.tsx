@@ -33,6 +33,11 @@ const NewsAI = () => {
     };
 
     fetchAINews();
+    
+    // Auto-refresh ogni 10 minuti
+    const refreshInterval = setInterval(fetchAINews, 10 * 60 * 1000);
+    
+    return () => clearInterval(refreshInterval);
   }, [toast]);
 
   return (
