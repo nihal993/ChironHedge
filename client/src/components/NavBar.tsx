@@ -43,6 +43,9 @@ const NavBar = () => {
   const [searchFocused, setSearchFocused] = useState(false);
   const [currentPhrase, setCurrentPhrase] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [showSearchResults, setShowSearchResults] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
   const [researchDropdownOpen, setResearchDropdownOpen] = useState(false);
   const { language, t } = useLanguage();
 
@@ -80,7 +83,7 @@ const NavBar = () => {
             }
           }
           
-          console.log('Active section:', currentSection); // Debug log
+          // console.log('Active section:', currentSection); // Debug log
           setActiveSection(currentSection);
           ticking = false;
         });
@@ -112,6 +115,34 @@ const NavBar = () => {
     setCurrentPhrase(0);
   }, [language]);
 
+  // Search functionality with debouncing
+  useEffect(() => {
+    if (!searchQuery.trim()) {
+      setSearchResults([]);
+      setShowSearchResults(false);
+      return;
+    }
+
+    const timeoutId = setTimeout(async () => {
+      setIsSearching(true);
+      try {
+        const response = await fetch(`/api/search?q=${encodeURIComponent(searchQuery)}`);
+        if (response.ok) {
+          const results = await response.json();
+          setSearchResults(results);
+          setShowSearchResults(true);
+        }
+      } catch (error) {
+        console.error('Search error:', error);
+        setSearchResults([]);
+      } finally {
+        setIsSearching(false);
+      }
+    }, 300); // 300ms debounce
+
+    return () => clearTimeout(timeoutId);
+  }, [searchQuery]);
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -138,8 +169,33 @@ const NavBar = () => {
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement search functionality
-    console.log('Search query:', searchQuery);
+    if (searchQuery.trim() && searchResults.length > 0) {
+      // Navigate to the first result
+      const firstResult = searchResults[0];
+      window.location.href = firstResult.url;
+      setShowSearchResults(false);
+    }
+  };
+
+  const handleSearchResultClick = (result: any) => {
+    setSearchQuery("");
+    setShowSearchResults(false);
+    window.location.href = result.url;
+  };
+
+  const handleSearchFocus = () => {
+    setSearchFocused(true);
+    if (searchResults.length > 0) {
+      setShowSearchResults(true);
+    }
+  };
+
+  const handleSearchBlur = () => {
+    // Delay hiding results to allow for clicks
+    setTimeout(() => {
+      setShowSearchResults(false);
+      setSearchFocused(false);
+    }, 150);
   };
 
   return (
@@ -264,8 +320,8 @@ const NavBar = () => {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                onFocus={() => setSearchFocused(true)}
-                onBlur={() => setSearchFocused(false)}
+                onFocus={handleSearchFocus}
+                onBlur={handleSearchBlur}
                 className="w-full pl-10 pr-4 py-2.5 text-sm border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary transition-colors bg-white"
                 placeholder={searchFocused || searchQuery ? (language === 'it' ? "Cerca argomenti di ricerca..." : "Search research topics...") : ""}
               />
@@ -286,6 +342,56 @@ const NavBar = () => {
                 </div>
               )}
             </div>
+            
+            {/* Search Results Dropdown */}
+            {showSearchResults && (searchResults.length > 0 || isSearching) && (
+              <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-md shadow-lg z-50 max-h-80 overflow-y-auto">
+                {isSearching ? (
+                  <div className="p-4 text-center text-gray-500">
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-secondary mx-auto mb-2"></div>
+                    Searching...
+                  </div>
+                ) : (
+                  <div className="py-2">
+                    {searchResults.map((result, index) => (
+                      <div
+                        key={result.id}
+                        onClick={() => handleSearchResultClick(result)}
+                        className="px-4 py-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100 last:border-b-0"
+                      >
+                        <div className="flex items-center justify-between">
+                          <div className="flex-1">
+                            <h4 className="text-sm font-medium text-primary truncate">
+                              {result.title}
+                            </h4>
+                            <p className="text-xs text-gray-600 mt-1 line-clamp-2">
+                              {result.summary}
+                            </p>
+                            <div className="flex items-center mt-2 text-xs text-gray-500">
+                              <span className="bg-gray-100 px-2 py-1 rounded-full">
+                                {result.category}
+                              </span>
+                              <span className="ml-2 opacity-60">
+                                {result.type === 'page' ? '📄' : 
+                                 result.type === 'research' ? '📊' :
+                                 result.type === 'strategy' ? '💼' : '📰'} 
+                                {result.type}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                    {searchQuery && searchResults.length === 0 && !isSearching && (
+                      <div className="p-4 text-center text-gray-500">
+                        <p className="text-sm">No results found for "{searchQuery}"</p>
+                        <p className="text-xs mt-1 text-gray-400">Try different keywords or browse our research sections</p>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
           </form>
         </div>
         
