@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
+import { AINews } from "@/lib/openai-service";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { strategies } from "@/lib/data";
@@ -33,6 +34,32 @@ import {
 
 const Home = () => {
   const { t } = useLanguage();
+  const [latestNews, setLatestNews] = useState<AINews[]>([]);
+  const [newsLoading, setNewsLoading] = useState(true);
+
+  // Load latest financial news
+  useEffect(() => {
+    const loadLatestNews = async () => {
+      try {
+        const response = await fetch("/api/news-ai");
+        if (!response.ok) throw new Error("Failed to fetch news");
+        const news: AINews[] = await response.json();
+        setLatestNews(news);
+      } catch (error) {
+        console.error("Failed to load latest news:", error);
+        // Set empty array but keep loading false so we show fallback content
+        setLatestNews([]);
+      } finally {
+        setNewsLoading(false);
+      }
+    };
+
+    loadLatestNews();
+    
+    // Refresh news every 5 minutes
+    const interval = setInterval(loadLatestNews, 5 * 60 * 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="flex flex-col w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
@@ -82,7 +109,7 @@ const Home = () => {
             <div className="flex items-center">
               <div className="h-6 w-1 bg-secondary mr-3"></div>
               <span className="text-sm font-medium text-secondary">{t('home.latestMarketNews')}</span>
-              <span className="text-xs text-primary/50 ml-3">Live Updates</span>
+              <span className="text-xs text-primary/50 ml-3">{new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
             </div>
             
             <div className="flex items-center space-x-2 text-primary">
@@ -91,10 +118,19 @@ const Home = () => {
               </button>
               
               <div className="max-w-md overflow-hidden">
-                <div className="whitespace-nowrap overflow-hidden text-ellipsis text-sm">
-                  <span className="font-medium mr-2 text-green-600">{t('home.newsTitle')}:</span>
-                  {t('home.newsContent')}
-                </div>
+                {newsLoading ? (
+                  <div className="text-sm text-gray-500">Loading latest news...</div>
+                ) : latestNews.length > 0 ? (
+                  <div className="whitespace-nowrap overflow-hidden text-ellipsis text-sm">
+                    <span className="font-medium mr-2 text-green-600">BREAKING:</span>
+                    {latestNews[0].title}
+                  </div>
+                ) : (
+                  <div className="whitespace-nowrap overflow-hidden text-ellipsis text-sm">
+                    <span className="font-medium mr-2 text-green-600">{t('home.newsTitle')}:</span>
+                    {t('home.newsContent')}
+                  </div>
+                )}
               </div>
               
               <button className="p-1 rounded hover:bg-gray-200">

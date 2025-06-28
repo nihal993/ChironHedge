@@ -75,6 +75,11 @@ export class FinancialNewsService {
         }
       });
 
+      // If no news was successfully fetched, return mock data
+      if (allNews.length === 0) {
+        return this.getMockData();
+      }
+
       // Sort by date and return top 20 most recent
       const sortedNews = allNews.sort((a, b) => {
         const dateA = new Date(a.publishedAt || a.date);
