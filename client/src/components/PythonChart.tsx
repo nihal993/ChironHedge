@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Play, BarChart3, TrendingUp, AlertCircle, Clock } from 'lucide-react';
 import LineChart from './charts/LineChart';
+import MultiLineChart from './charts/MultiLineChart';
 import HeatMapChart from './charts/HeatMapChart';
 import AreaChart from './charts/AreaChart';
 
@@ -85,8 +86,8 @@ export default function PythonChart({
         if (data.portfolio_values && data.benchmark_values && data.dates) {
           return (
             <div className="space-y-4">
-              <LineChart
-                data={[
+              <MultiLineChart
+                series={[
                   {
                     name: 'Portfolio',
                     data: data.portfolio_values
