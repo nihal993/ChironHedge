@@ -1,9 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "wouter";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
-import { AINews } from "@/lib/openai-service";
-import { apiRequest } from "@/lib/queryClient";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { strategies } from "@/lib/data";
@@ -35,27 +33,6 @@ import {
 
 const Home = () => {
   const { t } = useLanguage();
-  const [latestNews, setLatestNews] = useState<AINews[]>([]);
-  const [newsLoading, setNewsLoading] = useState(false);
-
-  // Load latest financial news
-  useEffect(() => {
-    const loadLatestNews = async () => {
-      setNewsLoading(true);
-      try {
-        const response = await fetch("/api/news-ai");
-        if (!response.ok) throw new Error("Failed to fetch news");
-        const news: AINews[] = await response.json();
-        setLatestNews(news.slice(0, 3)); // Show only top 3 news items
-      } catch (error) {
-        console.error("Failed to load latest news:", error);
-      } finally {
-        setNewsLoading(false);
-      }
-    };
-
-    loadLatestNews();
-  }, []);
 
   return (
     <div className="flex flex-col w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
@@ -114,16 +91,10 @@ const Home = () => {
               </button>
               
               <div className="max-w-md overflow-hidden">
-                {newsLoading ? (
-                  <div className="text-sm text-gray-500">Loading latest news...</div>
-                ) : latestNews.length > 0 ? (
-                  <div className="whitespace-nowrap overflow-hidden text-ellipsis text-sm">
-                    <span className="font-medium mr-2 text-green-600">BREAKING:</span>
-                    {latestNews[0].title}
-                  </div>
-                ) : (
-                  <div className="text-sm text-gray-500">No recent news available</div>
-                )}
+                <div className="whitespace-nowrap overflow-hidden text-ellipsis text-sm">
+                  <span className="font-medium mr-2 text-green-600">{t('home.newsTitle')}:</span>
+                  {t('home.newsContent')}
+                </div>
               </div>
               
               <button className="p-1 rounded hover:bg-gray-200">
@@ -138,73 +109,7 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Latest Financial News Section */}
-      <section className="container mx-auto px-6 py-16">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-primary mb-4">Live Market Intelligence</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Real-time financial news and market-moving events powered by our advanced data collection system
-          </p>
-        </div>
 
-        {newsLoading ? (
-          <div className="grid md:grid-cols-3 gap-6">
-            {[...Array(3)].map((_, i) => (
-              <div key={i} className="bg-white rounded-lg border shadow-sm p-6 animate-pulse">
-                <div className="h-4 bg-gray-200 rounded mb-3"></div>
-                <div className="h-6 bg-gray-200 rounded mb-4"></div>
-                <div className="h-16 bg-gray-200 rounded mb-4"></div>
-                <div className="h-4 bg-gray-200 rounded w-1/2"></div>
-              </div>
-            ))}
-          </div>
-        ) : latestNews.length > 0 ? (
-          <div className="grid md:grid-cols-3 gap-6">
-            {latestNews.map((news, index) => (
-              <motion.div
-                key={news.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white rounded-lg border shadow-sm hover:shadow-md transition-shadow p-6"
-              >
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-xs font-medium px-2 py-1 bg-blue-100 text-blue-600 rounded-full">
-                    {news.category}
-                  </span>
-                  <span className="text-xs text-gray-500">{news.source}</span>
-                </div>
-                <h3 className="font-semibold text-lg mb-3 text-gray-900 line-clamp-2">
-                  {news.title}
-                </h3>
-                <p className="text-gray-600 text-sm mb-4 line-clamp-3">
-                  {news.summary}
-                </p>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs text-gray-500">
-                    {new Date(news.date).toLocaleDateString()}
-                  </span>
-                  <button className="text-secondary text-sm font-medium hover:text-secondary/80">
-                    Read More
-                  </button>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        ) : (
-          <div className="text-center py-12">
-            <p className="text-gray-500">No financial news available at the moment</p>
-          </div>
-        )}
-
-        <div className="text-center mt-12">
-          <Link to="/news-ai">
-            <button className="bg-secondary text-white px-8 py-3 rounded-lg font-medium hover:bg-secondary/90 transition-colors">
-              View All Market News
-            </button>
-          </Link>
-        </div>
-      </section>
 
       {/* Markets Insight Section */}
       <section id="markets-insight" className="mb-12 border-t border-gray-200 pt-12">
