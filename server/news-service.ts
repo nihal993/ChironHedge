@@ -43,29 +43,23 @@ export class FinancialNewsService {
   }
 
   async getFinancialNews(): Promise<FinancialNews[]> {
-    log('Starting financial news fetch...');
     const newsPromises: Promise<FinancialNews[]>[] = [];
 
     // Try multiple sources in parallel
     if (this.NEWS_API_KEY) {
-      log('Adding NewsAPI to sources');
       newsPromises.push(this.getNewsFromNewsAPI());
     }
     if (this.ALPHA_VANTAGE_API_KEY) {
-      log('Adding Alpha Vantage to sources');
       newsPromises.push(this.getNewsFromAlphaVantage());
     }
     if (this.POLYGON_API_KEY) {
-      log('Adding Polygon to sources');
       newsPromises.push(this.getNewsFromPolygon());
     }
     if (this.FMP_API_KEY) {
-      log('Adding FMP to sources');
       newsPromises.push(this.getNewsFromFMP());
     }
 
     if (newsPromises.length === 0) {
-      log('No API keys available, returning mock data');
       return this.getMockData();
     }
 
@@ -75,24 +69,20 @@ export class FinancialNewsService {
 
       results.forEach((result, index) => {
         if (result.status === 'fulfilled') {
-          log(`Source ${index} returned ${result.value.length} articles`);
           allNews.push(...result.value);
         } else {
           log(`News source ${index} failed: ${result.reason}`);
         }
       });
 
-      log(`Total articles collected: ${allNews.length}`);
-
-      // Sort by date for now (skip deduplication to test)
+      // Sort by date and return top 20 most recent
       const sortedNews = allNews.sort((a, b) => {
         const dateA = new Date(a.publishedAt || a.date);
         const dateB = new Date(b.publishedAt || b.date);
         return dateB.getTime() - dateA.getTime();
       });
       
-      log(`Returning ${Math.min(sortedNews.length, 20)} articles`);
-      return sortedNews.slice(0, 20); // Return top 20 most recent
+      return sortedNews.slice(0, 20);
 
     } catch (error) {
       log(`Error fetching news: ${error}`);
@@ -125,26 +115,20 @@ export class FinancialNewsService {
   private async getNewsFromAlphaVantage(): Promise<FinancialNews[]> {
     const url = `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&topics=financial_markets&apikey=${this.ALPHA_VANTAGE_API_KEY}`;
     
-    log(`Fetching news from Alpha Vantage: ${url.replace(this.ALPHA_VANTAGE_API_KEY!, '[API_KEY]')}`);
-    
     const response = await fetch(url);
     if (!response.ok) {
       throw new Error(`Alpha Vantage error: ${response.status}`);
     }
 
     const data = await response.json();
-    log(`Alpha Vantage response structure: ${JSON.stringify(Object.keys(data))}`);
     
     if (data.Information) {
-      log(`Alpha Vantage info message: ${data.Information}`);
+      throw new Error(`Alpha Vantage API limit: ${data.Information}`);
     }
     
     if (!data.feed || !Array.isArray(data.feed)) {
-      log(`No feed data found in Alpha Vantage response. Available keys: ${Object.keys(data)}`);
       return [];
     }
-
-    log(`Found ${data.feed.length} news items from Alpha Vantage`);
     
     return data.feed.slice(0, 10).map((item: any, index: number) => ({
       id: `av-${index}`,
