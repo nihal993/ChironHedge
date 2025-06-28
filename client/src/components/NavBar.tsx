@@ -345,7 +345,7 @@ const NavBar = () => {
             
             {/* Search Results Dropdown - Enhanced Professional Design */}
             {showSearchResults && (searchResults.length > 0 || isSearching) && (
-              <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-2xl z-50 max-h-[500px] overflow-y-auto">
+              <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-2xl z-50 max-h-[500px] overflow-y-auto w-[600px] max-w-[90vw]">
                 {isSearching ? (
                   <div className="p-8 text-center text-gray-500">
                     <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-secondary mx-auto mb-4"></div>
