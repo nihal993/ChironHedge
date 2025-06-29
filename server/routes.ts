@@ -143,6 +143,33 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+   // Python Charts endpoints
+    app.get('/api/charts/python/:chartType', async (req, res) => {
+      try {
+        const { chartType } = req.params;
+        const chartData = await pythonChartService.generateChartWithFallback(chartType);
+        res.json(chartData);
+      } catch (error) {
+        log(`Error generating Python chart: ${error}`);
+        res.status(500).json({ error: 'Failed to generate chart' });
+      }
+    });
+
+    app.get('/api/charts/available', async (req, res) => {
+      try {
+        const availableCharts = await pythonChartService.getAvailableCharts();
+        res.json(availableCharts);
+      } catch (error) {
+        log(`Error getting available charts: ${error}`);
+        res.status(500).json({ error: 'Failed to get available charts' });
+      }
+    });
+
+    const httpServer = createServer(app);
+
+    return httpServer;
+  }
+
   const httpServer = createServer(app);
 
   return httpServer;
