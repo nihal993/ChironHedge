@@ -203,7 +203,7 @@ const NavBar = () => {
       "w-full transition-all duration-300",
       scrolled ? "bg-white/95 backdrop-blur-sm shadow-sm" : "bg-white/80 backdrop-blur-sm"
     )}>
-      <div className="container mx-auto px-4 flex items-center justify-between border-b border-gray-200">
+      <div className="w-full max-w-none px-6 lg:px-12 xl:px-20 flex items-center justify-between border-b border-gray-200">
         <div className="flex items-center">
           <Link href="/" className="flex items-center py-4">
             <div className="h-10 w-10 mr-1 flex items-center justify-center">
@@ -312,7 +312,7 @@ const NavBar = () => {
         </nav>
 
         {/* Search Bar */}
-        <div className="hidden lg:flex items-center flex-1 max-w-lg mx-8">
+        <div className="hidden lg:flex items-center flex-1 max-w-xl xl:max-w-2xl mx-8 xl:mx-16">
           <form onSubmit={handleSearchSubmit} className="relative w-full">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 z-10" />

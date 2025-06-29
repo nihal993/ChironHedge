@@ -87,7 +87,7 @@ const Home = () => {
                 <motion.span
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
+                  transition={{ duration: 0.8, delay: 3.5 }}
                   className="inline-block mr-2"
                 >
                   Quantitative.
@@ -95,7 +95,7 @@ const Home = () => {
                 <motion.span
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 1.0 }}
+                  transition={{ duration: 2.0, delay: 4.5 }}
                   className="inline-block mr-2"
                 >
                   Transparent.
@@ -103,7 +103,7 @@ const Home = () => {
                 <motion.span
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 1.8 }}
+                  transition={{ duration: 2.0, delay: 5.5 }}
                   className="inline-block"
                 >
                   Accessible.
@@ -115,7 +115,7 @@ const Home = () => {
               className="text-base md:text-xl text-white/80 mb-10 max-w-xl font-light"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 2.6 }}
+              transition={{ duration: 2.0, delay: 6.5 }}
             >
               ChironHedge delivers algorithmic strategies once reserved for the few - now designed for the many.
             </motion.p>
@@ -123,7 +123,7 @@ const Home = () => {
               className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 3.2 }}
+              transition={{ duration: 2.0, delay: 7.5 }}
             >
               <a 
                 href="/research"
