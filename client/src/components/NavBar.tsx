@@ -205,11 +205,11 @@ const NavBar = () => {
     )}>
       <div className="w-full max-w-none px-6 lg:px-12 xl:px-20 flex items-center justify-between border-b border-gray-200">
         <div className="flex items-center">
-          <Link href="/" className="flex items-center py-4">
-            <div className="h-10 w-10 mr-1 flex items-center justify-center">
+          <Link href="/" className="flex items-center py-4 xl:py-5">
+            <div className="h-10 w-10 xl:h-12 xl:w-12 mr-2 xl:mr-3 flex items-center justify-center">
               <img src={logoImage} alt="Chiron Logo" className="w-full h-full object-contain" />
             </div>
-            <span className="text-xl md:text-2xl font-bold text-primary">
+            <span className="text-xl md:text-2xl xl:text-3xl font-bold text-primary">
               Chiron<span className="text-secondary">Hedge</span>
             </span>
           </Link>
@@ -231,7 +231,7 @@ const NavBar = () => {
                 >
                   <button
                     className={cn(
-                      "nav-link font-medium text-primary hover:text-secondary transition-colors h-full px-4 py-5 flex items-center",
+                      "nav-link font-medium text-primary hover:text-secondary transition-colors h-full px-4 xl:px-6 py-5 xl:py-6 flex items-center text-sm xl:text-base",
                       (location.startsWith('/research') || (location === "/" && activeSection === link.id)) ? "text-secondary" : ""
                     )}
                   >
@@ -281,7 +281,7 @@ const NavBar = () => {
                   <button
                     onClick={() => scrollToSection(link.id)}
                     className={cn(
-                      "nav-link font-medium text-primary hover:text-secondary transition-colors h-full px-4 py-5 relative",
+                      "nav-link font-medium text-primary hover:text-secondary transition-colors h-full px-4 xl:px-6 py-5 xl:py-6 relative text-sm xl:text-base",
                       isActive ? "text-secondary" : ""
                     )}
                   >
@@ -299,7 +299,7 @@ const NavBar = () => {
                   <Link
                     href={link.href}
                     className={cn(
-                      "nav-link font-medium text-primary hover:text-secondary transition-colors h-full px-4 py-5 border-b-2",
+                      "nav-link font-medium text-primary hover:text-secondary transition-colors h-full px-4 xl:px-6 py-5 xl:py-6 border-b-2 text-sm xl:text-base",
                       location === link.href ? "border-secondary" : "border-transparent"
                     )}
                   >
@@ -441,12 +441,12 @@ const NavBar = () => {
           </form>
         </div>
         
-        <div className="hidden lg:flex items-center space-x-5">
-          <Link href="/contact" className="px-5 py-2.5 text-sm font-medium text-white bg-secondary hover:bg-secondary/90 rounded-none transition-all">
+        <div className="hidden lg:flex items-center space-x-4 xl:space-x-6">
+          <Link href="/contact" className="px-5 xl:px-7 py-2.5 xl:py-3 text-sm xl:text-base font-medium text-white bg-secondary hover:bg-secondary/90 rounded-none transition-all">
             {t('contact')}
           </Link>
           
-          <Link href="/login" className="px-5 py-2.5 text-sm font-medium text-white bg-primary hover:bg-primary/80 rounded-none transition-colors">
+          <Link href="/login" className="px-5 xl:px-7 py-2.5 xl:py-3 text-sm xl:text-base font-medium text-white bg-primary hover:bg-primary/80 rounded-none transition-colors">
             {t('login')}
           </Link>
           
