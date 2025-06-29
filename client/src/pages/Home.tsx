@@ -84,20 +84,54 @@ const Home = () => {
           <div className="px-6 md:px-16 max-w-[1300px] mx-auto">
             <div className="border-l-4 border-secondary pl-6 mb-8">
               <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-8">
-                Quantitative. Transparent. Accessible. <br />
+                <motion.span
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="inline-block mr-2"
+                >
+                  Quantitative.
+                </motion.span>
+                <motion.span
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 1.0 }}
+                  className="inline-block mr-2"
+                >
+                  Transparent.
+                </motion.span>
+                <motion.span
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 1.8 }}
+                  className="inline-block"
+                >
+                  Accessible.
+                </motion.span>
+                <br />
               </h1>
             </div>
-            <p className="text-base md:text-xl text-white/80 mb-10 max-w-xl font-light">
+            <motion.p 
+              className="text-base md:text-xl text-white/80 mb-10 max-w-xl font-light"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 2.6 }}
+            >
               ChironHedge delivers algorithmic strategies once reserved for the few - now designed for the many.
-            </p>
-            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
+            </motion.p>
+            <motion.div 
+              className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 3.2 }}
+            >
               <a 
                 href="/research"
                 className="gs-blue-btn px-8 py-4 text-lg inline-block text-center"
               >
                 {t('home.exploreOurResearch')}
               </a>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
