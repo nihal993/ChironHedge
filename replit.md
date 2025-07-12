@@ -121,3 +121,10 @@ ChironHedge is a sophisticated financial research and quantitative analysis plat
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+
+## Communication Style
+
+- Before implementing changes, explain what you're going to do and why
+- Break down complex tasks into clear steps
+- Ask for clarification if requirements are unclear
+- Provide brief explanations for technical decisions
