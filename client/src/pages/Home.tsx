@@ -87,7 +87,7 @@ const Home = () => {
                 <motion.span
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 3.5 }}
+                  transition={{ duration: 1, delay: 2.0 }}
                   className="inline-block mr-2"
                 >
                   Quantitative.
@@ -95,7 +95,7 @@ const Home = () => {
                 <motion.span
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 4.0 }}
+                  transition={{ duration: 1, delay: 3.2 }}
                   className="inline-block mr-2"
                 >
                   Transparent.
@@ -103,7 +103,7 @@ const Home = () => {
                 <motion.span
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 4.5 }}
+                  transition={{ duration: 1, delay: 4.4 }}
                   className="inline-block"
                 >
                   Accessible.
@@ -607,7 +607,7 @@ const Home = () => {
                 <div className="grid grid-cols-3 gap-4 mb-4">
                   <div className="text-center p-2 bg-gray-50">
                     <p className="text-xs text-primary/60">Sharpe</p>
-                    <p className="text-primary font-bold">2.32                  </div>
+                    <p className="text-primary font-bold">2.32</p>                  </div>
                   <div className="text-center p-2 bg-gray-50">
                     <p className="text-xs text-primary/60">Vol</p>
                     <p className="text-primary font-bold">13.8%</p>
