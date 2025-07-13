@@ -181,6 +181,72 @@ export const translations: Translations = {
     en: 'or continue with email',
     it: 'o continua con email'
   },
+
+  // Cookie banner translations
+  'cookie_title': {
+    en: 'We use cookies to improve your experience',
+    it: 'Utilizziamo i cookie per migliorare la tua esperienza'
+  },
+  'cookie_description': {
+    en: 'We use essential cookies for site functionality and optional cookies for analytics and marketing. You can choose which to accept.',
+    it: 'Utilizziamo cookie essenziali per il funzionamento del sito e cookie opzionali per analisi e marketing. Puoi scegliere quali accettare.'
+  },
+  'cookie_settings': {
+    en: 'Settings',
+    it: 'Impostazioni'
+  },
+  'cookie_reject': {
+    en: 'Reject All',
+    it: 'Rifiuta tutti'
+  },
+  'cookie_accept_all': {
+    en: 'Accept All',
+    it: 'Accetta tutti'
+  },
+  'cookie_preferences': {
+    en: 'Cookie Preferences',
+    it: 'Preferenze Cookie'
+  },
+  'cookie_necessary': {
+    en: 'Necessary Cookies',
+    it: 'Cookie Necessari'
+  },
+  'cookie_necessary_desc': {
+    en: 'These cookies are essential for the website to function and cannot be disabled.',
+    it: 'Questi cookie sono essenziali per il funzionamento del sito web e non possono essere disabilitati.'
+  },
+  'cookie_analytics': {
+    en: 'Analytics Cookies',
+    it: 'Cookie di Analisi'
+  },
+  'cookie_analytics_desc': {
+    en: 'Help us understand how visitors interact with the website by collecting and reporting anonymous information.',
+    it: 'Ci aiutano a capire come i visitatori interagiscono con il sito web raccogliendo e riportando informazioni anonime.'
+  },
+  'cookie_functional': {
+    en: 'Functional Cookies',
+    it: 'Cookie Funzionali'
+  },
+  'cookie_functional_desc': {
+    en: 'Enable enhanced functionality and personalization, such as remembering your preferences.',
+    it: 'Consentono funzionalità avanzate e personalizzazione, come ricordare le tue preferenze.'
+  },
+  'cookie_marketing': {
+    en: 'Marketing Cookies',
+    it: 'Cookie di Marketing'
+  },
+  'cookie_marketing_desc': {
+    en: 'Used to track visitors across websites to display relevant and engaging advertisements.',
+    it: 'Utilizzati per tracciare i visitatori sui siti web per mostrare annunci pertinenti e coinvolgenti.'
+  },
+  'cookie_save_preferences': {
+    en: 'Save Preferences',
+    it: 'Salva preferenze'
+  },
+  'cancel': {
+    en: 'Cancel',
+    it: 'Annulla'
+  },
   'register.acceptTerms': {
     en: 'I agree to the',
     it: 'Accetto i'
