@@ -58,6 +58,14 @@ ChironHedge is a sophisticated financial research and quantitative analysis plat
 - Session-based authentication
 - Protected routes and user state management
 
+### 6. Cookie Policy & Privacy Management
+- GDPR-compliant cookie banner with customizable preferences
+- Four cookie categories: Necessary, Analytics, Functional, Marketing
+- Real-time cookie policy enforcement via CookieService
+- Privacy settings page with detailed controls and status dashboard
+- Persistent user preferences with localStorage integration
+- Multi-language support for privacy content
+
 ## Data Flow
 
 ### Client-Server Communication
@@ -116,6 +124,7 @@ ChironHedge is a sophisticated financial research and quantitative analysis plat
 - Database URL configured via environment variables
 
 ## Changelog
+- January 13, 2025. Implemented comprehensive cookie policy system with functional banner and privacy controls
 - June 15, 2025. Initial setup
 
 ## User Preferences

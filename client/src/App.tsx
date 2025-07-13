@@ -15,6 +15,7 @@ import DataScience from "@/pages/DataScience";
 import Engineering from "@/pages/Engineering";
 import Login from "@/pages/Login";
 import Register from "@/pages/Register";
+import Privacy from "@/pages/Privacy";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { useEffect } from "react";
 import AIChat from './components/AIChat';
@@ -55,6 +56,7 @@ function Router() {
         <Route path="/contact" component={Contact} />
         <Route path="/about" component={AboutUs} />
         <Route path="/whitepaper" component={WhitePaper} />
+        <Route path="/privacy" component={Privacy} />
         <Route component={NotFound} />
       </Switch>
     </Layout>

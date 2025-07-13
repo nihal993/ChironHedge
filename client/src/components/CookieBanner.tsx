@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Cookie, Settings } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { CookieService, CookiePreferences } from "@/lib/cookie-service";
 
 export default function CookieBanner() {
   const [isVisible, setIsVisible] = useState(false);
@@ -16,39 +17,47 @@ export default function CookieBanner() {
   const { t } = useLanguage();
 
   useEffect(() => {
+    // Initialize cookie service
+    CookieService.initialize();
+    
     // Check if user has already made a choice
-    const cookieChoice = localStorage.getItem('cookie-preferences');
-    if (!cookieChoice) {
+    if (!CookieService.hasConsent()) {
       // Show banner after a short delay
       const timer = setTimeout(() => setIsVisible(true), 1000);
       return () => clearTimeout(timer);
+    } else {
+      // Load existing preferences
+      const existingPrefs = CookieService.getPreferences();
+      if (existingPrefs) {
+        setPreferences(existingPrefs);
+      }
     }
   }, []);
 
   const handleAcceptAll = () => {
-    const allAccepted = {
+    const allAccepted: CookiePreferences = {
       necessary: true,
       analytics: true,
       marketing: true,
       functional: true
     };
-    localStorage.setItem('cookie-preferences', JSON.stringify(allAccepted));
+    CookieService.savePreferences(allAccepted);
     setIsVisible(false);
   };
 
   const handleAcceptSelected = () => {
-    localStorage.setItem('cookie-preferences', JSON.stringify(preferences));
+    CookieService.savePreferences(preferences);
     setIsVisible(false);
   };
 
   const handleRejectAll = () => {
-    const onlyNecessary = {
+    const onlyNecessary: CookiePreferences = {
       necessary: true,
       analytics: false,
       marketing: false,
       functional: false
     };
-    localStorage.setItem('cookie-preferences', JSON.stringify(onlyNecessary));
+    CookieService.savePreferences(onlyNecessary);
     setIsVisible(false);
   };
 
