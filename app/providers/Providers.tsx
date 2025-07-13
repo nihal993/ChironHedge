@@ -1,25 +1,32 @@
 'use client';
 
+import { SessionProvider } from 'next-auth/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useState } from 'react';
 import { LanguageProvider } from './LanguageProvider';
+import { Toaster } from "@/components/ui/toaster"
 
-// API request helper
+// Enhanced API request helper with better error handling
 export async function apiRequest(url: string, options: RequestInit = {}) {
-  const response = await fetch(url, {
-    headers: {
-      'Content-Type': 'application/json',
-      ...options.headers,
-    },
-    ...options,
-  });
+  try {
+    const response = await fetch(url, {
+      headers: {
+        'Content-Type': 'application/json',
+        ...options.headers,
+      },
+      ...options,
+    });
 
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`${response.status}: ${errorText}`);
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`${response.status}: ${response.statusText} - ${errorText}`);
+    }
+
+    return response.json();
+  } catch (error) {
+    console.error(`API Request failed for ${url}:`, error);
+    throw error;
   }
-
-  return response.json();
 }
 
 export default function Providers({ children }: { children: React.ReactNode }) {
@@ -34,12 +41,18 @@ export default function Providers({ children }: { children: React.ReactNode }) {
             },
             staleTime: 5 * 60 * 1000, // 5 minutes
             retry: (failureCount, error) => {
-              // Don't retry on 4xx errors except 401
-              const status = parseInt(error.message.split(':')[0]);
-              if (status >= 400 && status < 500 && status !== 401) {
+              // Don't retry on auth errors (401/403)
+              if (error?.message?.includes('401') || error?.message?.includes('403')) {
                 return false;
               }
-              return failureCount < 3;
+              return failureCount < 2;
+            },
+            retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
+          },
+          mutations: {
+            retry: 1,
+            onError: (error) => {
+              console.error('Mutation error:', error);
             },
           },
         },
@@ -47,10 +60,13 @@ export default function Providers({ children }: { children: React.ReactNode }) {
   );
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <LanguageProvider>
-        {children}
-      </LanguageProvider>
-    </QueryClientProvider>
+    <SessionProvider>
+      <QueryClientProvider client={queryClient}>
+        <LanguageProvider>
+          {children}
+          <Toaster />
+        </LanguageProvider>
+      </QueryClientProvider>
+    </SessionProvider>
   );
 }
