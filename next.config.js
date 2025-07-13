@@ -1,9 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    // Enable React Compiler
-    reactCompiler: true,
-  },
+
   
   // Configure image domains for financial data providers
   images: {
