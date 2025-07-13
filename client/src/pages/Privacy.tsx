@@ -1,7 +1,7 @@
+import React, { useState } from "react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useCookies } from "@/hooks/use-cookies";
 import { CookieService } from "@/lib/cookie-service";
-import { useState } from "react";
 import { Cookie, Settings, Eye, Shield, Target, Cog } from "lucide-react";
 import CookieAwareComponent from "@/components/CookieAwareComponent";
 
@@ -15,6 +15,13 @@ export default function Privacy() {
     marketing: false,
     functional: false
   });
+
+  // Aggiorna le preferenze locali quando cambiano quelle globali
+  React.useEffect(() => {
+    if (preferences) {
+      setLocalPreferences(preferences);
+    }
+  }, [preferences]);
 
   const handleUpdatePreferences = () => {
     updatePreferences(localPreferences);
@@ -66,7 +73,7 @@ export default function Privacy() {
               <div className="flex items-center justify-between p-4 bg-green-50 rounded-lg">
                 <div className="flex items-center gap-3">
                   <Shield className="h-5 w-5 text-green-600" />
-                  <span className="font-medium text-green-900">Cookie Necessari</span>
+                  <span className="font-medium text-green-900">{t('cookie_necessary') || 'Cookie Necessari'}</span>
                 </div>
                 <div className="h-2 w-2 bg-green-500 rounded-full"></div>
               </div>
@@ -74,7 +81,7 @@ export default function Privacy() {
               <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
                 <div className="flex items-center gap-3">
                   <Eye className="h-5 w-5 text-gray-600" />
-                  <span className="font-medium text-gray-900">Cookie di Analisi</span>
+                  <span className="font-medium text-gray-900">{t('cookie_analytics') || 'Cookie di Analisi'}</span>
                 </div>
                 <div className={`h-2 w-2 rounded-full ${preferences.analytics ? 'bg-green-500' : 'bg-gray-400'}`}></div>
               </div>
@@ -82,7 +89,7 @@ export default function Privacy() {
               <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
                 <div className="flex items-center gap-3">
                   <Target className="h-5 w-5 text-gray-600" />
-                  <span className="font-medium text-gray-900">Cookie di Marketing</span>
+                  <span className="font-medium text-gray-900">{t('cookie_marketing') || 'Cookie di Marketing'}</span>
                 </div>
                 <div className={`h-2 w-2 rounded-full ${preferences.marketing ? 'bg-green-500' : 'bg-gray-400'}`}></div>
               </div>
@@ -90,7 +97,7 @@ export default function Privacy() {
               <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
                 <div className="flex items-center gap-3">
                   <Cog className="h-5 w-5 text-gray-600" />
-                  <span className="font-medium text-gray-900">Cookie Funzionali</span>
+                  <span className="font-medium text-gray-900">{t('cookie_functional') || 'Cookie Funzionali'}</span>
                 </div>
                 <div className={`h-2 w-2 rounded-full ${preferences.functional ? 'bg-green-500' : 'bg-gray-400'}`}></div>
               </div>
@@ -200,7 +207,15 @@ export default function Privacy() {
                 {t('save_preferences') || 'Salva Preferenze'}
               </button>
               <button
-                onClick={() => setShowCookieSettings(false)}
+                onClick={() => {
+                  setLocalPreferences(preferences || {
+                    necessary: true,
+                    analytics: false,
+                    marketing: false,
+                    functional: false
+                  });
+                  setShowCookieSettings(false);
+                }}
                 className="px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
               >
                 {t('cancel') || 'Annulla'}

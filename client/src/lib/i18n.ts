@@ -247,6 +247,56 @@ export const translations: Translations = {
     en: 'Cancel',
     it: 'Annulla'
   },
+
+  // Privacy page translations
+  'privacy_policy': {
+    en: 'Privacy Policy & Cookie Settings',
+    it: 'Privacy Policy e Impostazioni Cookie'
+  },
+  'privacy_subtitle': {
+    en: 'Transparency on data and control of your privacy preferences',
+    it: 'Trasparenza sui dati e controllo delle tue preferenze di privacy'
+  },
+  'cookie_status': {
+    en: 'Cookie Status',
+    it: 'Stato Cookie'
+  },
+  'consent_given': {
+    en: 'Consent given on',
+    it: 'Consenso fornito il'
+  },
+  'no_consent': {
+    en: 'No consent provided',
+    it: 'Nessun consenso fornito'
+  },
+  'manage_cookies': {
+    en: 'Manage Cookies',
+    it: 'Gestisci Cookie'
+  },
+  'save_preferences': {
+    en: 'Save Preferences',
+    it: 'Salva Preferenze'
+  },
+  'privacy_policy_full': {
+    en: 'Privacy Policy',
+    it: 'Informativa sulla Privacy'
+  },
+  'data_collection': {
+    en: 'Data Collection',
+    it: 'Raccolta dei Dati'
+  },
+  'cookies_use': {
+    en: 'Use of Cookies',
+    it: 'Utilizzo dei Cookie'
+  },
+  'data_protection': {
+    en: 'Data Protection',
+    it: 'Protezione dei Dati'
+  },
+  'your_rights': {
+    en: 'Your Rights',
+    it: 'I Tuoi Diritti'
+  },
   'register.acceptTerms': {
     en: 'I agree to the',
     it: 'Accetto i'
