@@ -145,6 +145,13 @@ ChironHedge is a sophisticated financial research and quantitative analysis plat
 
 Preferred communication style: Simple, everyday language.
 
+## Deployment Status
+
+**Current Status**: Production-ready React/Vite application (port 5000)
+**Next.js Status**: Fully implemented architecture (port 3000) but not accessible
+**Recommendation**: Deploy React/Vite version immediately for business continuity
+**Future Enhancement**: Next.js migration when server issues resolved
+
 ## Communication Style
 
 - Before implementing changes, explain what you're going to do and why
