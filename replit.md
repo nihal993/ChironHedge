@@ -137,3 +137,8 @@ Preferred communication style: Simple, everyday language.
 - Break down complex tasks into clear steps
 - Ask for clarification if requirements are unclear
 - Provide brief explanations for technical decisions
+
+## Mandatory instructions
+
+- always ask for clarifications if user prompt to the Agent is not clear enough
+- always ask for confirmation before staging and committing changes: this should be always done by the user and not the Agent

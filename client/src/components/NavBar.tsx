@@ -15,7 +15,7 @@ const navLinks = [
   { key: "navbar.research", name: "Our Research", href: "/research", id: "our-research" },
   { key: "navbar.marketsInsight", name: "Markets Insight", href: "/markets-insight", id: "markets-insight" },
   //{ key: "navbar.strategies", name: "Portfolio Strategies", href: "/quantitative-strategies", id: "quantitative-strategies" }
-  { key: "financialNews", name: "Financial News", href: "/news-ai", id: "news-ai" },
+  { key: "Financial News", name: "Financial News", href: "/news-ai", id: "news-ai" },
 ];
 
 const searchPhrasesEN = [
@@ -278,7 +278,7 @@ const NavBar = () => {
             
             return (
               <div key={link.href} className="relative">
-                {location === "/" ? (
+                {(location === "/" && link.key !== "financialNews") ? (
                   <button
                     onClick={() => scrollToSection(link.id)}
                     className={cn(
