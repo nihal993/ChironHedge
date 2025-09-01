@@ -136,8 +136,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* News AI Banner - versione compatta */}
-      <div className="mb-8 bg-gray-50 border-y border-gray-200">
+      {/* News AI Banner - versione compatta iniziale fatta da Fede */}
+      {/*<div className="mb-8 bg-gray-50 border-y border-gray-200">
         <div className="container mx-auto px-6 py-3">
           <div className="flex flex-col sm:flex-row justify-start items-start sm:items-center gap-4">
             <div className="flex items-center">

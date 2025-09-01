@@ -12,9 +12,9 @@ import logoImage from "@/assets/logo.png";
 
 const navLinks = [
   { key: "home", name: "Home", href: "/", id: "hero" },
-  { key: "navbar.marketsInsight", name: "Markets Insight", href: "/markets-insight", id: "markets-insight" },
   { key: "navbar.research", name: "Our Research", href: "/research", id: "our-research" },
-  { key: "navbar.strategies", name: "Portfolio Strategies", href: "/quantitative-strategies", id: "quantitative-strategies" }
+  { key: "navbar.marketsInsight", name: "Markets Insight", href: "/markets-insight", id: "markets-insight" },
+  //{ key: "navbar.strategies", name: "Portfolio Strategies", href: "/quantitative-strategies", id: "quantitative-strategies" }
 ];
 
 const searchPhrasesEN = [
