@@ -10,6 +10,7 @@ import { Clock } from "lucide-react";
 const NewsAI = () => {
   const [news, setNews] = useState<AINews[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [activeNews, setActiveNews] = useState<AINews | null>(null);
   const { toast } = useToast();
 
   // Fetch AI-generated news from our API
@@ -34,6 +35,14 @@ const NewsAI = () => {
 
     fetchAINews();
   }, [toast]);
+
+  const handleNewsClick = (newsItem: AINews) => {
+    setActiveNews(newsItem);
+  };
+
+  const closeNewsModal = () => {
+    setActiveNews(null);
+  };
 
   return (
     <section className="py-20 md:py-24 bg-white">
@@ -90,7 +99,10 @@ const NewsAI = () => {
                     <Clock className="h-3 w-3 mr-1" />
                     {item.date}
                   </span>
-                  <button className="text-secondary hover:text-secondary/80 text-sm font-medium">
+                  <button 
+                    onClick={() => handleNewsClick(item)}
+                    className="text-secondary hover:text-secondary/80 text-sm font-medium"
+                  >
                     Read More
                   </button>
                 </div>
@@ -144,6 +156,33 @@ const NewsAI = () => {
           </div>
         </motion.div>
       </div>
+      
+      {/* News Detail Modal */}
+      {activeNews && (
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4" onClick={closeNewsModal}>
+          <div 
+            className="bg-white rounded-xl max-w-2xl w-full p-6 max-h-[80vh] overflow-y-auto" 
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex justify-between items-start mb-4">
+              <div>
+                <span className="inline-block text-xs font-medium px-3 py-1 rounded-full bg-blue-100 text-blue-800">
+                  {activeNews.category}
+                </span>
+                <span className="text-xs text-primary/50 ml-2">{activeNews.date}</span>
+              </div>
+              <button 
+                onClick={closeNewsModal}
+                className="text-primary/60 hover:text-primary text-xl font-bold"
+              >
+                ✕
+              </button>
+            </div>
+            <h3 className="text-2xl font-bold mb-4 text-primary">{activeNews.title}</h3>
+            <p className="text-primary/70 mb-6 leading-relaxed">{activeNews.summary}</p>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
