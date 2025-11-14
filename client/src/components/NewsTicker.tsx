@@ -12,6 +12,8 @@ const NewsTicker = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [activeNews, setActiveNews] = useState<AINews | null>(null);
+  const [isScrolling, setIsScrolling] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const { toast } = useToast();
   const { t, language } = useLanguage();
   const isMobile = useIsMobile();
@@ -50,6 +52,35 @@ const NewsTicker = () => {
     return () => clearInterval(interval);
   }, [news]);
 
+  // Handle scroll visibility with parallax effect
+  useEffect(() => {
+    let scrollTimeout: NodeJS.Timeout;
+    
+    const handleScroll = () => {
+      // Hide ticker when scrolling
+      if (!isScrolling) {
+        setIsScrolling(true);
+        setIsVisible(false);
+      }
+      
+      // Clear previous timeout
+      clearTimeout(scrollTimeout);
+      
+      // Set timeout to show ticker after scrolling stops
+      scrollTimeout = setTimeout(() => {
+        setIsScrolling(false);
+        setIsVisible(true);
+      }, 150);
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(scrollTimeout);
+    };
+  }, [isScrolling]);
+
   const handlePrev = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + news.length) % news.length);
   };
@@ -73,19 +104,35 @@ const NewsTicker = () => {
 
   if (isLoading || news.length === 0) {
     return (
-      <div className="w-full bg-primary text-white py-3 overflow-hidden">
+      <motion.div 
+        className="w-full bg-primary text-white py-3 overflow-hidden"
+        initial={{ y: 0, opacity: 1 }}
+        animate={{ 
+          y: isVisible ? 0 : -50,
+          opacity: isVisible ? 1 : 0
+        }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+      >
         <div className="container mx-auto flex items-center justify-between">
           <div className="w-8"></div>
           <div className="h-6 bg-white/20 animate-pulse rounded w-2/3"></div>
           <div className="w-8"></div>
         </div>
-      </div>
+      </motion.div>
     );
   }
 
   return (
     <>
-      <div className="w-full bg-primary text-white py-3 overflow-hidden">
+      <motion.div 
+        className="w-full bg-primary text-white py-3 overflow-hidden"
+        initial={{ y: 0, opacity: 1 }}
+        animate={{ 
+          y: isVisible ? 0 : -50,
+          opacity: isVisible ? 1 : 0
+        }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+      >
         <div className="container mx-auto flex items-center justify-between">
           <button 
             onClick={handlePrev} 
@@ -125,7 +172,7 @@ const NewsTicker = () => {
             <ChevronRight className="h-5 w-5" />
           </button>
         </div>
-      </div>
+      </motion.div>
       
       {/* News Detail Modal */}
       {activeNews && (
