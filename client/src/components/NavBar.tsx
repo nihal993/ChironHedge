@@ -253,18 +253,21 @@ const NavBar = () => {
                           <Link
                             href="/research"
                             className="block px-4 py-2 text-sm text-primary hover:bg-gray-50 hover:text-secondary transition-colors"
+                            onClick={() => setResearchDropdownOpen(false)}
                           >
                             Overview
                           </Link>
                           <Link
                             href="/research/data-science"
                             className="block px-4 py-2 text-sm text-primary hover:bg-gray-50 hover:text-secondary transition-colors"
+                            onClick={() => setResearchDropdownOpen(false)}
                           >
                             Data Science
                           </Link>
                           <Link
                             href="/research/engineering"
                             className="block px-4 py-2 text-sm text-primary hover:bg-gray-50 hover:text-secondary transition-colors"
+                            onClick={() => setResearchDropdownOpen(false)}
                           >
                             Engineering
                           </Link>
