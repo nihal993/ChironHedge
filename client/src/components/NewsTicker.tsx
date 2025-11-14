@@ -12,7 +12,6 @@ const NewsTicker = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [activeNews, setActiveNews] = useState<AINews | null>(null);
-  const [isScrolling, setIsScrolling] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const { toast } = useToast();
   const { t, language } = useLanguage();
@@ -52,34 +51,27 @@ const NewsTicker = () => {
     return () => clearInterval(interval);
   }, [news]);
 
-  // Handle scroll visibility with parallax effect
+  // Handle scroll visibility - show only at top of page
   useEffect(() => {
-    let scrollTimeout: NodeJS.Timeout;
-    
     const handleScroll = () => {
-      // Hide ticker when scrolling
-      if (!isScrolling) {
-        setIsScrolling(true);
+      const scrollPosition = window.scrollY;
+      // Show ticker when near the top (within 100px)
+      if (scrollPosition < 100) {
+        setIsVisible(true);
+      } else {
         setIsVisible(false);
       }
-      
-      // Clear previous timeout
-      clearTimeout(scrollTimeout);
-      
-      // Set timeout to show ticker after scrolling stops
-      scrollTimeout = setTimeout(() => {
-        setIsScrolling(false);
-        setIsVisible(true);
-      }, 300);
     };
+    
+    // Set initial state
+    handleScroll();
     
     window.addEventListener('scroll', handleScroll, { passive: true });
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      clearTimeout(scrollTimeout);
     };
-  }, [isScrolling]);
+  }, []);
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + news.length) % news.length);
