@@ -217,7 +217,7 @@ const NavBar = () => {
         </div>
         
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center h-full">
+        <nav className="hidden md:flex items-center h-full">
           {navLinks.map((link) => {
             const isActive = location === "/" ? activeSection === link.id : location === link.href;
             
@@ -232,7 +232,7 @@ const NavBar = () => {
                 >
                   <button
                     className={cn(
-                      "nav-link font-medium text-primary hover:text-secondary transition-colors h-full px-4 xl:px-6 py-5 xl:py-6 flex items-center text-sm xl:text-base",
+                      "nav-link font-medium text-primary hover:text-secondary transition-colors h-full px-2 md:px-4 xl:px-6 py-4 md:py-5 xl:py-6 flex items-center text-xs md:text-sm xl:text-base",
                       (location.startsWith('/research') || (location === "/" && activeSection === link.id)) ? "text-secondary" : ""
                     )}
                   >
@@ -282,7 +282,7 @@ const NavBar = () => {
                   <button
                     onClick={() => scrollToSection(link.id)}
                     className={cn(
-                      "nav-link font-medium text-primary hover:text-secondary transition-colors h-full px-4 xl:px-6 py-5 xl:py-6 relative text-sm xl:text-base",
+                      "nav-link font-medium text-primary hover:text-secondary transition-colors h-full px-2 md:px-4 xl:px-6 py-4 md:py-5 xl:py-6 relative text-xs md:text-sm xl:text-base",
                       isActive ? "text-secondary" : ""
                     )}
                   >
@@ -300,7 +300,7 @@ const NavBar = () => {
                   <Link
                     href={link.href}
                     className={cn(
-                      "nav-link font-medium text-primary hover:text-secondary transition-colors h-full px-4 xl:px-6 py-5 xl:py-6 border-b-2 text-sm xl:text-base",
+                      "nav-link font-medium text-primary hover:text-secondary transition-colors h-full px-2 md:px-4 xl:px-6 py-4 md:py-5 xl:py-6 border-b-2 text-xs md:text-sm xl:text-base",
                       location === link.href ? "border-secondary" : "border-transparent"
                     )}
                   >
@@ -313,7 +313,7 @@ const NavBar = () => {
         </nav>
 
         {/* Search Bar */}
-        <div className="hidden lg:flex items-center flex-1 max-w-xl xl:max-w-2xl mx-8 xl:mx-16">
+        <div className="hidden md:flex items-center flex-1 max-w-xl xl:max-w-2xl mx-4 md:mx-8 xl:mx-16">
           <form onSubmit={handleSearchSubmit} className="relative w-full">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 z-10" />
@@ -442,12 +442,12 @@ const NavBar = () => {
           </form>
         </div>
         
-        <div className="hidden lg:flex items-center space-x-4 xl:space-x-6">
-          <Link href="/contact" className="px-5 xl:px-7 py-2.5 xl:py-3 text-sm xl:text-base font-medium text-white bg-secondary hover:bg-secondary/90 rounded-none transition-all">
+        <div className="hidden md:flex items-center space-x-2 md:space-x-4 xl:space-x-6">
+          <Link href="/contact" className="px-3 md:px-5 xl:px-7 py-2 md:py-2.5 xl:py-3 text-xs md:text-sm xl:text-base font-medium text-white bg-secondary hover:bg-secondary/90 rounded-none transition-all">
             {t('contact')}
           </Link>
           
-          <Link href="/login" className="px-5 xl:px-7 py-2.5 xl:py-3 text-sm xl:text-base font-medium text-white bg-primary hover:bg-primary/80 rounded-none transition-colors">
+          <Link href="/login" className="px-3 md:px-5 xl:px-7 py-2 md:py-2.5 xl:py-3 text-xs md:text-sm xl:text-base font-medium text-white bg-primary hover:bg-primary/80 rounded-none transition-colors">
             {t('login')}
           </Link>
           
@@ -458,7 +458,7 @@ const NavBar = () => {
         </div>
         
         {/* Mobile Menu Button */}
-        <div className="lg:hidden flex items-center">
+        <div className="md:hidden flex items-center">
           <button
             type="button"
             className="text-primary p-2"
@@ -477,7 +477,7 @@ const NavBar = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -10 }}
           transition={{ duration: 0.2 }}
-          className="lg:hidden bg-white w-full py-4 px-4 shadow-lg animate-fade-in absolute top-full left-0"
+          className="md:hidden bg-white w-full py-4 px-4 shadow-lg animate-fade-in absolute top-full left-0"
         >
           <nav className="flex flex-col">
             {navLinks.map((link, index) => (
