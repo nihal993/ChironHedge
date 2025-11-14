@@ -63,12 +63,6 @@ const Home = () => {
 
   return (
     <div className="flex flex-col w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]">
-      {/* Geometric/Galaxy Background */}
-      <div className="geometric-background">
-        <div className="geometric-shapes"></div>
-        <div className="stars-layer"></div>
-      </div>
-
       {/* Hero Section */}
       <section id="hero" className="w-full relative overflow-hidden bg-primary h-[600px] mb-12">
         {/* Video Background */}
@@ -188,18 +182,12 @@ const Home = () => {
 
 
       {/* Markets Insight Section */}
-      <section id="markets-insight" className="mb-12 border-t border-gray-200 pt-12 relative z-10">
+      <section id="markets-insight" className="mb-12 border-t border-gray-200 pt-12">
         <div className="px-6 md:px-16 max-w-[1200px] mx-auto">
           <div className="flex justify-between items-center mb-6">
-            <motion.h2 
-              className="text-2xl font-bold flex items-center"
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
+            <h2 className="text-2xl font-bold flex items-center">
               {t('home.marketsInsight')}
-            </motion.h2>
+            </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -260,18 +248,12 @@ const Home = () => {
       </section>
 
       {/* Our Research Section */}
-      <section id="our-research" className="py-16 bg-gray-50 relative z-10">
+      <section id="our-research" className="py-16 bg-gray-50">
         <div className="px-6 md:px-16 max-w-[1200px] mx-auto">
           <div className="flex justify-between items-center mb-8">
-          <motion.h2 
-            className="gs-header"
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
+          <h2 className="gs-header">
             {t('home.researchTitle')}
-          </motion.h2>
+          </h2>
         </div>
 
         <div>
@@ -284,13 +266,7 @@ const Home = () => {
               <h3 className="text-xl font-semibold mb-6 border-b border-gray-200 pb-3">{t('home.featuredResearch')}</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* Report Card 1 */}
-                <motion.div 
-                  className="bg-white border border-gray-100 overflow-hidden flex flex-col card-hover-lift"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                >
+                <div className="bg-white border border-gray-100 overflow-hidden flex flex-col">
                   <div className="relative h-44 bg-gray-200 overflow-hidden">
                     <img 
                       src="https://images.unsplash.com/photo-1579846703547-7190c9b1b460?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -312,16 +288,10 @@ const Home = () => {
                       {t('home.readTheReport')} <ArrowRight className="h-4 w-4" />
                     </a>
                   </div>
-                </motion.div>
+                </div>
 
                 {/* Report Card 2 */}
-                <motion.div 
-                  className="bg-white border border-gray-100 overflow-hidden flex flex-col card-hover-lift"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                >
+                <div className="bg-white border border-gray-100 overflow-hidden flex flex-col">
                   <div className="relative h-44 bg-gray-200 overflow-hidden">
                     <img 
                       src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
@@ -342,16 +312,10 @@ const Home = () => {
                       {t('home.readTheReport')} <ArrowRight className="h-4 w-4" />
                     </a>
                   </div>
-                </motion.div>
+                </div>
 
                 {/* Report Card 3 */}
-                <motion.div 
-                  className="bg-white border border-gray-100 overflow-hidden flex flex-col card-hover-lift"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
-                >
+                <div className="bg-white border border-gray-100 overflow-hidden flex flex-col">
                   <div className="relative h-44 bg-gray-200 overflow-hidden">
                     <img 
                       src="https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" 
@@ -372,7 +336,7 @@ const Home = () => {
                       {t('home.readTheReport')} <ArrowRight className="h-4 w-4" />
                     </a>
                   </div>
-                </motion.div>
+                </div>
               </div>
             </div>
 
@@ -425,18 +389,12 @@ const Home = () => {
       </section>
 
       {/* Portfolio Strategies Section - Espansa */}
-      <section id="quantitative-strategies" className="py-16 bg-white relative z-10">
+      <section id="quantitative-strategies" className="py-16 bg-white">
         <div className="px-6 md:px-16 max-w-[1200px] mx-auto">
           <div className="flex justify-between items-center mb-8">
-            <motion.h2 
-              className="gs-header"
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
+            <h2 className="gs-header">
               {t('home.portfolioStrategies')}
-            </motion.h2>
+            </h2>
           </div>
 
         <div>
@@ -446,13 +404,7 @@ const Home = () => {
 
             {/* Strategy Cards Row 1 */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <motion.div 
-                className="bg-white border border-gray-100 p-6 shadow-sm card-hover-lift"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-              >
+              <div className="bg-white border border-gray-100 p-6 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex justify-between mb-4">
                   <span className="px-3 py-1 bg-blue-50 text-blue-600 text-xs font-medium rounded-full">{t('strategies.multiAsset')}</span>
                   <span className="text-green-600 font-bold">+16.4%</span>
@@ -486,15 +438,9 @@ const Home = () => {
                 <a href="#" className="gs-arrow-link">
                   View strategy details <ArrowRight className="h-4 w-4" />
                 </a>
-              </motion.div>
+              </div>
 
-              <motion.div 
-                className="bg-white border border-gray-100 p-6 shadow-sm card-hover-lift"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
+              <div className="bg-white border border-gray-100 p-6 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex justify-between mb-4">
                   <span className="px-3 py-1 bg-blue-50 text-blue-600 text-xs font-medium rounded-full">{t('strategies.equityFocus')}</span>
                   <span className="text-green-600 font-bold">+21.2%</span>
@@ -528,15 +474,9 @@ const Home = () => {
                 <a href="#" className="gs-arrow-link">
                   View strategy details <ArrowRight className="h-4 w-4" />
                 </a>
-              </motion.div>
+              </div>
 
-              <motion.div 
-                className="bg-white border border-gray-100 p-6 shadow-sm card-hover-lift"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-              >
+              <div className="bg-white border border-gray-100 p-6 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex justify-between mb-4">
                   <span className="px-3 py-1 bg-blue-50 text-blue-600 text-xs font-medium rounded-full">Fixed Income</span>
                   <span className="text-green-600 font-bold">+12.8%</span>
@@ -570,18 +510,12 @@ const Home = () => {
                 <a href="#" className="gs-arrow-link">
                   View strategy details <ArrowRight className="h-4 w-4" />
                 </a>
-              </motion.div>
+              </div>
             </div>
 
             {/* Strategy Cards Row 2 */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <motion.div 
-                className="bg-white border border-gray-100 p-6 shadow-sm card-hover-lift"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-              >
+              <div className="bg-white border border-gray-100 p-6 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex justify-between mb-4">
                   <span className="px-3 py-1 bg-blue-50 text-blue-600 text-xs font-medium rounded-full">Volatility</span>
                   <span className="text-green-600 font-bold">+14.5%</span>
@@ -615,15 +549,9 @@ const Home = () => {
                 <a href="#" className="gs-arrow-link">
                   View strategy details <ArrowRight className="h-4 w-4" />
                 </a>
-              </motion.div>
+              </div>
 
-              <motion.div 
-                className="bg-white border border-gray-100 p-6 shadow-sm card-hover-lift"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
+              <div className="bg-white border border-gray-100 p-6 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex justify-between mb-4">
                   <span className="px-3 py-1 bg-blue-50 text-blue-600 text-xs font-medium rounded-full">ESG</span>
                   <span className="text-green-600 font-bold">+18.7%</span>
@@ -657,15 +585,9 @@ const Home = () => {
                 <a href="#" className="gs-arrow-link">
                   View strategy details <ArrowRight className="h-4 w-4" />
                 </a>
-              </motion.div>
+              </div>
 
-              <motion.div 
-                className="bg-white border border-gray-100 p-6 shadow-sm card-hover-lift"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-              >
+              <div className="bg-white border border-gray-100 p-6 shadow-sm hover:shadow-md transition-shadow">
                 <div className="flex justify-between mb-4">
                   <span className="px-3 py-1 bg-blue-50 text-blue-600 text-xs font-medium rounded-full">Alternatives</span>
                   <span className="text-green-600 font-bold">+22.5%</span>
@@ -698,7 +620,7 @@ const Home = () => {
                 <a href="#" className="gs-arrow-link">
                   View strategy details <ArrowRight className="h-4 w-4" />
                 </a>
-              </motion.div>
+              </div>
             </div>
 
             {/* Strategy Comparison */}
