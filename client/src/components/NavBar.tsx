@@ -116,6 +116,19 @@ const NavBar = () => {
     setCurrentPhrase(0);
   }, [language]);
 
+  // Close research dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (researchDropdownOpen && !target.closest('[data-dropdown="research"]')) {
+        setResearchDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [researchDropdownOpen]);
+
   // Search functionality with debouncing
   useEffect(() => {
     if (!searchQuery.trim()) {
@@ -227,10 +240,15 @@ const NavBar = () => {
                 <div 
                   key={link.href} 
                   className="relative h-full"
+                  data-dropdown="research"
                   onMouseEnter={() => setResearchDropdownOpen(true)}
                   onMouseLeave={() => setResearchDropdownOpen(false)}
                 >
                   <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setResearchDropdownOpen(!researchDropdownOpen);
+                    }}
                     className={cn(
                       "nav-link font-medium text-primary hover:text-secondary transition-colors h-full px-2 md:px-4 xl:px-6 py-4 md:py-5 xl:py-6 flex items-center text-xs md:text-sm xl:text-base",
                       (location.startsWith('/research') || (location === "/" && activeSection === link.id)) ? "text-secondary" : ""
