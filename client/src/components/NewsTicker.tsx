@@ -70,7 +70,7 @@ const NewsTicker = () => {
       scrollTimeout = setTimeout(() => {
         setIsScrolling(false);
         setIsVisible(true);
-      }, 150);
+      }, 300);
     };
     
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -105,15 +105,19 @@ const NewsTicker = () => {
   if (isLoading || news.length === 0) {
     return (
       <motion.div 
-        className="w-full bg-primary text-white py-3 overflow-hidden"
-        initial={{ y: 0, opacity: 1 }}
+        className="w-full bg-primary text-white overflow-hidden"
+        initial={{ height: "auto", opacity: 1 }}
         animate={{ 
-          y: isVisible ? 0 : -50,
-          opacity: isVisible ? 1 : 0
+          height: isVisible ? "auto" : 0,
+          opacity: isVisible ? 1 : 0,
+          marginTop: isVisible ? 0 : -10
         }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
+        transition={{ 
+          duration: isVisible ? 0.4 : 0.2,
+          ease: isVisible ? [0.4, 0, 0.2, 1] : [0.4, 0, 1, 1]
+        }}
       >
-        <div className="container mx-auto flex items-center justify-between">
+        <div className="container mx-auto flex items-center justify-between py-3">
           <div className="w-8"></div>
           <div className="h-6 bg-white/20 animate-pulse rounded w-2/3"></div>
           <div className="w-8"></div>
@@ -125,15 +129,19 @@ const NewsTicker = () => {
   return (
     <>
       <motion.div 
-        className="w-full bg-primary text-white py-3 overflow-hidden"
-        initial={{ y: 0, opacity: 1 }}
+        className="w-full bg-primary text-white overflow-hidden"
+        initial={{ height: "auto", opacity: 1 }}
         animate={{ 
-          y: isVisible ? 0 : -50,
-          opacity: isVisible ? 1 : 0
+          height: isVisible ? "auto" : 0,
+          opacity: isVisible ? 1 : 0,
+          marginTop: isVisible ? 0 : -10
         }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
+        transition={{ 
+          duration: isVisible ? 0.4 : 0.2,
+          ease: isVisible ? [0.4, 0, 0.2, 1] : [0.4, 0, 1, 1]
+        }}
       >
-        <div className="container mx-auto flex items-center justify-between">
+        <div className="container mx-auto flex items-center justify-between py-3">
           <button 
             onClick={handlePrev} 
             className="p-1 rounded-full text-white/70 hover:text-white transition-colors focus:outline-none"
