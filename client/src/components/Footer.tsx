@@ -73,7 +73,6 @@ const Footer = () => {
               <li><Link href="/privacy" className="text-neutral-300 hover:text-secondary transition-colors">{t('footer.privacy')}</Link></li>
               <li><Link href="/terms" className="text-neutral-300 hover:text-secondary transition-colors">{t('footer.terms')}</Link></li>
               <li><Link href="/risk-warnings" className="text-neutral-300 hover:text-secondary transition-colors">{t('footer.risk')}</Link></li>
-              <li><Link href="/cookie-policy" className="text-neutral-300 hover:text-secondary transition-colors">{t('footer.cookie')}</Link></li>
               <li><Link href="/security" className="text-neutral-300 hover:text-secondary transition-colors">{t('footer.security')}</Link></li>
               <li><Link href="/accessibility" className="text-neutral-300 hover:text-secondary transition-colors">{t('footer.accessibility')}</Link></li>
             </ul>
