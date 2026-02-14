@@ -13,6 +13,7 @@ import WhitePaper from "@/pages/WhitePaper";
 import Research from "@/pages/Research";
 import DataScience from "@/pages/DataScience";
 import Engineering from "@/pages/Engineering";
+import PortfolioTracker from "@/pages/PortfolioTracker";
 import Login from "@/pages/Login";
 import Register from "@/pages/Register";
 import Privacy from "@/pages/Privacy";
@@ -52,6 +53,7 @@ function Router() {
         <Route path="/research" component={Research} />
         <Route path="/research/data-science" component={DataScience} />
         <Route path="/research/engineering" component={Engineering} />
+        <Route path="/portfolio-tracker" component={PortfolioTracker} />
         <Route path="/quantitative-strategies" component={QuantitativeStrategies} />
         <Route path="/contact" component={Contact} />
         <Route path="/about" component={AboutUs} />

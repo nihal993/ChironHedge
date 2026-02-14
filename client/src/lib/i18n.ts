@@ -29,6 +29,10 @@ export const translations: Translations = {
     en: 'Portfolio Strategies',
     it: 'Strategie di Portafoglio'
   },
+  'navbar.portfolioTracker': {
+    en: 'Portfolio Tracker',
+    it: 'Tracker di Portafoglio'
+  },
   'navbar.contact': {
     en: 'Contact Us',
     it: 'Contattaci'

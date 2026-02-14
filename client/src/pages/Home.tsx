@@ -117,7 +117,7 @@ const Home = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 2.0, delay: 6.5 }}
             >
-              ChironHedge delivers algorithmic strategies once reserved for the few - now designed for the many.
+              ChironHedge delivers research and quantitative strategies once reserved for the few - now designed for the many.
             </motion.p>
             <motion.div 
               className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6"
