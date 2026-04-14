@@ -5,7 +5,6 @@ import Layout from "@/components/Layout";
 import Home from "@/pages/Home";
 import NewsAI from "@/pages/NewsAI";
 import MarketsInsight from "@/pages/MarketsInsight";
-import QuantitativeStrategies from "@/pages/QuantitativeStrategies";
 import Contact from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
 import AboutUs from "@/pages/AboutUs";
@@ -54,7 +53,6 @@ function Router() {
         <Route path="/research/data-science" component={DataScience} />
         <Route path="/research/engineering" component={Engineering} />
         <Route path="/portfolio-tracker" component={PortfolioTracker} />
-        <Route path="/quantitative-strategies" component={QuantitativeStrategies} />
         <Route path="/contact" component={Contact} />
         <Route path="/about" component={AboutUs} />
         <Route path="/whitepaper" component={WhitePaper} />
